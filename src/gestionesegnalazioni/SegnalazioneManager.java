@@ -5,12 +5,20 @@
 
 package gestionesegnalazioni;
 
+
 /**
- * TODO.
+ * Manager della classe segnalazione.
+ * 
+ * @author kinglash
  *
  */
-
 public class SegnalazioneManager {
+  
+  /**
+   * Questo metodo crea una nuova Segnalazione.
+   * 
+   * @author kinglash
+   */
 
   public void creaSegnalazione() {}
   
