@@ -9,23 +9,37 @@ package gestionerecensioni;
 
 public class Recensione {
 	
-	
+	/**
+	 * Inizializza una nuova recensione
+	 * @param valutazione della recensione
+	 * @param descrizione della recensione
+	 */
 	public Recensione(int valutazione, String descrizione) {
 		this.valutazione = valutazione;
 		this.descrizione = descrizione;
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @return la valutazione della recensione
+	 */
 	public int getValutazione() {
 		return valutazione;
 	}
-	public void setValutazione(int valutazione) {
-		this.valutazione = valutazione;
-	}
+	
+	/**
+	 * 
+	 * @return la descrizione della recensione
+	 */
 	public String getDescrizione() {
 		return descrizione;
 	}
+
+	/**
+	 * 
+	 * @param descrizione aggiornata della recensione
+	 */
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
