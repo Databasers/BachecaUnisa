@@ -8,49 +8,92 @@ package gestioneannunci;
  */
 
 public class Annuncio {
-
-	
-	
-	
-	
 	
 	/**
-	 * 
+	 * Inizializza un nuovo annuncio.
+	 * @param titolo dell'annuncio.
+	 * @param descrizione dell'annuncio.
+	 * @param tipologia dell'annuncio <code>true</code> se e' un annuncio di tutorato.
+	 * 								  <code>false</code> se e' un annuncio di gruppo di studio.
+	 * @param dipartimento relativo all'annuncio.
+	 */
+	public Annuncio(String titolo, String descrizione, boolean tipologia, String dipartimento) {
+		this.titolo = titolo;
+		this.descrizione = descrizione;
+		this.tipologia = tipologia;
+		this.dipartimento = dipartimento;
+	}
+	
+
+	/**
+	 *
 	 * @return il titolo dell'annuncio.
 	 */
-	public string getTitolo() {
+	public String getTitolo() {
 		return titolo;
 	}
 	
 	/**
 	 * 
-	 * @param titolo andrà ad aggiornare il titolo dell'annuncio.
+	 * @return la descrizione dell'annuncio.
 	 */
-	public void setTitolo(string titolo) {
-		this.titolo = titolo;
-	}
-	public string getDescrizione() {
+	public String getDescrizione() {
 		return descrizione;
 	}
-	public void setDescrizione(string descrizione) {
-		this.descrizione = descrizione;
-	}
+	
+	/**
+	 * 
+	 * @return  <code>true</code> se e' un annuncio di tutorato.
+	 * 			<code>false</code> se e' un annuncio di gruppo di studio.
+	 */
 	public boolean isTipologia() {
 		return tipologia;
 	}
+	
+	/**
+	 * 
+	 * @return il dipartimento relativo all'annuncio.
+	 */
+	public String getDipartimento() {
+		return dipartimento;
+	}
+	
+	/**
+	 * 
+	 * @param titolo aggiornato dell'annuncio.
+	 */
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
+	}
+	
+	/**
+	 * 
+	 * @param descrizione aggiornata dell'annuncio.
+	 */
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	
+	/**
+	 * 
+	 * @param tipologia aggiornata dell'annuncio.<code>true</code> se e' un annuncio di tutorato.
+	 * 											 <code>false</code> se e' un annuncio di gruppo di studio.
+	 */
 	public void setTipologia(boolean tipologia) {
 		this.tipologia = tipologia;
 	}
-	public string getDipartimento() {
-		return dipartimento;
-	}
-	public void setDipartimento(string dipartimento) {
+	
+	/**
+	 * 
+	 * @param dipartimento aggiornato relativo all'annuncio.
+	 */
+	public void setDipartimento(String dipartimento) {
 		this.dipartimento = dipartimento;
 	}
 	
 	
-	private string titolo;
-	private string descrizione;
+	private String titolo;
+	private String descrizione;
 	private boolean tipologia;
-	private string dipartimento;
+	private String dipartimento;
 }
