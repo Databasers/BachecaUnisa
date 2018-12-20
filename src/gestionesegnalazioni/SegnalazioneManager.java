@@ -20,7 +20,7 @@ public class SegnalazioneManager {
    * @author kinglash
    */
 
-  public void creaSegnalazione() {}
+  public void creaSegnalazione() {} //necessita una precondizione per numSegnalazioni>50
   
   
 }
