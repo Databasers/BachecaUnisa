@@ -6,8 +6,7 @@
 package gestioneutenti;
 
 /**
- * 
- * 
+ * Javadoc.
  *
  *
  */

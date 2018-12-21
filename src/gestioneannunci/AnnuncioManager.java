@@ -1,8 +1,8 @@
 package gestioneannunci;
 
 /**
- * Il manager della classe Annuncio si occupa della gestione degli annunci: della loro creazione, rimozione, 
- * modifica e della ricerca.
+ * Il manager della classe Annuncio si occupa della gestione degli annunci: 
+ * Della loro creazione, rimozione, modifica e della ricerca.
  * 
  *
  */
@@ -11,19 +11,19 @@ public class AnnuncioManager {
 
   
 
-	/**Questo metodo crea un nuovo annuncio in database.
-	 * 
-	 * @param dipartimento selezionato dall'utente.
-	 * @param titolo
-	 * @param descrizione
-	 * @param tipologia dell'annuncio (gruppo di studio/tutorato.
-	 */
+  /**Questo metodo crea un nuovo annuncio in database.
+   * 
+   * @param dipartimento selezionato dall'utente.
+   * @param titolo  Titplo
+   * @param descrizione Descrizione
+   * @param tipologia dell'annuncio (gruppo di studio/tutorato.
+   */
   public void creaAnnuncio(
       String dipartimento, String titolo, String descrizione, String tipologia) {
     
   }
 
-   /**Questo metodo rimuove l'annuncio selezionato dal database.
+  /**Questo metodo rimuove l'annuncio selezionato dal database.
    * 
    * @param a annuncio da rimuovere.
    */

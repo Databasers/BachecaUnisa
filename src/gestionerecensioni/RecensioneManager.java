@@ -3,8 +3,8 @@ package gestionerecensioni;
 import gestioneutenti.Utente;
 
 /**
- * Il manager della classe Recensione si occupa della gestione delle recensioni: della loro creazione
- * e rimozione.
+ * Il manager della classe Recensione si occupa della gestione delle recensioni: della loro 
+ * creazione e rimozione.
  * 
  */
 public class RecensioneManager {
@@ -13,11 +13,13 @@ public class RecensioneManager {
   /**
    * Questo metodo crea una recensione nel database.
    * 
-   * @param descrizione
+   * @param descrizione Descrizione
    * @param utenteMittente utente che rilascia la recensione.
    * @param utenteDestinatario utente che riceve la recensione.
    */
-  public void creaRecensione(String descrizione, Utente utenteMittente, Utente utenteDestinatario) {}
+  
+  public void creaRecensione(
+      String descrizione, Utente utenteMittente, Utente utenteDestinatario) {}
   
   
   /**
