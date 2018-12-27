@@ -3,8 +3,7 @@
 package gestioneutenti;
 
 /**
- * 
- * 
+ * Javadoc.
  *
  *
  */
