@@ -1,9 +1,9 @@
 package gestionesegnalazioni;
 
 /**
- * Un oggetto <code>Segnalazione</code> rappresenta una segnalazione. Una segnalazione pu�
+ * Un oggetto <code>Segnalazione</code> rappresenta una segnalazione. Una segnalazione può
  * riferirsi ad un annuncio o ad una recensione. Ogni segnalazione ha un motivazione che
- * l'utente dovr� selezionare ed una descrizione facoltativa.
+ * l'utente dovrà selezionare ed una descrizione facoltativa.
  * 
  *
  */
@@ -21,27 +21,35 @@ public class Segnalazione {
 
 
   /**
-   *  Cosa.
-   * @return la descrizione della segnalazione
+   *  Restituisce la descrizione della segnalazione.
+   *  
    */
   public String getDescrizione() {
     return descrizione;
   }
 
   /**
-   * Roba.
-   * @return
+   * Restituisce la motivazione della descrizione.
    */
   public int getMotivazione() {
     return motivazione;
   }
 
 
+  /**
+   * Modifica la descrizione.
+   * @param descrizione aggiornata.
+   */
   public void setDescrizione(String descrizione) {
     this.descrizione = descrizione;
   }
 
 
+  /**
+   * Modifica la motivazione.
+   * 
+   * @param motivazione aggiornata
+   */
   public void setMotivazione(int motivazione) {
     this.motivazione = motivazione;
   }

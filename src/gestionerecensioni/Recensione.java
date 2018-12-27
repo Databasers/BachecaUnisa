@@ -21,23 +21,24 @@ public class Recensione {
 
 
   /**
-   * Cosa.
-   * @return la valutazione della recensione
+   * Restituisce il punteggio della recensione.
+   * 
    */
   public int getValutazione() {
     return valutazione;
   }
 
   /**
-   * Due.
-   * @return la descrizione della recensione
+   * Restituisce la descrizione della recensione.
+   *
    */
   public String getDescrizione() {
     return descrizione;
   }
 
   /**
-   * Tre.
+   * Modifica la descrizione della recensione.
+   * 
    * @param descrizione aggiornata della recensione
    */
   public void setDescrizione(String descrizione) {
