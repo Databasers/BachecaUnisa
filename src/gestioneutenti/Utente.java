@@ -10,6 +10,7 @@ public class Utente {
 
   /**
    * Inizializza un nuovo utente.
+   * 
    * @param nome dell'utente
    * @param cognome dell'utente
    * @param sesso dell'utente
@@ -30,48 +31,43 @@ public class Utente {
 
 
   /**
-   * Roba.
-   * @return il nome dell'utente
+   * Restituisce il nome dell'utente.
+   * 
    */
   public String getNome() {
     return nome;
   }
 
   /**
-   * Filler.
-   * @return il cognome dell'utente
+   * Restituisce il cognome dell'utente.
    */
   public String getCognome() {
     return cognome;
   }
 
   /**
-   * Qualcosa.
-   * @return il sesso dell'utente
+   * Restituisce il sesso dell'utente.
    */
   public String getSesso() {
     return sesso;
   }
 
   /**
-   * Qual.
-   * @return la password dell'utente
+   * Restituisce la password dell'utente.
    */
   public String getPassword() {
     return password;
   }
   
   /**
-   * Qal.
-   * @return la descrizione dell'utente
+   * Restituisce la descrizione dell'utente.
    */
   public String getDescrizione() {
     return descrizione;
   }
 
   /**
-   * Q-al.
-   * @return il numeri di annunci dell'utente
+   * Restituisce il numero di annunci dell'utente.
    */
   public int getNumAnnunci() {
     return numAnnunci;
