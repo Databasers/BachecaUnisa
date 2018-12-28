@@ -50,26 +50,16 @@ public class Annuncio {
     return tipologia;
   }
 
-  /**
-   * Restituisce il dipartimento dell'annuncio.
-   * 
-   */
   public String getDipartimento() {
     return dipartimento;
   }
 
-  /**
-   * Modifica il titolo dell'annuncio.
-   * @param titolo aggiornato dell'annuncio.
-   */
+
   public void setTitolo(String titolo) {
     this.titolo = titolo;
   }
 
-  /**
-   * Modifica la descrizione dell'annuncio.
-   * @param descrizione aggiornata dell'annuncio.
-   */
+
   public void setDescrizione(String descrizione) {
     this.descrizione = descrizione;
   }
@@ -83,10 +73,7 @@ public class Annuncio {
     this.tipologia = tipologia;
   }
 
-  /**
-   * Modifica il dipartimento dell'annuncio.
-   * @param dipartimento aggiornato relativo all'annuncio.
-   */
+
   public void setDipartimento(String dipartimento) {
     this.dipartimento = dipartimento;
   }

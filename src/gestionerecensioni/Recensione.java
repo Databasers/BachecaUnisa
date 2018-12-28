@@ -20,27 +20,17 @@ public class Recensione {
   }
 
 
-  /**
-   * Restituisce il punteggio della recensione.
-   * 
-   */
+
   public int getValutazione() {
     return valutazione;
   }
 
-  /**
-   * Restituisce la descrizione della recensione.
-   *
-   */
+
   public String getDescrizione() {
     return descrizione;
   }
 
-  /**
-   * Modifica la descrizione della recensione.
-   * 
-   * @param descrizione aggiornata della recensione
-   */
+
   public void setDescrizione(String descrizione) {
     this.descrizione = descrizione;
   }

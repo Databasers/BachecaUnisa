@@ -29,104 +29,61 @@ public class Utente {
   }
 
 
-
-  /**
-   * Restituisce il nome dell'utente.
-   * 
-   */
   public String getNome() {
     return nome;
   }
 
-  /**
-   * Restituisce il cognome dell'utente.
-   * 
-   */
+
   public String getCognome() {
     return cognome;
   }
 
-  /**
-   * Restituisce il sesso dell'utente.
-   * 
-   */
+
   public String getSesso() {
     return sesso;
   }
 
-  /**
-   * Restituisce la password dell'utente.
-   * 
-   */
+
   public String getPassword() {
     return password;
   }
   
-  /**
-   * Restituisce la descrizione dell'utente.
-   * 
-   */
+
   public String getDescrizione() {
     return descrizione;
   }
 
-  /**
-   * Restituisce il numero di annunci dell'utente.
-   * 
-   */
   public int getNumAnnunci() {
     return numAnnunci;
   }
   
-  /**
-   * quet.
-   * @param nome dell'utente
-   */
-  
+
   public void setNome(String nome) {
     //Sto continuando a usare lo stile degli altri commenti,
     //non so se ha senso fare cosi
     this.nome = nome;
   }
-  /**
-   * nonquet.
-   * @param cognome dell'utente
-   */
-  
+
   public void setCognome(String cognome) {
     this.cognome = cognome;
   }
   
-  /**
-   * pesce palla.
-   * @param sesso dell'utente
-   */
+
   
   public void setSesso(String sesso) {
     this.sesso = sesso;
   }
-  /**
-   * qualcon.
-   * @param password dell'utente
-   */
+
   
   public void setPassword(String password) {
     this.password = password;
   }
-  /**
-   * emp.
-   * @param descrizione dell'utente
-   */
+
   
   public void setDescrizione(String descrizione) {
     this.descrizione = descrizione;
   }
-  
-  /**
-   * uthgi.
-   * @param numAnnunci numero di annunci dell'utente
-   */
-  
+
   public void setNumAnnunci(int numAnnunci) {
     this.numAnnunci = numAnnunci;
   }

@@ -19,37 +19,20 @@ public class Segnalazione {
     this.motivazione = motivo;
   }
 
-
-  /**
-   *  Restituisce la descrizione della segnalazione.
-   *  
-   */
   public String getDescrizione() {
     return descrizione;
   }
 
-  /**
-   * Restituisce la motivazione della descrizione.
-   */
   public int getMotivazione() {
     return motivazione;
   }
 
 
-  /**
-   * Modifica la descrizione.
-   * @param descrizione aggiornata.
-   */
   public void setDescrizione(String descrizione) {
     this.descrizione = descrizione;
   }
 
 
-  /**
-   * Modifica la motivazione.
-   * 
-   * @param motivazione aggiornata
-   */
   public void setMotivazione(int motivazione) {
     this.motivazione = motivazione;
   }
