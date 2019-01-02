@@ -26,56 +26,46 @@ public class Annuncio {
 
 
   /**
-   *  Summery.
-   * @return il titolo dell'annuncio.
+   *  Restituisce il titolo dell'annuncio.
+   *  
    */
   public String getTitolo() {
     return titolo;
   }
 
   /**
-   * Dio.
-   * @return la descrizione dell'annuncio.
+   * Restituisce la descrizione dell'annuncio.
+   * 
    */
   public String getDescrizione() {
     return descrizione;
   }
   
   /**
-   * EEEEEEEEEEEEEEEE.
-   * @return  <code>true</code> se e' un annuncio di tutorato.
-   *          <code>false</code> se e' un annuncio di gruppo di studio.
+   * Check per la classe di annuncio.
+   * @return  <code>true</code> annuncio di tutorato.
+   *          <code>false</code> annuncio di gruppo di studio.
    */
   public boolean isTipologia() {
     return tipologia;
   }
 
-  /**
-   * AAAAAAAAA.
-   * @return il dipartimento relativo all'annuncio.
-   */
   public String getDipartimento() {
     return dipartimento;
   }
 
-  /**
-   * Sumrm.
-   * @param titolo aggiornato dell'annuncio.
-   */
+
   public void setTitolo(String titolo) {
     this.titolo = titolo;
   }
 
-  /**
-   * Summario.
-   * @param descrizione aggiornata dell'annuncio.
-   */
+
   public void setDescrizione(String descrizione) {
     this.descrizione = descrizione;
   }
 
   /**
-   * Summery.
+   * Modifica la tiologia dell'annuncio.
    * @param tipologia aggiornata dell'annuncio.<code>true</code> se e' un annuncio di tutorato.
    *          <code>false</code> se e' un annuncio di gruppo di studio.
    */
@@ -83,10 +73,7 @@ public class Annuncio {
     this.tipologia = tipologia;
   }
 
-  /**
-   * Summart.
-   * @param dipartimento aggiornato relativo all'annuncio.
-   */
+
   public void setDipartimento(String dipartimento) {
     this.dipartimento = dipartimento;
   }

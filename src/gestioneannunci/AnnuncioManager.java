@@ -11,30 +11,32 @@ public class AnnuncioManager {
 
   
 
-  /**Questo metodo crea un nuovo annuncio in database.
+  /**
+   * Questo metodo crea un nuovo annuncio nel database.
    * 
    * @param dipartimento selezionato dall'utente.
-   * @param titolo  Titplo
-   * @param descrizione Descrizione
-   * @param tipologia dell'annuncio (gruppo di studio/tutorato.
+   * @param titolo  titolo
+   * @param descrizione descrizione
+   * @param tipologia dell'annuncio (gruppo di studio/tutorato).
    */
   public void creaAnnuncio(
       String dipartimento, String titolo, String descrizione, String tipologia) {
     
   }
 
-  /**Questo metodo rimuove l'annuncio selezionato dal database.
+  /**
+   * Questo metodo rimuove l'annuncio selezionato dal database.
    * 
-   * @param a annuncio da rimuovere.
+   * @param annuncio da rimuovere.
    */
-  public void rimuoviAnnuncio(Annuncio a) {}
+  public void rimuoviAnnuncio(Annuncio annuncio) {}
   
   /**Questo metodo modifica l'annuncio selezionato nel database.
    * 
-   * @param a annuncio da modificare.
+   * @param annuncio da modificare.
    * 
    */
-  public void modificaAnnuncio(Annuncio a) {}
+  public void modificaAnnuncio(Annuncio annuncio) {}
   
   
   /**Questo metodo cerca un annuncio nel database in base ai parametri inseriti.
