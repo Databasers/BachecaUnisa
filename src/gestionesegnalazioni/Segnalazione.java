@@ -1,9 +1,9 @@
 package gestionesegnalazioni;
 
 /**
- * Un oggetto <code>Segnalazione</code> rappresenta una segnalazione. Una segnalazione pu√≤
- * riferirsi ad un annuncio o ad una recensione. Ogni segnalazione ha un motivazione che
- * l'utente dovr√† selezionare ed una descrizione facoltativa.
+ * Un oggetto <code>Segnalazione</code> rappresenta una segnalazione. Una segnalazione puÚ
+ * riferirsi ad un annuncio o ad una recensione. Ogni segnalazione ha un id , una motivazione che
+ * l'utente dovr‡† selezionare ed una descrizione facoltativa.
  * 
  *
  */
@@ -14,7 +14,8 @@ public class Segnalazione {
    * @param descrizione Descrizione
    * @param motivo della segnalazione scelto dall'utente.
    */
-  public Segnalazione(String descrizione, int motivo) {
+  public Segnalazione(int id, String descrizione, int motivo) {
+    this.id = id;
     this.descrizione = descrizione;
     this.motivazione = motivo;
   }
@@ -28,7 +29,16 @@ public class Segnalazione {
   }
 
 
-  public void setDescrizione(String descrizione) {
+  public int getId() {
+    return id;
+}
+
+  
+  public void setId(int id) {
+    this.id = id;
+}
+
+public void setDescrizione(String descrizione) {
     this.descrizione = descrizione;
   }
 
@@ -38,7 +48,7 @@ public class Segnalazione {
   }
 
 
-
+  private int id;
   private String descrizione;
   /**
    * da riempire.

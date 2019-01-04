@@ -1,9 +1,9 @@
 package gestioneannunci;
 
 /**
- * Un oggetto <code>Annuncio</code> rappresenta un annuncio creato da un utente. Ogni annuncio ha un
- * una tipologia (gruppo di studio, tutorato), un titolo, una descrizione facoltativa ed un 
- * dipartimento da selezionare
+ * Un oggetto <code>Annuncio</code> rappresenta un annuncio creato da un utente. Ogni annuncio ha un id, una
+ * una tipologia (gruppo di studio, tutorato), un titolo, una descrizione facoltativa, un 
+ * dipartimento da selezionare ed il numero di segnalazioni ricevute.
  *
  */
 
@@ -11,13 +11,15 @@ public class Annuncio {
   
   /**
    * Inizializza un nuovo annuncio.
+   * @param id
    * @param titolo dell'annuncio.
    * @param descrizione dell'annuncio.
    * @param tipologia dell'annuncio <code>true</code> se e' un annuncio di tutorato.
    *          <code>false</code> se e' un annuncio di gruppo di studio.
    * @param dipartimento relativo all'annuncio.
    */
-  public Annuncio(String titolo, String descrizione, boolean tipologia, String dipartimento) {
+  public Annuncio(int id, String titolo, String descrizione, boolean tipologia, String dipartimento) {
+    this.id = id;
     this.titolo = titolo;
     this.descrizione = descrizione;
     this.tipologia = tipologia;
@@ -25,10 +27,7 @@ public class Annuncio {
   }
 
 
-  /**
-   *  Restituisce il titolo dell'annuncio.
-   *  
-   */
+
   public String getTitolo() {
     return titolo;
   }
@@ -55,7 +54,17 @@ public class Annuncio {
   }
 
 
-  public void setTitolo(String titolo) {
+  public int getId() {
+    return id;
+}
+
+  public int getNumSegnalazioni() {
+    return numSegnalazioni;
+}
+
+
+
+public void setTitolo(String titolo) {
     this.titolo = titolo;
   }
 
@@ -78,9 +87,24 @@ public class Annuncio {
     this.dipartimento = dipartimento;
   }
  
+  
 
-  private String titolo;
+  public void setId(int id) {
+    this.id = id;
+}
+
+
+
+public void setNumSegnalazioni(int numSegnalazioni) {
+    this.numSegnalazioni = numSegnalazioni;
+}
+
+
+
+private String titolo;
   private String descrizione;
   private boolean tipologia;
   private String dipartimento;
+  private int id;
+  private int numSegnalazioni = 0;
 }
