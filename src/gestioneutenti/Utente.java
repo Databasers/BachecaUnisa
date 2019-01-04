@@ -59,8 +59,6 @@ public class Utente {
   
 
   public void setNome(String nome) {
-    //Sto continuando a usare lo stile degli altri commenti,
-    //non so se ha senso fare cosi
     this.nome = nome;
   }
 
