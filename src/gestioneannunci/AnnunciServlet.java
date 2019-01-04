@@ -1,5 +1,11 @@
 package gestioneannunci;
 
-public class AnnunciServlet {
+import javax.servlet.http.HttpServlet;
 
+public class AnnunciServlet extends HttpServlet {
+
+  private static final long serialVersionUID = 1L;
+
+  
+  
 }
