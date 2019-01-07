@@ -16,6 +16,9 @@ public interface Segnalabile {
     
   public void deleteSegnalazione(int id);
   
+  public Segnalazione leggiSegnalazione(int indice);
+ 
   
   List<Segnalazione> lista = null;
+ 
 }

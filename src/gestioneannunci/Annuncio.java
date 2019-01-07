@@ -1,5 +1,8 @@
 package gestioneannunci;
 
+import gestionesegnalazioni.Segnalabile;
+import gestionesegnalazioni.Segnalazione;
+
 /**
  * Un oggetto <code>Annuncio</code> rappresenta un annuncio creato da un utente. 
  * Ogni annuncio ha un id, una una tipologia (gruppo di studio, tutorato),
@@ -8,7 +11,7 @@ package gestioneannunci;
  *
  */
 
-public class Annuncio {
+public class Annuncio implements Segnalabile{
   
   /**
    * Inizializza un nuovo annuncio.
@@ -104,10 +107,40 @@ public class Annuncio {
 
 
 
+  /**La segnalazione viene aggiunta alla lista delle segnalazioni.
+   * @param a la segnalazione da inserire nella lista delle segnalazioni.
+   */
+  public void addSegnalazione(Segnalazione a) {
+      lista.add(a);
+  }
+
+
+
+  /**La segnalazione, il cui id è passato come parametro, 
+   * viene rimossa dalla lista delle segnalazioni.
+   * @param id della segnalazione da rimuovere dalla lista delle segnalazioni.
+   */
+  public void deleteSegnalazione(int id) {
+      lista.remove(id);
+
+  }
+  
+  /**Ritorna la segnalazione che ha come indice il parametro inserito.
+   * @param indice indice della segnalazione da cercare.
+   * 
+   */
+  public Segnalazione leggiSegnalazione(int indice) {
+      return lista.get(indice);
+      
+  }
+
   private String titolo;
   private String descrizione;
   private boolean tipologia;
   private String dipartimento;
   private int id;
   private int numSegnalazioni = 0;
+
+  
+  
 }
