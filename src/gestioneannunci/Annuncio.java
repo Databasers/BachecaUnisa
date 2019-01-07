@@ -1,5 +1,6 @@
 package gestioneannunci;
 
+
 /**
  * Un oggetto <code>Annuncio</code> rappresenta un annuncio creato da un utente. 
  * Ogni annuncio ha un id, una una tipologia (gruppo di studio, tutorato),
@@ -27,6 +28,12 @@ public class Annuncio {
     this.descrizione = descrizione;
     this.tipologia = tipologia;
     this.dipartimento = dipartimento;
+  }
+
+
+
+  public Annuncio() {
+    // TODO Auto-generated constructor stub
   }
 
 
