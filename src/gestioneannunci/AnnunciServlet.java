@@ -18,58 +18,122 @@ public class AnnunciServlet extends HttpServlet {
   
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-   
-      String dipartimento= request.getParameter("dipartimento");
-      String titolo= request.getParameter("titolo");
-      String descrizione= request.getParameter("descrizione");
-      String tipologia= request.getParameter("tipologia");
-      int numSegnalazione= 0;
+        
+      try {
+          String azione= request.getParameter("azione");  
+          if(azione=="prendiAnnunci") {
+              String numPagina = request.getParameter("numPagina"); 
+              prendiAnnunci(numPagina);
+          }
+          
+          if(azione=="rimuoviAnnuncio") {
+              String iD= request.getParameter("iD");
+              rimuoviAnnuncio(iD);
+          }
+          
+          if(azione=="modificaAnnuncio") {
+
+              String titolo= request.getParameter("titolo");
+              String descrizione= request.getParameter("descrizione");
+              modificaAnnuncio(titolo, descrizione);
+              
+          }
+          
+          if(azione=="creaAnnuncio") {
+              
+              String dipartimento= request.getParameter("dipartimento");
+              String titolo= request.getParameter("titolo");
+              String descrizione= request.getParameter("descrizione");
+              String tipologia= request.getParameter("tipologia");
+              
+              creaAnnuncio(dipartimento, titolo, descrizione,tipologia);
+              
+          }
+          
+          if(azione=="cercaAnnuncioiD") {
+              
+              String iD= request.getParameter("iD");
+              cercaAnnuncioiD(iD);
+              
+          }
+          
+          if(azione=="cercaAnnuncioiD") {
+              
+              String iD= request.getParameter("iD");
+              cercaAnnuncioiD(iD);
+              
+          }
+          
+          if(azione=="cercaAnnuncioFiltri") {
+              
+              //DA AGGIUNGERE
+              cercaAnnuncioFiltri();
+              
+          }
+          
+          //altre ricerche: 
+      }
+      
+      finally ();
+      
+      
+     
   }
   
-  /**Questo metodo si occupa di cercare un annuncio all'interno del database
+  private void cercaAnnuncioFiltri() {
+    // TODO Auto-generated method stub
+    
+}
+
+
+/**Questo metodo si occupa di restituire tutti gli annunci presenti nel database
+ * @param numPagina 
    * 
    */
-  protected Annuncio prendiAnnunci() {
+  private Annuncio prendiAnnunci(String numPagina) {
     return null;
       
   }
   
   /**Questo metodo si occupa di rimuovere un annuncio dal database
+ * @param iD 
    * 
    */
-  protected void rimuoviAnnuncio() {
+  private void rimuoviAnnuncio(String iD) {
       
   }
   
   /**Questo metodo si occupa di modificare l'annuncio scelto all'interno del database
+ * @param descrizione 
+ * @param titolo 
    * 
    */
   
-  protected void modificaAnnuncio() {
+  private void modificaAnnuncio(String titolo, String descrizione) {
       
   }
   
   /**Questo metodo crea un annuncio all'interno del datbase
+ * @param tipologia 
+ * @param descrizione 
+ * @param titolo 
+ * @param dipartimento 
    * 
    */
   
-  protected void creaAnnuncio() {
+  private void creaAnnuncio(String dipartimento, String titolo, String descrizione, String tipologia) {
       
   }
   
   /**Questo metodo si occupa di cercare un annuncio all'interno del database
+ * @param iD 
    * 
    */
   
-  protected Annuncio cercaAnnuncio() {
+  public Annuncio cercaAnnuncioiD(String iD) {
     return null;
       
   }
   
   
-  
-  
-  
-  
-  //prendiAnnuncio, rimuoviAnnuncio, modificaAnnuncio, cercaAnnuncio, creaAnnuncio
 }
