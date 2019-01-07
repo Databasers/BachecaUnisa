@@ -117,7 +117,7 @@ public class Annuncio implements Segnalabile {
    * @param a la segnalazione da inserire nella lista delle segnalazioni.
    */
   public void addSegnalazione(Segnalazione a) {
-      lista.add(a);
+    lista.add(a);
   }
 
 

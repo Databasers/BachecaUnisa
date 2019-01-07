@@ -10,7 +10,7 @@ import gestionesegnalazioni.Segnalazione;
  *
  */
 
-public class Recensione implements Segnalabile{
+public class Recensione implements Segnalabile {
 
   /**
    * Inizializza una nuova recensione.
@@ -37,29 +37,30 @@ public class Recensione implements Segnalabile{
 
 
   public int getId() {
-      return id;
+    return id;
   }
 
 
 
   public void setDescrizione(String descrizione) {
-      this.descrizione = descrizione;
+    this.descrizione = descrizione;
   }
 
 
 
 
   public void setId(int id) {
-      this.id = id;
+    this.id = id;
   }
 
 
 
-/**La segnalazione viene aggiunta alla lista delle segnalazioni.
-   * @param a la segnalazione da inserire nella lista delle segnalazioni.
-   */
+  /**
+  * La segnalazione viene aggiunta alla lista delle segnalazioni.
+  * @param a la segnalazione da inserire nella lista delle segnalazioni.
+  */
   public void addSegnalazione(Segnalazione a) {
-      lista.add(a);
+    lista.add(a);
   }
 
 
@@ -69,7 +70,7 @@ public class Recensione implements Segnalabile{
    * @param id della segnalazione da rimuovere dalla lista delle segnalazioni.
    */
   public void deleteSegnalazione(int id) {
-      lista.remove(id);
+    lista.remove(id);
 
   }
 
@@ -78,7 +79,7 @@ public class Recensione implements Segnalabile{
    * 
    */
   public Segnalazione leggiSegnalazione(int indice) {
-      return lista.get(indice);
+    return lista.get(indice);
       
   }
 
