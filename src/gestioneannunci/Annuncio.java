@@ -19,8 +19,8 @@ public class Annuncio implements Segnalabile {
    * @param id Chiave primaria dell'entit√† nel database
    * @param titolo dell'annuncio.
    * @param descrizione dell'annuncio.
-   * @param tipologia dell'annuncio <code>true</code> se e' un annuncio di tutorato.
-   *          <code>false</code> se e' un annuncio di gruppo di studio.
+   * @param tipologia dell'annuncio <code>true</code> se Ë un annuncio di tutorato.
+   *          <code>false</code> se Ë un annuncio di gruppo di studio.
    * @param dipartimento relativo all'annuncio.
    */
   public Annuncio(int id, String titolo, String descrizione, 
