@@ -13,12 +13,18 @@ public class Segnalazione {
    * 
    * @param descrizione Descrizione
    * @param motivo della segnalazione scelto dall'utente.
+   * @param idSegnalato id dell'oggetto segnalato (annuncio o recensione)
+   * @param tipoSegnalazione <code>true</code> se è un annuncio.
+   *                         <code>false</code> se è una recensione.
    */
-  public Segnalazione(int id, String descrizione, int motivo) {
+  public Segnalazione(int id, String descrizione, int motivo, int idSegnalato, 
+      boolean tipoSegnalazione) {
     this.id = id;
     this.descrizione = descrizione;
     this.motivazione = motivo;
   }
+  
+  public Segnalazione() {}
 
   public String getDescrizione() {
     return descrizione;
@@ -32,8 +38,25 @@ public class Segnalazione {
   public int getId() {
     return id;
   }
+  
 
   
+  public int getIdSegnalato() {
+    return idSegnalato;
+  }
+
+  public boolean isTipoSegnalazione() {
+    return tipoSegnalazione;
+  }
+
+  public void setIdSegnalato(int idSegnalato) {
+    this.idSegnalato = idSegnalato;
+  }
+
+  public void setTipoSegnalazione(boolean tipoSegnalazione) {
+    this.tipoSegnalazione = tipoSegnalazione;
+  }
+
   public void setId(int id) {
     this.id = id;
   }
@@ -63,4 +86,6 @@ public class Segnalazione {
    */
   public static final int MOTIVO3 = 3;
   private int motivazione;
+  private int idSegnalato;
+  private boolean tipoSegnalazione;
 }
