@@ -26,8 +26,9 @@ public class RecensioniServlet extends HttpServlet {
     try {
       String azione = request.getParameter("azione");  
       if (azione == "stampaRecensioni") {
-        int numPagina = Integer.parseInt(request.getParameter("numPagina")); 
-        stampaRecensioni(numPagina);
+        int numPagina = Integer.parseInt(request.getParameter("numPagina"));
+        String username = request.getParameter("username");
+        stampaRecensioni(username, numPagina);
       }
 
       if (azione == "rimuoviRecensione") {
@@ -47,14 +48,12 @@ public class RecensioniServlet extends HttpServlet {
         int valutazione = Integer.parseInt(request.getParameter("valutazione"));
         String descrizione = request.getParameter("descrizione");
         creaRecensione(valutazione, descrizione);
-      }
-
-
-      if (azione == "visualizzaRecensione") {
-        int id = Integer.parseInt(request.getParameter("id"));
-        visualizzaRecensione(id);
+        
       }
     }
+
+
+      
 
     catch (Exception exc) {
 
@@ -70,10 +69,11 @@ public class RecensioniServlet extends HttpServlet {
 
 
   /**
-   * Questo metodo si occupa di restituire tutti le recensioni presenti nel database.
+   * Questo metodo si occupa di restituire tutte le recensioni dell'utente passato come parametro.
+   * @param username identificativo dell'utente.
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
    */
-  private ArrayList<Recensione> stampaRecensioni(int numPagina) {
+  private ArrayList<Recensione> stampaRecensioni(String username, int numPagina) {
     return null;
 
   }
@@ -109,12 +109,5 @@ public class RecensioniServlet extends HttpServlet {
     
   }
 
-  
-  private Recensione visualizzaRecensione(int id) {
-    return null;
 
-  }
-
-
-  
 }
