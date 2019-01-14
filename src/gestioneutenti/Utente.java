@@ -1,8 +1,8 @@
 package gestioneutenti;
 
 /**
- * Un oggetto <code>Utente</code> rappresenta un utente. Ogni utente ha un un nome, un cognome,
- * un sesso, un username, una password, una descrizione ed un numero annunci
+ * Un oggetto <code>Utente</code> rappresenta un utente. Ogni utente ha un un usernamen, un nome, 
+ * un cognome, un sesso, un username, una password, una descrizione ed un numero annunci
  *
  */
 
@@ -10,7 +10,7 @@ public class Utente {
 
   /**
    * Inizializza un nuovo utente.
-   * 
+   * @param username dell'utente
    * @param nome dell'utente
    * @param cognome dell'utente
    * @param sesso dell'utente
@@ -18,8 +18,9 @@ public class Utente {
    * @param descrizione  dell'utente
    * @param numAnnunci numero di annunci creati dall'utente
    */
-  public Utente(String nome, String cognome, String sesso, 
+  public Utente(String username, String nome, String cognome, String sesso, 
       String password, String descrizione, int numAnnunci) {
+    this.username = username;
     this.nome = nome;
     this.cognome = cognome;
     this.sesso = sesso;
@@ -58,6 +59,16 @@ public class Utente {
   }
   
 
+  public String getUsername() {
+    return username;
+  }
+
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+
   public void setNome(String nome) {
     this.nome = nome;
   }
@@ -88,7 +99,7 @@ public class Utente {
 
 
 
-
+  private String username;
   private String nome;
   private String cognome;
   private String sesso;
