@@ -121,10 +121,6 @@ public class AnnunciServlet extends HttpServlet {
   }
 
 
-  /**Questo metodo si occupa di cercare un annuncio tramite il suo ID all'interno del database.
-   * @param iD 
-   */
-
 
 
 }
