@@ -56,14 +56,16 @@ public class AnnunciServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         visualizzaAnnuncio(id);
       }
+    }
+      
+    
+    catch (Exception exc) {
       
     }
 
-    catch (Exception exc) {
-
+    finally {
+      
     }
-
-    finally {};
 
 
 
@@ -118,7 +120,7 @@ public class AnnunciServlet extends HttpServlet {
   }
 
   private Annuncio visualizzaAnnuncio(int id) {
-
+    return null;
   }
 
 
