@@ -59,11 +59,12 @@ public class AnnunciServlet extends HttpServlet {
       
     }
 
-    catch (Exception exc) {
+    catch (Exception exc) { }
 
+    finally { 
+        
     }
-
-    finally {};
+    ;
 
 
 
@@ -72,7 +73,7 @@ public class AnnunciServlet extends HttpServlet {
 
 
 
-  /**
+  /** 
    * Questo metodo si occupa di restituire tutti gli annunci presenti nel database.
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
    */
@@ -118,6 +119,7 @@ public class AnnunciServlet extends HttpServlet {
   }
 
   private Annuncio visualizzaAnnuncio(int id) {
+    return null;
 
   }
 
