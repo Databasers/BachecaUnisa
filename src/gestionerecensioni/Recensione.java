@@ -2,6 +2,7 @@ package gestionerecensioni;
 
 import gestionesegnalazioni.Segnalabile;
 import gestionesegnalazioni.Segnalazione;
+import gestioneutenti.Utente;
 
 /**
  * Un oggetto <code>Recensione</code> rappresenta una recensione 
@@ -65,7 +66,7 @@ public class Recensione implements Segnalabile {
 
 
 
-  /**La segnalazione, il cui id è passato come parametro, 
+  /**La segnalazione, il cui id ï¿½ passato come parametro, 
    * viene rimossa dalla lista delle segnalazioni.
    * @param id della segnalazione da rimuovere dalla lista delle segnalazioni.
    */
@@ -83,7 +84,29 @@ public class Recensione implements Segnalabile {
       
   }
 
+  public Utente getMittente() {
+    return mittente;
+  }
+
+
+
+  public void setMittente(Utente mittente) {
+    this.mittente = mittente;
+  }
+
+  public Utente getDestinatario() {
+    return destinatario;
+  }
+
+
+
+  public void setDestinatario(Utente destinatario) {
+    this.destinatario = destinatario;
+  }
+
   private int id;
   private int valutazione;
   private String descrizione;
+  private Utente mittente;
+  private Utente destinatario;
 }

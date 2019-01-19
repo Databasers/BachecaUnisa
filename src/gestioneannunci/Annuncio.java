@@ -19,17 +19,18 @@ public class Annuncio implements Segnalabile {
    * @param id Chiave primaria dell'entit√† nel database
    * @param titolo dell'annuncio.
    * @param descrizione dell'annuncio.
-   * @param tipologia dell'annuncio <code>true</code> se Ë un annuncio di tutorato.
-   *          <code>false</code> se Ë un annuncio di gruppo di studio.
+   * @param tipologia dell'annuncio <code>true</code> se √® un annuncio di tutorato.
+   *          <code>false</code> se √® un annuncio di gruppo di studio.
    * @param dipartimento relativo all'annuncio.
    */
   public Annuncio(int id, String titolo, String descrizione, 
-      boolean tipologia, String dipartimento) {
+      boolean tipologia, String dipartimento, String usernameUtente) {
     this.id = id;
     this.titolo = titolo;
     this.descrizione = descrizione;
     this.tipologia = tipologia;
     this.dipartimento = dipartimento;
+    this.usernameUtente = usernameUtente;
   }
 
 
@@ -140,13 +141,23 @@ public class Annuncio implements Segnalabile {
       
   }
 
+  public String getUsernameUtente() {
+    return usernameUtente;
+  }
+
+
+
+  public void setUsernameUtente(String usernameUtente) {
+    this.usernameUtente = usernameUtente;
+  }
+
   private String titolo;
   private String descrizione;
   private boolean tipologia;
   private String dipartimento;
   private int id;
   private int numSegnalazioni = 0;
-
+  private String usernameUtente;
   
   
 }

@@ -1,5 +1,11 @@
 package gestioneannunci;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import jdbc.DriverManagerConnectionPool;
+
 /**
  * Il manager della classe Annuncio si occupa della gestione degli annunci: 
  * Della loro creazione, rimozione, modifica e della ricerca.
@@ -9,21 +15,51 @@ package gestioneannunci;
 
 public class AnnuncioManager {
 
+  private static final String TableName = "Annuncio";
   
 
   /**
    * Questo metodo crea un nuovo annuncio nel database.
    * 
-   * @param dipartimento selezionato dall'utente.
-   * @param titolo  titolo
-   * @param descrizione descrizione
-   * @param tipologia dell'annuncio (gruppo di studio/tutorato).
+   * @param annuncio da inserire nel db
    */
-  public void creaAnnuncio(
-      String dipartimento, String titolo, String descrizione, String tipologia) {
+  public void creaAnnuncio(Annuncio annuncio) throws SQLException {
+    
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    
+    String sql = "INSERT INTO " + TableName + "VALUES(?,?,?,?,null, null, ?)";
     
     
     
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      
+      preparedStatement.setString(0, annuncio.getDipartimento());
+      preparedStatement.setString(1, annuncio.getTitolo());
+      preparedStatement.setString(2, annuncio.getDescrizione());
+      int tip;
+      if (annuncio.isTipologia()) {
+        tip = 1;
+      } else {
+        tip = 0;
+      }
+      preparedStatement.setInt(3, tip);
+      preparedStatement.setString(6, annuncio.getUsernameUtente());
+      
+      preparedStatement.executeUpdate();
+      
+      connection.commit();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
   }
 
   /**
@@ -31,14 +67,56 @@ public class AnnuncioManager {
    * 
    * @param annuncio da rimuovere.
    */
-  public void rimuoviAnnuncio(Annuncio annuncio) {}
+  public void rimuoviAnnuncio(Annuncio annuncio) throws SQLException {
+    Connection connection = DriverManagerConnectionPool.getConnection();
+    PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM " + TableName
+        + "WHERE Id LIKE " + annuncio.getId());
+    preparedStatement.executeQuery();
+  }
   
   /**Questo metodo modifica l'annuncio selezionato nel database.
    * 
    * @param annuncio da modificare.
    * 
    */
-  public void modificaAnnuncio(Annuncio annuncio) {}
+  public void modificaAnnuncio(Annuncio annuncio) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    //Dipartimento, Titolo, Descrizione, Tipologia, NumeroSegnalazioni, ID, Utente_Username
+    String sql = "UPDATE " + TableName + "SET Dipartimento = ?, Titolo = ?, Descrizione = ?"
+        + ", Tipologia = ?, NumeroSegnalazioni = ?, ID = ?, Utente_Username = ?"
+        + " WHERE ID = ?";
+    
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setString(0, annuncio.getDipartimento());
+      preparedStatement.setString(1, annuncio.getTitolo());
+      preparedStatement.setString(2, annuncio.getDescrizione());
+      int a;
+      if (annuncio.isTipologia()) {
+        a = 1;
+      } else {
+        a = 0;
+      }
+      preparedStatement.setInt(3, a);
+      preparedStatement.setInt(4, annuncio.getNumSegnalazioni());
+      preparedStatement.setInt(5, annuncio.getId());
+      preparedStatement.setString(6, annuncio.getUsernameUtente());
+      preparedStatement.setString(7, annuncio.getUsernameUtente());
+     
+      preparedStatement.executeUpdate();
+      connection.commit();
+    } finally {
+      try { 
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+  }
   
   
   /**Questo metodo cerca un annuncio nel database in base ai parametri inseriti.
