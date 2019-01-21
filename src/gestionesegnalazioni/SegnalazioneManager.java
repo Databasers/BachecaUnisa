@@ -7,6 +7,9 @@ package gestionesegnalazioni;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import jdbc.DriverManagerConnectionPool;
 
 /**
  * Manager della classe segnalazione.
@@ -23,12 +26,29 @@ public class SegnalazioneManager {
    * 
    * @author kinglash
    */
-  public void creaSegnalazione(Segnalazione segnalazione) {
+  public void creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    String sql = "INSERT INTO " + TableName + " VALUES()";
+    String sql = "INSERT INTO " + TableName + " VALUES(null," + segnalazione.getDescrizione() + ","
+        + segnalazione.getMotivazione() + "," + segnalazione.isTipoSegnalazione() + "," 
+        + segnalazione.getRecensione() + "," + segnalazione.getAnnuncio() + ")";
     
-  } //necessita una precondizione per numSegnalazioni>50
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.executeUpdate();
+      connection.commit();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+    
+  }
    
   
 }
