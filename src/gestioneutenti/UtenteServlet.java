@@ -59,6 +59,8 @@ public class UtenteServlet extends HttpServlet {
         String descrizione = request.getParameter("descrizione");
         creaUtente(username, nome, cognome, sesso, password, descrizione);
       }
+      
+      
   }
 
 
@@ -128,6 +130,8 @@ public class UtenteServlet extends HttpServlet {
    */
   private void creaUtente(String username, String nome, String cognome, String sesso, 
       String password, String descrizione) {
+    Utente u;
+    
     
   }
 

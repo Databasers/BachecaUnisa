@@ -17,9 +17,9 @@ public class Segnalazione {
    * @param tipoSegnalazione <code>true</code> se è un annuncio.
    *                         <code>false</code> se è una recensione.
    */
-  public Segnalazione(int id, String descrizione, int motivo, int idSegnalato, 
+  public Segnalazione(String descrizione, int motivo, int idSegnalato, 
       boolean tipoSegnalazione) {
-    this.id = id;
+    this.idSegnalato = idSegnalato;
     this.descrizione = descrizione;
     this.motivazione = motivo;
   }
