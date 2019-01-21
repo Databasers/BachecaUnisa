@@ -1,5 +1,8 @@
 package gestionesegnalazioni;
 
+import gestioneannunci.Annuncio;
+import gestionerecensioni.Recensione;
+
 /**
  * Un oggetto <code>Segnalazione</code> rappresenta una segnalazione. Una segnalazione puï¿½
  * riferirsi ad un annuncio o ad una recensione. Ogni segnalazione ha un id , una motivazione che
@@ -11,20 +14,28 @@ public class Segnalazione {
 
   /**Inizializza una segnalazione.
    * 
+   * @param id nel database
    * @param descrizione Descrizione
-   * @param motivo della segnalazione scelto dall'utente.
+   * @param motivazione della segnalazione scelto dall'utente.
    * @param idSegnalato id dell'oggetto segnalato (annuncio o recensione)
-   * @param tipoSegnalazione <code>true</code> se è un annuncio.
-   *                         <code>false</code> se è una recensione.
+   * @param tipoSegnalazione <code>true</code> se Ã¨ un annuncio.
+   *                         <code>false</code> se Ã¨ una recensione.
+   * @param recensione segnalata, non null solo se tipo = false
+   * @param annuncio segnalato, not null solo se tipo = true
    */
-  public Segnalazione(int id, String descrizione, int motivo, int idSegnalato, 
-      boolean tipoSegnalazione) {
+  
+  public Segnalazione(int id, String descrizione, int motivazione,
+      int idSegnalato, boolean tipoSegnalazione,
+      Recensione recensione, Annuncio annuncio) {
+    super();
     this.id = id;
     this.descrizione = descrizione;
-    this.motivazione = motivo;
+    this.motivazione = motivazione;
+    this.idSegnalato = idSegnalato;
+    this.tipoSegnalazione = tipoSegnalazione;
+    this.recensione = recensione;
+    this.annuncio = annuncio;
   }
-  
-  public Segnalazione() {}
 
   public String getDescrizione() {
     return descrizione;
@@ -71,6 +82,24 @@ public class Segnalazione {
   }
 
 
+  public Recensione getRecensione() {
+    return recensione;
+  }
+
+  public void setRecensione(Recensione recensione) {
+    this.recensione = recensione;
+  }
+
+
+  public Annuncio getAnnuncio() {
+    return annuncio;
+  }
+
+  public void setAnnuncio(Annuncio annuncio) {
+    this.annuncio = annuncio;
+  }
+
+
   private int id;
   private String descrizione;
   /**
@@ -88,4 +117,7 @@ public class Segnalazione {
   private int motivazione;
   private int idSegnalato;
   private boolean tipoSegnalazione;
+  private Recensione recensione;
+  private Annuncio annuncio;
+  
 }
