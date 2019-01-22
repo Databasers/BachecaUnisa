@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import gestioneutenti.Utente;
 import jdbc.DriverManagerConnectionPool;
@@ -18,6 +19,11 @@ import jdbc.DriverManagerConnectionPool;
 public class AnnuncioManager {
 
   private static final String TableName = "Annuncio";
+  
+  public ArrayList<Annuncio> listaAnnunci(ResultSet rs) {
+    ArrayList<Annuncio> lista = new ArrayList<Annuncio>();
+  }
+  
   
 
   /**
@@ -121,16 +127,12 @@ public class AnnuncioManager {
   }
   
   
-  /**Questo metodo cerca un annuncio nel database in base ai parametri inseriti.
+  /**
    * 
    * 
-   * @param dipartimento filtra gli annunci a seconda del dipartimento selezionato.
-   * @param titolo filtra gli annunci in base alla seguente stringa
-   * @param descrizione filtra gli annunci in base alla seguente stringa
-   * @param tipologia filtra gli annunci in gruppo di studio o in tutorati.
+   * @param numPagina
    */
-  public void cercaAnnuncio(
-      String dipartimento, String titolo, String descrizione, String tipologia) {
+  public void cercaAnnuncio(int numPagina) {
     
   }
 

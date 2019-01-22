@@ -14,7 +14,7 @@ public class UtenteManager {
   private static final String TableName = "Utente";
 
   
-  public Utente doRetrieveIfRegistered(String username,String password) throws SQLException {
+  public Utente recuperaSeRegistrato(String username,String password) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Utente temp = new Utente();
@@ -55,7 +55,7 @@ public class UtenteManager {
   }
   
 
-  public Utente doRetrieveByKey(String username) throws SQLException {
+  public Utente recuperaPerUsername(String username) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Utente temp = new Utente();
@@ -90,7 +90,7 @@ public class UtenteManager {
   }
     
 
-  public ArrayList<Utente> doRetrieveAll(String order) throws SQLException {
+  public ArrayList<Utente> recuperaTutti(String order) throws SQLException {
     
     ArrayList<Utente> u = new ArrayList<Utente>();
     Connection connection = null;
@@ -134,7 +134,7 @@ public class UtenteManager {
 
 
   
-  public void doSave(Utente u) throws SQLException {
+  public void salvaUtente(Utente u) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
@@ -167,7 +167,7 @@ public class UtenteManager {
   }
 
   
-  public void doUpdate(Utente u) throws SQLException {
+  public void modificaUtente(Utente u) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
@@ -201,7 +201,7 @@ public class UtenteManager {
   }
 
   
-  public boolean doDelete(String username) throws SQLException {
+  public boolean eliminaUtente(String username) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
