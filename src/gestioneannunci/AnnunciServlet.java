@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AnnunciServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
-
+  AnnuncioManager annuncio;
   
   
   @Override
@@ -28,12 +28,12 @@ public class AnnunciServlet extends HttpServlet {
         String filtro = request.getParameter("Filtro");
         switch (filtro) {  
           //Non sono sicuro lo switch funzioni con le stringhe, forse è case sensitive
-          case "tipologia":
+          case "tipologia": ricercaPerTipologia();
           
             break;
 
-          default:
-            break;
+          default: stampaAnnunci(numPagina);
+          break;
         }
         stampaAnnunci(numPagina);
       }
@@ -87,6 +87,37 @@ public class AnnunciServlet extends HttpServlet {
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
    */
   private ArrayList<Annuncio> stampaAnnunci(int numPagina) {
+    return null;
+
+  }
+  
+  /**
+   * Questo metodo si occupa di restituire tutti gli annunci di una data tipologia.
+   * @param tipo dell'annuncio <code>true</code> se è un annuncio di tutorato.
+   *          <code>false</code> se è un annuncio di gruppo di studio.
+   * @return la lista degli annunci della tipologia passata come parametro.
+   */
+  private ArrayList<Annuncio> recuperaPerTipologia(boolean tipo) {
+    return annuncio.recuperaPerTipologia(tipo);
+
+  }
+  
+  /**
+   * Questo metodo si occupa di restituire tutti gli annunci di una dato dipartimento.
+   * @param dipartimento filtro
+   * @return la lista degli annunci del dipartimento passato come parametro.
+   */
+  private ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento) {
+    return null;
+
+  }
+  
+  /**
+   *Questo metodo si occupa di restituire tutti gli annunci di un utente. 
+   * @param username di riferimento all'utente.
+   * @return la lista degli annunci dell'utente.
+   */
+  private ArrayList<Annuncio> recuperaPerUtente(String username) {
     return null;
 
   }
