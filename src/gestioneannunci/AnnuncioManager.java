@@ -17,11 +17,20 @@ import jdbc.DriverManagerConnectionPool;
 public class AnnuncioManager {
 
   private static final String TableName = "Annuncio";
+  private static final int PAGINADIM = 10;
   
   public ArrayList<Annuncio> listaAnnunci(ResultSet rs, int numPagina) throws SQLException {
     ArrayList<Annuncio> lista = new ArrayList<Annuncio>();
     Annuncio temp;
-    while (rs.next()) {
+    //Sposta il cursore alla posizione corretta
+    //Qualcuno si faccia qualche simulazione per vedere se si muove nelle posizioni giuste
+    for (int i = 0; i < numPagina * PAGINADIM; i++) {
+      rs.next();
+    }
+    //Prende i prossimi 10 Annunci e li aggiunge alla lista
+    //Again, fare conti per vedere se va
+    for (int i = 0; i < 10; i++) {
+     
       temp = new Annuncio();
       temp.setTitolo(rs.getString("Titolo"));
       temp.setDescrizione(rs.getString("Descrizione"));
@@ -29,8 +38,10 @@ public class AnnuncioManager {
       temp.setDipartimento(rs.getString("Dipartimento"));
       temp.setUsernameUtente(rs.getString("Utente_Username"));
       lista.add(temp);
-   
+      rs.next();
+      
     } 
+    
     return lista;
     
   }
