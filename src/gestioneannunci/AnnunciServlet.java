@@ -24,7 +24,16 @@ public class AnnunciServlet extends HttpServlet {
     try {
       String azione = request.getParameter("azione");  
       if (azione == "stampaAnnunci") {
-        int numPagina = Integer.parseInt(request.getParameter("numPagina")); 
+        int numPagina = Integer.parseInt(request.getParameter("numPagina"));
+        String filtro = request.getParameter("Filtro");
+        switch (filtro) {  //Non sono sicuro lo switch funzioni con le stringhe, forse è case sensitive
+        case "tipologia": ricercaPerTipologia();
+          
+          break;
+
+        default:
+          break;
+        }
         stampaAnnunci(numPagina);
       }
 
