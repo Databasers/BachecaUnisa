@@ -19,7 +19,15 @@ public class AnnuncioManager {
   private static final String TableName = "Annuncio";
   private static final int PAGINADIM = 10;
   
+  /**
+   * 
+   * @param rs
+   * @param numPagina
+   * @return
+   * @throws SQLException
+   */
   public ArrayList<Annuncio> listaAnnunci(ResultSet rs, int numPagina) throws SQLException {
+    rs.first();
     ArrayList<Annuncio> lista = new ArrayList<Annuncio>();
     Annuncio temp;
     //Sposta il cursore alla posizione corretta
@@ -148,26 +156,44 @@ public class AnnuncioManager {
     }
   }
   
-  
   /**
-   * 
-   * 
+   * Recupera tutti gli annunci esistenti-
    * @param numPagina
+   * @return
+   * @throws SQLException
    */
-  public void cercaAnnuncio(int numPagina) {
-    
+  public ArrayList<Annuncio> recuperaAnnunci(int numPagina) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ArrayList<Annuncio> temp = null;
+   
+    String sql = "SELECT* FROM " + TableName;
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      System.out.println("Query: " + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+      while (rs.next()) {
+        temp = listaAnnunci(rs, numPagina);
+      } 
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+    }
+    return temp;
   }
 
   /**
-   * 
+   * Recupera gli annunci della tipologia specificata.
    * @param tipo
    * @return
    * @throws SQLException
    */
-  public Annuncio recuperaPerTipologia(boolean tipo) throws SQLException {
+  public ArrayList<Annuncio> recuperaPerTipologia(boolean tipo, int numPagina) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    Annuncio temp = new Annuncio();
+    ArrayList<Annuncio> temp;
     String str = String.valueOf(tipo);
 
     String sql = "SELECT* FROM " + TableName + " WHERE Tipologia = ?  ";
@@ -175,22 +201,16 @@ public class AnnuncioManager {
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
-
       preparedStatement.setString(1, str);
       System.out.println("Query: " + preparedStatement.toString());
 
       ResultSet rs = preparedStatement.executeQuery();
-
       if (!rs.next()) {
         temp = null; 
         }
                
       else {
-        temp.setTitolo(rs.getString("Titolo"));
-        temp.setDescrizione(rs.getString("Descrizione"));
-        temp.setTipologia(rs.getBoolean("Tipologia"));
-        temp.setDipartimento(rs.getString("Dipartimento"));
-        temp.setUsernameUtente(rs.getString("Utente_Username"));
+        temp = listaAnnunci(rs, numPagina);
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
@@ -199,11 +219,17 @@ public class AnnuncioManager {
   }
   
   
-  
-  public Annuncio recuperaPerDipartimento(String dipartimento) throws SQLException {
+  /**
+   * Recupera gli annunci del dipartimento specificato.
+   * @param dipartimento
+   * @param numPagina
+   * @return
+   * @throws SQLException
+   */
+  public ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento, int numPagina) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    Annuncio temp = new Annuncio();
+    ArrayList<Annuncio> temp;
     
     String sql = "SELECT* FROM " + TableName + " WHERE Dipartimento = ?  ";
 
@@ -220,11 +246,7 @@ public class AnnuncioManager {
         temp = null;
       }
       else {
-        temp.setTitolo(rs.getString("Titolo"));
-        temp.setDescrizione(rs.getString("Descrizione"));
-        temp.setTipologia(rs.getBoolean("Tipologia"));
-        temp.setDipartimento(rs.getString("Dipartimento"));
-        temp.setUsernameUtente(rs.getString("Utente_Username"));
+        temp = listaAnnunci(rs, numPagina);
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
@@ -232,10 +254,17 @@ public class AnnuncioManager {
     return temp;
   }
   
-  public Annuncio recuperaPerUtente(String username) throws SQLException {
+  /**
+   * Recupera tutti gli annunci di un singolo utente.
+   * @param username
+   * @param numPagina
+   * @return
+   * @throws SQLException
+   */
+  public ArrayList<Annuncio> recuperaPerUtente(String username, int numPagina) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    Annuncio temp = new Annuncio();
+    ArrayList<Annuncio> temp;
     
     String sql = "SELECT* FROM " + TableName + " WHERE Username = ?  ";
 
@@ -252,11 +281,7 @@ public class AnnuncioManager {
         temp = null;
       }
       else {
-        temp.setTitolo(rs.getString("Titolo"));
-        temp.setDescrizione(rs.getString("Descrizione"));
-        temp.setTipologia(rs.getBoolean("Tipologia"));
-        temp.setDipartimento(rs.getString("Dipartimento"));
-        temp.setUsernameUtente(rs.getString("Utente_Username"));
+        temp = listaAnnunci(rs, numPagina);
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);

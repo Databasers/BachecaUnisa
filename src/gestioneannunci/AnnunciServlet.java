@@ -1,5 +1,6 @@
 package gestioneannunci;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AnnunciServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
-  AnnuncioManager annuncio;
+  AnnuncioManager annuncioManager;
+  
   
   
   @Override
@@ -20,15 +22,18 @@ public class AnnunciServlet extends HttpServlet {
   
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    
 
     try {
       String azione = request.getParameter("azione");  
+      int numPagina = Integer.parseInt(request.getParameter("numPagina"));
       if (azione == "stampaAnnunci") {
-        int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         String filtro = request.getParameter("Filtro");
         switch (filtro) {  
           //Non sono sicuro lo switch funzioni con le stringhe, forse è case sensitive
-          case "tipologia": ricercaPerTipologia();
+          case "tipologia": recuperaPerTipologia(;
+          case "dipartimento": recuperaPerDipartimento();
+          case "utente": recuperaPerUtente();
           
             break;
 
@@ -96,9 +101,11 @@ public class AnnunciServlet extends HttpServlet {
    * @param tipo dell'annuncio <code>true</code> se è un annuncio di tutorato.
    *          <code>false</code> se è un annuncio di gruppo di studio.
    * @return la lista degli annunci della tipologia passata come parametro.
+   * @throws SQLException 
    */
-  private ArrayList<Annuncio> recuperaPerTipologia(boolean tipo) {
-    return annuncio.recuperaPerTipologia(tipo);
+  private ArrayList<Annuncio> recuperaPerTipologia(boolean tipo, int numPagina) 
+      throws SQLException {
+    return annuncioManager.recuperaPerTipologia(tipo, numPagina);
 
   }
   
@@ -107,8 +114,9 @@ public class AnnunciServlet extends HttpServlet {
    * @param dipartimento filtro
    * @return la lista degli annunci del dipartimento passato come parametro.
    */
-  private ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento) {
-    return null;
+  private ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento, int numPagina) 
+      throws SQLException {
+    return annuncioManager.recuperaPerDipartimento(dipartimento, numPagina);
 
   }
   
@@ -117,8 +125,9 @@ public class AnnunciServlet extends HttpServlet {
    * @param username di riferimento all'utente.
    * @return la lista degli annunci dell'utente.
    */
-  private ArrayList<Annuncio> recuperaPerUtente(String username) {
-    return null;
+  private ArrayList<Annuncio> recuperaPerUtente(String username, int numPagina) 
+      throws SQLException{
+    return annuncioManager.recuperaPerUtente(username, numPagina);
 
   }
 
