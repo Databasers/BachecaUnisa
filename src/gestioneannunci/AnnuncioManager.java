@@ -183,6 +183,44 @@ public class AnnuncioManager {
     }
     return temp;
   }
+  
+  /**
+   * Recupera l'annuncio con l'id selezionato.
+   * @param id
+   * @return
+   * @throws SQLException
+   */
+  public Annuncio recuperaPerId(int id) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Annuncio temp = new Annuncio();
+    String str = Integer.toString(id);
+
+    String sql = "SELECT* FROM " + TableName + " WHERE id = ?  ";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setString(1, str);
+      System.out.println("Query: " + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+      if (!rs.next()) {
+        temp = null; 
+        }
+               
+      else {
+        temp.setTitolo(rs.getString("titolo"));
+        temp.setDescrizione(rs.getString("descrizione"));
+        temp.setDipartimento(rs.getString("dipartimento"));
+        temp.setTipologia(rs.getBoolean("tipologia"));
+        temp.setUsernameUtente(rs.getString("username"));
+      } 
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+    }
+    return temp;
+  }
 
   /**
    * Recupera gli annunci della tipologia specificata.

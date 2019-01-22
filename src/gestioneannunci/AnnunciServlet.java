@@ -40,13 +40,16 @@ public class AnnunciServlet extends HttpServlet {
             recuperaPerTipologia(check, numPagina);
             break;
           }
-          case "dipartimento":{
-            recuperaPerDipartimento();
-          }
-          case "utente": recuperaPerUtente();
-          
+          case "dipartimento": {
+            String dipartimento = request.getParameter("dipartimento");
+            recuperaPerDipartimento(dipartimento, numPagina);
             break;
-
+          }
+          case "utente": {
+            String utente = request.getParameter("username");
+            recuperaPerUtente(utente, numPagina);
+            break;
+          }
           default: stampaAnnunci(numPagina);
           break;
         }
@@ -82,10 +85,9 @@ public class AnnunciServlet extends HttpServlet {
         visualizzaAnnuncio(id);
       }
       
-      if (azione == "recuperaPerTipologia") {
-        boolean tipo = Boolean.parseBoolean(request.getParameter("tipologia"));
-        recuperaPerTipologia(tipo);
-      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     } finally {
       
     }
@@ -146,9 +148,11 @@ public class AnnunciServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di rimuovere un annuncio dal database.
    * @param id l'id dell'annuncio da rimuovere
+   * @throws SQLException 
    */
-  private void rimuoviAnnuncio(int id) {
-
+  private void rimuoviAnnuncio(int id) throws SQLException {
+    Annuncio temp = annuncioManager.recuperaPerId(id);
+    annuncioManager.rimuoviAnnuncio(temp);
   }
 
 
@@ -160,21 +164,23 @@ public class AnnunciServlet extends HttpServlet {
    */
 
   private void modificaAnnuncio(int id, String titolo, String descrizione) {
-
+    
   }
 
 
   /**
    * Questo metodo crea un annuncio all'interno del database.
-   * @param tipologia Specifica se si tratta di un gruppo di studio o un tutoato
-   * @param descrizione del nuovo annuncio
-   * @param titolo del nuovo annuncio
-   * @param dipartimento del nuovo annuncio
-   * @param tipologia del nuovo annuncio
+   * @param dipartimento
+   * @param titolo
+   * @param descrizione
+   * @param tipologia
+   * @param username utente
+   * @throws SQLException
    */
   private void creaAnnuncio(String dipartimento, String titolo, String descrizione, 
-      String tipologia) {
-
+      boolean tipologia, String username) throws SQLException {
+    Annuncio temp = new Annuncio(titolo, descrizione, tipologia, dipartimento, username);
+    annuncioManager.creaAnnuncio(temp);
   }
 
   private Annuncio visualizzaAnnuncio(int id) {

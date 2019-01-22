@@ -32,6 +32,15 @@ public class Annuncio implements Segnalabile {
     this.dipartimento = dipartimento;
     this.usernameUtente = usernameUtente;
   }
+  
+  public Annuncio(String titolo, String descrizione, 
+      boolean tipologia, String dipartimento, String usernameUtente) {
+    this.titolo = titolo;
+    this.descrizione = descrizione;
+    this.tipologia = tipologia;
+    this.dipartimento = dipartimento;
+    this.usernameUtente = usernameUtente;
+  }
 
 
 
