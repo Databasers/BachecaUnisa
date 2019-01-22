@@ -31,8 +31,18 @@ public class AnnunciServlet extends HttpServlet {
         String filtro = request.getParameter("Filtro");
         switch (filtro) {  
           //Non sono sicuro lo switch funzioni con le stringhe, forse è case sensitive
-          case "tipologia": recuperaPerTipologia(;
-          case "dipartimento": recuperaPerDipartimento();
+          case "tipologia": { 
+            String tipo = request.getParameter("tipologia");
+            boolean check = true;
+            if (tipo.equalsIgnoreCase("gruppo")) {
+              check = false;
+            }
+            recuperaPerTipologia(check, numPagina);
+            break;
+          }
+          case "dipartimento":{
+            recuperaPerDipartimento();
+          }
           case "utente": recuperaPerUtente();
           
             break;
