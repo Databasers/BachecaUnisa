@@ -2,8 +2,10 @@ package gestioneannunci;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import gestioneutenti.Utente;
 import jdbc.DriverManagerConnectionPool;
 
 /**
@@ -130,5 +132,111 @@ public class AnnuncioManager {
   public void cercaAnnuncio(
       String dipartimento, String titolo, String descrizione, String tipologia) {
     
+  }
+
+  /**
+   * 
+   * @param tipo
+   * @return
+   * @throws SQLException
+   */
+  public Annuncio recuperaPerTipologia(boolean tipo) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Annuncio temp = new Annuncio();
+    String str = String.valueOf(tipo);
+
+    String sql = "SELECT* FROM " + TableName + " WHERE Tipologia = ?  ";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+
+      preparedStatement.setString(1, str);
+      System.out.println("Query: " + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+
+      if (!rs.next()) {
+        temp = null; 
+        }
+               
+      else {
+        temp.setTitolo(rs.getString("Titolo"));
+        temp.setDescrizione(rs.getString("Descrizione"));
+        temp.setTipologia(rs.getBoolean("Tipologia"));
+        temp.setDipartimento(rs.getString("Dipartimento"));
+        temp.setUsernameUtente(rs.getString("Utente_Username"));
+      } 
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+    }
+    return temp;
+  }
+  
+  
+  
+  public Annuncio recuperaPerDipartimento(String dipartimento) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Annuncio temp = new Annuncio();
+    
+    String sql = "SELECT* FROM " + TableName + " WHERE Dipartimento = ?  ";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+
+      preparedStatement.setString(1, dipartimento);
+      System.out.println("Query: " + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+
+      if (!rs.next()) {
+        temp = null;
+      }
+      else {
+        temp.setTitolo(rs.getString("Titolo"));
+        temp.setDescrizione(rs.getString("Descrizione"));
+        temp.setTipologia(rs.getBoolean("Tipologia"));
+        temp.setDipartimento(rs.getString("Dipartimento"));
+        temp.setUsernameUtente(rs.getString("Utente_Username"));
+      } 
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+    }
+    return temp;
+  }
+  
+  public Annuncio recuperaPerUtente(String username) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Annuncio temp = new Annuncio();
+    
+    String sql = "SELECT* FROM " + TableName + " WHERE Username = ?  ";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+
+      preparedStatement.setString(1, username);
+      System.out.println("Query: " + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+
+      if (!rs.next()) {
+        temp = null;
+      }
+      else {
+        temp.setTitolo(rs.getString("Titolo"));
+        temp.setDescrizione(rs.getString("Descrizione"));
+        temp.setTipologia(rs.getBoolean("Tipologia"));
+        temp.setDipartimento(rs.getString("Dipartimento"));
+        temp.setUsernameUtente(rs.getString("Utente_Username"));
+      } 
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+    }
+    return temp;
   }
 }

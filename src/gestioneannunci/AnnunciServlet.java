@@ -56,6 +56,11 @@ public class AnnunciServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         visualizzaAnnuncio(id);
       }
+      
+      if (azione == "recuperaPerTipologia") {
+        boolean tipo = Boolean.parseBoolean(request.getParameter("tipologia"));
+        recuperaPerTipologia(tipo);
+      }
     } finally {
       
     }
@@ -115,6 +120,8 @@ public class AnnunciServlet extends HttpServlet {
   private Annuncio visualizzaAnnuncio(int id) {
     return null;
   }
+  
+  
 
 
 
