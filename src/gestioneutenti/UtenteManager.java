@@ -96,7 +96,7 @@ public class UtenteManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
-    String sql = "SELECT * FROM " + TableName + "";
+    String sql = "SELECT * FROM " + TableName;
     if (order != null && !order.equals("")) {
       sql += " ORDER BY " + order;
     }
@@ -105,7 +105,7 @@ public class UtenteManager {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
       
-      System.out.println("doRetrieveAll: " + preparedStatement.toString());
+      System.out.println("recuperaTutti: " + preparedStatement.toString());
       
       ResultSet rs = preparedStatement.executeQuery();
       while (rs.next()) {
@@ -173,7 +173,7 @@ public class UtenteManager {
 
     String updateQuery = "UPDATE " + TableName
         + " SET Nome = ?, Cognome = ?, Password = ?, Descrizione = ? "
-        + " WHERE CodiceFiscale = ?";
+        + " WHERE Username = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
