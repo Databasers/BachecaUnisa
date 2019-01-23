@@ -71,7 +71,7 @@ public class UtenteServlet extends HttpServlet {
           String password = request.getParameter("password");
           String descrizione = request.getParameter("descrizione");
           creaUtente(u, username, nome, cognome, sesso, password, descrizione);
-          SessioneUtente su= new SessioneUtente(u, "Utente");
+          SessioneUtente su= new SessioneUtente(u);
           request.getSession().setAttribute("Utente",su);
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
           response.sendRedirect(request.getContextPath() + "\\HTML\\Utente.jsp"); //da modificare
