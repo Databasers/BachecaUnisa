@@ -70,12 +70,12 @@ public class AnnunciServlet extends HttpServlet {
       }
 
       if (azione == "creaAnnuncio") {
-
+        String utente = request.getParameter("username");
         String dipartimento = request.getParameter("dipartimento");
         String titolo = request.getParameter("titolo");
         String descrizione = request.getParameter("descrizione");
-        String tipologia = request.getParameter("tipologia");
-        creaAnnuncio(dipartimento, titolo, descrizione,tipologia);
+        boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
+        creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
       }
 
 
@@ -161,10 +161,14 @@ public class AnnunciServlet extends HttpServlet {
    * @param id dell'annuncio da modificare
    * @param descrizione nuova descrizione
    * @param titolo nuovo titolo
+   * @throws SQLException 
    */
 
-  private void modificaAnnuncio(int id, String titolo, String descrizione) {
-    
+  private void modificaAnnuncio(int id, String titolo, String descrizione) throws SQLException {
+    Annuncio temp = annuncioManager.recuperaPerId(id);
+    temp.setTitolo(titolo);
+    temp.setDescrizione(descrizione);
+    annuncioManager.modificaAnnuncio(temp);
   }
 
 

@@ -78,6 +78,39 @@ public class UtenteServlet extends HttpServlet {
         }
       }
       
+      if (azione == "Login") {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        try {
+          Utente u = utenteManager.recuperaSeRegistrato(username, password);
+          SessioneUtente su = new SessioneUtente(u, "Utente"); //creo l'oggetto sessione
+          request.getSession().setAttribute("Utente", su);
+          System.out.println("Login effettuato!");
+          System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
+          response.sendRedirect(request.getContextPath() + "\\HTML\\Utente.jsp"); //da modificare
+        } catch (Exception e) {
+          System.out.println("Utente non registrato");
+          request.setAttribute("Done", "falso");
+          System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
+          RequestDispatcher x = getServletContext().getRequestDispatcher("/HTML/Login.jsp");
+          //ritento il login
+          x.forward(request, response);
+        }
+        
+        if (azione == "Logout") {
+          System.out.println("Logout");
+          //controllo se non è loggato
+          if (request.getSession().getAttribute("Utente") == null)  {
+            response.sendRedirect(request.getContextPath() + "\\HTML\\Login.jsp");
+            //lo manda a loggarsi
+          }
+          request.getSession().removeAttribute("Utente");
+          request.getSession().invalidate();
+          response.sendRedirect(request.getContextPath() + "\\HTML\\Homepage.jsp"); 
+          System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
+        }
+        
+      }
       
   }
 
@@ -153,6 +186,8 @@ public class UtenteServlet extends HttpServlet {
     u = new Utente(username, nome, cognome, sesso, password, descrizione, 0);
     utenteManager.salvaUtente(u);
     }
+  
+  
 
     
 
