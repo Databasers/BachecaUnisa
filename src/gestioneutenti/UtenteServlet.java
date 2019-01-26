@@ -39,7 +39,7 @@ public class UtenteServlet extends HttpServlet {
         String username = request.getParameter("username");
         String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
-        modificaPassword(username, oldPassword, newPassword);
+        modificaPassword(username, newPassword);
 
       }
       
@@ -70,7 +70,8 @@ public class UtenteServlet extends HttpServlet {
           String sesso = request.getParameter("sesso");
           String password = request.getParameter("password");
           String descrizione = request.getParameter("descrizione");
-          creaUtente(u, username, nome, cognome, sesso, password, descrizione);
+          Boolean gestore = Boolean.valueOf(request.getParameter("gestore"));
+          creaUtente(u, username, nome, cognome, sesso, password, descrizione, gestore);
           SessioneUtente su = new SessioneUtente(u);
           request.getSession().setAttribute("Utente",su);
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
@@ -132,10 +133,10 @@ public class UtenteServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di restituire tutti gli utenti.
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
+   * @throws SQLException 
    */
-  private ArrayList<Utente> stampaUtenti(int numPagina) {
-    return null;
-
+  private ArrayList<Utente> stampaUtenti(int numPagina) throws SQLException {
+    return utenteManager.recuperaTutti(numPagina);
   }
 
 
@@ -143,9 +144,10 @@ public class UtenteServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di rimuovere una recensione dal database.
    * @param id l'id della recensione da rimuovere
+   * @throws SQLException 
    */
-  private void rimuoviUtente(String username) {
-
+  private void rimuoviUtente(String username) throws SQLException {
+    utenteManager.eliminaUtente(username);
   }
 
 
@@ -154,18 +156,26 @@ public class UtenteServlet extends HttpServlet {
    * @param nome dell'utente modificato
    * @param cognome dell'utente modificato
    * @param descrizione dell'utente modificata
+   * @throws SQLException 
    */
   private void modificaUtente(String username, String nome, String cognome,
-      String descrizione) {
-
+      String descrizione) throws SQLException {
+    Utente temp = utenteManager.recuperaPerUsername(username);
+    temp.setNome(nome);
+    temp.setCognome(cognome);
+    temp.setDescrizione(descrizione);
+    utenteManager.modificaUtente(temp);
   }
   
   /**
    * Questo metodo permette di modificare la password dell'utente.
    * @param password aggiornata
+   * @throws SQLException 
    */
-  private void modificaPassword(String username, String oldPassword, String newPassword) {
-
+  private void modificaPassword(String username, String newPassword) throws SQLException {
+    Utente temp = utenteManager.recuperaPerUsername(username);
+    temp.setPassword(newPassword);
+    utenteManager.modificaUtente(temp);
   }
 
 
@@ -181,9 +191,9 @@ public class UtenteServlet extends HttpServlet {
    * @throws SQLException 
    */
   private void creaUtente(Utente u, String username, String nome, String cognome, String sesso, 
-      String password, String descrizione) throws SQLException {
+      String password, String descrizione, boolean gestore) throws SQLException {
     System.out.println("Registrazione utente");
-    u = new Utente(username, nome, cognome, sesso, password, descrizione, 0);
+    u = new Utente(username, nome, cognome, sesso, password, descrizione, 0, gestore);
     utenteManager.salvaUtente(u);
     }
   
