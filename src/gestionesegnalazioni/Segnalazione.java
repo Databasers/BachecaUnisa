@@ -23,18 +23,12 @@ public class Segnalazione {
    * @param recensione segnalata, non null solo se tipo = false
    * @param annuncio segnalato, not null solo se tipo = true
    */
-<<<<<<< HEAD
-  public Segnalazione(String descrizione, int motivo, int idSegnalato, 
-      boolean tipoSegnalazione) {
-    this.idSegnalato = idSegnalato;
-=======
   
   public Segnalazione(int id, String descrizione, int motivazione,
       int idSegnalato, boolean tipoSegnalazione,
       Recensione recensione, Annuncio annuncio) {
     super();
     this.id = id;
->>>>>>> 74a06bd5012364cd996a1ff0cfc021df9284254d
     this.descrizione = descrizione;
     this.motivazione = motivazione;
     this.idSegnalato = idSegnalato;

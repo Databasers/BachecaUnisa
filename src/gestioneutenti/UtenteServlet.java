@@ -56,14 +56,13 @@ public class UtenteServlet extends HttpServlet {
         Utente u;
         u = utenteManager.recuperaPerUsername(request.getParameter("username"));
         if (u != null) {
-          System.out.println("Utente già registrato");
-          request.setAttribute("alreadyRegistered","true"); //Già registrato
+          System.out.println("Utente giï¿½ registrato");
+          request.setAttribute("alreadyRegistered","true"); //Giï¿½ registrato
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
           RequestDispatcher x = getServletContext().getRequestDispatcher("/HTML/Login.jsp"); 
           //da modificare
           x.forward(request, response); 
-        }
-        else {
+        }  else {
           String username = request.getParameter("username");
           String nome = request.getParameter("nome");
           String cognome = request.getParameter("cognome");
@@ -71,7 +70,7 @@ public class UtenteServlet extends HttpServlet {
           String password = request.getParameter("password");
           String descrizione = request.getParameter("descrizione");
           creaUtente(u, username, nome, cognome, sesso, password, descrizione);
-          SessioneUtente su= new SessioneUtente(u);
+          SessioneUtente su = new SessioneUtente(u);
           request.getSession().setAttribute("Utente",su);
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
           response.sendRedirect(request.getContextPath() + "\\HTML\\Utente.jsp"); //da modificare
@@ -83,7 +82,7 @@ public class UtenteServlet extends HttpServlet {
         String password = request.getParameter("password");
         try {
           Utente u = utenteManager.recuperaSeRegistrato(username, password);
-          SessioneUtente su = new SessioneUtente(u, "Utente"); //creo l'oggetto sessione
+          SessioneUtente su = new SessioneUtente(u); //creo l'oggetto sessione
           request.getSession().setAttribute("Utente", su);
           System.out.println("Login effettuato!");
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
@@ -99,7 +98,7 @@ public class UtenteServlet extends HttpServlet {
         
         if (azione == "Logout") {
           System.out.println("Logout");
-          //controllo se non è loggato
+          //controllo se non ï¿½ loggato
           if (request.getSession().getAttribute("Utente") == null)  {
             response.sendRedirect(request.getContextPath() + "\\HTML\\Login.jsp");
             //lo manda a loggarsi
@@ -112,15 +111,11 @@ public class UtenteServlet extends HttpServlet {
         
       }
       
-  }
+    } catch (Exception exc) {
 
-
-
-    catch (Exception exc) {
-
+    } finally {
+      
     }
-
-    finally {};
 
 
 
@@ -178,14 +173,13 @@ public class UtenteServlet extends HttpServlet {
    * @param password dell'utente
    * @param descrizione  dell'utente
    * @param numAnnunci numero di annunci creati dall'utente
-   * @throws SQLException 
    */
   private void creaUtente(Utente u, String username, String nome, String cognome, String sesso, 
       String password, String descrizione) throws SQLException {
     System.out.println("Registrazione utente");
     u = new Utente(username, nome, cognome, sesso, password, descrizione, 0);
     utenteManager.salvaUtente(u);
-    }
+  }
   
   
 
