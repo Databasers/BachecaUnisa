@@ -19,6 +19,7 @@ public class RecensioneManager {
    * Questo metodo crea una recensione nel database.
    * 
    * @param recensione da inserire
+   * @return 
    */
   
   public void creaRecensione(Recensione recensione) throws SQLException {

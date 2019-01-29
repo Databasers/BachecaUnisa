@@ -37,7 +37,6 @@ public class UtenteServlet extends HttpServlet {
 
       if (azione == "modificaPassword") {
         String username = request.getParameter("username");
-        String oldPassword = request.getParameter("oldPassword");
         String newPassword = request.getParameter("newPassword");
         modificaPassword(username, newPassword);
 
@@ -51,6 +50,8 @@ public class UtenteServlet extends HttpServlet {
         modificaUtente(username, nome, cognome, descrizione);
 
       }
+      
+      
 
       if (azione == "creaUtente") {
         Utente u;
@@ -84,8 +85,14 @@ public class UtenteServlet extends HttpServlet {
         String password = request.getParameter("password");
         try {
           Utente u = utenteManager.recuperaSeRegistrato(username, password);
-          SessioneUtente su = new SessioneUtente(u, "Utente"); //creo l'oggetto sessione
-          request.getSession().setAttribute("Utente", su);
+          SessioneUtente su;
+          if (u.isGestore() == true) {
+            su = new SessioneUtente(u, "Gestore");
+          }
+          else {
+            su = new SessioneUtente(u, "Utente");
+          }
+          request.getSession().setAttribute("log", su);
           System.out.println("Login effettuato!");
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
           response.sendRedirect(request.getContextPath() + "\\HTML\\Utente.jsp"); //da modificare
@@ -103,13 +110,18 @@ public class UtenteServlet extends HttpServlet {
           //controllo se non è loggato
           if (request.getSession().getAttribute("Utente") == null)  {
             response.sendRedirect(request.getContextPath() + "\\HTML\\Login.jsp");
-            //lo manda a loggarsi
           }
+          else if (request.getSession().getAttribute("Gestore") == null)  {
+            response.sendRedirect(request.getContextPath() + "\\HTML\\Login.jsp");
+          }
+          
           request.getSession().removeAttribute("Utente");
+          request.getSession().removeAttribute("Gestore");
           request.getSession().invalidate();
           response.sendRedirect(request.getContextPath() + "\\HTML\\Homepage.jsp"); 
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
         }
+        
         
       }
       

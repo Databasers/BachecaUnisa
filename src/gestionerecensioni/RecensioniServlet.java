@@ -1,5 +1,6 @@
 package gestionerecensioni;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
@@ -7,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import gestioneannunci.Annuncio;
+import gestioneutenti.SessioneUtente;
 
 public class RecensioniServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
+  
+  RecensioneManager recensioneManager;
 
   
   
@@ -23,8 +27,13 @@ public class RecensioniServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) {
     doGet(request, response);
+    
+    SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("log");
+    String usernameLog = sessione.getUsername();
+    
     try {
       String azione = request.getParameter("azione");  
+      
       if (azione == "stampaRecensioni") {
         int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         String username = request.getParameter("username");
@@ -33,22 +42,36 @@ public class RecensioniServlet extends HttpServlet {
 
       if (azione == "rimuoviRecensione") {
         int id = Integer.parseInt(request.getParameter("id"));
-        rimuoviRecensione(id);
+        String username = request.getParameter("usernameUtente");
+        if (sessione.getRuolo().equals("Gestore")) {
+          rimuoviRecensione(id);
+        }
+        else {
+          if (usernameLog.equals(username)) {
+            rimuoviRecensione(id);
+          }
+        }
       }
+      
+
 
       if (azione == "modificaRecensione") {
         int id = Integer.parseInt(request.getParameter("id"));
         int valutazione = Integer.parseInt(request.getParameter("valutazione"));
         String descrizione = request.getParameter("descrizione");
-        modificaRecensione(id, valutazione, descrizione);
-
+        String username = request.getParameter("usernameUtente");
+        if (usernameLog.equals(username)) {
+          modificaRecensione(id, valutazione, descrizione);
+        }
       }
+      
 
       if (azione == "creaRecensione") {
-        int valutazione = Integer.parseInt(request.getParameter("valutazione"));
-        String descrizione = request.getParameter("descrizione");
-        creaRecensione(valutazione, descrizione);
-        
+        if (sessione.getRuolo().equals("Utente")) {
+          int valutazione = Integer.parseInt(request.getParameter("valutazione"));
+          String descrizione = request.getParameter("descrizione");
+          creaRecensione(valutazione, descrizione);
+        }
       }
     }
 
@@ -96,7 +119,7 @@ public class RecensioniServlet extends HttpServlet {
    * @param valutazione nuovo valutazione
    */
   private void modificaRecensione(int id, int valutazione, String descrizione) {
-
+    
   }
 
 
@@ -104,9 +127,11 @@ public class RecensioniServlet extends HttpServlet {
    * Questo metodo crea una recensione all'interno del database.
    * @param valutazione della nuova recensione
    * @param descrizione della nuova recensione
+   * @throws SQLException 
    */
-  private void creaRecensione(int valutazione, String descrizione) {
-    
+  private void creaRecensione(int valutazione, String descrizione) throws SQLException {
+    Recensione temp = new Recensione(valutazione, descrizione);
+    recensioneManager.creaRecensione(temp);
   }
 
 
