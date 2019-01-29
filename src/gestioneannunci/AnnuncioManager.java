@@ -20,11 +20,10 @@ public class AnnuncioManager {
   private static final int PAGINADIM = 10;
   
   /**
-   * 
-   * @param rs
-   * @param numPagina
+   * Il metodo crea un'ArrayList di annunci da un result set.
+   * @param rs result set da listare
+   * @param numPagina 
    * @return
-   * @throws SQLException
    */
   public ArrayList<Annuncio> listaAnnunci(ResultSet rs, int numPagina) throws SQLException {
     rs.first();
