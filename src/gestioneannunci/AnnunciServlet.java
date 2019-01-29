@@ -1,5 +1,7 @@
 package gestioneannunci;
 
+import gestioneutenti.SessioneUtente;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,10 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
+
 public class AnnunciServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
   AnnuncioManager annuncioManager;
+  
   
   
   
@@ -29,6 +34,8 @@ public class AnnunciServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
     
+    SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("log");
+    String usernameLog = sessione.getUsername();
 
     try {
       String azione = request.getParameter("azione");  
@@ -64,24 +71,37 @@ public class AnnunciServlet extends HttpServlet {
 
       if (azione == "rimuoviAnnuncio") {
         int id = Integer.parseInt(request.getParameter("id"));
-        rimuoviAnnuncio(id);
+        String username = request.getParameter("usernameUtente");
+        if (sessione.getRuolo().equals("Gestore")) {
+          rimuoviAnnuncio(id);
+        }
+        else {
+          if (usernameLog.equals(username)) {
+            rimuoviAnnuncio(id);
+          }
+        }
       }
 
       if (azione == "modificaAnnuncio") {
         int id = Integer.parseInt(request.getParameter("id"));
         String titolo = request.getParameter("titolo");
         String descrizione = request.getParameter("descrizione");
-        modificaAnnuncio(id, titolo, descrizione);
-
+        String username = request.getParameter("usernameUtente");
+        if (usernameLog.equals(username)) {
+          modificaAnnuncio(id, titolo, descrizione);
+        }
       }
 
       if (azione == "creaAnnuncio") {
-        String utente = request.getParameter("username");
-        String dipartimento = request.getParameter("dipartimento");
-        String titolo = request.getParameter("titolo");
-        String descrizione = request.getParameter("descrizione");
-        boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
-        creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
+        if (sessione.getRuolo().equals("Utente")) {
+          String utente = request.getParameter("username");
+          String dipartimento = request.getParameter("dipartimento");
+          String titolo = request.getParameter("titolo");
+          String descrizione = request.getParameter("descrizione");
+          boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
+          String username = request.getParameter("usernameUtente");
+          creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
+        }
       }
 
 

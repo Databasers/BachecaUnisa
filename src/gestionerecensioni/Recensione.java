@@ -23,6 +23,11 @@ public class Recensione implements Segnalabile {
     this.valutazione = valutazione;
     this.descrizione = descrizione;
   }
+  
+  public Recensione(int valutazione, String descrizione) {
+    this.valutazione = valutazione;
+    this.descrizione = descrizione;
+  }
 
 
 

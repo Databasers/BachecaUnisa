@@ -32,6 +32,14 @@ public class SessioneUtente implements Serializable {
     return nome;
   }
 
+  public String getRuolo() {
+    return ruolo;
+  }
+
+  public void setRuolo(String ruolo) {
+    this.ruolo = ruolo;
+  }
+
   public void setNome(String nome) {
     this.nome = nome;
   }
