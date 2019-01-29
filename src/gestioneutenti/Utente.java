@@ -115,7 +115,7 @@ public class Utente {
     this.numAnnunci = numAnnunci;
   }
 
-
+ 
 
   private String username;
   private String nome;
@@ -124,6 +124,6 @@ public class Utente {
   private String password;
   private String descrizione;
   private int numAnnunci;
-  private boolean gestore; //true è un gestore
+  private boolean gestore; //true ï¿½ un gestore
 
 }
