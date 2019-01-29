@@ -12,6 +12,38 @@ import jdbc.DriverManagerConnectionPool;
 public class UtenteManager {
   
   private static final String TableName = "Utente";
+  private static final int PAGINADIM = 10;
+  
+  public ArrayList<Utente> listaUtenti(ResultSet rs, int numPagina) throws SQLException {
+    rs.first();
+    ArrayList<Utente> lista = new ArrayList<Utente>();
+    Utente temp;
+    //Sposta il cursore alla posizione corretta
+    //Qualcuno si faccia qualche simulazione per vedere se si muove nelle posizioni giuste
+    for (int i = 0; i < numPagina * PAGINADIM; i++) {
+      rs.next();
+    }
+    //Prende i prossimi 10 Annunci e li aggiunge alla lista
+    //Again, fare conti per vedere se va
+    for (int i = 0; i < 10; i++) {
+     
+      temp = new Utente();
+      temp.setUsername(rs.getString("Username"));
+      temp.setNome(rs.getString("Nome"));
+      temp.setCognome(rs.getString("Cognome"));
+      temp.setSesso(rs.getString("Sesso"));
+      temp.setPassword(rs.getString("Password"));
+      temp.setDescrizione(rs.getString("Descrizione"));
+      temp.setNumAnnunci(rs.getInt("Numero annunci"));
+      temp.setGestore(rs.getBoolean("Gestore"));
+      lista.add(temp);
+      rs.next();
+      
+    } 
+    
+    return lista;
+    
+  }
 
   
   public Utente recuperaSeRegistrato(String username,String password) throws SQLException {
@@ -39,6 +71,7 @@ public class UtenteManager {
       temp.setPassword(rs.getString("Password"));
       temp.setDescrizione(rs.getString("Descrizione"));
       temp.setNumAnnunci(rs.getInt("Numero annunci"));
+      temp.setGestore(rs.getBoolean("Gestore"));
 
 
     } finally {
@@ -90,17 +123,14 @@ public class UtenteManager {
   }
     
 
-  public ArrayList<Utente> recuperaTutti(String order) throws SQLException {
+  public ArrayList<Utente> recuperaTutti(int numPagina) throws SQLException {
     
-    ArrayList<Utente> u = new ArrayList<Utente>();
     Connection connection = null;
     PreparedStatement preparedStatement = null;
+    ArrayList<Utente> temp = null;
     
     String sql = "SELECT * FROM " + TableName;
-    if (order != null && !order.equals("")) {
-      sql += " ORDER BY " + order;
-    }
-      
+          
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
@@ -109,27 +139,14 @@ public class UtenteManager {
       
       ResultSet rs = preparedStatement.executeQuery();
       while (rs.next()) {
-        Utente temp = new Utente();
-        temp.setUsername(rs.getString("Username"));
-        temp.setNome(rs.getString("Nome"));
-        temp.setCognome(rs.getString("Cognome"));
-        temp.setSesso(rs.getString("Sesso"));
-        temp.setPassword(rs.getString("Password"));
-        temp.setDescrizione(rs.getString("Descrizione"));
-        temp.setNumAnnunci(rs.getInt("Numero annunci"));
-        u.add(temp);
+        temp = listaUtenti(rs, numPagina);
       }
+        
     } finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
-        }
-      } finally {
-        DriverManagerConnectionPool.releaseConnection(connection);
-      }
+      DriverManagerConnectionPool.releaseConnection(connection);
     }
     
-    return u;
+    return temp;
   }
 
 
@@ -138,7 +155,7 @@ public class UtenteManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
-    String sql = "INSERT INTO " + TableName + " VALUES(?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO " + TableName + " VALUES(?,?,?,?,?,?,?,?)";
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
@@ -150,6 +167,7 @@ public class UtenteManager {
       preparedStatement.setString(5, u.getPassword());
       preparedStatement.setInt(6, u.getNumAnnunci());
       preparedStatement.setString(7, u.getDescrizione());
+      preparedStatement.setBoolean(8, u.isGestore());
       System.out.println("doSave: " + preparedStatement.toString());
       preparedStatement.executeUpdate();
 

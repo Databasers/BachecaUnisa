@@ -1,8 +1,11 @@
 package gestioneannunci;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,13 +18,15 @@ public class AnnunciServlet extends HttpServlet {
   
   
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws IOException, ServletException {
     doPost(request, response);
   }
   
   
   @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+      throws IOException, ServletException {
     
 
     try {
@@ -82,7 +87,10 @@ public class AnnunciServlet extends HttpServlet {
 
       if (azione == "visualizzaAnnuncio") {
         int id = Integer.parseInt(request.getParameter("id"));
-        visualizzaAnnuncio(id);
+        Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);
+        request.setAttribute("annuncioTrovato", annuncioTrovato);
+        RequestDispatcher rd = request.getRequestDispatcher("Annuncio.jsp"); //da modificare
+        rd.forward(request, response);
       }
       
     } catch (SQLException e) {
@@ -102,9 +110,10 @@ public class AnnunciServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di restituire tutti gli annunci presenti nel database.
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
+   * @throws SQLException 
    */
-  private ArrayList<Annuncio> stampaAnnunci(int numPagina) {
-    return null;
+  private ArrayList<Annuncio> stampaAnnunci(int numPagina) throws SQLException {
+    return annuncioManager.recuperaAnnunci(numPagina);
 
   }
   
@@ -186,14 +195,6 @@ public class AnnunciServlet extends HttpServlet {
     Annuncio temp = new Annuncio(titolo, descrizione, tipologia, dipartimento, username);
     annuncioManager.creaAnnuncio(temp);
   }
-
-  private Annuncio visualizzaAnnuncio(int id) {
-    return null;
-  }
-  
-  
-
-
 
 
 }
