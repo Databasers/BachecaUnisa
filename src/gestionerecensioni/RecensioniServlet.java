@@ -21,14 +21,12 @@ public class RecensioniServlet extends HttpServlet {
   
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-    
+    doPost(request, response);
   }
   
   
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-    doGet(request, response);
-    
     SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("log");
     String usernameLog = sessione.getUsername();
     
