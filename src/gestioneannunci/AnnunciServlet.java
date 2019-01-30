@@ -74,8 +74,7 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
           rimuoviAnnuncio(id);
-        }
-        else {
+        } else {
           if (usernameLog.equals(username)) {
             rimuoviAnnuncio(id);
           }

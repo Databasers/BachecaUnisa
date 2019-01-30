@@ -94,12 +94,12 @@ public class RecensioneManager {
     return lista; 
   }
   
-  public ArrayList<Recensione> stampaAnnunci(Utente utente, int numPagina) throws SQLException {
+  public ArrayList<Recensione> stampaRecensione(Utente utente, int numPagina) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ArrayList<Recensione> temp = null;
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE a.Mittente_Utente LIKE " 
+    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE a.Mittente LIKE " 
         + utente.getUsername();
     
     try {
