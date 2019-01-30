@@ -316,8 +316,7 @@ public class AnnuncioManager {
 
       if (!rs.next()) {
         temp = null;
-      }
-      else {
+      } else {
         temp = listaAnnunci(rs, numPagina);
       } 
     } finally {

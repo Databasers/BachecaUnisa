@@ -31,6 +31,12 @@ public class Recensione implements Segnalabile {
 
 
 
+  public Recensione() {
+    // TODO Auto-generated constructor stub
+  }
+
+
+
   public int getValutazione() {
     return valutazione;
   }
@@ -91,6 +97,23 @@ public class Recensione implements Segnalabile {
 
   public Utente getMittente() {
     return mittente;
+  }
+
+
+
+  public Recensione(int id, int valutazione, String descrizione, Utente mittente, Utente destinatario) {
+    super();
+    this.id = id;
+    this.valutazione = valutazione;
+    this.descrizione = descrizione;
+    this.mittente = mittente;
+    this.destinatario = destinatario;
+  }
+
+
+
+  public void setValutazione(int valutazione) {
+    this.valutazione = valutazione;
   }
 
 

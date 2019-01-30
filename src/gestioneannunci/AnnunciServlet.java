@@ -1,5 +1,7 @@
 package gestioneannunci;
 
+import gestioneutenti.SessioneUtente;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import gestioneutenti.SessioneUtente;
-import gestioneutenti.Utente;
+
+
 
 public class AnnunciServlet extends HttpServlet {
 

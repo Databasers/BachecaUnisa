@@ -84,19 +84,16 @@ public class UtenteServlet extends HttpServlet {
         String password = request.getParameter("password");
         try {
           Utente u = utenteManager.recuperaSeRegistrato(username, password);
-<<<<<<< HEAD
+
           SessioneUtente su;
           if (u.isGestore() == true) {
             su = new SessioneUtente(u, "Gestore");
-          }
-          else {
+          } else {
             su = new SessioneUtente(u, "Utente");
           }
           request.getSession().setAttribute("log", su);
-=======
-          SessioneUtente su = new SessioneUtente(u); //creo l'oggetto sessione
+          
           request.getSession().setAttribute("Utente", su);
->>>>>>> 20e3e562aa2b85406c8807f0506188173bfba58c
           System.out.println("Login effettuato!");
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
           response.sendRedirect(request.getContextPath() + "\\HTML\\Utente.jsp"); //da modificare
