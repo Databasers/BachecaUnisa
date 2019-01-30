@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import gestioneannunci.Annuncio;
 import gestioneutenti.SessioneUtente;
+import gestioneutenti.UtenteManager;
 
 public class RecensioniServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
   
   RecensioneManager recensioneManager;
-
+  UtenteManager utenteManager;
   
   
   @Override
@@ -37,7 +38,10 @@ public class RecensioniServlet extends HttpServlet {
       if (azione == "stampaRecensioni") {
         int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         String username = request.getParameter("username");
-        stampaRecensioni(username, numPagina);
+        ArrayList<Recensione> caso = stampaRecensioni(username, numPagina);
+        request.getSession().setAttribute("Lista", caso);
+        String luogo = request.getParameter("luogo");
+        response.sendRedirect(request.getContextPath() + "/HTML/" + luogo + ".jsp");
       }
 
       if (azione == "rimuoviRecensione") {
@@ -45,10 +49,11 @@ public class RecensioniServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
           rimuoviRecensione(id);
-        }
-        else {
+          response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore");
+        } else {
           if (usernameLog.equals(username)) {
             rimuoviRecensione(id);
+            response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
           }
         }
       }
@@ -62,6 +67,7 @@ public class RecensioniServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (usernameLog.equals(username)) {
           modificaRecensione(id, valutazione, descrizione);
+          response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
         }
       }
       
@@ -71,13 +77,11 @@ public class RecensioniServlet extends HttpServlet {
           int valutazione = Integer.parseInt(request.getParameter("valutazione"));
           String descrizione = request.getParameter("descrizione");
           creaRecensione(valutazione, descrizione);
+          response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
+
         }
       }
     }
-
-
-      
-
     catch (Exception exc) {
 
     }
@@ -95,10 +99,12 @@ public class RecensioniServlet extends HttpServlet {
    * Questo metodo si occupa di restituire tutte le recensioni dell'utente passato come parametro.
    * @param username identificativo dell'utente.
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
+   * @throws SQLException 
    */
-  private ArrayList<Recensione> stampaRecensioni(String username, int numPagina) {
-    return null;
-
+  private ArrayList<Recensione> stampaRecensioni(String username, int numPagina)
+      throws SQLException {
+    return recensioneManager.stampaRecensione(
+        utenteManager.recuperaPerUsername(username), numPagina);
   }
 
 
@@ -106,9 +112,10 @@ public class RecensioniServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di rimuovere una recensione dal database.
    * @param id l'id della recensione da rimuovere
+   * @throws SQLException 
    */
-  private void rimuoviRecensione(int id) {
-
+  private void rimuoviRecensione(int id) throws SQLException {
+    recensioneManager.recensionePerId(id);
   }
 
 
@@ -117,9 +124,11 @@ public class RecensioniServlet extends HttpServlet {
    * @param id della recensione da modificare
    * @param descrizione nuova descrizione
    * @param valutazione nuovo valutazione
+   * @throws SQLException 
    */
-  private void modificaRecensione(int id, int valutazione, String descrizione) {
-    
+  private void modificaRecensione(int id, int valutazione, String descrizione) throws SQLException {
+    Recensione recensione = new Recensione(valutazione, descrizione);
+    recensioneManager.modificaRecensione(recensione);
   }
 
 

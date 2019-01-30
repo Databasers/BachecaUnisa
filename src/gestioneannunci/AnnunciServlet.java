@@ -79,9 +79,13 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
           rimuoviAnnuncio(id);
+<<<<<<< HEAD
           response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore.jsp");
         }
         else {
+=======
+        } else {
+>>>>>>> 34e9056e46cb2dc540c48fc994ff0236dc7c46c0
           if (usernameLog.equals(username)) {
             rimuoviAnnuncio(id);
             response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente.jsp");
