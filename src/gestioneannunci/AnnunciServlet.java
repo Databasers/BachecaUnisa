@@ -50,23 +50,28 @@ public class AnnunciServlet extends HttpServlet {
             if (tipo.equalsIgnoreCase("gruppo")) {
               check = false;
             }
-            recuperaPerTipologia(check, numPagina);
+            ArrayList<Annuncio> risultato = recuperaPerTipologia(check, numPagina);
+            request.getSession().setAttribute("risultato", risultato);
             break;
           }
           case "dipartimento": {
             String dipartimento = request.getParameter("dipartimento");
-            recuperaPerDipartimento(dipartimento, numPagina);
+            ArrayList<Annuncio> risultato = recuperaPerDipartimento(dipartimento, numPagina);
+            request.getSession().setAttribute("risultato", risultato);
             break;
           }
           case "utente": {
             String utente = request.getParameter("username");
-            recuperaPerUtente(utente, numPagina);
+            ArrayList<Annuncio> risultato = recuperaPerUtente(utente, numPagina);
+            request.getSession().setAttribute("risultato", risultato);
             break;
           }
-          default: stampaAnnunci(numPagina);
+          default: {
+            ArrayList<Annuncio> risultato = stampaAnnunci(numPagina);
+            request.getSession().setAttribute("risultato", risultato);
+          }
           break;
         }
-        stampaAnnunci(numPagina);
       }
 
       if (azione == "rimuoviAnnuncio") {
@@ -74,10 +79,12 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
           rimuoviAnnuncio(id);
+          response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore.jsp");
         }
         else {
           if (usernameLog.equals(username)) {
             rimuoviAnnuncio(id);
+            response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente.jsp");
           }
         }
       }
@@ -89,18 +96,19 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (usernameLog.equals(username)) {
           modificaAnnuncio(id, titolo, descrizione);
+          response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente.jsp");
         }
       }
 
       if (azione == "creaAnnuncio") {
         if (sessione.getRuolo().equals("Utente")) {
-          String utente = request.getParameter("username");
+          String utente = request.getParameter("usernameUtente");
           String dipartimento = request.getParameter("dipartimento");
           String titolo = request.getParameter("titolo");
           String descrizione = request.getParameter("descrizione");
           boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
-          String username = request.getParameter("usernameUtente");
           creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
+          response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente.jsp");
         }
       }
 
@@ -109,9 +117,8 @@ public class AnnunciServlet extends HttpServlet {
       if (azione == "visualizzaAnnuncio") {
         int id = Integer.parseInt(request.getParameter("id"));
         Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);
-        request.setAttribute("annuncioTrovato", annuncioTrovato);
-        RequestDispatcher rd = request.getRequestDispatcher("Annuncio.jsp"); //da modificare
-        rd.forward(request, response);
+        request.getSession().setAttribute("annuncioTrovato", annuncioTrovato);
+        response.sendRedirect(request.getContextPath() + "/HTML/VisualizzaAnnuncio.jsp");
       }
       
     } catch (SQLException e) {
@@ -183,6 +190,7 @@ public class AnnunciServlet extends HttpServlet {
   private void rimuoviAnnuncio(int id) throws SQLException {
     Annuncio temp = annuncioManager.recuperaPerId(id);
     annuncioManager.rimuoviAnnuncio(temp);
+    
   }
 
 
