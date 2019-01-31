@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,21 +18,21 @@ public class AnnunciServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
   AnnuncioManager annuncioManager;
-  
-  
-  
-  
+
+
+
+
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
     doPost(request, response);
   }
-  
-  
+
+
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
-    
+
     SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("log");
     String usernameLog = sessione.getUsername();
 
@@ -70,7 +69,7 @@ public class AnnunciServlet extends HttpServlet {
             ArrayList<Annuncio> risultato = stampaAnnunci(numPagina);
             request.getSession().setAttribute("risultato", risultato);
           }
-          break;
+        break;
         }
       }
 
@@ -79,13 +78,8 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
           rimuoviAnnuncio(id);
-<<<<<<< HEAD
           response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore.jsp");
-        }
-        else {
-=======
         } else {
->>>>>>> 34e9056e46cb2dc540c48fc994ff0236dc7c46c0
           if (usernameLog.equals(username)) {
             rimuoviAnnuncio(id);
             response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente.jsp");
@@ -124,16 +118,10 @@ public class AnnunciServlet extends HttpServlet {
         request.getSession().setAttribute("annuncioTrovato", annuncioTrovato);
         response.sendRedirect(request.getContextPath() + "/HTML/VisualizzaAnnuncio.jsp");
       }
-      
+
     } catch (SQLException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
-    } finally {
-      
     }
-
-
-
   }
 
 
@@ -148,7 +136,7 @@ public class AnnunciServlet extends HttpServlet {
     return annuncioManager.recuperaAnnunci(numPagina);
 
   }
-  
+
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di una data tipologia.
    * @param tipo dell'annuncio <code>true</code> se è un annuncio di tutorato.
@@ -161,7 +149,7 @@ public class AnnunciServlet extends HttpServlet {
     return annuncioManager.recuperaPerTipologia(tipo, numPagina);
 
   }
-  
+
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di una dato dipartimento.
    * @param dipartimento filtro
@@ -172,7 +160,7 @@ public class AnnunciServlet extends HttpServlet {
     return annuncioManager.recuperaPerDipartimento(dipartimento, numPagina);
 
   }
-  
+
   /**
    *Questo metodo si occupa di restituire tutti gli annunci di un utente. 
    * @param username di riferimento all'utente.
@@ -194,7 +182,7 @@ public class AnnunciServlet extends HttpServlet {
   private void rimuoviAnnuncio(int id) throws SQLException {
     Annuncio temp = annuncioManager.recuperaPerId(id);
     annuncioManager.rimuoviAnnuncio(temp);
-    
+
   }
 
 

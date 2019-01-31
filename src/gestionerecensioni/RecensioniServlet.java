@@ -1,15 +1,14 @@
 package gestionerecensioni;
 
+import gestioneutenti.SessioneUtente;
+import gestioneutenti.UtenteManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import gestioneannunci.Annuncio;
-import gestioneutenti.SessioneUtente;
-import gestioneutenti.UtenteManager;
+
 
 public class RecensioniServlet extends HttpServlet {
 
@@ -83,11 +82,9 @@ public class RecensioniServlet extends HttpServlet {
     catch (Exception exc) {
 
     }
-
-    finally {};
-
-
-
+    finally {
+      
+    }
   }
 
 
