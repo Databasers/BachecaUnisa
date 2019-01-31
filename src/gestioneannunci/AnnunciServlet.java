@@ -79,16 +79,11 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
           rimuoviAnnuncio(id);
-<<<<<<< HEAD
-          response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore.jsp");
-        }
-        else {
-=======
+          response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore");
         } else {
->>>>>>> 34e9056e46cb2dc540c48fc994ff0236dc7c46c0
           if (usernameLog.equals(username)) {
             rimuoviAnnuncio(id);
-            response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente.jsp");
+            response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente");
           }
         }
       }
@@ -100,7 +95,7 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (usernameLog.equals(username)) {
           modificaAnnuncio(id, titolo, descrizione);
-          response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente.jsp");
+          response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente");
         }
       }
 
@@ -112,7 +107,7 @@ public class AnnunciServlet extends HttpServlet {
           String descrizione = request.getParameter("descrizione");
           boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
           creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
-          response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente.jsp");
+          response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente");
         }
       }
 
@@ -122,7 +117,7 @@ public class AnnunciServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);
         request.getSession().setAttribute("annuncioTrovato", annuncioTrovato);
-        response.sendRedirect(request.getContextPath() + "/HTML/VisualizzaAnnuncio.jsp");
+        response.sendRedirect(request.getContextPath() + "/HTML/VisualizzaAnnuncio");
       }
       
     } catch (SQLException e) {

@@ -17,24 +17,21 @@ public class Segnalazione {
    * @param id nel database
    * @param descrizione Descrizione
    * @param motivazione della segnalazione scelto dall'utente.
-   * @param idSegnalato id dell'oggetto segnalato (annuncio o recensione)
-   * @param tipoSegnalazione <code>true</code> se è un annuncio.
-   *                         <code>false</code> se è una recensione.
-   * @param recensione segnalata, non null solo se tipo = false
-   * @param annuncio segnalato, not null solo se tipo = true
+   * @param recensione segnalata 
+   * @param annuncio segnalato
    */
   
   public Segnalazione(int id, String descrizione, int motivazione,
-      int idSegnalato, boolean tipoSegnalazione,
-      Recensione recensione, Annuncio annuncio) {
+      int recensione, int annuncio) {
     super();
     this.id = id;
     this.descrizione = descrizione;
     this.motivazione = motivazione;
-    this.idSegnalato = idSegnalato;
-    this.tipoSegnalazione = tipoSegnalazione;
-    this.recensione = recensione;
     this.annuncio = annuncio;
+    this.recensione = recensione;
+  }
+
+  public Segnalazione() {
   }
 
   public String getDescrizione() {
@@ -53,20 +50,24 @@ public class Segnalazione {
 
   
   public int getIdSegnalato() {
-    return idSegnalato;
+    return annuncio;
   }
 
+  /**
+   * <code>true</code> Annuncio.
+   * <code>false</code> Recensione.
+   */
   public boolean isTipoSegnalazione() {
-    return tipoSegnalazione;
+    if (annuncio != -1) {
+      return true;
+    } else {
+      return false;
+    }
+    
   }
 
-  public void setIdSegnalato(int idSegnalato) {
-    this.idSegnalato = idSegnalato;
-  }
-
-  public void setTipoSegnalazione(boolean tipoSegnalazione) {
-    this.tipoSegnalazione = tipoSegnalazione;
-  }
+ 
+ 
 
   public void setId(int id) {
     this.id = id;
@@ -82,22 +83,17 @@ public class Segnalazione {
   }
 
 
-  public Recensione getRecensione() {
+
+
+  public int getRecensione() {
     return recensione;
   }
 
-  public void setRecensione(Recensione recensione) {
+  public void setRecensione(int recensione) {
     this.recensione = recensione;
   }
 
 
-  public Annuncio getAnnuncio() {
-    return annuncio;
-  }
-
-  public void setAnnuncio(Annuncio annuncio) {
-    this.annuncio = annuncio;
-  }
 
 
   private int id;
@@ -115,9 +111,7 @@ public class Segnalazione {
    */
   public static final int MOTIVO3 = 3;
   private int motivazione;
-  private int idSegnalato;
-  private boolean tipoSegnalazione;
-  private Recensione recensione;
-  private Annuncio annuncio;
+  private int annuncio;
+  private int recensione;
   
 }

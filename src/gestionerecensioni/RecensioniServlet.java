@@ -71,13 +71,10 @@ public class RecensioniServlet extends HttpServlet {
       
 
       if (azione == "creaRecensione") {
-        if (sessione.getRuolo().equals("Utente")) {
-          int valutazione = Integer.parseInt(request.getParameter("valutazione"));
-          String descrizione = request.getParameter("descrizione");
-          creaRecensione(valutazione, descrizione);
-          response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
-
-        }
+        int valutazione = Integer.parseInt(request.getParameter("valutazione"));
+        String descrizione = request.getParameter("descrizione");
+        creaRecensione(valutazione, descrizione);
+        response.sendRedirect(request.getContextPath() + "/HTML/Profilo");
       }
     }
     catch (Exception exc) {
