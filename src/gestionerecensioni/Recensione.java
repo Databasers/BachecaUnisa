@@ -11,16 +11,41 @@ import gestionesegnalazioni.Segnalazione;
  */
 
 public class Recensione implements Segnalabile {
-
+  
+  /**
+   * Inizializza una nuova recensione.
+   * @param id della recensione
+   * @param valutazione della recensione
+   * @param descrizione della recensione
+   * @param mittente username dell'utente che ha creato la recensione.
+   * @param destinatario username dell'utente che ha ricevuto la recensione.
+   */
+  public Recensione(int id, int valutazione, String descrizione, 
+      String mittente, String destinatario) {
+    this.id = id;
+    this.valutazione = valutazione;
+    this.descrizione = descrizione;
+    this.mittente = mittente;
+    this.destinatario = destinatario;
+  }
+  
   /**
    * Inizializza una nuova recensione.
    * @param valutazione della recensione
    * @param descrizione della recensione
+   * @param mittente username dell'utente che ha creato la recensione.
+   * @param destinatario username dell'utente che ha ricevuto la recensione.
    */
-  public Recensione(int id, int valutazione, String descrizione) {
-    this.id = id;
+  public Recensione(int valutazione, String descrizione, 
+      String mittente, String destinatario) {
     this.valutazione = valutazione;
     this.descrizione = descrizione;
+    this.mittente = mittente;
+    this.destinatario = destinatario;
+  }
+
+
+  public Recensione() {
   }
 
 
@@ -40,18 +65,35 @@ public class Recensione implements Segnalabile {
     return id;
   }
 
+  public String getMittente() {
+    return mittente;
+  }
 
+  public String getDestinatario() {
+    return destinatario;
+  }
+
+  public void setMittente(String mittente) {
+    this.mittente = mittente;
+  }
+
+  public void setDestinatario(String destinatario) {
+    this.destinatario = destinatario;
+  }
 
   public void setDescrizione(String descrizione) {
     this.descrizione = descrizione;
   }
 
 
-
-
   public void setId(int id) {
     this.id = id;
   }
+  
+  public void setValutazione(int valutazione) {
+    this.valutazione = valutazione;
+  }
+
 
 
 
@@ -65,7 +107,7 @@ public class Recensione implements Segnalabile {
 
 
 
-  /**La segnalazione, il cui id è passato come parametro, 
+  /**La segnalazione, il cui id ï¿½ passato come parametro, 
    * viene rimossa dalla lista delle segnalazioni.
    * @param id della segnalazione da rimuovere dalla lista delle segnalazioni.
    */
@@ -83,7 +125,12 @@ public class Recensione implements Segnalabile {
       
   }
 
+
+
+
   private int id;
   private int valutazione;
   private String descrizione;
+  private String mittente;
+  private String destinatario;
 }
