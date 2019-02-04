@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head><style type="text/css">.lw { font-size: 60px; }</style>
@@ -83,10 +85,10 @@ margin-right: auto;
     color: #f2b600
 }
   </style>
-  
+ 
 </head>
 <body>
- 
+  <%@ include file="barraLEFTv2.jsp" %>
  <h1 class="tit">Valutazione:</h1>
   
   	<div class="star-rating">

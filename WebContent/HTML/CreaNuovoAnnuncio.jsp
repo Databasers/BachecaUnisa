@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">
-
-
-
-
+<head>
+</head><style type="text/css">
 </style>
 
 
