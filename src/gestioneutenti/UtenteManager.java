@@ -13,18 +13,25 @@ public class UtenteManager {
   
   private static final String TableName = "Utente";
   private static final int PAGINADIM = 10;
-  
-  public ArrayList<Utente> listaUtenti(ResultSet rs, int numPagina) throws SQLException {
+
+  /**
+   * Il metodo crea un'ArrayList di utenti da un result set.
+   * @param rs result set da listare.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return una lista di 10 utenti dal database basandosi dalla pagina specificata.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public ArrayList<Utente> listaUtenti(ResultSet rs, int numPagina) 
+      throws SQLException {
     rs.first();
     ArrayList<Utente> lista = new ArrayList<Utente>();
     Utente temp;
     //Sposta il cursore alla posizione corretta
-    //Qualcuno si faccia qualche simulazione per vedere se si muove nelle posizioni giuste
     for (int i = 0; i < numPagina * PAGINADIM; i++) {
       rs.next();
     }
-    //Prende i prossimi 10 Annunci e li aggiunge alla lista
-    //Again, fare conti per vedere se va
+
+
     for (int i = 0; i < 10; i++) {
      
       temp = new Utente();
@@ -37,15 +44,18 @@ public class UtenteManager {
       temp.setNumAnnunci(rs.getInt("Numero annunci"));
       temp.setGestore(rs.getBoolean("Gestore"));
       lista.add(temp);
-      rs.next();
-      
-    } 
-    
-    return lista;
-    
+      rs.next();    
+    }    
+    return lista;   
   }
 
-  
+  /**
+   * Questo metodo recupera l'utente qualora sia registrato.
+   * @param username dell'utente da recuperare.
+   * @param password dell'utente da recuperare.
+   * @return utente registrato.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   public Utente recuperaSeRegistrato(String username,String password) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -73,7 +83,6 @@ public class UtenteManager {
       temp.setNumAnnunci(rs.getInt("Numero annunci"));
       temp.setGestore(rs.getBoolean("Gestore"));
 
-
     } finally {
       try {
         if (preparedStatement != null) {
@@ -82,12 +91,16 @@ public class UtenteManager {
       } finally {
         DriverManagerConnectionPool.releaseConnection(connection);
       }
-    }
-    
+    }  
     return temp;
   }
   
-
+  /**
+   * Questo metodo recupera l'utente che ha per username il parametro passato.
+   * @param username dell'utente che si cerca.
+   * @return utente con l'username passato come parametro.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   public Utente recuperaPerUsername(String username) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -106,8 +119,7 @@ public class UtenteManager {
       
       if (!rs.next()) {
         temp = null;
-      }
-      else {
+      } else {
         temp.setUsername(rs.getString("Username"));
         temp.setNome(rs.getString("Nome"));
         temp.setCognome(rs.getString("Cognome"));
@@ -121,9 +133,16 @@ public class UtenteManager {
     }
     return temp;
   }
-    
+  
 
-  public ArrayList<Utente> recuperaTutti(int numPagina) throws SQLException {
+    
+  /**
+   * Recupera tutti gli utenti esistenti.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return la lista di tutti gli utenti basandosi sulla pagina visualizzata dall'utente.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public ArrayList<Utente> recuperaUtenti(int numPagina) throws SQLException {
     
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -144,14 +163,18 @@ public class UtenteManager {
         
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
-    }
-    
+    }   
     return temp;
   }
 
 
-  
-  public void salvaUtente(Utente u) throws SQLException {
+  /**
+   * Questo metodo crea un nuovo utente nel database.
+   * 
+   * @param u utente da inserire nel database.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public void creaUtente(Utente u) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
@@ -181,10 +204,14 @@ public class UtenteManager {
         DriverManagerConnectionPool.releaseConnection(connection);
       }
     }
-
   }
 
-  
+  /**
+   * Questo metodo modifica l'utente selezionato nel database.
+   * 
+   * @param u utente da modificare.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   public void modificaUtente(Utente u) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -214,27 +241,29 @@ public class UtenteManager {
       } finally {
         DriverManagerConnectionPool.releaseConnection(connection);
       }
-    }
-    
+    }    
   }
 
-  
-  public boolean eliminaUtente(String username) throws SQLException {
+  /**
+   * Questo metodo rimuove l'utente selezionato dal database.
+   * 
+   * @param utente da rimuovere.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public void rimuoviUtente(Utente utente) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
-    int result = 0;
 
     String delete = "DELETE FROM " + TableName + " WHERE Username = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(delete);
-      preparedStatement.setString(1, username);
+      preparedStatement.setString(1, utente.getUsername());
 
       System.out.println("doDelete: " + preparedStatement.toString());
-      result = preparedStatement.executeUpdate();
-      
+      preparedStatement.executeUpdate();
       connection.commit();
     } finally {
       try {
@@ -245,7 +274,6 @@ public class UtenteManager {
         DriverManagerConnectionPool.releaseConnection(connection);
       }
     }
-    return (result != 0);
   }
   
 

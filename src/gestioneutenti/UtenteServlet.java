@@ -2,13 +2,12 @@ package gestioneutenti;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import gestioneannunci.Annuncio;
+
 
 public class UtenteServlet extends HttpServlet {
 
@@ -72,8 +71,8 @@ public class UtenteServlet extends HttpServlet {
         Utente u;
         u = utenteManager.recuperaPerUsername(request.getParameter("username"));
         if (u != null) {
-          System.out.println("Utente giï¿½ registrato");
-          request.setAttribute("alreadyRegistered","true"); //Giï¿½ registrato
+          System.out.println("Utente già registrato");
+          request.setAttribute("alreadyRegistered","true"); //Già registrato
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
           RequestDispatcher x = getServletContext().getRequestDispatcher("/HTML/Login.jsp"); 
           //da modificare
@@ -126,8 +125,7 @@ public class UtenteServlet extends HttpServlet {
           //controllo se non ï¿½ loggato
           if (request.getSession().getAttribute("Utente") == null)  {
             response.sendRedirect(request.getContextPath() + "/HTML/Login.jsp");
-          }
-          else if (request.getSession().getAttribute("Gestore") == null)  {
+          } else if (request.getSession().getAttribute("Gestore") == null)  {
             response.sendRedirect(request.getContextPath() + "/HTML/Login.jsp");
           }
           
@@ -136,19 +134,11 @@ public class UtenteServlet extends HttpServlet {
           request.getSession().invalidate();
           response.sendRedirect(request.getContextPath() + "/HTML/Login.jsp"); 
           System.out.println("\n FINE GESTIONE LOGOUT \n");
-        }
-        
-        
-      }
-      
+        } 
+      }     
     } catch (Exception exc) {
-
-    } finally {
-      
-    }
-
-
-
+      exc.printStackTrace();
+    } 
   }
 
 
@@ -157,30 +147,32 @@ public class UtenteServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di restituire tutti gli utenti.
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
-   * @throws SQLException 
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Utente> stampaUtenti(int numPagina) throws SQLException {
-    return utenteManager.recuperaTutti(numPagina);
+    return utenteManager.recuperaUtenti(numPagina);
   }
 
 
 
   /**
-   * Questo metodo si occupa di rimuovere una recensione dal database.
-   * @param id l'id della recensione da rimuovere
-   * @throws SQLException 
+   * Questo metodo si occupa di rimuovere un utente dal database.
+   * @param username dell'utente da rimuovere.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void rimuoviUtente(String username) throws SQLException {
-    utenteManager.eliminaUtente(username);
+    Utente temp = utenteManager.recuperaPerUsername(username);
+    utenteManager.rimuoviUtente(temp);
   }
 
 
   /**
    * Questo metodo si occupa di modificare i dati dell'utente.
-   * @param nome dell'utente modificato
-   * @param cognome dell'utente modificato
-   * @param descrizione dell'utente modificata
-   * @throws SQLException 
+   * @param username dell'utente da modificare.
+   * @param nome dell'utente modificato.
+   * @param cognome dell'utente modificato.
+   * @param descrizione dell'utente modificata.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void modificaUtente(String username, String nome, String cognome,
       String descrizione) throws SQLException {
@@ -193,8 +185,9 @@ public class UtenteServlet extends HttpServlet {
   
   /**
    * Questo metodo permette di modificare la password dell'utente.
+   * @param username dell'utente da modificare.
    * @param password aggiornata
-   * @throws SQLException 
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void modificaPassword(String username, String newPassword) throws SQLException {
     Utente temp = utenteManager.recuperaPerUsername(username);
@@ -203,21 +196,25 @@ public class UtenteServlet extends HttpServlet {
   }
 
 
+
   /**
    * Inizializza un nuovo utente.
-   * @param username dell'utente
-   * @param nome dell'utente
-   * @param cognome dell'utente
-   * @param sesso dell'utente
-   * @param password dell'utente
-   * @param descrizione  dell'utente
-   * @param numAnnunci numero di annunci creati dall'utente
+   * @param u utente dichiarato precedentemente per il controllo sull'unicità dell'username.
+   * @param username dell'utente.
+   * @param nome dell'utente.
+   * @param cognome dell'utente.
+   * @param sesso dell'utente.
+   * @param password dell'utente.
+   * @param descrizione dell'utente
+   * @param gestore <code>true</code> se è gestore.
+   *                <code>false</code> se è utente.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void creaUtente(Utente u, String username, String nome, String cognome, String sesso, 
       String password, String descrizione, boolean gestore) throws SQLException {
     System.out.println("Registrazione utente");
     u = new Utente(username, nome, cognome, sesso, password, descrizione, 0, gestore);
-    utenteManager.salvaUtente(u);
+    utenteManager.creaUtente(u);
   }
   
   

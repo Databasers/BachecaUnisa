@@ -59,7 +59,7 @@ public class AnnuncioManager {
   /**
    * Questo metodo crea un nuovo annuncio nel database.
    * 
-   * @param annuncio da inserire nel db
+   * @param annuncio da inserire nel database.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public void creaAnnuncio(Annuncio annuncio) throws SQLException {
@@ -108,13 +108,33 @@ public class AnnuncioManager {
    * @throws SQLException in caso di errore di accesso al database.
    */
   public void rimuoviAnnuncio(Annuncio annuncio) throws SQLException {
-    Connection connection = DriverManagerConnectionPool.getConnection();
-    PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM " + TableName
-        + "WHERE Id LIKE " + annuncio.getId());
-    preparedStatement.executeQuery();
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+
+    String delete = "DELETE FROM " + TableName + " WHERE Id = ?";
+    
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(delete);
+      preparedStatement.setInt(1, annuncio.getId());
+      System.out.println("doDelete: " + preparedStatement.toString());
+      preparedStatement.executeUpdate();
+      
+      connection.commit();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
   }
   
-  /**Questo metodo modifica l'annuncio selezionato nel database.
+  /**
+   * Questo metodo modifica l'annuncio selezionato nel database.
    * 
    * @param annuncio da modificare.
    * @throws SQLException in caso di errore di accesso al database.
