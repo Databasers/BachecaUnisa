@@ -129,8 +129,8 @@ public class AnnunciServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di restituire tutti gli annunci presenti nel database.
-   * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
-   * @throws SQLException 
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Annuncio> stampaAnnunci(int numPagina) throws SQLException {
     return annuncioManager.recuperaAnnunci(numPagina);
@@ -139,10 +139,11 @@ public class AnnunciServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di una data tipologia.
-   * @param tipo dell'annuncio <code>true</code> se Ã¨ un annuncio di tutorato.
-   *          <code>false</code> se Ã¨ un annuncio di gruppo di studio.
+   * @param tipo dell'annuncio <code>true</code> se è un annuncio di tutorato.
+   *          <code>false</code> se è un annuncio di gruppo di studio.
+   * @param numPagina il numero della pagina che l'utente visualizza.
    * @return la lista degli annunci della tipologia passata come parametro.
-   * @throws SQLException 
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Annuncio> recuperaPerTipologia(boolean tipo, int numPagina) 
       throws SQLException {
@@ -151,9 +152,11 @@ public class AnnunciServlet extends HttpServlet {
   }
 
   /**
-   * Questo metodo si occupa di restituire tutti gli annunci di una dato dipartimento.
-   * @param dipartimento filtro
+   * Questo metodo si occupa di restituire tutti gli annunci di un dato dipartimento.
+   * @param dipartimento filtro.
+   * @param numPagina il numero della pagina che l'utente visualizza.
    * @return la lista degli annunci del dipartimento passato come parametro.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento, int numPagina) 
       throws SQLException {
@@ -162,12 +165,14 @@ public class AnnunciServlet extends HttpServlet {
   }
 
   /**
-   *Questo metodo si occupa di restituire tutti gli annunci di un utente. 
+   * Questo metodo si occupa di restituire tutti gli annunci di un utente. 
    * @param username di riferimento all'utente.
+   * @param numPagina il numero della pagina che l'utente visualizza.
    * @return la lista degli annunci dell'utente.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Annuncio> recuperaPerUtente(String username, int numPagina) 
-      throws SQLException{
+      throws SQLException {
     return annuncioManager.recuperaPerUtente(username, numPagina);
 
   }
@@ -176,8 +181,8 @@ public class AnnunciServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di rimuovere un annuncio dal database.
-   * @param id l'id dell'annuncio da rimuovere
-   * @throws SQLException 
+   * @param id dell'annuncio da rimuovere.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void rimuoviAnnuncio(int id) throws SQLException {
     Annuncio temp = annuncioManager.recuperaPerId(id);
@@ -188,10 +193,10 @@ public class AnnunciServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di modificare l'annuncio scelto all'interno del database.
-   * @param id dell'annuncio da modificare
-   * @param descrizione nuova descrizione
-   * @param titolo nuovo titolo
-   * @throws SQLException 
+   * @param id dell'annuncio da modificare.
+   * @param descrizione nuova descrizione.
+   * @param titolo nuovo titolo.
+   * @throws SQLException in caso di errore di accesso al database.
    */
 
   private void modificaAnnuncio(int id, String titolo, String descrizione) throws SQLException {
@@ -204,12 +209,12 @@ public class AnnunciServlet extends HttpServlet {
 
   /**
    * Questo metodo crea un annuncio all'interno del database.
-   * @param dipartimento
-   * @param titolo
-   * @param descrizione
-   * @param tipologia
-   * @param username utente
-   * @throws SQLException
+   * @param dipartimento del nuovo annuncio.
+   * @param titolo del nuovo annuncio.
+   * @param descrizione del nuovo annuncio.
+   * @param tipologia del nuovo annuncio.
+   * @param username utente che ha creato l'annuncio.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void creaAnnuncio(String dipartimento, String titolo, String descrizione, 
       boolean tipologia, String username) throws SQLException {

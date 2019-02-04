@@ -16,11 +16,11 @@ public class Annuncio implements Segnalabile {
   /**
    * Inizializza un nuovo annuncio.
    * 
-   * @param id Chiave primaria dell'entit√† nel database
+   * @param id Chiave primaria dell'entit‡† nel database
    * @param titolo dell'annuncio.
    * @param descrizione dell'annuncio.
-   * @param tipologia dell'annuncio <code>true</code> se √® un annuncio di tutorato.
-   *          <code>false</code> se √® un annuncio di gruppo di studio.
+   * @param tipologia dell'annuncio <code>true</code> se Ë un annuncio di tutorato.
+   *          <code>false</code> se Ë un annuncio di gruppo di studio.
    * @param dipartimento relativo all'annuncio.
    */
   public Annuncio(int id, String titolo, String descrizione, 
@@ -33,6 +33,15 @@ public class Annuncio implements Segnalabile {
     this.usernameUtente = usernameUtente;
   }
   
+  /**
+   * Inizializza un nuovo annuncio.
+   *
+   * @param titolo dell'annuncio.
+   * @param descrizione dell'annuncio.
+   * @param tipologia dell'annuncio <code>true</code> se Ë un annuncio di tutorato.
+   *          <code>false</code> se Ë un annuncio di gruppo di studio.
+   * @param dipartimento relativo all'annuncio.
+   */
   public Annuncio(String titolo, String descrizione, 
       boolean tipologia, String dipartimento, String usernameUtente) {
     this.titolo = titolo;
@@ -45,7 +54,6 @@ public class Annuncio implements Segnalabile {
 
 
   public Annuncio() {
-    // TODO Auto-generated constructor stub
   }
 
 
@@ -54,10 +62,7 @@ public class Annuncio implements Segnalabile {
     return titolo;
   }
 
-  /**
-   * Restituisce la descrizione dell'annuncio.
-   * 
-   */
+
   public String getDescrizione() {
     return descrizione;
   }

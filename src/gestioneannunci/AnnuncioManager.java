@@ -21,9 +21,10 @@ public class AnnuncioManager {
   
   /**
    * Il metodo crea un'ArrayList di annunci da un result set.
-   * @param rs result set da listare
-   * @param numPagina 
-   * @return
+   * @param rs result set da listare.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return una lista di 10 annunci dal database basandosi dalla pagina specificata.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> listaAnnunci(ResultSet rs, int numPagina) throws SQLException {
     rs.first();
@@ -59,6 +60,7 @@ public class AnnuncioManager {
    * Questo metodo crea un nuovo annuncio nel database.
    * 
    * @param annuncio da inserire nel db
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public void creaAnnuncio(Annuncio annuncio) throws SQLException {
     
@@ -103,6 +105,7 @@ public class AnnuncioManager {
    * Questo metodo rimuove l'annuncio selezionato dal database.
    * 
    * @param annuncio da rimuovere.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public void rimuoviAnnuncio(Annuncio annuncio) throws SQLException {
     Connection connection = DriverManagerConnectionPool.getConnection();
@@ -114,7 +117,7 @@ public class AnnuncioManager {
   /**Questo metodo modifica l'annuncio selezionato nel database.
    * 
    * @param annuncio da modificare.
-   * 
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public void modificaAnnuncio(Annuncio annuncio) throws SQLException {
     Connection connection = null;
@@ -156,10 +159,10 @@ public class AnnuncioManager {
   }
   
   /**
-   * Recupera tutti gli annunci esistenti-
-   * @param numPagina
-   * @return
-   * @throws SQLException
+   * Recupera tutti gli annunci esistenti.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return la lista di tutti gli annunci basandosi sulla pagina visualizzata dall'utente.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> recuperaAnnunci(int numPagina) throws SQLException {
     Connection connection = null;
@@ -185,9 +188,9 @@ public class AnnuncioManager {
   
   /**
    * Recupera l'annuncio con l'id selezionato.
-   * @param id
-   * @return
-   * @throws SQLException
+   * @param id dell'annuncio cercato.
+   * @return l'annuncio con l'id selezionato.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public Annuncio recuperaPerId(int id) throws SQLException {
     Connection connection = null;
@@ -206,9 +209,7 @@ public class AnnuncioManager {
       ResultSet rs = preparedStatement.executeQuery();
       if (!rs.next()) {
         temp = null; 
-        }
-               
-      else {
+      } else {
         temp.setTitolo(rs.getString("titolo"));
         temp.setDescrizione(rs.getString("descrizione"));
         temp.setDipartimento(rs.getString("dipartimento"));
@@ -223,9 +224,11 @@ public class AnnuncioManager {
 
   /**
    * Recupera gli annunci della tipologia specificata.
-   * @param tipo
-   * @return
-   * @throws SQLException
+   * @param tipo filtro.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return la lista di tutti gli annunci, filtrati per tipologia,
+   *          basandosi sulla pagina visualizzata dall'utente.
+   * @throws SQLException @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> recuperaPerTipologia(boolean tipo, int numPagina) throws SQLException {
     Connection connection = null;
@@ -233,7 +236,7 @@ public class AnnuncioManager {
     ArrayList<Annuncio> temp;
     String str = String.valueOf(tipo);
 
-    String sql = "SELECT* FROM " + TableName + " WHERE Tipologia = ?  ";
+    String sql = "SELECT * FROM " + TableName + " WHERE Tipologia = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -244,9 +247,7 @@ public class AnnuncioManager {
       ResultSet rs = preparedStatement.executeQuery();
       if (!rs.next()) {
         temp = null; 
-        }
-               
-      else {
+      } else {
         temp = listaAnnunci(rs, numPagina);
       } 
     } finally {
@@ -258,12 +259,14 @@ public class AnnuncioManager {
   
   /**
    * Recupera gli annunci del dipartimento specificato.
-   * @param dipartimento
-   * @param numPagina
-   * @return
-   * @throws SQLException
+   * @param dipartimento filtro.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return la lista di tutti gli annunci, filtrati per dipartimento,
+   *         basandosi sulla pagina visualizzata dall'utente.
+   * @throws SQLException @throws SQLException in caso di errore di accesso al database.
    */
-  public ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento, int numPagina) throws SQLException {
+  public ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento, int numPagina) 
+      throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp;
@@ -281,8 +284,7 @@ public class AnnuncioManager {
 
       if (!rs.next()) {
         temp = null;
-      }
-      else {
+      } else {
         temp = listaAnnunci(rs, numPagina);
       } 
     } finally {
@@ -293,10 +295,11 @@ public class AnnuncioManager {
   
   /**
    * Recupera tutti gli annunci di un singolo utente.
-   * @param username
-   * @param numPagina
-   * @return
-   * @throws SQLException
+   * @param username dell'utente
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return la lista di tutti gli annunci creati da un utente
+   *         basandosi sulla pagina visualizzata dall'utente stesso.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> recuperaPerUtente(String username, int numPagina) throws SQLException {
     Connection connection = null;

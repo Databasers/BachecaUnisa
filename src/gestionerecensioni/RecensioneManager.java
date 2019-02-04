@@ -1,7 +1,5 @@
 package gestionerecensioni;
 
-import gestioneutenti.Utente;
-import gestioneutenti.UtenteManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +17,6 @@ public class RecensioneManager {
   private static final String TABLENAME = "Recensione";  
   private static final int PAGINADIM = 10;
 
-  UtenteManager utenteManager = new UtenteManager();
   
   /**
    * Questo metodo crea una recensione nel database.
@@ -33,8 +30,8 @@ public class RecensioneManager {
     PreparedStatement preparedStatement = null;
     
     String sql = "INSERT INTO " + TABLENAME + "VALUES(" + recensione.getDescrizione()
-        + "," + recensione.getMittente().getUsername() + "," + recensione.getId()
-        + "," + recensione.getDestinatario().getUsername() + "," + recensione.getValutazione();
+        + "," + recensione.getMittente() + "," + recensione.getId()
+        + "," + recensione.getDestinatario() + "," + recensione.getValutazione();
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -68,7 +65,15 @@ public class RecensioneManager {
     preparedStatement.executeQuery();
   }
   
-  public ArrayList<Recensione> listaRecensioni(ResultSet rs, int numPagina) throws SQLException {
+  /**
+   * Il metodo crea un'ArrayList di annunci da un result set.
+   * @param rs result set da listare.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return una lista di 10 recensioni dal database basandosi dalla pagina specificata.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public ArrayList<Recensione> listaRecensioni(ResultSet rs, int numPagina) 
+      throws SQLException {
     rs.first();
     ArrayList<Recensione> lista = new ArrayList<Recensione>();
     Recensione temp;
@@ -83,9 +88,9 @@ public class RecensioneManager {
      
       temp = new Recensione();
       temp.setDescrizione(rs.getString("Descrizione"));
-      temp.setDestinatario(utenteManager.recuperaPerUsername(rs.getString("Destinatario_Utente")));
+      temp.setDestinatario(rs.getString("Destinatario_Utente"));
       temp.setId(rs.getInt("ID"));
-      temp.setMittente(utenteManager.recuperaPerUsername(rs.getString("Mittente_Utente")));
+      temp.setMittente(rs.getString("Mittente_Utente"));
       temp.setValutazione(rs.getInt("Valutazione"));
       lista.add(temp);
       rs.next();
@@ -94,13 +99,21 @@ public class RecensioneManager {
     return lista; 
   }
   
-  public ArrayList<Recensione> stampaRecensione(Utente utente, int numPagina) throws SQLException {
+  /**
+   * Recupera tuttle recensioni esistenti di un dato utente.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param utenteDestinatario username di riferimento.
+   * @return la lista di tutti gli annunci basandosi sulla pagina visualizzata dall'utente.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public ArrayList<Recensione> recuperaRecensioni(String utenteDestinatario, int numPagina) 
+      throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ArrayList<Recensione> temp = null;
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE a.Mittente LIKE " 
-        + utente.getUsername();
+    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE r.Mittente LIKE " 
+        + utenteDestinatario;
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -118,12 +131,18 @@ public class RecensioneManager {
     return temp;
   }
   
-  public Recensione recensionePerId(int id) throws SQLException {
+  /**
+   * Recupera la recensione con l'id selezionato.
+   * @param id della recensione cercata.
+   * @return la recensione con l'id selezionato.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public Recensione recuperaPerId(int id) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Recensione temp = null;
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE a.ID LIKE " 
+    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE r.ID LIKE " 
         + id;
     
     try {
@@ -136,9 +155,8 @@ public class RecensioneManager {
         temp = null;
       } else {
         temp = new Recensione(rs.getInt("ID"), rs.getInt("Valutazione"), 
-               rs.getString("Descrizione"), 
-               utenteManager.recuperaPerUsername(rs.getString("Mittente")),
-               utenteManager.recuperaPerUsername(rs.getString("Destinatario")));
+               rs.getString("Descrizione"), rs.getString("Mittente"),
+               rs.getString("Destinatario"));
       }
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
@@ -147,17 +165,24 @@ public class RecensioneManager {
     return temp;
   }
   
+  /**
+   * Questo metodo modifica la recensione selezionata nel database.
+   * 
+   * @param recensione da modificare.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   public void modificaRecensione(Recensione recensione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    String sql = "UPDATE " + TABLENAME + "SET Descrizione= ?"
+    String sql = "UPDATE " + TABLENAME + "SET Descrizione = ?, Valutazione = ?"
         + " WHERE ID = ?";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(0, recensione.getDescrizione());
-      preparedStatement.setInt(1, recensione.getId());
+      preparedStatement.setInt(1, recensione.getValutazione());
+      preparedStatement.setInt(2, recensione.getId());
      
       preparedStatement.executeUpdate();
       connection.commit();

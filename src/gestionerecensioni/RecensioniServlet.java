@@ -2,6 +2,8 @@ package gestionerecensioni;
 
 import gestioneutenti.SessioneUtente;
 import gestioneutenti.UtenteManager;
+
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServlet;
@@ -19,13 +21,16 @@ public class RecensioniServlet extends HttpServlet {
   
   
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+      throws IOException {
     doPost(request, response);
   }
   
   
   @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+      throws IOException {
+    
     SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("log");
     String usernameLog = sessione.getUsername();
     
@@ -73,17 +78,15 @@ public class RecensioniServlet extends HttpServlet {
         if (sessione.getRuolo().equals("Utente")) {
           int valutazione = Integer.parseInt(request.getParameter("valutazione"));
           String descrizione = request.getParameter("descrizione");
-          creaRecensione(valutazione, descrizione);
+          String mittente = request.getParameter("mittente");
+          String destinatario = request.getParameter("destinatario");
+          creaRecensione(valutazione, descrizione, mittente, destinatario);
           response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
 
         }
       }
-    }
-    catch (Exception exc) {
-
-    }
-    finally {
-      
+    }    catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 
@@ -94,12 +97,11 @@ public class RecensioniServlet extends HttpServlet {
    * Questo metodo si occupa di restituire tutte le recensioni dell'utente passato come parametro.
    * @param username identificativo dell'utente.
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
-   * @throws SQLException 
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Recensione> stampaRecensioni(String username, int numPagina)
       throws SQLException {
-    return recensioneManager.stampaRecensione(
-        utenteManager.recuperaPerUsername(username), numPagina);
+    return recensioneManager.recuperaRecensioni(username, numPagina);
   }
 
 
@@ -107,10 +109,11 @@ public class RecensioniServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di rimuovere una recensione dal database.
    * @param id l'id della recensione da rimuovere
-   * @throws SQLException 
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void rimuoviRecensione(int id) throws SQLException {
-    recensioneManager.recensionePerId(id);
+    Recensione recensione = recensioneManager.recuperaPerId(id);
+    recensioneManager.rimuoviRecensione(recensione);
   }
 
 
@@ -119,10 +122,12 @@ public class RecensioniServlet extends HttpServlet {
    * @param id della recensione da modificare
    * @param descrizione nuova descrizione
    * @param valutazione nuovo valutazione
-   * @throws SQLException 
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void modificaRecensione(int id, int valutazione, String descrizione) throws SQLException {
-    Recensione recensione = new Recensione(valutazione, descrizione);
+    Recensione recensione = recensioneManager.recuperaPerId(id);
+    recensione.setDescrizione(descrizione);
+    recensione.setValutazione(valutazione);
     recensioneManager.modificaRecensione(recensione);
   }
 
@@ -131,10 +136,11 @@ public class RecensioniServlet extends HttpServlet {
    * Questo metodo crea una recensione all'interno del database.
    * @param valutazione della nuova recensione
    * @param descrizione della nuova recensione
-   * @throws SQLException 
+   * @throws SQLException in caso di errore di accesso al database.
    */
-  private void creaRecensione(int valutazione, String descrizione) throws SQLException {
-    Recensione temp = new Recensione(valutazione, descrizione);
+  private void creaRecensione(int valutazione, String descrizione, 
+      String mittente, String destinatario) throws SQLException {
+    Recensione temp = new Recensione(valutazione, descrizione, mittente, destinatario);
     recensioneManager.creaRecensione(temp);
   }
 
