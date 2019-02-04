@@ -1,7 +1,5 @@
 package gestionesegnalazioni;
 
-import gestioneannunci.Annuncio;
-import gestionerecensioni.Recensione;
 
 /**
  * Un oggetto <code>Segnalazione</code> rappresenta una segnalazione. Una segnalazione pu�
