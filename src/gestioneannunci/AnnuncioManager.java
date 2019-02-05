@@ -9,14 +9,12 @@ import jdbc.DriverManagerConnectionPool;
 
 /**
  * Il manager della classe Annuncio si occupa della gestione degli annunci: 
- * Della loro creazione, rimozione, modifica e della ricerca.
- * 
- *
+ * della loro creazione, rimozione, modifica e della ricerca.
  */
 
 public class AnnuncioManager {
 
-  private static final String TableName = "Annuncio";
+  private static final String TABLENAME = "Annuncio";
   private static final int PAGINADIM = 10;
   
   /**
@@ -46,12 +44,9 @@ public class AnnuncioManager {
       temp.setDipartimento(rs.getString("Dipartimento"));
       temp.setUsernameUtente(rs.getString("Utente_Username"));
       lista.add(temp);
-      rs.next();
-      
+      rs.next();    
     } 
-    
-    return lista;
-    
+    return lista;  
   }
   
   
@@ -67,7 +62,7 @@ public class AnnuncioManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
-    String sql = "INSERT INTO " + TableName + "VALUES(?,?,?,?,null, null, ?)";
+    String sql = "INSERT INTO " + TABLENAME + "VALUES(?,?,?,?,null, null, ?)";
     
     
     
@@ -112,7 +107,7 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
 
 
-    String delete = "DELETE FROM " + TableName + " WHERE Id = ?";
+    String delete = "DELETE FROM " + TABLENAME + " WHERE Id = ?";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -143,7 +138,7 @@ public class AnnuncioManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     //Dipartimento, Titolo, Descrizione, Tipologia, NumeroSegnalazioni, ID, Utente_Username
-    String sql = "UPDATE " + TableName + "SET Dipartimento = ?, Titolo = ?, Descrizione = ?"
+    String sql = "UPDATE " + TABLENAME + "SET Dipartimento = ?, Titolo = ?, Descrizione = ?"
         + ", Tipologia = ?, NumeroSegnalazioni = ?, ID = ?, Utente_Username = ?"
         + " WHERE ID = ?";
     
@@ -189,7 +184,7 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp = null;
    
-    String sql = "SELECT* FROM " + TableName;
+    String sql = "SELECT* FROM " + TABLENAME;
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -218,7 +213,7 @@ public class AnnuncioManager {
     Annuncio temp = new Annuncio();
     String str = Integer.toString(id);
 
-    String sql = "SELECT* FROM " + TableName + " WHERE id = ?  ";
+    String sql = "SELECT* FROM " + TABLENAME + " WHERE id = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -256,7 +251,7 @@ public class AnnuncioManager {
     ArrayList<Annuncio> temp;
     String str = String.valueOf(tipo);
 
-    String sql = "SELECT * FROM " + TableName + " WHERE Tipologia = ?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Tipologia = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -291,7 +286,7 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp;
     
-    String sql = "SELECT* FROM " + TableName + " WHERE Dipartimento = ?  ";
+    String sql = "SELECT* FROM " + TABLENAME + " WHERE Dipartimento = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -326,7 +321,7 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp;
     
-    String sql = "SELECT* FROM " + TableName + " WHERE Username = ?  ";
+    String sql = "SELECT* FROM " + TABLENAME + " WHERE Username = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();

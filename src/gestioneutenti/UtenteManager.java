@@ -8,10 +8,14 @@ import java.util.ArrayList;
 
 import jdbc.DriverManagerConnectionPool;
 
-
+/**
+ * Il manager della classe Utente si occupa della gestione degli utenti: della loro 
+ * creazione, rimozione, modifica e della ricerca.
+ * 
+ */
 public class UtenteManager {
   
-  private static final String TableName = "Utente";
+  private static final String TABLENAME = "Utente";
   private static final int PAGINADIM = 10;
 
   /**
@@ -61,7 +65,7 @@ public class UtenteManager {
     PreparedStatement preparedStatement = null;
     Utente temp = new Utente();
 
-    String sql = "SELECT* FROM " + TableName + " WHERE Username=? AND Password= ?  ";
+    String sql = "SELECT* FROM " + TABLENAME + " WHERE Username=? AND Password= ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -106,7 +110,7 @@ public class UtenteManager {
     PreparedStatement preparedStatement = null;
     Utente temp = new Utente();
     
-    String sql = "SELECT* FROM " + TableName + " WHERE Username=?  ";
+    String sql = "SELECT* FROM " + TABLENAME + " WHERE Username=?  ";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -148,7 +152,7 @@ public class UtenteManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Utente> temp = null;
     
-    String sql = "SELECT * FROM " + TableName;
+    String sql = "SELECT * FROM " + TABLENAME;
           
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -178,7 +182,7 @@ public class UtenteManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
-    String sql = "INSERT INTO " + TableName + " VALUES(?,?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,?,?,?,?,?,?)";
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
@@ -216,7 +220,7 @@ public class UtenteManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
-    String updateQuery = "UPDATE " + TableName
+    String updateQuery = "UPDATE " + TABLENAME
         + " SET Nome = ?, Cognome = ?, Password = ?, Descrizione = ? "
         + " WHERE Username = ?";
 
@@ -255,7 +259,7 @@ public class UtenteManager {
     PreparedStatement preparedStatement = null;
 
 
-    String delete = "DELETE FROM " + TableName + " WHERE Username = ?";
+    String delete = "DELETE FROM " + TABLENAME + " WHERE Username = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();

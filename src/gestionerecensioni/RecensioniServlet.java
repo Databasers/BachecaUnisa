@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * La Servlet della classe Recensione si occupa delle logiche applicative delle recensioni.
+ */
 
 public class RecensioniServlet extends HttpServlet {
 

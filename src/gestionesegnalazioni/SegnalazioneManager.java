@@ -1,9 +1,3 @@
-
-/**
-
- * 
- */
-
 package gestionesegnalazioni;
 
 import java.sql.Connection;
@@ -11,25 +5,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import jdbc.DriverManagerConnectionPool;
 
 /**
- * Manager della classe segnalazione.
- * 
- * @author kinglash
- *
+ * Il manager della classe Segnalazione si occupa della gestione delle segnalazioni: 
+ * Della loro creazione, rimozione e della ricerca.
  */
+
 public class SegnalazioneManager {
   
   private static final String TABLENAME = "Annuncio";
   private static final int PAGINADIM = 10;
   
+ 
   /**
-   * Questo metodo crea una nuova Segnalazione.
-   * 
-   * return <true> se la segnalazione era su un Annuncio, <false> se su una recensione.
-   * @author kinglash
+   * Questo metodo crea una nuova segnalazione.
+   * @param segnalazione da inserire nel database.
+   * @return <code>true</code> se la segnalazione era su un Annuncio
+   *         <code>false</code> se su una Recensione.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public boolean creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     Connection connection = null;
@@ -55,8 +49,14 @@ public class SegnalazioneManager {
     
   }
   
-  public void rimuoviSegnalazione(int id) throws SQLException {
-    String sql = "DELETE FROM " + TABLENAME + " WHERE ID LIKE " + id;
+  /**
+   * Questo metodo rimuove la segnalazione selezionata dal database.
+   * 
+   * @param temp segnalazione da rimuovere dal database.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public void rimuoviSegnalazione(Segnalazione temp) throws SQLException {
+    String sql = "DELETE FROM " + TABLENAME + " WHERE ID LIKE " + temp.getId();
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
@@ -73,10 +73,15 @@ public class SegnalazioneManager {
       } finally {
         DriverManagerConnectionPool.releaseConnection(connection);
       }
-    } 
-    
+    }   
   }
   
+  /**
+   * Recupera tutte le segnalazioni esistenti.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return la lista di tutte le segnalazion basandosi sulla pagina visualizzata dall'utente.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   public ArrayList<Segnalazione> recuperaSegnalazioni(int numPagina) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -98,7 +103,15 @@ public class SegnalazioneManager {
     }
     return temp;
   }
-   
+  
+  
+  /**
+   * Il metodo crea un'ArrayList di segnalazioni da un result set.
+   * @param rs result set da listare.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return una lista di 10 segnalazioni dal database basandosi dalla pagina specificata.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   public ArrayList<Segnalazione> listaSegnalazioni(ResultSet rs, int numPagina)
       throws SQLException {
     rs.first();
@@ -117,12 +130,44 @@ public class SegnalazioneManager {
           rs.getInt("Motivazione"), rs.getInt("Annuncio.Segnalato_A"),
           rs.getInt("Recensione.ID.Segnalato_R"));
       lista.add(temp);
-      rs.next();
-      
+      rs.next();      
     } 
-    
     return lista;
-    
+  }
+  
+  /**
+   * Recupera la segnalazione con l'id selezionato.
+   * @param id della segnalazione cercata.
+   * @return la segnalazione con l'id selezionato.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public Segnalazione recuperaPerId(int id) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Segnalazione temp = new Segnalazione();
+    String str = Integer.toString(id);
+
+    String sql = "SELECT* FROM " + TABLENAME + " WHERE id = ?  ";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setString(1, str);
+      System.out.println("Query: " + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+      if (!rs.next()) {
+        temp = null; 
+      } else {
+        temp.setMotivazione(rs.getInt("motivazione"));
+        temp.setDescrizione(rs.getString("descrizione"));
+        temp.setAnnuncio(rs.getInt("annuncio"));
+        temp.setRecensione(rs.getInt("recensione"));
+      } 
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+    }
+    return temp;
   }
   
 }

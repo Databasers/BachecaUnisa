@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ * La Servlet della classe Annuncio si occupa delle logiche applicative degli annunci.
+ */
 
 
 public class AnnunciServlet extends HttpServlet {
@@ -151,6 +153,7 @@ public class AnnunciServlet extends HttpServlet {
     return annuncioManager.recuperaPerTipologia(tipo, numPagina);
 
   }
+  
 
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di un dato dipartimento.
