@@ -4,7 +4,7 @@ package gestionesegnalazioni;
 /**
  * Un oggetto <code>Segnalazione</code> rappresenta una segnalazione. Una segnalazione pu�
  * riferirsi ad un annuncio o ad una recensione. Ogni segnalazione ha un id , una motivazione che
- * l'utente dovrà selezionare ed una descrizione facoltativa.
+ * l'utente dovr� selezionare ed una descrizione facoltativa.
  * 
  *
  */
@@ -49,7 +49,11 @@ public class Segnalazione {
 
   
   public int getIdSegnalato() {
-    return annuncio;
+    if (isTipoSegnalazione()) {
+      return annuncio;
+    } else {
+      return recensione;
+    }
   }
 
   /**
@@ -66,7 +70,14 @@ public class Segnalazione {
   }
 
  
- 
+
+  public int getAnnuncio() {
+    return annuncio;
+  }
+
+  public int getRecensione() {
+    return recensione;
+  }
 
   public void setId(int id) {
     this.id = id;
@@ -76,23 +87,19 @@ public class Segnalazione {
     this.descrizione = descrizione;
   }
 
-
   public void setMotivazione(int motivazione) {
     this.motivazione = motivazione;
   }
 
-
-
-
-  public int getRecensione() {
-    return recensione;
+  public void setAnnuncio(int annuncio) {
+    this.annuncio = annuncio;
+    recensione = -1;
   }
 
   public void setRecensione(int recensione) {
     this.recensione = recensione;
+    annuncio = -1;
   }
-
-
 
 
   public String getUtente() {

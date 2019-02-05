@@ -1,8 +1,8 @@
 package gestioneutenti;
 
 /**
- * Un oggetto <code>Utente</code> rappresenta un utente. Ogni utente ha un un usernamen, un nome, 
- * un cognome, un sesso, un username, una password, una descrizione ed un numero annunci
+ * Un oggetto <code>Utente</code> rappresenta un utente. Ogni utente ha un username, un nome, 
+ * un cognome, un sesso, una password, una descrizione ed un numero annunci-
  *
  */
 
@@ -16,7 +16,9 @@ public class Utente {
    * @param sesso dell'utente
    * @param password dell'utente
    * @param descrizione  dell'utente
-   * @param numAnnunci numero di annunci creati dall'utente
+   * @param numAnnunci numero di annunci creati dall'utente.
+   * @param gestore <code>true</code> se è gestore.
+   *                <code>false</code> se è utente.
    */
   public Utente(String username, String nome, String cognome, String sesso, 
       String password, String descrizione, int numAnnunci, boolean gestore) {
@@ -32,7 +34,6 @@ public class Utente {
 
 
   public Utente() {
-    // TODO Auto-generated constructor stub
   }
 
 
@@ -124,6 +125,6 @@ public class Utente {
   private String password;
   private String descrizione;
   private int numAnnunci;
-  private boolean gestore; //true ï¿½ un gestore
+  private boolean gestore; //true è un gestore
 
 }

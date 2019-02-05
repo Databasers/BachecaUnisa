@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style type="text/css"></style>
-<style>
+</head>
+<style type="text/css">
 
 .contna{
  border-style: dashed;
@@ -86,9 +86,8 @@
    var dipartimento;
    if(tipologia == "Tutorato"){
       dipartimento = $(select[name="Dipartimento"]).val();
-      }
-   else {
-      dipartimento = "Informatica";
+      } else {
+        dipartimento = "Informatica";
       }
    var titolo = $(label[name="titolo"]).val();
    var descrizione = $(div[name="descrizione"]).val();

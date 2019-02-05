@@ -18,13 +18,12 @@ public class RecensioneManager {
   private static final int PAGINADIM = 10;
 
   
+
   /**
    * Questo metodo crea una recensione nel database.
-   * 
-   * @param recensione da inserire
-   * @return 
+   * @param recensione da inserire nel database.
+   * @throws SQLException in caso di errore di accesso al database.
    */
-  
   public void creaRecensione(Recensione recensione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -53,20 +52,40 @@ public class RecensioneManager {
   }
   
   
+
   /**
    * Questo metodo rimuove la recensione selezionata.
-   * 
-   * @param recensione da rimuovere.
+   * @param recensione da rimuovere dal database.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public void rimuoviRecensione(Recensione recensione) throws SQLException {
-    Connection connection = DriverManagerConnectionPool.getConnection();
-    PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM " + TABLENAME
-        + "WHERE Id LIKE " + recensione.getId());
-    preparedStatement.executeQuery();
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+
+    String delete = "DELETE FROM " + TABLENAME + " WHERE Id = ?";
+    
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(delete);
+      preparedStatement.setInt(1, recensione.getId());
+      System.out.println("doDelete: " + preparedStatement.toString());
+      preparedStatement.executeUpdate();
+      
+      connection.commit();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
   }
   
   /**
-   * Il metodo crea un'ArrayList di annunci da un result set.
+   * Il metodo crea un'ArrayList di recensioni da un result set.
    * @param rs result set da listare.
    * @param numPagina il numero della pagina che l'utente visualizza.
    * @return una lista di 10 recensioni dal database basandosi dalla pagina specificata.
@@ -78,12 +97,10 @@ public class RecensioneManager {
     ArrayList<Recensione> lista = new ArrayList<Recensione>();
     Recensione temp;
     //Sposta il cursore alla posizione corretta
-    //Qualcuno si faccia qualche simulazione per vedere se si muove nelle posizioni giuste
     for (int i = 0; i < numPagina * PAGINADIM; i++) {
       rs.next();
     }
-    //Prende i prossimi 10 Annunci e li aggiunge alla lista
-    //Again, fare conti per vedere se va
+
     for (int i = 0; i < 10; i++) {
      
       temp = new Recensione();

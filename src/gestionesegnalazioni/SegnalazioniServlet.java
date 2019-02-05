@@ -1,5 +1,6 @@
 package gestionesegnalazioni;
 
+import gestioneutenti.SessioneUtente;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -7,9 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import gestioneutenti.SessioneUtente;
 
 
+/**
+ * La Servlet della classe Segnalazione si occupa delle logiche applicative delle segnalazioni.
+ */
 public class SegnalazioniServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
@@ -55,19 +58,31 @@ public class SegnalazioniServlet extends HttpServlet {
       }
 
     } catch (Exception exc) {
-
-    } finally {
-      
+      exc.printStackTrace();
     }
   }
   
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    doGet(request, response);
+  }
   
+  /**
+   * Questo metodo si occupa di rimuovere una segnalazione dal database.
+   * @param id della segnalazione da rimuovere.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   private void rimuoviSegnalazione(int id) throws SQLException {
-    segnalazioneManager.rimuoviSegnalazione(id);
+    Segnalazione temp = segnalazioneManager.recuperaPerId(id);
+    segnalazioneManager.rimuoviSegnalazione(temp);
     
   }
 
-
+  /**
+   * uesto metodo crea una segnalazione all'interno del database.
+   * @param segnalazione da inserire nel database.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   private void creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     if (segnalazioneManager.creaSegnalazione(segnalazione)) {
       System.out.println("Ogetto segnalato ancora valido");
@@ -77,15 +92,16 @@ public class SegnalazioniServlet extends HttpServlet {
   }
 
 
-  private ArrayList<Segnalazione> stampaSegnalazioni(int numPagina) {
-    // TODO Auto-generated method stub
-    return null;
+  /**
+   * Questo metodo si occupa di restituire tutte le segnalazioni presenti nel database.
+   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  private ArrayList<Segnalazione> stampaSegnalazioni(int numPagina) throws SQLException {
+    return segnalazioneManager.recuperaSegnalazioni(numPagina);
   }
 
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-    doGet(request, response);
-  }
+
   
 }
