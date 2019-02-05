@@ -89,9 +89,9 @@ input[type=text]:focus, input[type=password]:focus {
 			<div id="logbutton">
 				<input type="submit" value="Login" class="btn">
 			</div>
-			<div id="faqbutton">
-				<input type="submit" value="Visualizza FAQ" class="btnFAQ">
-			</div>
+			<form id="registrazione" action="/BACHECAUNISA/HTML/registrazione">
+				<button  type="submit"  class="btnFAQ">Registrati</button>
+			</form>
 			
 		</form>
 	</div>

@@ -23,25 +23,41 @@ import jdbc.DriverManagerConnectionPool;
 public class SegnalazioneManager {
   
   private static final String TABLENAME = "Annuncio";
-  private static final int PAGINADIM = 10;
+  private static final int PAGINADIM = 10, MAX_SEGNALAZIONI = 50;
   
   /**
    * Questo metodo crea una nuova Segnalazione.
    * 
-   * return <true> se la segnalazione era su un Annuncio, <false> se su una recensione.
+   * return <true> se l'oggetto segnalato è ancora valido,
+   * <false> se ha superato le segnalazioni massime ed è stato eliminato.
    * @author kinglash
    */
   public boolean creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    String sql = "INSERT INTO " + TABLENAME + " VALUES(null," + segnalazione.getDescrizione() + ","
-        + segnalazione.getMotivazione() + "," + segnalazione.isTipoSegnalazione() + ")";
+    String sql, test;
+    if (segnalazione.isTipoSegnalazione()) {
+      sql = "INSERT INTO " + TABLENAME + " VALUES(null," + segnalazione.getDescrizione()
+          + "," + segnalazione.getUtente() + "," + segnalazione.getMotivazione() + ","
+          + segnalazione.getIdSegnalato() + ", null)";
+      test = "SELECT COUNT(ID) AS segnalazioni FROM " + TABLENAME
+          + "WHERE Annuncio.Segnalato_A LIKE " + segnalazione.getIdSegnalato();
+      
+    } else {
+      sql = "INSERT INTO " + TABLENAME + " VALUES(null," + segnalazione.getDescrizione() 
+          + "," + segnalazione.getUtente() + "," + segnalazione.getMotivazione()
+          + ",null," + segnalazione.getIdSegnalato() + ")";
+      test = "SELECT COUNT(ID) AS segnalazioni FROM " + TABLENAME
+          + "WHERE Recensione.ID.Segnalato_R LIKE " + segnalazione.getIdSegnalato();
+    }
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
       preparedStatement.executeUpdate();
       connection.commit();
+      
+      
     } finally {
       try {
         if (preparedStatement != null) {
@@ -51,8 +67,27 @@ public class SegnalazioneManager {
         DriverManagerConnectionPool.releaseConnection(connection);
       }
     }
-    return segnalazione.isTipoSegnalazione();
-    
+    int numero = 0;
+    try {
+      preparedStatement = connection.prepareStatement(test);
+      ResultSet rs = preparedStatement.executeQuery();
+      numero = rs.getInt("segnalazioni");
+      
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } finally {
+        DriverManagerConnectionPool.releaseConnection(connection);
+      }
+    }
+    if (numero > MAX_SEGNALAZIONI) {
+      rimuoviSegnalazione(segnalazione.getId());
+      return false;
+    } else {
+      return true;
+    }
   }
   
   public void rimuoviSegnalazione(int id) throws SQLException {
@@ -115,7 +150,7 @@ public class SegnalazioneManager {
      
       temp = new Segnalazione(rs.getInt("ID"), rs.getString("Descrizione"),
           rs.getInt("Motivazione"), rs.getInt("Annuncio.Segnalato_A"),
-          rs.getInt("Recensione.ID.Segnalato_R"));
+          rs.getInt("Recensione.ID.Segnalato_R"), rs.getString("Utente"));
       lista.add(temp);
       rs.next();
       

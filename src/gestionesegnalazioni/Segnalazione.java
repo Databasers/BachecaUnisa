@@ -20,13 +20,14 @@ public class Segnalazione {
    */
   
   public Segnalazione(int id, String descrizione, int motivazione,
-      int recensione, int annuncio) {
+      int recensione, int annuncio, String utente) {
     super();
     this.id = id;
     this.descrizione = descrizione;
     this.motivazione = motivazione;
     this.annuncio = annuncio;
     this.recensione = recensione;
+    this.utente = utente;
   }
 
   public Segnalazione() {
@@ -94,6 +95,17 @@ public class Segnalazione {
 
 
 
+  public String getUtente() {
+    return utente;
+  }
+
+  public void setUtente(String utente) {
+    this.utente = utente;
+  }
+
+
+
+
   private int id;
   private String descrizione;
   /**
@@ -111,5 +123,6 @@ public class Segnalazione {
   private int motivazione;
   private int annuncio;
   private int recensione;
+  private String utente;
   
 }

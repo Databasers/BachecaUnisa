@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">
-
-
-
-
-</style>
-
-
+<head>
+<style type="text/css"></style>
 <style>
 
 .contna{
@@ -31,6 +25,7 @@
 .txtna{
   margin: 2%;
   border-style: solid;
+  width: 100%;
   height: 50%;
   min-height: 250px;
   overflow-y: auto;
@@ -56,34 +51,55 @@
 
 </style>
 <meta charset="ISO-8859-1">
+<script type="text/javascript" src ="JS/jquery.js"></script>
 <title>login</title>
 </head>
 <body>
   <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
     
     <h1 class="titlena">Crea Nuovo Annuncio</h1>
-    <form action="" class="togna">
+    <form class="togna">
   <input type="radio" name="tipologia" value="Gruppo"> Gruppo di studio
       <br>
       <br>
   <input type="radio" name="tipologia" value="Tutorato"> Tutorato <!-- Da far diventare una form (propotipo) -->
-</form>
-    <form class="selectna">
-      <select name="Dipartimento">
-        <option>Dipartimento1</option>
-        <option>Dipartimento2</option>
-        <option>Dipartimento3</option>
-        <option>Dipartimento4</option>
-      </select>
+
+
+  <select name="Dipartimento">
+     <option>Dipartimento1</option>
+     <option>Dipartimento2</option>
+     <option>Dipartimento3</option>
+     <option>Dipartimento4</option>
+   </select>
       <br>
       <br>
-      <label for="titolo" class="titolo">Titolo:</label> 
+   <label for="titolo" class="titolo" >Titolo:</label> 
        <input type="text" name="titolo" placeholder="Titolo annuncio">
   
-    <div class="txtna" contenteditable="true"><div><br></div></div>
-    <input type="submit" value="Crea annuncio" class="sfdbna">
+    <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true"></textarea>
+    
+    <input type="button" value="Crea annuncio" class="sfdbna" onclick="check()">
+    
+    <script>
+  function ceck() {
+   var tipologia = $(input[name="tipologia"]:checked).val();
+   var dipartimento;
+   if(tipologia == "Tutorato"){
+      dipartimento = $(select[name="Dipartimento"]).val();
+      }
+   else {
+      dipartimento = "Informatica";
+      }
+   var titolo = $(label[name="titolo"]).val();
+   var descrizione = $(div[name="descrizione"]).val();
+   
+   var azione = "/BACHECAUNISA/gestioneannunci/AnnunciServlet?action=creaAnnuncio&usernameUtente=" + session.getAttribute("username") 
+       + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
+   document.togna.action = azione;
+   document.togna.submit();
+   
+  }
+  </script>
         </form>
   </div>
-
-
-<script>// Write JavaScript here </script></body>
+</body>

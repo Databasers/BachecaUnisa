@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import gestioneutenti.SessioneUtente;
+
 
 public class SegnalazioniServlet extends HttpServlet {
 
@@ -29,11 +31,13 @@ public class SegnalazioniServlet extends HttpServlet {
       } else if (azione.equalsIgnoreCase("creaSegnalazione")) {
         //Non potendo assegnare null ad un intero scelgo di assegnare -1.
         //Il suo ID verrà comunque ignorato nel metodo crea segnalazione
+        SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
         Segnalazione segnalazione = new Segnalazione(-1,
             request.getParameter("descrizione"), 
             Integer.parseInt(request.getParameter("motivazione")),
             Integer.parseInt(request.getParameter("recensione")),
-            Integer.parseInt(request.getParameter("annuncio")));
+            Integer.parseInt(request.getParameter("annuncio")),
+            su.getNome());
         creaSegnalazione(segnalazione);
         if (segnalazione.isTipoSegnalazione()) {
           response.sendRedirect(request.getContextPath() + "/HTML/VisualizzaAnnuncio");
@@ -65,7 +69,10 @@ public class SegnalazioniServlet extends HttpServlet {
 
 
   private void creaSegnalazione(Segnalazione segnalazione) throws SQLException {
-    segnalazioneManager.creaSegnalazione(segnalazione);
+    if (segnalazioneManager.creaSegnalazione(segnalazione)) {
+      System.out.println("Ogetto segnalato ancora valido");
+    }
+    
     
   }
 
