@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Un oggetto <code>SessioneUtente</code> rappresenta una sessione utente. Ogni sessione ha 
- * un utente e può avere un ruolo.
+ * un utente e puo' avere un ruolo.
  */
 
 public class SessioneUtente implements Serializable {

@@ -73,8 +73,8 @@ public class UtenteServlet extends HttpServlet {
         Utente u;
         u = utenteManager.recuperaPerUsername(request.getParameter("username"));
         if (u != null) {
-          System.out.println("Utente già registrato");
-          request.setAttribute("alreadyRegistered","true"); //Già registrato
+          System.out.println("Utente gia' registrato");
+          request.setAttribute("alreadyRegistered","true"); //Gia' registrato
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
           RequestDispatcher x = getServletContext().getRequestDispatcher("/HTML/Login.jsp"); 
           //da modificare
@@ -201,15 +201,15 @@ public class UtenteServlet extends HttpServlet {
 
   /**
    * Inizializza un nuovo utente.
-   * @param u utente dichiarato precedentemente per il controllo sull'unicità dell'username.
+   * @param u utente dichiarato precedentemente per il controllo sull'unicita' dell'username.
    * @param username dell'utente.
    * @param nome dell'utente.
    * @param cognome dell'utente.
    * @param sesso dell'utente.
    * @param password dell'utente.
    * @param descrizione dell'utente
-   * @param gestore <code>true</code> se è gestore.
-   *                <code>false</code> se è utente.
+   * @param gestore <code>true</code> se e' gestore.
+   *                <code>false</code> se e' utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
   private void creaUtente(Utente u, String username, String nome, String cognome, String sesso, 

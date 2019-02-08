@@ -16,12 +16,13 @@ public class Annuncio implements Segnalabile {
   /**
    * Inizializza un nuovo annuncio.
    * 
-   * @param id Chiave primaria dell'entità  nel database
+   * @param id Chiave primaria dell'annuncio nel database
    * @param titolo dell'annuncio.
    * @param descrizione dell'annuncio.
-   * @param tipologia dell'annuncio <code>true</code> se è un annuncio di tutorato.
-   *          <code>false</code> se è un annuncio di gruppo di studio.
+   * @param tipologia dell'annuncio <code>true</code> se e' un annuncio di tutorato.
+   *          <code>false</code> se e' un annuncio di gruppo di studio.
    * @param dipartimento relativo all'annuncio.
+   * @param usernameUtente del creatore dell'annuncio.
    */
   public Annuncio(int id, String titolo, String descrizione, 
       boolean tipologia, String dipartimento, String usernameUtente) {
@@ -38,9 +39,10 @@ public class Annuncio implements Segnalabile {
    *
    * @param titolo dell'annuncio.
    * @param descrizione dell'annuncio.
-   * @param tipologia dell'annuncio <code>true</code> se è un annuncio di tutorato.
-   *          <code>false</code> se è un annuncio di gruppo di studio.
+   * @param tipologia dell'annuncio <code>true</code> se e' un annuncio di tutorato.
+   *          <code>false</code> se e' un annuncio di gruppo di studio.
    * @param dipartimento relativo all'annuncio.
+   * @param usernameUtente del creatore dell'annuncio.
    */
   public Annuncio(String titolo, String descrizione, 
       boolean tipologia, String dipartimento, String usernameUtente) {

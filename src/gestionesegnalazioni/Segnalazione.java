@@ -4,7 +4,7 @@ package gestionesegnalazioni;
 /**
  * Un oggetto <code>Segnalazione</code> rappresenta una segnalazione. Una segnalazione pu�
  * riferirsi ad un annuncio o ad una recensione. Ogni segnalazione ha un id , una motivazione che
- * l'utente dovr� selezionare ed una descrizione facoltativa.
+ * l'utente dovra' selezionare ed una descrizione facoltativa.
  * 
  *
  */
@@ -17,6 +17,7 @@ public class Segnalazione {
    * @param motivazione della segnalazione scelto dall'utente.
    * @param recensione segnalata 
    * @param annuncio segnalato
+   * @param utente id dell'utente creatore della segnalazione.
    */
   
   public Segnalazione(int id, String descrizione, int motivazione,
@@ -57,15 +58,12 @@ public class Segnalazione {
   }
 
   /**
-   * <code>true</code> Annuncio.
+   * 
+   * @return <code>true</code> Annuncio.
    * <code>false</code> Recensione.
    */
   public boolean isTipoSegnalazione() {
-    if (annuncio != -1) {
-      return true;
-    } else {
-      return false;
-    }
+      return annuncio != -1;
     
   }
 

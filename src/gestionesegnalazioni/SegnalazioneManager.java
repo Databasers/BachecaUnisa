@@ -22,19 +22,11 @@ public class SegnalazioneManager {
   
  
   /**
-<<<<<<< HEAD
-   * Questo metodo crea una nuova Segnalazione.
-   * 
-   * return <true> se l'oggetto segnalato è ancora valido,
-   * <false> se ha superato le segnalazioni massime ed è stato eliminato.
-   * @author kinglash
-=======
    * Questo metodo crea una nuova segnalazione.
    * @param segnalazione da inserire nel database.
    * @return <code>true</code> se la segnalazione era su un Annuncio
    *         <code>false</code> se su una Recensione.
    * @throws SQLException in caso di errore di accesso al database.
->>>>>>> adb4ad368c806556e78035f27448225bf57de727
    */
   public boolean creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     Connection connection = null;

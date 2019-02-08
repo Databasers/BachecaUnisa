@@ -39,6 +39,7 @@ public class DriverManagerConnectionPool {
   /**
    * Il metodo restituisce una connessione dal suo pool di connessioni libere.
    * @return connessione libera
+   * @throws java.sql.SQLException se la connessione fallisce
    */
   
   public static synchronized Connection getConnection() throws SQLException {
@@ -66,6 +67,7 @@ public class DriverManagerConnectionPool {
    * Il metodo rilascia la connessione inviata e la riposiziona
    * nell'array di connessioni libere.
    * @param connection connessione da liberare
+   * @throws java.sql.SQLException se il rilascio di connessione fallisce
    */
   
   public static synchronized void releaseConnection(Connection connection) throws SQLException {
