@@ -188,7 +188,7 @@ public class UtenteServlet extends HttpServlet {
   /**
    * Questo metodo permette di modificare la password dell'utente.
    * @param username dell'utente da modificare.
-   * @param password aggiornata
+   * @param newPassword aggiornata
    * @throws SQLException in caso di errore di accesso al database.
    */
   private void modificaPassword(String username, String newPassword) throws SQLException {
