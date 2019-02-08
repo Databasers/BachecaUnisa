@@ -47,8 +47,10 @@ public class Segnalazione {
     return id;
   }
   
-
-  
+  /**
+   * Restituisce l'id dell'entita' segnalata.
+   * @return id dell'annuncio o della recensione segnalata.
+   */
   public int getIdSegnalato() {
     if (isTipoSegnalazione()) {
       return annuncio;
@@ -58,13 +60,13 @@ public class Segnalazione {
   }
 
   /**
-   * 
+   * Definisce il tipo della segnalazione.
    * @return <code>true</code> Annuncio.
-   * <code>false</code> Recensione.
+   *         <code>false</code> Recensione.
    */
   public boolean isTipoSegnalazione() {
-      return annuncio != -1;
-    
+    return annuncio != -1;
+
   }
 
  
