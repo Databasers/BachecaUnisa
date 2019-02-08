@@ -48,9 +48,16 @@ public class Segnalazione {
   }
   
   /**
+<<<<<<< HEAD
    * Restituisce l'id dell'entita' segnalata.
    * @return id dell'annuncio o della recensione segnalata.
    */
+=======
+   * resituisce l'id dell'entita' segnalata
+   * @return id dell'annuncio o della recensione segnalata
+   */
+  
+>>>>>>> 91aafb32d90c2bdd7cde48a57736bb8c8a9daf09
   public int getIdSegnalato() {
     if (isTipoSegnalazione()) {
       return annuncio;
