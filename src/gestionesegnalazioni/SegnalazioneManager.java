@@ -1,13 +1,12 @@
 package gestionesegnalazioni;
 
+import gestioneannunci.AnnuncioManager;
+import gestionerecensioni.RecensioneManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import gestioneannunci.AnnuncioManager;
-import gestionerecensioni.RecensioneManager;
 import jdbc.DriverManagerConnectionPool;
 
 /**
@@ -18,8 +17,8 @@ import jdbc.DriverManagerConnectionPool;
 public class SegnalazioneManager {
   
   private static final String TABLENAME = "Annuncio";
-  private static final int PAGINADIM = 10, MAX_SEGNALAZIONI = 50;
-  
+  private static final int PAGINADIM = 10;
+  private static final int MAX_SEGNALAZIONI = 50;
  
   /**
    * Questo metodo crea una nuova segnalazione.
@@ -31,7 +30,8 @@ public class SegnalazioneManager {
   public boolean creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    String sql, test;
+    String sql;
+    String test;
     if (segnalazione.isTipoSegnalazione()) {
       sql = "INSERT INTO " + TABLENAME + " VALUES(null," + segnalazione.getDescrizione()
           + "," + segnalazione.getUtente() + "," + segnalazione.getMotivazione() + ","
