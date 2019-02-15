@@ -73,6 +73,7 @@ input[type=text]:focus, input[type=password]:focus {
 
 </style>
 <meta charset="ISO-8859-1">
+<script type="text/javascript" src ="<%request.getContextPath(); %>/JS/jquery.js"></script>
 <title>Login</title>
 </head>
 <body>
@@ -81,17 +82,23 @@ input[type=text]:focus, input[type=password]:focus {
 			src="https://nextindustry.net/wp-content/uploads/2018/01/Logo_TV_2015.png">
 	</div>
 	<div>
-		<form action="" class="container">
+		<form class="container">
 			<label for="username">Username</label>
 			<input type="text" placeholder="Inserisci username" name="username" required>
 			<label for="password">Password</label>
 			<input type="password" placeholder="Inserisci password" name="password" required>
 			<div id="logbutton">
-				<input type="submit" value="Login" class="btn">
+				<button value="Login" class="btn" onclick="login()">Login</button>
 			</div>
-			<form id="registrazione" action="/BACHECAUNISA/HTML/registrazione">
-				<button  type="submit"  class="btnFAQ">Registrati</button>
+			
 			</form>
+			
+			<form action="registrazione.jsp" method="get" class="container">
+			
+			<input type="submit" class="btnFAQ" value ="Registrati"
+			         name="Submit" />
+                                                </form>
+			
 			
 		</form>
 	</div>
@@ -99,6 +106,16 @@ input[type=text]:focus, input[type=password]:focus {
 
 
 	<script>
-		// Write JavaScript here
+	function login(){
+	    var us = $(input[name="username"].val());
+	    var pass = $(input[name="password"].val());
+	    var action = "/BACHECAUNISA/gestioneutenti/UtenteServlet?action=Login&username=" + us + "&password=" + pass;
+	    document.container.action = action;
+	    document.container.submit();
+	}
+	
+	function redirect() {
+	               $(location).attr('href', '<%request.getContextPath();%>/registrazione');
+	}
 	</script>
 </body>

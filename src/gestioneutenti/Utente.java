@@ -17,8 +17,8 @@ public class Utente {
    * @param password dell'utente
    * @param descrizione  dell'utente
    * @param numAnnunci numero di annunci creati dall'utente.
-   * @param gestore <code>true</code> se è gestore.
-   *                <code>false</code> se è utente.
+   * @param gestore <code>true</code> se ï¿½ gestore.
+   *                <code>false</code> se ï¿½ utente.
    */
   public Utente(String username, String nome, String cognome, String sesso, 
       String password, String descrizione, int numAnnunci, boolean gestore) {
@@ -34,6 +34,18 @@ public class Utente {
 
 
   public Utente() {
+  }
+
+
+  public Utente(String username2, String nome2, String cognome2, String sesso2, String password2,
+      int i, boolean gestore2) {
+    this.username = username2;
+    nome = nome2;
+    cognome = cognome2;
+    sesso = sesso2;
+    password = password2;
+    numAnnunci = i;
+    gestore = gestore2;
   }
 
 
@@ -125,6 +137,6 @@ public class Utente {
   private String password;
   private String descrizione;
   private int numAnnunci;
-  private boolean gestore; //true è un gestore
+  private boolean gestore; //true ï¿½ un gestore
 
 }

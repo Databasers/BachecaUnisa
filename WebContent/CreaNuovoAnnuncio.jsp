@@ -82,7 +82,7 @@
     
     <script>
   function ceck() {
-   var tipologia = $(input[name="tipologia"]:checked).val();
+   var tipologia = $(input[name="tipologia"]:selected).val());
    var dipartimento;
    if(tipologia == "Tutorato"){
       dipartimento = $(select[name="Dipartimento"]).val();
