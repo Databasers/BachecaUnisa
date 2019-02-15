@@ -131,8 +131,10 @@ public class AnnunciServlet extends HttpServlet {
 
 
   /**
-   * Questo metodo si occupa di restituire tutti gli annunci presenti nel database.
+   * Questo metodo si occupa di restituire tutti gli annunci presenti nel database 
+   * basandosi sul numero della pagina visualizzata.
    * @param numPagina il numero della pagina che l'utente visualizza.
+   * @return la lista di annunci basandosi sul numero della pagina visualizzata.
    * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Annuncio> stampaAnnunci(int numPagina) throws SQLException {

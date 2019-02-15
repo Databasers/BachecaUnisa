@@ -95,9 +95,11 @@ public class RecensioniServlet extends HttpServlet {
 
 
   /**
-   * Questo metodo si occupa di restituire tutte le recensioni dell'utente passato come parametro.
+   * Questo metodo si occupa di restituire tutte le recensioni dell'utente 
+   * passato come parametro basandosi sul numero della pagina visualizzata.
    * @param username identificativo dell'utente.
    * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
+   * @return la lista delle recensioni di un utente basandosi sul numero della pagina visualizzata
    * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Recensione> stampaRecensioni(String username, int numPagina)
@@ -137,6 +139,8 @@ public class RecensioniServlet extends HttpServlet {
    * Questo metodo crea una recensione all'interno del database.
    * @param valutazione della nuova recensione
    * @param descrizione della nuova recensione
+   * @param mittente della nuova recensione.
+   * @param destinatario della nuova recensione.
    * @throws SQLException in caso di errore di accesso al database.
    */
   private void creaRecensione(int valutazione, String descrizione, 

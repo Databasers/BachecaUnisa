@@ -1,13 +1,12 @@
 package gestionesegnalazioni;
 
+import gestioneannunci.AnnuncioManager;
+import gestionerecensioni.RecensioneManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import gestioneannunci.AnnuncioManager;
-import gestionerecensioni.RecensioneManager;
 import jdbc.DriverManagerConnectionPool;
 
 /**
@@ -22,12 +21,8 @@ public class SegnalazioneManager {
   private static final int MAX_SEGNALAZIONI = 50;
   
  
+
   /**
-   * Questo metodo crea una nuova Segnalazione.
-   * 
-   * return <true> se l'oggetto segnalato è ancora valido,
-   * <false> se ha superato le segnalazioni massime ed è stato eliminato.
-   * @author kinglash
    * Questo metodo crea una nuova segnalazione.
    * @param segnalazione da inserire nel database.
    * @return <code>true</code> se la segnalazione era su un Annuncio
@@ -37,7 +32,8 @@ public class SegnalazioneManager {
   public boolean creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    String sql, test;
+    String sql;
+    String test;
     if (segnalazione.isTipoSegnalazione()) {
       sql = "INSERT INTO " + TABLENAME + " VALUES(null," + segnalazione.getDescrizione()
           + "," + segnalazione.getUtente() + "," + segnalazione.getMotivazione() + ","
