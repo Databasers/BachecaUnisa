@@ -50,23 +50,18 @@ public class UtenteServlet extends HttpServlet {
 
 
       if (azione == "modificaPassword") {
-        String username = request.getParameter("username");
         String newPassword = request.getParameter("newPassword");
-        if (usernameLog.equals(username)) {
-          modificaPassword(username, newPassword);
-          response.sendRedirect(request.getContextPath() + "/HTML/Profilo.jsp");
-        }
+        modificaPassword(usernameLog, newPassword);
+        response.sendRedirect(request.getContextPath() + "/HTML/Profilo.jsp");
       }
 
       if (azione == "modificaUtente") {
-        String username = request.getParameter("username");
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String descrizione = request.getParameter("descrizione");
-        if (usernameLog.equals(username)) {
-          modificaUtente(username, nome, cognome, descrizione);
-          response.sendRedirect(request.getContextPath() + "/HTML/Profilo.jsp");
-        }
+        modificaUtente(usernameLog, nome, cognome, descrizione);
+        response.sendRedirect(request.getContextPath() + "/HTML/Profilo.jsp");
+
       }
 
 
