@@ -2,14 +2,12 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">.lw { font-size: 60px; }</style>
-<style type="text/css">.lw { font-size: 60px; }</style>
-
+<head>
 <style type="text/css">.lw { font-size: 60px; }</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>HTML, CSS and JavaScript demo</title>
+<title>ProfiloUtente</title>
 
   <style> 
 
@@ -96,7 +94,6 @@ margin-right: auto;
   <%@ include file="barraLEFTv2.jsp" %>
  <h1 class="tit">Valutazione:</h1> 
   
-  <form>
   	<div class="star-rating">
 			<input id="star-5" type="radio" name="rating" value="star-5">
 			<label for="star-5" title="5 stars">
@@ -119,7 +116,7 @@ margin-right: auto;
 					<i class="active fa fa-star" aria-hidden="true"></i>
 			</label>
 		</div>
-   </form> 
+ 
   
 
   <div class="utentetxt">
@@ -137,6 +134,5 @@ Provincia</h1>
  <span style="width:50%; text-align: right">
  <button id="riFeed" onclick="location.href = 'RilasciaFeedback.jsp';">Rilascia Feedback</button>
 </span>
-  
 
 <script>// Write JavaScript here </script></body>
