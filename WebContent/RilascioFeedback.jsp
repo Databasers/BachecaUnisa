@@ -90,8 +90,8 @@ float: left;
     <h1 id="Utenteinfo">Nome Utente<br></h1>
   </div>
   
-  <form>
-  <textarea id="textarea" maxlength="2000">Inserisci qui la tua recensione!</textarea>
+  <form class="togna">
+  <textarea id="textarea" maxlength="2000" name="descrizione">Inserisci qui la tua recensione!</textarea>
     <h1 class="tit">Valutazione:</h1>
 
   	<div class="star-rating">
@@ -118,9 +118,33 @@ float: left;
 		</div>
     
     
-  <div id="visualizzafeed"><input type="submit" value="Rilascia Feedback"></div>
+  <div id="visualizzafeed"><input type="submit" value="Rilascia Feedback" onClick="ceck()"></div>
   </form>
   
   
 
-<script>// Write JavaScript here </script><script>// Write JavaScript here </script></body>
+<script>
+function ceck() {
+	var stelle;
+	var rate = $("rating");
+	if (rating[0].checked){
+		stelle = rating[0].value;
+	} else if (rating[1].checked){
+		stelle = rating[1].value;
+	} else if (rating[2].checked){
+		stelle = rating[2].value;
+	} else if (rating[3].checked){
+	stelle = rating[3].value;
+	} else if (rating[4].checked){
+	stelle = rating[4].value;
+	}
+	
+	var descrizione = $(div[name="descrizione"]).val();
+	
+	var azione = "/BACHECAUNISA/gestioneannunci/RecensioniServlet?action=creaRecensione&usernameUtente=" + session.getAttribute("username") 
+    + "&stelle=" + stelle + "&descrizione=" + descrizione;
+	document.togna.action = azione;
+	document.togna.submit();
+	
+</script>
+</body>

@@ -92,11 +92,30 @@ width: 100%;
     <textarea class="txtna"></textarea>
   
      <br/> <br/>
-    <input type="submit" value="Modifica annuncio" class="sfdbna">
+    <input type="submit" value="Modifica annuncio" class="sfdbna" onclick="check()">
     </div>
     
         </form>
   </div>
 
 
-<script>// Write JavaScript here </script></body>
+<script>
+function ceck() {
+	   var tipologia = $(input[name="tipologia"]:selected).val());
+	   var dipartimento;
+	   if(tipologia == "Tutorato"){
+	      dipartimento = $(select[name="Dipartimento"]).val();
+	      } else {
+	        dipartimento = "Informatica";
+	      }
+	   var titolo = $(label[name="titolo"]).val();
+	   var descrizione = $(div[name="descrizione"]).val();
+	   
+	   var azione = "/BACHECAUNISA/gestioneannunci/AnnunciServlet?action=modificaAnnuncio&usernameUtente=" + session.getAttribute("username") 
+	       + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
+	   document.togna.action = azione;
+	   document.togna.submit();
+	   
+	  }
+</script>
+</body>
