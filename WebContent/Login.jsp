@@ -73,16 +73,15 @@ input[type=text]:focus, input[type=password]:focus {
 
 </style>
 <meta charset="ISO-8859-1">
-<script type="text/javascript" src ="<%request.getContextPath(); %>/JS/jquery.js"></script>
+<script type="text/javascript" src ="jquery.js"></script>
 <title>Login</title>
 </head>
 <body>
 	<div id="logo">
-		<img alt="Login"
-			src="https://nextindustry.net/wp-content/uploads/2018/01/Logo_TV_2015.png">
+	   <img alt="Login" src="https://nextindustry.net/wp-content/uploads/2018/01/Logo_TV_2015.png">
 	</div>
 	<div>
-		<form class="container">
+	   <form class="container">
 			<label for="username">Username</label>
 			<input type="text" placeholder="Inserisci username" name="username" required>
 			<label for="password">Password</label>
@@ -90,6 +89,21 @@ input[type=text]:focus, input[type=password]:focus {
 			<div id="logbutton">
 				<button value="Login" class="btn" onclick="login()">Login</button>
 			</div>
+			
+			<script>
+                function login(){
+                    alert("Cose");
+                    var us = $(input[name="username"].val());
+                    var pass = $(input[name="password"].val());
+                    var action = "/BACHECAUNISA/UtenteServlet?azione=Login&username=" + us + "&password=" + pass;
+                    document.container.action = action;
+                    document.container.submit();
+                }
+                
+                function redirect() {
+                               $(location).attr('href', '<%request.getContextPath();%>/registrazione');
+                }
+                </script>
 			
 			</form>
 			
@@ -105,17 +119,5 @@ input[type=text]:focus, input[type=password]:focus {
 
 
 
-	<script>
-	function login(){
-	    var us = $(input[name="username"].val());
-	    var pass = $(input[name="password"].val());
-	    var action = "/BACHECAUNISA/gestioneutenti/UtenteServlet?action=Login&username=" + us + "&password=" + pass;
-	    document.container.action = action;
-	    document.container.submit();
-	}
 	
-	function redirect() {
-	               $(location).attr('href', '<%request.getContextPath();%>/registrazione');
-	}
-	</script>
 </body>

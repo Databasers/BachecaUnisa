@@ -51,7 +51,7 @@
 
 </style>
 <meta charset="ISO-8859-1">
-<script type="text/javascript" src ="JS/jquery.js"></script>
+<script type="text/javascript" src ="jquery.js"></script>
 <title>login</title>
 </head>
 <body>
@@ -92,7 +92,7 @@
    var titolo = $(label[name="titolo"]).val();
    var descrizione = $(div[name="descrizione"]).val();
    
-   var azione = "/BACHECAUNISA/gestioneannunci/AnnunciServlet?action=creaAnnuncio&usernameUtente=" + session.getAttribute("username") 
+   var azione = "/BACHECAUNISA/AnnunciServlet?azione=creaAnnuncio&usernameUtente=" + session.getAttribute("username") 
        + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
    document.togna.action = azione;
    document.togna.submit();

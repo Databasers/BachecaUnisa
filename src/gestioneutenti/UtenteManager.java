@@ -60,12 +60,12 @@ public class UtenteManager {
    * @return utente registrato.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  public Utente recuperaSeRegistrato(String username,String password) throws SQLException {
+  public Utente recuperaSeRegistrato(String username, String password) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Utente temp = new Utente();
 
-    String sql = "SELECT* FROM " + TABLENAME + " WHERE Username=? AND Password= ?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Username= ? AND Password= ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -77,16 +77,21 @@ public class UtenteManager {
 
       ResultSet rs = preparedStatement.executeQuery();
 
-      rs.next();
-      temp.setUsername(rs.getString("Username"));
-      temp.setNome(rs.getString("Nome"));
-      temp.setCognome(rs.getString("Cognome"));
-      temp.setSesso(rs.getString("Sesso"));
-      temp.setPassword(rs.getString("Password"));
-      temp.setDescrizione(rs.getString("Descrizione"));
-      temp.setNumAnnunci(rs.getInt("Numero annunci"));
-      temp.setGestore(rs.getBoolean("Gestore"));
-
+      if (rs.next()) {
+        temp.setUsername(rs.getString("Username"));
+        temp.setNome(rs.getString("Nome"));
+        temp.setCognome(rs.getString("Cognome"));
+        temp.setSesso(rs.getString("Sesso"));
+        temp.setPassword(rs.getString("Password"));
+        temp.setDescrizione(rs.getString("Descrizione"));
+        temp.setNumAnnunci(rs.getInt("Numero annunci"));
+        temp.setGestore(rs.getBoolean("Gestore"));
+        System.out.println(temp.getUsername());
+      } else {
+        System.out.println("Non esiste");
+        temp = null;
+      }
+      
     } finally {
       try {
         if (preparedStatement != null) {
@@ -106,11 +111,11 @@ public class UtenteManager {
    * @throws SQLException in caso di errore di accesso al database.
    */
   public Utente recuperaPerUsername(String username) throws SQLException {
+    System.out.println("Nel metodo");
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Utente temp = new Utente();
-    
-    String sql = "SELECT* FROM " + TABLENAME + " WHERE Username=?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Username=?  ";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -122,15 +127,17 @@ public class UtenteManager {
       ResultSet rs = preparedStatement.executeQuery();
       
       if (!rs.next()) {
+        System.out.println("Non trovato");
         temp = null;
       } else {
+        System.out.println("Trovato qualcosa");
         temp.setUsername(rs.getString("Username"));
         temp.setNome(rs.getString("Nome"));
         temp.setCognome(rs.getString("Cognome"));
         temp.setSesso(rs.getString("Sesso"));
         temp.setPassword(rs.getString("Password"));
         temp.setDescrizione(rs.getString("Descrizione"));
-        temp.setNumAnnunci(rs.getInt("Numero annunci"));
+        temp.setNumAnnunci(rs.getInt("NumAnnunci"));
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);

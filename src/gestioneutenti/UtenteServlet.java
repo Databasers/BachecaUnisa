@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,35 +13,35 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * La Servlet della classe Utente si occupa delle logiche applicative degli utenti.
  */
-
+@WebServlet("/UtenteServlet")
 public class UtenteServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
-  UtenteManager utenteManager;
+  UtenteManager utenteManager = new UtenteManager();
 
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-
+    doPost(request, response);
   }
 
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-    doGet(request, response);
+    
 
     SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("log");
-    String usernameLog = sessione.getUsername();
 
     try {
-      String azione = request.getParameter("azione");  
-      if (azione == "stampaUtenti") {
+      String azione = request.getParameter("azione");
+      System.out.println(azione);
+      if (azione.equalsIgnoreCase("stampaUtenti")) {
         int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         ArrayList<Utente> risultato = stampaUtenti(numPagina);
         request.getSession().setAttribute("risultato", risultato);
       }
 
-      if (azione == "rimuoviUtente") {
+      if (azione.equalsIgnoreCase("rimuoviUtente")) {
         if (sessione.getRuolo().equals("Gestore")) {
           String username = request.getParameter("username");
           rimuoviUtente(username);
@@ -49,13 +50,15 @@ public class UtenteServlet extends HttpServlet {
       }
 
 
-      if (azione == "modificaPassword") {
+      if (azione.equalsIgnoreCase("modificaPassword")) {
         String newPassword = request.getParameter("newPassword");
+        String usernameLog = sessione.getUsername();
         modificaPassword(usernameLog, newPassword);
         response.sendRedirect(request.getContextPath() + "/HTML/Profilo.jsp");
       }
 
-      if (azione == "modificaUtente") {
+      if (azione.equalsIgnoreCase("modificaUtente")) {
+        String usernameLog = sessione.getUsername();
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String descrizione = request.getParameter("descrizione");
@@ -66,41 +69,41 @@ public class UtenteServlet extends HttpServlet {
 
 
 
-      if (azione == "creaUtente") {
-        Utente u;
-        u = utenteManager.recuperaPerUsername(request.getParameter("username"));
-        if (u != null) {
+      if (azione.equalsIgnoreCase("creaUtente")) {
+        System.out.println("Iniziato");
+        if (utenteManager.recuperaPerUsername("Gesucristo3") != null) {
           System.out.println("Utente già registrato");
           request.setAttribute("alreadyRegistered","true"); //Già registrato
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
-          RequestDispatcher x = getServletContext().getRequestDispatcher("/HTML/Login.jsp"); 
-          //da modificare
-          x.forward(request, response); 
+          response.sendRedirect(request.getContextPath() + "/registrazione.jsp");
         }  else {
           String username = request.getParameter("username");
           String nome = request.getParameter("nome");
           String cognome = request.getParameter("cognome");
           String sesso = request.getParameter("sesso");
           String password = request.getParameter("password");
-          creaUtente(u, username, nome, cognome, sesso, password, false);
+          creaUtente(username, nome, cognome, sesso, password, false);
+          Utente u = new Utente(username, nome, cognome, sesso, password, null, 0, false);
           SessioneUtente su = new SessioneUtente(u);
           request.getSession().setAttribute("Utente",su);
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
-          response.sendRedirect(request.getContextPath() + "/HTML/HomepageUtente.jsp");
+          response.sendRedirect(request.getContextPath() + "/HomepageUtente.jsp");
         }
       }
 
-      if (azione == "Login") {
+      if (azione.equalsIgnoreCase("Login")) {
         doLogin(request, response);     
       }
 
-      if (azione == "Logout") {
+      if (azione.equalsIgnoreCase("Logout")) {
         doLogout(request, response);
       } 
+      
 
     } catch (Exception exc) {
       exc.printStackTrace();
     } 
+    
   }
 
 
@@ -161,29 +164,21 @@ public class UtenteServlet extends HttpServlet {
 
   /**
    * Inizializza un nuovo utente.
-<<<<<<< HEAD
-   * @param u utente dichiarato precedentemente per il controllo sull'unicit� dell'username.
-=======
    * @param u utente dichiarato precedentemente per il controllo sull'unicita' dell'username.
->>>>>>> e221752bd9a59fa986a010d85deea608966e833a
    * @param username dell'utente.
    * @param nome dell'utente.
    * @param cognome dell'utente.
    * @param sesso dell'utente.
    * @param password dell'utente.
-<<<<<<< HEAD
-   * @param gestore <code>true</code> se � gestore.
-   *                <code>false</code> se � utente.
-=======
    * @param descrizione dell'utente
    * @param gestore <code>true</code> se e' gestore.
    *                <code>false</code> se e' utente.
->>>>>>> e221752bd9a59fa986a010d85deea608966e833a
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private void creaUtente(Utente u, String username, String nome, String cognome, String sesso, 
+  private void creaUtente(String username, String nome, String cognome, String sesso, 
       String password, boolean gestore) throws SQLException {
     System.out.println("Registrazione utente");
+    Utente u;
     u = new Utente(username, nome, cognome, sesso, password, 0, gestore);
     utenteManager.creaUtente(u);
   }

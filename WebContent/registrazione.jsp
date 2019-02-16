@@ -69,8 +69,8 @@ margin-top:-25px;
 
 }
 </style>
-<meta charset="ISO-8859-1">
-<script type="text/javascript" src ="<%request.getContextPath(); %>/JS/jquery.js"></script>
+<meta charset="UTF-8">
+<script type="text/javascript" src ="jquery.js"></script>
 <title>Registrazione</title>
 </head>
 <body>
@@ -86,10 +86,10 @@ margin-top:-25px;
       request.removeAttribute("alreadyRegistered");%>
       
 	<div id="field">   
-	<form id="register" class="register" method="post">
+	<form id="register" name = "register" class="register" method="Post">
 	<div>
 	<label for="Nome">Nome:</label>
-	<input type="text" class="campo" name="Nome">
+	<input type="text" class="campo" name="Nome" id = "nome">
 	<br>
 	<br>
 	<label for="cognome">Cognome:</label>
@@ -108,67 +108,55 @@ margin-top:-25px;
                 <br>
                 <div>
 	<label for="username">Username:</label>
-	<input id="nomefield" type="text" class="campo" name="username">
+	<input id="nomefield" type="text" class="campo" name="username" required="required" >
 	<br>
 	<br>
 	<label for="password">Password:</label>
-	<input type="text" class="campo" name="password">
+	<input type="password" class="campo" name="password" required="required">
 	<br>
 	<br>
-	<label for="password">Conferma <br>Password:</label>
-	<input type="text" class="campo" name="confpassword">
+	<label for="confpassword">Conferma <br>Password:</label>
+	<input type="password" class="campo" name="confpassword" required="required">
 	<br>
 	<br>
 	<label for="checkbox">Conferma <br>Regolamento</label>
-	<input type="checkbox" class="campo" name="ceckbox">
+	<input type="checkbox" class="campo" name="ceckbox" required="required">
 	<br>
 	<br><script>
-                function register() {
-                    console.log("Entrati")
-                    var nom = $(input[name = "Nome"]).val();
-                    var cog = $(input[name = "cognome"]).val();
-                    var ss = $(select[nome = "sesso"]).val();
-                    var user = $(input[name = "username"]).val();
-                    var pas = $(input[name = "password"]).val();
-                    var cpass = $(input[name = "confpassword"]).val();
-                    var rego = $(input[name = "ceckbox"]).val();
+                function registra() {
+                    console.log("Entrati");
+                    var nom = $("input[name = Nome]").val();
+                    var cog = $("input[name = cognome]").val();
+                    var ss = $("select[name = sesso]").val();
+                    var user = $("input[name = username]").val();
+                    var pas = $("input[name = password]").val();
+                    var cpass = $("input[name = confpassword]").val();
+                    var rego = $("input[name = ceckbox]").prop("checked");
                     
-                    alert(rego +"");
-                    if (nom == "" || cog == "" || user == "" || pas == "" || rego == null) {
-                        
-                        alert("Inserimento non effettuato");
-                        
-                        if (rego == "") {
-                            $(input[name = "ceckbox"]).css("background-color", "red");
-                        }
-                        if (pas == "") {
-                            $(input[name = "password"]).css("background-color", "red");
-                        }
-                        if (user == "") {
-                            $(input[name = "username"]).css("background-color", "red");
-                        }       
-                        if (nom == "") {
-                                $(input[name = "Nome"]).css("background-color", "red");
-                        }
-                        if (cog == "") {
-                            $(input[name = "cognome"]).css("background-color", "red");
-                        }
-                    }else if(pas != cpass) {
+                  
+                    if(pas != cpass || pas == "" || !rego) {
+                      if(pas != cpass || pas == "") {
                         alert("Le password non combaciano");
-                        $(input[name = "password"]).css("background-color", "red");
-                        $(input[name = "confpassword"]).css("background-color", "red");
-                        
-                    } else {
+                      }
+                      if(!rego) {
+                          alert("Per favore accetta il contratto");
+                      }
                     
-                    $("form.register").action = "/BACHECAUNISA/UtenteServlet?action=creaUtente&username=" + user +
+                    } else {
+                    var azione = "/BACHECAUNISA/UtenteServlet?azione=creaUtente&username=" + user +
                                                 "&cognome=" + cog + "&sesso=" + ss + "&nome=" + nom + "&password=" + pas;
-                    $("from.register").submit();
+
+                    console.log(azione + "");
+                    const elem = document.getElementById("register");
+                    elem.action = azione;
+                    console.log(elem.action + " è l'azione");
+                    elem.submit();
                     }
                 }
 
                 </script>
                 
-	<button id="regbutton" onclick="register()">Registrati</button>
+	<button id="regbutton" onclick="registra()">Registrati</button>
 	
 	<br>
 	<br>

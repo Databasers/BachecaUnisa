@@ -6,6 +6,8 @@ import gestioneutenti.UtenteManager;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * La Servlet della classe Recensione si occupa delle logiche applicative delle recensioni.
  */
-
+@WebServlet("/RecensioniServlet")
 public class RecensioniServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
