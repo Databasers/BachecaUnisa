@@ -4,7 +4,7 @@
 
 
 <meta charset="ISO-8859-1">
-<title>Home</title>
+<title>Barra side</title>
 <style>
 #side {
 	float: left;
@@ -45,19 +45,19 @@
 <img id="avatar" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
 <br>
 <br>
-<button class="button" id="home">Home</button>
+<button class="button" id="home"  onclick="location.href = 'Homepage.jsp';">Home</button>
 <br>
 <br>
-<button class="button" id="profilo">Profilo</button>
+<button class="button" id="profilo" onclick="location.href = 'ProfiloPersonale.jsp';">Profilo</button>
 <br>
 <br>
-<button class="button" id="annunci">I Miei Annunci</button>
+<button class="button" id="annunci" onclick="location.href = 'AnnunciPersonali.jsp';">I Miei Annunci</button>
 <br>
 <br>
-<button class="button" id="esc">Esci</button>
+<button class="button" id="esc" onclick="logout()";>Esci</button>
 <br>
 <br>
-<button class="button" id="faqside">Visualizza FAQ</button>
+<button class="button" id="faqside" onclick="location.href = 'FAQ.jsp';">Visualizza FAQ</button>
 <br>
 <br>
 </div>
