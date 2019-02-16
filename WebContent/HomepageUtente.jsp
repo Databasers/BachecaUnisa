@@ -6,14 +6,12 @@
 <style>
 
 #listaAnnunci{
-
 margin-top: 20px;
 margin-left:20px;
-
 }
 
 
-#listaProfili{
+#listaRecensioni{
 
 margin-top: 20px;
 margin-left:20px;
@@ -21,7 +19,7 @@ display:none;
 
 }
 
-#tabAnnunci, #tabProfilo{
+#tabAnnunci, #tabRecensioni {
 	background-color: #ddd;
 	border: none;
 	color: black;
@@ -31,6 +29,7 @@ display:none;
 	font-size: 14px;
 	width: 150px;
 	height: 35px;
+	
 margin-top: 20px;
 margin-left:20px;
 }
@@ -39,7 +38,7 @@ margin-left:20px;
 </head>
 <body>
 <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>
-<button id="tabProfilo" onclick="switchProfilo()">Profilo</button>
+<button id="tabRecensioni" onclick="switchRecensioni()">Recensioni</button>
 
 <div id="listaAnnunci">
 
@@ -48,7 +47,7 @@ ASASDADSADASAAAAAAAAAAAAAAAA
 </div>
 
 
-<div id="listaProfili">
+<div id="listaRecensioni">
 
 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
@@ -56,16 +55,16 @@ BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
 <script type="text/javascript">
 function switchAnnunci() {
-	  var x = document.getElementById("listaProfili");
+	  var x = document.getElementById("listaRecensioni");
 	    x.style.display = "none";
 	    x = document.getElementById("listaAnnunci");
 	    x.style.display = "block";
 	}
 
-function switchProfilo() {
+function switchRecensioni() {
 	  var x = document.getElementById("listaAnnunci");
 	    x.style.display = "none";
-	    x = document.getElementById("listaProfili");
+	    x = document.getElementById("listaRecensioni");
 	    x.style.display = "block";
 	}
 
