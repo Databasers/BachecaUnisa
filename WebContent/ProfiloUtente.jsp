@@ -52,23 +52,15 @@ margin-right: auto;
     min-height: 250px;
     overflow-y: auto;
 }
-    #visFeed{
-    
-    margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-	text-align: center;
+    #visAnn{
+    	margin-top: 40px;
 	
         }
-        
-         #modPro{
-    display: block;
-    width: 15%;
+    #riFeed{
+    position: absolute; 
+    right: 20px;
     
-    
-	
-        }
+    }
     
         .star-rating {
     direction: rtl;
@@ -104,6 +96,7 @@ margin-right: auto;
   <%@ include file="barraLEFTv2.jsp" %>
  <h1 class="tit">Valutazione:</h1> 
   
+  <form>
   	<div class="star-rating">
 			<input id="star-5" type="radio" name="rating" value="star-5">
 			<label for="star-5" title="5 stars">
@@ -126,7 +119,7 @@ margin-right: auto;
 					<i class="active fa fa-star" aria-hidden="true"></i>
 			</label>
 		</div>
-    
+   </form> 
   
 
   <div class="utentetxt">
@@ -135,15 +128,15 @@ margin-right: auto;
 Indirizzo<br>
 Provincia</h1>
   </div>
-   
-   <div style="text-align:right">
-   <button id="modPro" onclick="location.href = 'modificaProfilo.jsp';">Modifica Profilo</button> 
-   </div>
+  
 <textarea id="textarea" disabled="disabled">Qui andrà la descrizione dell'utente.</textarea>
-    
- <button id="visFeed" onclick="location.href = 'VisualizzaFeedback.jsp';">Visualizza Feedback</button>
   
-  
+ <span style="width: 49%; text-align:left">
+ <button id="visAnn" onclick="location.href = 'VisualizzaAnnunci.jsp';">Visualizza Annunci</button>
+ </span>
+ <span style="width:50%; text-align: right">
+ <button id="riFeed" onclick="location.href = 'RilasciaFeedback.jsp';">Rilascia Feedback</button>
+</span>
   
 
-<script>// Write JavaScript here </script><script>// Write JavaScript here </script><script>// Write JavaScript here </script></body>
+<script>// Write JavaScript here </script></body>
