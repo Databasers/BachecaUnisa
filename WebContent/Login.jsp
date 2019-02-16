@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>
+Pagina di login
+</title>
 <style type="text/css">
 body, html {
 	height: 100%;

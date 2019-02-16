@@ -2,7 +2,7 @@
 <html>
 <head><style type="text/css">.lw { font-size: 60px; }</style>
 
-
+<title>Registrazione</title>
 <style>
 #container, #logo{
 margin-top: 30px;

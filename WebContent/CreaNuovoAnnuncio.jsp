@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title> Nuovo Annuncio</title>
 <style type="text/css">
 
 .contna{

@@ -9,8 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-<title>HTML, CSS and JavaScript demo</title>
-
+<title>Profilo Personale</title>
   <style> 
 
 fieldset, label { margin: 0; padding: 0; }
