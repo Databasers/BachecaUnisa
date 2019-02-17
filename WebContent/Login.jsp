@@ -117,7 +117,6 @@ input[type=text]:focus, input[type=password]:focus {
                                                 </form>
 			
 			
-		</form>
 	</div>
 
 

@@ -54,7 +54,7 @@
 <button class="button" id="annunci" onclick="location.href = 'AnnunciPersonali.jsp';">I Miei Annunci</button>
 <br>
 <br>
-<button class="button" id="esc" onclick="logout()";>Esci</button>
+<button class="button" id="esc" onclick="logout()">Esci</button>
 <br>
 <br>
 <button class="button" id="faqside" onclick="location.href = 'FAQ.jsp';">Visualizza FAQ</button>

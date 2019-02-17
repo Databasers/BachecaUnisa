@@ -73,7 +73,7 @@ width: 100%;
     
   
  <form action="">
-    <div action="" class="togna">
+    <div class="togna">
   <input type="radio" name="tipologia" value="Gruppo"> Gruppo di studio
       <br/>
       <br/>
