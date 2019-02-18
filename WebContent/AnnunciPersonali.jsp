@@ -13,7 +13,7 @@
 </head>
 
 <%
-  ArrayList<Annuncio> elenco =(ArrayList<Annuncio>) request.getSession().getAttribute("risultato");
+  ArrayList<Annuncio> elenco =(ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
   if(elenco==null){
     SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("User");
    response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=utente&username=" + su.getUsername());

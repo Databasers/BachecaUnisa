@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="gestioneannunci.Annuncio"%>
 <html>
 <head><style type="text/css">.lw { font-size: 60px; }</style>
 
@@ -61,30 +62,36 @@ margin-left: 12px;
   
 </head>
 <body>
+
+<%
+Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
+
+if (x == null){
+  response.sendRedirect("BACHECAUNISA/AnnunciServlet?id=" + request.getParameter("id"));
+} else {
+  request.getSession().removeAttribute("annuncioTrovato");
+}
+%>
   
   
   
   
   <img id="avatarannuncio" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
-  <span id="nomeutente">Nome Utente</span>
-   <div id="modificannuncio"><input class="valuebutton" type="submit" value="Modifica Annuncio"></div>
+  <span id="nomeutente"><%=x.getUsernameUtente()%></span>
+   <div id="modificannuncio"><input class="valuebutton" type="submit" value="Modifica Annuncio" formaction="/modificaAnnuncio.jsp"></div>
    
   
   <div class="titleannuncio">
-    <h1 id="Utenteinfo">TITOLO:Offro Lezioni a Studenti del primo anno di...<br>
-      TIPOLOGIA:Tutorato<br>
-      DIPARTIMENTO:dipartimento</h1>
+    <h1 id="Utenteinfo">TITOLO:<%=x.getTitolo()%><br>
+      DIPARTIMENTO:<%=x.getDipartimento() %></h1>
   </div>
 
-  <p class="txtannuncio">Offro Lezioni di tutorato per esame... disponibile in giorni... contattare in privato...</p>
+  <p class="txtannuncio"><%=x.getDescrizione()%></p>
   
     
   
   <div id="segnalaannuncio"><input class="valuebutton" type="submit" value="Segnala Annuncio"></div>
   
+  </body>
   
   
-  
-  
-
-<script>// Write JavaScript here </script><script>// Write JavaScript here </script></body>

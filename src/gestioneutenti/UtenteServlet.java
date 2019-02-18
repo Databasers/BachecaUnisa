@@ -38,7 +38,7 @@ public class UtenteServlet extends HttpServlet {
       if (azione.equalsIgnoreCase("stampaUtenti")) {
         int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         ArrayList<Utente> risultato = stampaUtenti(numPagina);
-        request.getSession().setAttribute("risultato", risultato);
+        request.getSession().setAttribute("urisultato", risultato);
       }
 
       if (azione.equalsIgnoreCase("rimuoviUtente")) {
@@ -207,12 +207,12 @@ public class UtenteServlet extends HttpServlet {
       request.getSession().setAttribute("Utente", su);
       System.out.println("Login effettuato!");
       System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
-      response.sendRedirect(request.getContextPath() + "/HTML/HomepageUtente.jsp");
+      response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
     } catch (Exception e) {
-      System.out.println("Utente non registrato");
+      System.out.println("Utente non registrato. MESSAGE:" + e.getMessage());
       request.setAttribute("Done", "falso");
       System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
-      RequestDispatcher x = getServletContext().getRequestDispatcher("/HTML/Login.jsp");
+      RequestDispatcher x = getServletContext().getRequestDispatcher("/Login.jsp");
       //ritento il login
       x.forward(request, response);
     }

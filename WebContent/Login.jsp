@@ -84,27 +84,26 @@ input[type=text]:focus, input[type=password]:focus {
 	   <img alt="Login" src="https://nextindustry.net/wp-content/uploads/2018/01/Logo_TV_2015.png">
 	</div>
 	<div>
-	   <form class="container">
+	   <form class="container" name ="Login">
 			<label for="username">Username</label>
 			<input type="text" placeholder="Inserisci username" name="username" required>
 			<label for="password">Password</label>
 			<input type="password" placeholder="Inserisci password" name="password" required>
 			<div id="logbutton">
-				<button value="Login" class="btn" onclick="login()">Login</button>
+			   <button value="Login" class="btn" name ="azione" formaction="/BACHECAUNISA/UtenteServlet">Login</button>
 			</div>
 			
 			<script>
                 function login(){
-                    alert("Cose");
-                    var us = $(input[name="username"].val());
-                    var pass = $(input[name="password"].val());
-                    var action = "/BACHECAUNISA/UtenteServlet?azione=Login&username=" + us + "&password=" + pass;
-                    document.container.action = action;
-                    document.container.submit();
+                    var us = $("input[name=username]").val();
+                    var pass = $("input[name=password]").val();
+                    console.log(us + " " + pass);
+                    $("form[name=Login]").action = "/BACHECAUNISA/UtenteServlet?azione=Login";
+                    $("form[name=Login]").submit();
                 }
                 
                 function redirect() {
-                               $(location).attr('href', '<%request.getContextPath();%>/registrazione');
+                               $(location).attr('href', '<%=request.getContextPath()%>/registrazione');
                 }
                 </script>
 			

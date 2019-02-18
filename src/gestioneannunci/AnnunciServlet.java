@@ -42,41 +42,35 @@ public class AnnunciServlet extends HttpServlet {
     try {
       String azione = request.getParameter("azione");  
       int numPagina = Integer.parseInt(request.getParameter("numPagina"));
-      if (azione == "stampaAnnunci") {
+      if (azione.equalsIgnoreCase("stampaAnnunci")) {
         String filtro = request.getParameter("filtro");
-        switch (filtro) {  
-          //Non sono sicuro lo switch funzioni con le stringhe, forse è case sensitive
-          case "tipologia": { 
-            String tipo = request.getParameter("tipologia");
-            boolean check = true;
-            if (tipo.equalsIgnoreCase("gruppo")) {
-              check = false;
-            }
-            ArrayList<Annuncio> risultato = recuperaPerTipologia(check, numPagina);
-            request.getSession().setAttribute("risultato", risultato);
-            break;
+        if(filtro.equalsIgnoreCase("tipologia")) {
+          String tipo = request.getParameter("tipologia");
+          boolean check = true;
+          if (tipo.equalsIgnoreCase("gruppo")) {
+            check = false;
           }
-          case "dipartimento": {
-            String dipartimento = request.getParameter("dipartimento");
-            ArrayList<Annuncio> risultato = recuperaPerDipartimento(dipartimento, numPagina);
-            request.getSession().setAttribute("risultato", risultato);
-            break;
-          }
-          case "utente": {
-            String utente = request.getParameter("username");
-            ArrayList<Annuncio> risultato = recuperaPerUtente(utente, numPagina);
-            request.getSession().setAttribute("risultato", risultato);
-            break;
-          }
-          default: {
-            ArrayList<Annuncio> risultato = stampaAnnunci(numPagina);
-            request.getSession().setAttribute("risultato", risultato);
-          }
-        break;
+          ArrayList<Annuncio> risultato = recuperaPerTipologia(check, numPagina);
+          request.getSession().setAttribute("arisultato", risultato);
+        } else if(filtro.equalsIgnoreCase("dipartimento")) {
+          String dipartimento = request.getParameter("dipartimento");
+          ArrayList<Annuncio> risultato = recuperaPerDipartimento(dipartimento, numPagina);
+          request.getSession().setAttribute("arisultato", risultato);
+        
+        } else if(filtro.equalsIgnoreCase("utente")) {
+          String utente = request.getParameter("username");
+          ArrayList<Annuncio> risultato = recuperaPerUtente(utente, numPagina);
+          request.getSession().setAttribute("arisultato", risultato);
+          
+        } else {
+          System.out.println("Nessun filtro");
+          ArrayList<Annuncio> risultato = stampaAnnunci(numPagina);
+          request.getSession().setAttribute("arisultato", risultato);
+          
         }
+        response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
       }
-
-      if (azione == "rimuoviAnnuncio") {
+      if (azione.equalsIgnoreCase("rimuoviAnnuncio")) {
         int id = Integer.parseInt(request.getParameter("id"));
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
@@ -84,7 +78,7 @@ public class AnnunciServlet extends HttpServlet {
           response.sendRedirect(request.getContextPath() + "/VisualeGestore.jsp?");
 
         } else {
-          if (usernameLog.equals(username)) {
+          if (usernameLog.equalsIgnoreCase(username)) {
             rimuoviAnnuncio(id);
             response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?");
             //TODO Ogni profilo utente deve avere l'id
@@ -92,7 +86,7 @@ public class AnnunciServlet extends HttpServlet {
         }
       }
 
-      if (azione == "modificaAnnuncio") {
+      if (azione.equalsIgnoreCase("modificaAnnuncio")) {
         int id = Integer.parseInt(request.getParameter("id"));
         String titolo = request.getParameter("titolo");
         String descrizione = request.getParameter("descrizione");
@@ -103,7 +97,7 @@ public class AnnunciServlet extends HttpServlet {
         }
       }
 
-      if (azione == "creaAnnuncio") {
+      if (azione.equalsIgnoreCase("creaAnnuncio")) {
         if (sessione.getRuolo().equals("Utente")) {
           String utente = request.getParameter("usernameUtente");
           String dipartimento = request.getParameter("dipartimento");
@@ -117,11 +111,11 @@ public class AnnunciServlet extends HttpServlet {
 
 
 
-      if (azione == "visualizzaAnnuncio") {
+      if (azione.equalsIgnoreCase("visualizzaAnnuncio")) {
         int id = Integer.parseInt(request.getParameter("id"));
         Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);
         request.getSession().setAttribute("annuncioTrovato", annuncioTrovato);
-        response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp");
+        response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp?id=" + id);
       }
 
     } catch (SQLException e) {

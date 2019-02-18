@@ -84,7 +84,7 @@ public class UtenteManager {
         temp.setSesso(rs.getString("Sesso"));
         temp.setPassword(rs.getString("Password"));
         temp.setDescrizione(rs.getString("Descrizione"));
-        temp.setNumAnnunci(rs.getInt("Numero annunci"));
+        temp.setNumAnnunci(rs.getInt("NumAnnunci"));
         temp.setGestore(rs.getBoolean("Gestore"));
         System.out.println(temp.getUsername());
       } else {
