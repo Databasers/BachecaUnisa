@@ -20,8 +20,8 @@ public class RecensioniServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
   
-  RecensioneManager recensioneManager;
-  UtenteManager utenteManager;
+  RecensioneManager recensioneManager = new RecensioneManager();
+  UtenteManager utenteManager = new UtenteManager();
   
   
   @Override

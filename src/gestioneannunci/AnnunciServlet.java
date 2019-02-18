@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AnnunciServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
-  AnnuncioManager annuncioManager;
+  AnnuncioManager annuncioManager = new AnnuncioManager();
 
 
 
@@ -43,7 +43,7 @@ public class AnnunciServlet extends HttpServlet {
       String azione = request.getParameter("azione");  
       int numPagina = Integer.parseInt(request.getParameter("numPagina"));
       if (azione == "stampaAnnunci") {
-        String filtro = request.getParameter("Filtro");
+        String filtro = request.getParameter("filtro");
         switch (filtro) {  
           //Non sono sicuro lo switch funzioni con le stringhe, forse è case sensitive
           case "tipologia": { 
@@ -81,12 +81,13 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
           rimuoviAnnuncio(id);
-          response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore");
+          response.sendRedirect(request.getContextPath() + "/VisualeGestore.jsp?");
 
         } else {
           if (usernameLog.equals(username)) {
             rimuoviAnnuncio(id);
-            response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente");
+            response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?");
+            //TODO Ogni profilo utente deve avere l'id
           }
         }
       }
@@ -98,7 +99,7 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (usernameLog.equals(username)) {
           modificaAnnuncio(id, titolo, descrizione);
-          response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente");
+          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp"); //TODO
         }
       }
 
@@ -110,7 +111,7 @@ public class AnnunciServlet extends HttpServlet {
           String descrizione = request.getParameter("descrizione");
           boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
           creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
-          response.sendRedirect(request.getContextPath() + "/HTML/ProfiloUtente");
+          response.sendRedirect(request.getContextPath() + "ProfiloUtente.jsp");  //TODO
         }
       }
 
@@ -120,7 +121,7 @@ public class AnnunciServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);
         request.getSession().setAttribute("annuncioTrovato", annuncioTrovato);
-        response.sendRedirect(request.getContextPath() + "/HTML/VisualizzaAnnuncio");
+        response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp");
       }
 
     } catch (SQLException e) {

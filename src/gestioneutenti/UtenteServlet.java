@@ -71,11 +71,10 @@ public class UtenteServlet extends HttpServlet {
 
       if (azione.equalsIgnoreCase("creaUtente")) {
         System.out.println("Iniziato");
-        if (utenteManager.recuperaPerUsername("Gesucristo3") != null) {
+        if (utenteManager.recuperaPerUsername(request.getParameter("username")) != null) {
           System.out.println("Utente già registrato");
-          request.setAttribute("alreadyRegistered","true"); //Già registrato
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
-          response.sendRedirect(request.getContextPath() + "/registrazione.jsp");
+          response.sendRedirect(request.getContextPath() + "/registrazione.jsp?ar=t");
         }  else {
           String username = request.getParameter("username");
           String nome = request.getParameter("nome");

@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@page import="gestionerecensioni.Recensione"%>
+<%@page import="gestioneutenti.SessioneUtente"%>
+<%@page import="gestioneannunci.Annuncio"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -37,12 +41,34 @@ margin-left:20px;
 </style>
 </head>
 <body>
+<%
+  ArrayList<Annuncio> elenco =(ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
+  if(elenco==null){
+   response.sendRedirect("/BACHECAUNISA/SegnalazioniServlet?azione=stampaAnnuncis");
+   return;
+  } else {
+   
+   request.getSession().removeAttribute("arisultato");
+  }
+  Annuncio[] list  = elenco.toArray(new Annuncio[0]);
+%>
+<%
+  ArrayList<Recensione> elenco2 =(ArrayList<Recensione>) request.getSession().getAttribute("rrisultato");
+  if(elenco==null){
+   response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=utente&username=" + su.getUsername());
+   return;
+  } else {
+   
+   request.getSession().removeAttribute("rrisultato");
+  }
+  Annuncio[] list2  = elenco.toArray(new Annuncio[0]);
+%>
+
 <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>
 <button id="tabRecensioni" onclick="switchRecensioni()">Recensioni</button>
 
 <div id="listaAnnunci">
 
-ASASDADSADASAAAAAAAAAAAAAAAA
 
 </div>
 

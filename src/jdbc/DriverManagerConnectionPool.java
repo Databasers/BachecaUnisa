@@ -18,17 +18,18 @@ public class DriverManagerConnectionPool {
     } catch (ClassNotFoundException e) {
       System.out.println("DB driver not found: " + e.getMessage());
     }
+    
   }
   
   private static synchronized Connection createDbConnection() throws SQLException {
     Connection newConnection = null;
     String ip = "localhost";
     String port = "3306";
-    String db = "mydb";
+    String db = "Bacheca";
     String username = "root";
-    String password = "";
+    String password = "0000";
     
-    newConnection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + db 
+    newConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Bacheca"
         + "?zeroDateTimeBehavior=convertToNull&useSSL=false", username, password);
     
     System.out.println("Create new DB connection");

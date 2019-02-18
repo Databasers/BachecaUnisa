@@ -45,12 +45,13 @@ public class SegnalazioniServlet extends HttpServlet {
             su.getNome());
         creaSegnalazione(segnalazione);
         if (segnalazione.isTipoSegnalazione()) {
-          response.sendRedirect(request.getContextPath() + "/HTML/VisualizzaAnnuncio");
+          response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp");
         }
         if (request.getParameter("luogo").equalsIgnoreCase("profilo")) {
-          response.sendRedirect(request.getContextPath() + "/HTML/Profilo");
+          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?&user="
+              + request.getParameter("user"));
         } else {
-          response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
+          response.sendRedirect(request.getContextPath() + "ProfiloPersonale.jsp");
         }
         
       } else if (azione.equalsIgnoreCase("rimuoviSegnalazione")) {

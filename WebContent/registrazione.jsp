@@ -79,11 +79,11 @@ margin-top:-25px;
 </div>
 <div id="container">   
 
-<% String registered = (String)request.getAttribute("alreadyRegistered");
-   if(registered != null && registered=="true"){%>
+<% String registered = (String)request.getParameter("ar");
+   System.out.println(registered);
+   if(registered != null && registered.equalsIgnoreCase("t")) {%>
    <h3><font color="red">Questo utente esiste già</font></h3>
-   <% }
-      request.removeAttribute("alreadyRegistered");%>
+   <%}%>
       
 	<div id="field">   
 	<form id="register" name = "register" class="register" method="Post">

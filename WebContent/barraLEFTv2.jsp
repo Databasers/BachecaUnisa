@@ -54,13 +54,23 @@
 <button class="button" id="annunci" onclick="location.href = 'AnnunciPersonali.jsp';">I Miei Annunci</button>
 <br>
 <br>
-<button class="button" id="esc" onclick="logout()";>Esci</button>
+<form action="" id = "lo">
+<button class="button" id="esc" onclick="logout()">Esci</button>
+</form>
 <br>
 <br>
 <button class="button" id="faqside" onclick="location.href = 'FAQ.jsp';">Visualizza FAQ</button>
 <br>
 <br>
 </div>
+
+<script type="text/javascript">
+function logout() {
+    const elem = document.getElementById("lo");
+    elem.action = "/BACHECAUNISA/UtenteServlet?azione=Logout";
+    elem.submit();
+}
+</script>
 
 
 

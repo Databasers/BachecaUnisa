@@ -189,7 +189,7 @@ public class UtenteManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
-    String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,?,?,?,?,?,?)";
+    String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,?,?,?,?,?,?,?)";
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
@@ -199,9 +199,10 @@ public class UtenteManager {
       preparedStatement.setString(3, u.getSesso());
       preparedStatement.setString(4, u.getUsername());
       preparedStatement.setString(5, u.getPassword());
-      preparedStatement.setInt(6, u.getNumAnnunci());
-      preparedStatement.setString(7, u.getDescrizione());
-      preparedStatement.setBoolean(8, u.isGestore());
+      preparedStatement.setBoolean(6, u.isGestore());
+      preparedStatement.setInt(7, 0);
+      preparedStatement.setString(8, u.getDescrizione());
+      preparedStatement.setInt(9, u.getNumAnnunci());
       System.out.println("doSave: " + preparedStatement.toString());
       preparedStatement.executeUpdate();
 
