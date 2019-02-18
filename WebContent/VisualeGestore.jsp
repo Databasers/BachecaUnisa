@@ -55,7 +55,7 @@ margin-left:20px;
 <%
   ArrayList<Recensione> elenco2 =(ArrayList<Recensione>) request.getSession().getAttribute("rrisultato");
   if(elenco==null){
-   response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=utente&username=" + su.getUsername());
+   response.sendRedirect("/BACHECAUNISA/AnnunciServlet?"); //TODO Tutti i metodi per stampare i segnalati
    return;
   } else {
    
