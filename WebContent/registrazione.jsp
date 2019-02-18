@@ -89,11 +89,11 @@ margin-top:-25px;
 	<form id="register" name = "register" class="register" method="Post">
 	<div>
 	<label for="Nome">Nome:</label>
-	<input type="text" class="campo" name="Nome" id = "nome">
+	<input type="text" class="campo" name="Nome" id = "nome" required="required">
 	<br>
 	<br>
 	<label for="cognome">Cognome:</label>
-	<input type="text" class="campo" name="cognome">
+	<input type="text" class="campo" name="cognome" required="required">
 		
 	</div>
 	<br>
