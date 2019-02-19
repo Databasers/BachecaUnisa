@@ -39,6 +39,7 @@ public class UtenteServlet extends HttpServlet {
         int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         ArrayList<Utente> risultato = stampaUtenti(numPagina);
         request.getSession().setAttribute("urisultato", risultato);
+        response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
       }
 
       if (azione.equalsIgnoreCase("rimuoviUtente")) {

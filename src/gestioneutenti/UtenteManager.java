@@ -37,7 +37,9 @@ public class UtenteManager {
 
 
     for (int i = 0; i < 10; i++) {
-     
+      if (rs.isAfterLast()) {
+        return lista;
+      }
       temp = new Utente();
       temp.setUsername(rs.getString("Username"));
       temp.setNome(rs.getString("Nome"));
@@ -45,7 +47,7 @@ public class UtenteManager {
       temp.setSesso(rs.getString("Sesso"));
       temp.setPassword(rs.getString("Password"));
       temp.setDescrizione(rs.getString("Descrizione"));
-      temp.setNumAnnunci(rs.getInt("Numero annunci"));
+      temp.setNumAnnunci(rs.getInt("NumAnnunci"));
       temp.setGestore(rs.getBoolean("Gestore"));
       lista.add(temp);
       rs.next();    

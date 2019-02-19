@@ -29,21 +29,29 @@ public class AnnuncioManager {
     rs.first();
     ArrayList<Annuncio> lista = new ArrayList<Annuncio>();
     Annuncio temp;
+    System.out.println("Inizio for");
     //Sposta il cursore alla posizione corretta
     //Qualcuno si faccia qualche simulazione per vedere se si muove nelle posizioni giuste
     for (int i = 0; i < numPagina * PAGINADIM; i++) {
+      System.out.print(i);
       rs.next();
     }
+    System.out.println("Inizio secondo for");
     //Prende i prossimi 10 Annunci e li aggiunge alla lista
     //Again, fare conti per vedere se va
     for (int i = 0; i < 10; i++) {
-     
+      System.out.print(i);
+      if (rs.isAfterLast()) {
+        return lista;
+      }
       temp = new Annuncio();
-      temp.setTitolo(rs.getString("Titolo"));
-      temp.setDescrizione(rs.getString("Descrizione"));
-      temp.setTipologia(rs.getBoolean("Tipologia"));
-      temp.setDipartimento(rs.getString("Dipartimento"));
-      temp.setUsernameUtente(rs.getString("Utente_Username"));
+      temp.setDipartimento(rs.getString(1));
+      temp.setTitolo(rs.getString(2));
+      temp.setDescrizione(rs.getString(3));
+      temp.setTipologia(rs.getBoolean(4));
+      temp.setNumSegnalazioni(rs.getInt(5));
+      temp.setId(rs.getInt(6));
+      temp.setUsernameUtente(rs.getString(7));
       lista.add(temp);
       rs.next();    
     } 

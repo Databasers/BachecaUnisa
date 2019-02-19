@@ -4,7 +4,7 @@
 <title>
 Pagina di login
 </title>
-<link rel="stylesheet" type="text/css" href="CSS/Login.css"
+<link rel="stylesheet" type="text/css" href="CSS/Login.css">
 <meta charset="ISO-8859-1">
 <script type="text/javascript" src ="jquery.js"></script>
 <title>Login</title>

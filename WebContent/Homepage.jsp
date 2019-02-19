@@ -41,6 +41,7 @@ margin-left:20px;
 </style>
 </head>
 <body>
+ <%@ include file="barraLEFTv2.jsp" %>
 <%
 ArrayList<Annuncio> lista =  (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
 if(lista == null) {
@@ -74,7 +75,7 @@ if(lista2 == null) {
     <div class = "preview"><%= x.getDescrizione() %></div>
     <div class = "btn">
 <form method= "post">
-         <button type="submit" formaction="/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">
+         <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">
            Apri
          </button>
 </form>
@@ -86,7 +87,8 @@ if(lista2 == null) {
 
 
 <div id="listaProfili">
-<%for(Utente x : lista2) {%>
+<% if (lista2 != null){
+    for(Utente x : lista2) {%>
    <div class = "annuncio">
     <div class = "Titolo">
     <h2><%=x.getUsername() %></h2>
@@ -99,13 +101,17 @@ if(lista2 == null) {
     
     <div class = "btn">
     <form method= "post">
-      <button type="submit" formaction="/ProfiloUtente.jsp?username=<%=x.getUsername()%>">
+      <button type="submit" formaction="/BACHECAUNUSA/ProfiloUtente.jsp?username=<%=x.getUsername()%>">
        Apri
       </button>
 </form>
 </div>
 </div>
-<%}%>
+<%}} else {%>
+   <div id="NothingFound">Non è stato trovato nessun utente con questo username :(</div>
+
+
+<%} %>
 </div>
 
 <script type="text/javascript">
