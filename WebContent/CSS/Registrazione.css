@@ -64,6 +64,29 @@ body
     text-align: center;
     outline: none;
 }
+.regolamento{
+    text-align: center;
+    padding: 20px;
+}
+ .confermaReg 
+{
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    width: 150px;
+}
+
+ .confermaReg:hover 
+{
+    color: #fff;
+    font-weight: bold;
+}
+
+.checkbox
+{
+    display: inline-block;
+    width: 10px;
+}
 
 #regbutton{
     display: block;

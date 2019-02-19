@@ -34,7 +34,10 @@
                         <input id="nomefield" placeholder="Username" type="text" class="campo" name="username" required="required" >
                         <input type="password" placeholder="Password" class="campo" name="password" required="required">
                         <input type="password" placeholder="Conferma password" class="campo" name="confpassword" required="required">
-                        <input type="checkbox" class="campo" name="ceckbox" required="required">
+                        <div class="regolamento">
+                            <label for="checkbox" class="confermaReg">Conferma regolamento</label>
+                            <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
+                        </div>
                         <script>
                             function registra() {
                                 console.log("Entrati");
