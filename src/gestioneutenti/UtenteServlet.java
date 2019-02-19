@@ -45,7 +45,7 @@ public class UtenteServlet extends HttpServlet {
         if (sessione.getRuolo().equals("Gestore")) {
           String username = request.getParameter("username");
           rimuoviUtente(username);
-          response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore.jsp");
+          response.sendRedirect(request.getContextPath() + "/VisualeGestore.jsp");
         }
       }
 
@@ -54,7 +54,7 @@ public class UtenteServlet extends HttpServlet {
         String newPassword = request.getParameter("newPassword");
         String usernameLog = sessione.getUsername();
         modificaPassword(usernameLog, newPassword);
-        response.sendRedirect(request.getContextPath() + "/HTML/Profilo.jsp");
+        response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
       }
 
       if (azione.equalsIgnoreCase("modificaUtente")) {
@@ -63,7 +63,7 @@ public class UtenteServlet extends HttpServlet {
         String cognome = request.getParameter("cognome");
         String descrizione = request.getParameter("descrizione");
         modificaUtente(usernameLog, nome, cognome, descrizione);
-        response.sendRedirect(request.getContextPath() + "/HTML/Profilo.jsp");
+        response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
 
       }
 
@@ -86,7 +86,7 @@ public class UtenteServlet extends HttpServlet {
           SessioneUtente su = new SessioneUtente(u);
           request.getSession().setAttribute("Utente",su);
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
-          response.sendRedirect(request.getContextPath() + "/HomepageUtente.jsp");
+          response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         }
       }
 
@@ -230,15 +230,15 @@ public class UtenteServlet extends HttpServlet {
     System.out.println("Logout");
     //controllo se non � loggato
     if (request.getSession().getAttribute("Utente") == null)  {
-      response.sendRedirect(request.getContextPath() + "/HTML/Login.jsp");
+      response.sendRedirect(request.getContextPath() + "/Login.jsp");
     } else if (request.getSession().getAttribute("Gestore") == null)  {
-      response.sendRedirect(request.getContextPath() + "/HTML/Login.jsp");
+      response.sendRedirect(request.getContextPath() + "/Login.jsp");
     }
     
     request.getSession().removeAttribute("Utente");
     request.getSession().removeAttribute("Gestore");
     request.getSession().invalidate();
-    response.sendRedirect(request.getContextPath() + "/HTML/Login.jsp"); 
+    response.sendRedirect(request.getContextPath() + "/Login.jsp"); 
     System.out.println("\n FINE GESTIONE LOGOUT \n");
   }
 

@@ -58,8 +58,8 @@
   <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
     
     <h1 class="titlena">Crea Nuovo Annuncio</h1>
-    <form class="togna">
-  <input type="radio" name="tipologia" value="Gruppo"> Gruppo di studio
+    <form class="togna" name="AnnuncioForm">
+  <input type="radio" name="tipologia" value="Gruppo" checked="checked"> Gruppo di studio
       <br>
       <br>
   <input type="radio" name="tipologia" value="Tutorato"> Tutorato <!-- Da far diventare una form (propotipo) -->
@@ -74,28 +74,37 @@
       <br>
       <br>
    <label for="titolo" class="titolo" >Titolo:</label> 
-       <input type="text" name="titolo" placeholder="Titolo annuncio">
+       <input type="text" name="titolo" placeholder="Titolo annuncio" required="required">
   
-    <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true"></textarea>
+    <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
     
     <input type="submit" value="Crea annuncio" class="sfdbna" onclick="check()">
     
+    <%String username = (String) request.getSession().getAttribute("Username");
+      if(username == null){
+                System.out.println("Username non trovato");
+                username = "Default";
+      }
+      System.out.println(username);
+    %>
     <script>
-  function ceck() {
-   var tipologia = $(input[name="tipologia"]:selected).val());
+  function check() {
+   var tipologia = $("input[name=tipologia]:selected").val();
    var dipartimento;
-   if(tipologia == "Tutorato"){
-      dipartimento = $(select[name="Dipartimento"]).val();
+   if(tipologia === "Tutorato"){
+      dipartimento = $("select[name=Dipartimento]").val();
       } else {
         dipartimento = "Informatica";
       }
-   var titolo = $(label[name="titolo"]).val();
-   var descrizione = $(div[name="descrizione"]).val();
+   var titolo = $("input[name=titolo]").val();
+   var descrizione = $("textarea[name=descrizione]").val();
+   var username = $("input[name=Username]").val();
+   console.log(tipologia + " " + titolo + " " + descrizione);
    
-   var azione = "/BACHECAUNISA/AnnunciServlet?azione=creaAnnuncio&usernameUtente=" + session.getAttribute("username") 
-       + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
-   document.togna.action = azione;
-   document.togna.submit();
+     var azione = "/BACHECAUNISA/AnnunciServlet?azione=creaAnnuncio&usernameUtente=" + username + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
+     console.log(azione);
+     $("form[name=AnnuncioForm]").action = azione;
+     $("form[name=AnnuncioForm]").submit();
    
   }
   </script>

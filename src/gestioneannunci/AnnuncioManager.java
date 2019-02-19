@@ -139,7 +139,7 @@ public class AnnuncioManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     //Dipartimento, Titolo, Descrizione, Tipologia, NumeroSegnalazioni, ID, Utente_Username
-    String sql = "UPDATE " + TABLENAME + "SET Dipartimento = ?, Titolo = ?, Descrizione = ?"
+    String sql = "UPDATE " + TABLENAME + " SET Dipartimento = ?, Titolo = ?, Descrizione = ?"
         + ", Tipologia = ?, NumeroSegnalazioni = ?, ID = ?, Utente_Username = ?"
         + " WHERE ID = ?";
     
@@ -185,7 +185,7 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp = null;
    
-    String sql = "SELECT* FROM " + TABLENAME;
+    String sql = "SELECT * FROM " + TABLENAME;
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -287,7 +287,7 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp;
     
-    String sql = "SELECT* FROM " + TABLENAME + " WHERE Dipartimento = ?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Dipartimento = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -322,7 +322,7 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp;
     
-    String sql = "SELECT* FROM " + TABLENAME + " WHERE Username = ?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Username = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
