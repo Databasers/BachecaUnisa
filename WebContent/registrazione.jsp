@@ -1,77 +1,11 @@
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">.lw { font-size: 60px; }</style>
+<head>
 
 <title>Registrazione</title>
-<style>
-#container, #logo{
-margin-top: 30px;
-}
-#container{
-padding-top:12px;
-padding-left: 12px;
-display: block;
-  margin-left: auto;
-  margin-right: 56px;
-  float:right;
-  border-style: solid;
-  width: 30%; 
-  height: auto;
-  padding-bottom: 7%;
-}
-    
-.campo{
-  float: right;
-margin-right: 10%;
-width: 50%;
-}
-  
-#logo img{
-display: block;
-margin-left: auto;
-margin-right: auto;
-}
-  
-#logo{
-border-style:solid;
-  width: 50%;
-  height:auto;
-  float: left;
-  margin-left: 3%;
-}
-  
-#faq{
-
-}
-
-#sextext{
-    float: left;
-}
-  
- 
-#sex{
-float: right;
-margin-right: 10%;
-width: 50%;
-  }
-  
-#field{
-margin-bottom: 5px;
-}
-
-#sextext,#sex{
-position:relative;
-margin-top:-25px;
-}
-
-#regbutton{
-    float:left;
-
-}
-</style>
+<link rel="stylesheet" type="text/css" href="CSS/Registrazione.css">
 <meta charset="UTF-8">
 <script type="text/javascript" src ="jquery.js"></script>
-<title>Registrazione</title>
 </head>
 <body>
 <div id="logo">

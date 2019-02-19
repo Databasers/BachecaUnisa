@@ -2,13 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">.lw { font-size: 60px; }</style>
-<style type="text/css">.lw { font-size: 60px; }</style>
-
-<style type="text/css">.lw { font-size: 60px; }</style>
+<head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 <title>HTML, CSS and JavaScript demo</title>
 
   <style>

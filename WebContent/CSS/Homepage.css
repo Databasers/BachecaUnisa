@@ -8,12 +8,14 @@ body, html {
 }
 
 #listaAnnunci{
+
 margin-top: 20px;
 margin-left:20px;
+
 }
 
 
-#listaRecensioni{
+#listaProfili{
 
 margin-top: 20px;
 margin-left:20px;
@@ -21,7 +23,7 @@ display:none;
 
 }
 
-#tabAnnunci, #tabRecensioni {
+#tabAnnunci, #tabProfilo{
 	background-color: #ddd;
 	border: none;
 	color: black;
@@ -31,7 +33,6 @@ display:none;
 	font-size: 14px;
 	width: 150px;
 	height: 35px;
-	
 margin-top: 20px;
 margin-left:20px;
 }

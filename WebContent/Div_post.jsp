@@ -1,52 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">
-</style>
-
-
-<style>
-.lw { font-size: 60px; }
-.adcon {
-  border-style: solid;
-  height: 200px;
-  width: 100%;
-}
-.txt {
-  border-style: solid;
-  height: 150px;
-  width: 55%;
-  margin: 13px;
-  float: left;
-}
-.viewbutton {
-  position: relative;
-  float: right;
-  margin: 3%;
-  height: 25%;
-  width: 12%;
-}
-.adavat{
-  border-radius: 50%;
-  width: 12%;
-  height: 66%;
-  float: left;
-  margin: 2%;
-}
-
-ul { 
-  display: block;
-  list-style-type: none;
-}
-
-li{
-  margin: 10px;
-  position: relative;
- 
-}
-
-</style>
+<head>
+<link rel="stylesheet" type="text/css" href="CSS/Div_post.css">
 <meta charset="ISO-8859-1">
-<title>login</title>
+<title>Div_post</title>
 </head>
 <body>
   
