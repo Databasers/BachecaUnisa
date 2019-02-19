@@ -31,6 +31,8 @@ if(lista2 == null) {
   }
   response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=stampaUtenti&numPagina=" + numPagina.toString());
 }
+request.getSession().removeAttribute("arisultato");
+request.getSession().removeAttribute("urisultato");
 %>
 <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>
 <button id="tabProfilo" onclick="switchProfilo()">Profilo</button>

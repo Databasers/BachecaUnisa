@@ -10,25 +10,21 @@
 </head>
 <body>
 
-    <%String username = (String) request.getSession().getAttribute("Username");
-      if(username == null){
-                System.out.println("Username non trovato");
-                username = "Erlal";
-      }
-      System.out.println(username);
-    %>
   <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
     <%
       Utente h = (Utente) request.getSession().getAttribute("utenteTrovato");
+      String username = null;
       if (h == null) {
         SessioneUtente u = (SessioneUtente) request.getSession().getAttribute("Utente");
-        response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&username=" + u.getUsername());
+        response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=crea&username=" + u.getUsername());
       } else if (h.getNumAnnunci() > 4) {
      %>
     <script type="text/javascript">
      $("input[name=azione]").prop("disabled", true);
     </script>
-    <%} %>
+    <%} else {
+      username = h.getUsername();
+    }%>
     
     <h1 class="titlena">Crea Nuovo Annuncio</h1>
     <form class="form-inline" id="AnnuncioForm">

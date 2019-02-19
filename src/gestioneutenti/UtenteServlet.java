@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UtenteServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
+  private static final String DEFAULT_DESCRIPTION = "Questo utente non ha ancora scritto una descrizione :(";
   UtenteManager utenteManager = new UtenteManager();
 
 
@@ -46,10 +47,16 @@ public class UtenteServlet extends HttpServlet {
         SessioneUtente l = (SessioneUtente) request.getSession().getAttribute("Utente");
         Utente u = prelevautente(request.getParameter("username"));
         request.getSession().setAttribute("utenteTrovato", u);
+        System.out.println(u.getUsername() + " == " + l.getUsername());
         if (u.getUsername().equalsIgnoreCase(l.getUsername())) {
-          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+          if (request.getParameter("luogo").equalsIgnoreCase("crea")) {
+            response.sendRedirect(request.getContextPath() + "/CreaNuovoAnnuncio.jsp");
+          } else {
+            response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+          }
+        } else {
+          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp");
         }
-        response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp");
       }
       if (azione.equalsIgnoreCase("rimuoviUtente")) {
         if (sessione.getRuolo().equals("Gestore")) {
@@ -92,7 +99,8 @@ public class UtenteServlet extends HttpServlet {
           String sesso = request.getParameter("sesso");
           String password = request.getParameter("password");
           creaUtente(username, nome, cognome, sesso, password, false);
-          Utente u = new Utente(username, nome, cognome, sesso, password, null, 0, false);
+          Utente u = new Utente(username, nome, cognome, sesso, password, DEFAULT_DESCRIPTION,
+              0, false);
           SessioneUtente su = new SessioneUtente(u);
           request.getSession().setAttribute("Utente",su);
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");

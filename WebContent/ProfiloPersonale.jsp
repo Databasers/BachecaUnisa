@@ -1,3 +1,5 @@
+<%@page import="gestioneutenti.Utente"%>
+<%@page import="gestioneutenti.SessioneUtente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -34,23 +36,32 @@
 			</label>
 		</div>
     
-  
+  <%
+    Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
+    if (u == null) {
+      SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+      response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&username=" + su.getUsername());
+    } else {
+      request.getSession().removeAttribute("utenteTrovato");
+  %>
 
   <div class="utentetxt">
     <img id="avatar" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
-    <h1 id="Utenteinfo">Nome Utente<br>
-Indirizzo<br>
-Provincia</h1>
+    <h1 id="Utenteinfo"><%=u.getUsername()%></h1>
+    <h3><%=u.getNome() %> <%=u.getCognome() %></h3>
   </div>
    
    <div style="text-align:right">
-   <button id="modPro" onclick="location.href = 'modificaProfilo.jsp';">Modifica Profilo</button> 
+   <button id="modPro" onclick="location.href = 'modificaProfilo.jsp'">Modifica Profilo</button> 
    </div>
-<textarea id="textarea" disabled="disabled">Qui andrà la descrizione dell'utente.</textarea>
+<textarea id="textarea" disabled="disabled"><%=u.getDescrizione() %></textarea>
     
- <button id="visFeed" onclick="location.href = 'VisualizzaFeedback.jsp';">Visualizza Feedback</button>
+ <button id="visFeed" onclick="location.href = 'VisualizzaFeedback.jsp'">Visualizza Feedback</button>
   
   
-  
+  <%} %>
+</body>
 
-<script>// Write JavaScript here </script><script>// Write JavaScript here </script><script>// Write JavaScript here </script></body>
+
+
+

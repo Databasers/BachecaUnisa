@@ -17,6 +17,7 @@
     if (u == null) {
       response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&username=" + request.getParameter("username"));
     } else {
+      request.getSession().removeAttribute("utenteTrovato");
   %>
  <h1 class="tit">Valutazione:</h1> 
   
@@ -51,7 +52,7 @@
     <h3><%=u.getNome() %> <%=u.getCognome() %></h3>
   </div>
   
-<textarea id="textarea" disabled="disabled">Qui andrà la descrizione dell'utente.</textarea>
+<textarea id="textarea" disabled="disabled"><%=u.getDescrizione() %></textarea>
   
  <span style="width: 49%; text-align:left">
  <button id="visAnn" onclick="location.href = 'VisualizzaAnnunci.jsp';">Visualizza Annunci</button>
