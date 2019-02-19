@@ -231,7 +231,7 @@ public class UtenteManager {
     PreparedStatement preparedStatement = null;
 
     String updateQuery = "UPDATE " + TABLENAME
-        + " SET Nome = ?, Cognome = ?, Password = ?, Descrizione = ? "
+        + " SET Nome = ?, Cognome = ?, Password = ?, Descrizione = ? , NumAnnunci = ? "
         + " WHERE Username = ?";
 
     try {
@@ -241,7 +241,8 @@ public class UtenteManager {
       preparedStatement.setString(2, u.getCognome());
       preparedStatement.setString(3, u.getPassword());
       preparedStatement.setString(4, u.getDescrizione());
-      preparedStatement.setString(5, u.getUsername());
+      preparedStatement.setInt(5, u.getNumAnnunci());
+      preparedStatement.setString(6, u.getUsername());
       
       System.out.println("doUpdate: " + preparedStatement.toString());
       preparedStatement.executeUpdate();

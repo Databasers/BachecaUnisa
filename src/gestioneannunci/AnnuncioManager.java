@@ -328,7 +328,7 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp;
     
-    String sql = "SELECT * FROM " + TABLENAME + " WHERE Username = ?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Utente_Username = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
