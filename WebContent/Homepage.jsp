@@ -7,6 +7,7 @@
 <meta charset="ISO-8859-1">
 <title>Homepage</title>
 <link rel="stylesheet" type="text/css" href="CSS/Homepage.css">
+<script type="text/javascript" src ="jquery.js"></script>
 </head>
 <body>
  <%@ include file="barraLEFTv2.jsp" %>
@@ -34,7 +35,7 @@ if(lista2 == null) {
 <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>
 <button id="tabProfilo" onclick="switchProfilo()">Profilo</button>
 
-<div id="listaAnnunci">
+<div id="listaAnnunci" name="listaAnnunci">
 <%for(Annuncio x : lista) {%>
    <div class = "annuncio">
     <div class = "Titolo">
@@ -54,7 +55,7 @@ if(lista2 == null) {
 </div>
 
 
-<div id="listaProfili">
+<div id="listaProfili" name="listaProfili">
 <% if (lista2 != null){
     for(Utente x : lista2) {%>
    <div class = "annuncio">
@@ -84,13 +85,13 @@ if(lista2 == null) {
 
 <script type="text/javascript">
 function switchAnnunci() {
-	$("#listaProfili").hide();
-	$("#listaAnnunci").fadeIn();
+	$("div[name=listaProfili]").hide();
+	$("div[name=listaAnnunci]").fadeIn();
 	}
 
 function switchProfilo() {
-	$("#listaAnnunci").hide();
-	$("#listaProfili").fadeIn();
+	$("div[name=listaAnnunci]").hide();
+	$("div[name=listaProfili]").fadeIn();
 	}
 
 

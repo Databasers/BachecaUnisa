@@ -113,8 +113,10 @@ public class AnnunciServlet extends HttpServlet {
 
 
       if (azione.equalsIgnoreCase("visualizzaAnnuncio")) {
+        System.out.println("Abbiamo aperto il metodo corretto");
         int id = Integer.parseInt(request.getParameter("id"));
         Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);
+        System.out.println(annuncioTrovato.getUsernameUtente());
         request.getSession().setAttribute("annuncioTrovato", annuncioTrovato);
         response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp?id=" + id);
       }

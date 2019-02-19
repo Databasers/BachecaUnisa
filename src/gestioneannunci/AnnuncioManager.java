@@ -225,7 +225,7 @@ public class AnnuncioManager {
     Annuncio temp = new Annuncio();
     String str = Integer.toString(id);
 
-    String sql = "SELECT* FROM " + TABLENAME + " WHERE id = ?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE id = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -241,7 +241,7 @@ public class AnnuncioManager {
         temp.setDescrizione(rs.getString("descrizione"));
         temp.setDipartimento(rs.getString("dipartimento"));
         temp.setTipologia(rs.getBoolean("tipologia"));
-        temp.setUsernameUtente(rs.getString("username"));
+        temp.setUsernameUtente(rs.getString("Utente_Username"));
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
