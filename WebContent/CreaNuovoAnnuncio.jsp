@@ -78,7 +78,7 @@
   
     <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true"></textarea>
     
-    <input type="button" value="Crea annuncio" class="sfdbna" onclick="check()">
+    <input type="submit" value="Crea annuncio" class="sfdbna" onclick="check()">
     
     <script>
   function ceck() {
