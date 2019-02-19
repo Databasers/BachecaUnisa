@@ -2,102 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">.lw { font-size: 60px; }</style>
-<style type="text/css">.lw { font-size: 60px; }</style>
-
-<style type="text/css">.lw { font-size: 60px; }</style>
+<head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 <title>Profilo Personale</title>
-  <style> 
-
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
-
-    .tit{
-           
-      width: 123px;
-      position: absolute;
-    }
-
-    #avatar{
-border-radius: 50%;
-width: 150px;
-height:150px;
-margin-left: auto;
-margin-right: auto;
-      position: relative;
-}
-    
-    #textarea{
-    width: 100%;
-      height: 40%;
-      overflow: auto;
-      height: 300px;
-      
-    }
-    
-    
- .utentetxt{
-   text-align: center;
-  
-    }
-    .txtpresent{
-    margin: 2%;
-    border-style: solid;
-    height: 50%;
-    min-height: 250px;
-    overflow-y: auto;
-}
-    #visFeed{
-    
-    margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-	text-align: center;
-	
-        }
-        
-         #modPro{
-    display: block;
-    width: 15%;
-    
-    
-	
-        }
-    
-        .star-rating {
-    direction: rtl;
-    display: inline-block;
-    padding: 20px;
-        margin-top: 32px;
-      float: left;
-      position: absolute;
-}
-
-.star-rating input[type=radio] {
-    display: none
-}
-
-.star-rating label {
-    color: #bbb;
-    font-size: 18px;
-    padding: 0;
-    cursor: pointer;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out
-}
-
-.star-rating label:hover,
-.star-rating label:hover ~ label,
-.star-rating input[type=radio]:checked ~ label {
-    color: #f2b600
-}
-  </style>
- 
+<link rel="stylesheet" type="text/css" href="CSS/ProfiloPersonale.css"
 </head>
 <body>
   <%@ include file="barraLEFTv2.jsp" %>
