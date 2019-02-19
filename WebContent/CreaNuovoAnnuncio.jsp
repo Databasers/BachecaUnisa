@@ -39,7 +39,7 @@
                         <option value="3">Farmacia</option>
                         <option value="4">Lettere</option>
                 </select>
-                <input type="text" name="titolo" placeholder="Titolo" required="required">
+                <input type="text" class="inputtitle" name="titolo" placeholder="Titolo" required="required">
                 <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
                 <input type="hidden" name="usernameUtente" value="<%=username%>">
                 <input type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
