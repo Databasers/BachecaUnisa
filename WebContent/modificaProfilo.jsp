@@ -78,6 +78,7 @@ width: 100%;
                     var cog = $("input[name = cognome]").val();
                     var ss = $("select[name = sesso]").val();
                     var user = $("input[name = username]").val();
+		    var descrizione= $("input[name = descrizioneText]").val();
                     var pas = $("input[name = password]").val();
                     var cpass = $("input[name = confpassword]").val();
                     var rego = $("input[name = ceckbox]").prop("checked");
@@ -90,12 +91,12 @@ width: 100%;
                  
                     } else {
                     var azione = "/BACHECAUNISA/UtenteServlet?azione=creaUtente&username=" + user +
-                                                "&cognome=" + cog + "&sesso=" + ss + "&nome=" + nom + "&password=" + pas;
+                                                "&cognome=" + cog + "&sesso=" + ss + "&nome=" + nom + "&password=" + pas;  //aggiungi la descrizione qui da qualche parte
 
                     console.log(azione + "");
                     const elem = document.getElementById("modProfilo");
                     elem.action = azione;
-                    console.log(elem.action + " è l'azione");
+                    console.log(elem.action + " Ã¨ l'azione");
                     elem.submit();
                     }
                 }
