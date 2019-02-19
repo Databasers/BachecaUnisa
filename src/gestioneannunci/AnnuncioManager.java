@@ -29,18 +29,13 @@ public class AnnuncioManager {
     rs.first();
     ArrayList<Annuncio> lista = new ArrayList<Annuncio>();
     Annuncio temp;
-    System.out.println("Inizio for");
     //Sposta il cursore alla posizione corretta
     //Qualcuno si faccia qualche simulazione per vedere se si muove nelle posizioni giuste
     for (int i = 0; i < numPagina * PAGINADIM; i++) {
-      System.out.print(i);
       rs.next();
     }
-    System.out.println("Inizio secondo for");
-    //Prende i prossimi 10 Annunci e li aggiunge alla lista
-    //Again, fare conti per vedere se va
+    
     for (int i = 0; i < 10; i++) {
-      System.out.print(i);
       if (rs.isAfterLast()) {
         return lista;
       }
@@ -204,7 +199,7 @@ public class AnnuncioManager {
       System.out.println("Query: " + preparedStatement.toString());
 
       ResultSet rs = preparedStatement.executeQuery();
-      while (rs.next()) {
+      if (rs.first()) {
         temp = listaAnnunci(rs, numPagina);
       } 
     } finally {
