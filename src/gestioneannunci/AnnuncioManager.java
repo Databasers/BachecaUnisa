@@ -63,26 +63,29 @@ public class AnnuncioManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     
-    String sql = "INSERT INTO " + TABLENAME + "VALUES(?,?,?,?,null, null, ?)";
+    String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,?,?,0, null, ?)";
     
     
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
-      
-      preparedStatement.setString(0, annuncio.getDipartimento());
-      preparedStatement.setString(1, annuncio.getTitolo());
-      preparedStatement.setString(2, annuncio.getDescrizione());
+      String dip = annuncio.getDipartimento();
+      if (dip == null) {
+        dip = "Informatica";
+      }
+      preparedStatement.setString(1, dip);
+      preparedStatement.setString(2, annuncio.getTitolo());
+      preparedStatement.setString(3, annuncio.getDescrizione());
       int tip;
       if (annuncio.isTipologia()) {
         tip = 1;
       } else {
         tip = 0;
       }
-      preparedStatement.setInt(3, tip);
-      preparedStatement.setString(6, annuncio.getUsernameUtente());
-      
+      preparedStatement.setInt(4, tip);
+      preparedStatement.setString(5, annuncio.getUsernameUtente());
+      System.out.println(preparedStatement.toString());
       preparedStatement.executeUpdate();
       
       connection.commit();

@@ -41,8 +41,9 @@ public class AnnunciServlet extends HttpServlet {
 
     try {
       String azione = request.getParameter("azione");  
-      int numPagina = Integer.parseInt(request.getParameter("numPagina"));
+      System.out.println(azione);
       if (azione.equalsIgnoreCase("stampaAnnunci")) {
+        int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         String filtro = request.getParameter("filtro");
         if(filtro.equalsIgnoreCase("tipologia")) {
           String tipo = request.getParameter("tipologia");
@@ -58,7 +59,7 @@ public class AnnunciServlet extends HttpServlet {
           request.getSession().setAttribute("arisultato", risultato);
         
         } else if(filtro.equalsIgnoreCase("utente")) {
-          String utente = request.getParameter("username");
+          String utente = request.getParameter("usernameUtente");
           ArrayList<Annuncio> risultato = recuperaPerUtente(utente, numPagina);
           request.getSession().setAttribute("arisultato", risultato);
           
@@ -80,7 +81,7 @@ public class AnnunciServlet extends HttpServlet {
         } else {
           if (usernameLog.equalsIgnoreCase(username)) {
             rimuoviAnnuncio(id);
-            response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?");
+            response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp?");
             //TODO Ogni profilo utente deve avere l'id
           }
         }
@@ -93,7 +94,7 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (usernameLog.equals(username)) {
           modificaAnnuncio(id, titolo, descrizione);
-          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp"); //TODO
+          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp"); //TODO
         }
       }
 
@@ -105,7 +106,7 @@ public class AnnunciServlet extends HttpServlet {
           String descrizione = request.getParameter("descrizione");
           boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
           creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
-          response.sendRedirect(request.getContextPath() + "ProfiloUtente.jsp");  //TODO
+          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");  //TODO
         }
       }
 

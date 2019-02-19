@@ -55,10 +55,18 @@
 <title>login</title>
 </head>
 <body>
+
+    <%String username = (String) request.getSession().getAttribute("Username");
+      if(username == null){
+                System.out.println("Username non trovato");
+                username = "Default";
+      }
+      System.out.println(username);
+    %>
   <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
     
     <h1 class="titlena">Crea Nuovo Annuncio</h1>
-    <form class="togna" name="AnnuncioForm">
+    <form class="togna" id="AnnuncioForm">
   <input type="radio" name="tipologia" value="Gruppo" checked="checked"> Gruppo di studio
       <br>
       <br>
@@ -78,35 +86,9 @@
   
     <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
     
-    <input type="submit" value="Crea annuncio" class="sfdbna" onclick="check()">
+    <input type="hidden" name="usernameUtente" value="<%=username%>">
     
-    <%String username = (String) request.getSession().getAttribute("Username");
-      if(username == null){
-                System.out.println("Username non trovato");
-                username = "Default";
-      }
-      System.out.println(username);
-    %>
-    <script>
-  function check() {
-   var tipologia = $("input[name=tipologia]:selected").val();
-   var dipartimento;
-   if(tipologia === "Tutorato"){
-      dipartimento = $("select[name=Dipartimento]").val();
-      } else {
-        dipartimento = "Informatica";
-      }
-   var titolo = $("input[name=titolo]").val();
-   var descrizione = $("textarea[name=descrizione]").val();
-   var username = $("input[name=Username]").val();
-   console.log(tipologia + " " + titolo + " " + descrizione);
-   
-     var azione = "/BACHECAUNISA/AnnunciServlet?azione=creaAnnuncio&usernameUtente=" + username + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
-     console.log(azione);
-     $("form[name=AnnuncioForm]").action = azione;
-     $("form[name=AnnuncioForm]").submit();
-   
-  }
+    <input type="submit" name="azione" value="creaAnnuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
   </script>
         </form>
   </div>
