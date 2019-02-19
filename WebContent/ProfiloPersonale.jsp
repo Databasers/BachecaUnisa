@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Profilo Personale</title>
-<link rel="stylesheet" type="text/css" href="CSS/ProfiloPersonale.css"
+<link rel="stylesheet" type="text/css" href="CSS/ProfiloPersonale.css">
 </head>
 <body>
   <%@ include file="barraLEFTv2.jsp" %>

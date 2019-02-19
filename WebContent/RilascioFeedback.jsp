@@ -1,86 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head><style type="text/css">.lw { font-size: 60px; }</style>
-
-<style type="text/css">.lw { font-size: 60px; }</style>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="CSS/RilascioFeedback.css">
 
 <title>Rilascio Feedback</title>
-
-  <style>
-
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
-
-    .tit{
-      margin-top:23px ;
-      
-      width: 123px;
-      position: absolute;
-    }
-    
-    #avatar{
-  display: block;
-border-radius: 50%;
-width: 150px;
-height:150px;
-float: left;
-      margin-bottom: 100px;
-}
-    
-    #textarea{
-    width: 100%;
-      min-height: 300px;
-      overflow: auto;
-      
-    }
-    
-    
- .utentetxt{
-   text-align: center;
-  
-    }
-    .txtpresent{
-    margin: 2%;
-    border-style: solid;
-    height: 50%;
-    min-height: 250px;
-    overflow-y: auto;
-}
-    #visualizzafeed{
-    margin-top: 42px;
-      float: right;
-    }
-    
-    .star-rating {
-    direction: rtl;
-    display: inline-block;
-    padding: 20px;
-        margin-top: 32px;
-}
-
-.star-rating input[type=radio] {
-    display: none
-}
-
-.star-rating label {
-    color: #bbb;
-    font-size: 18px;
-    padding: 0;
-    cursor: pointer;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out
-}
-
-.star-rating label:hover,
-.star-rating label:hover ~ label,
-.star-rating input[type=radio]:checked ~ label {
-    color: #f2b600
-}
-  </style>
-  
 </head>
 <body>
   <img id="avatar" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
