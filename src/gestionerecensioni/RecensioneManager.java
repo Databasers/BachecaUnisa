@@ -27,15 +27,16 @@ public class RecensioneManager {
   public void creaRecensione(Recensione recensione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    
-    String sql = "INSERT INTO " + TABLENAME + "VALUES(" + recensione.getDescrizione()
-        + "," + recensione.getMittente() + "," + recensione.getId()
-        + "," + recensione.getDestinatario() + "," + recensione.getValutazione();
-    
+
     try {
+      String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,null,?,?)";
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
-      
+      preparedStatement.setString(1, recensione.getDescrizione());
+      preparedStatement.setString(2, recensione.getMittente());
+      preparedStatement.setString(3, recensione.getDestinatario());
+      preparedStatement.setInt(4, recensione.getValutazione());
+    
       preparedStatement.executeUpdate();
       connection.commit();
     } finally {
@@ -191,7 +192,7 @@ public class RecensioneManager {
   public void modificaRecensione(Recensione recensione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    String sql = "UPDATE " + TABLENAME + "SET Descrizione = ?, Valutazione = ?"
+    String sql = "UPDATE " + TABLENAME + " SET Descrizione = ?, Valutazione = ?"
         + " WHERE ID = ?";
     
     try {

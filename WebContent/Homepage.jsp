@@ -72,7 +72,8 @@ request.getSession().removeAttribute("urisultato");
     
     <div class = "btn">
     <form method= "post">
-      <button type="submit" formaction="/BACHECAUNISA/ProfiloUtente.jsp?username=<%=x.getUsername()%>">
+    <input type="hidden" name="username" value="<%=x.getUsername()%>">
+    <button type="submit"  formaction="/BACHECAUNISA/ProfiloUtente.jsp">
        Apri
       </button>
 </form>

@@ -132,7 +132,7 @@ public class SegnalazioneManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Segnalazione> temp = null;
    
-    String sql = "SELECT* FROM " + TABLENAME;
+    String sql = "SELECT * FROM " + TABLENAME;
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -192,7 +192,7 @@ public class SegnalazioneManager {
     Segnalazione temp = new Segnalazione();
     String str = Integer.toString(id);
 
-    String sql = "SELECT* FROM " + TABLENAME + " WHERE id = ?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE id = ?  ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();

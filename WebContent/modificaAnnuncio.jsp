@@ -43,14 +43,14 @@
 
 <script>
 function ceck() {
-	   var tipologia = $(input[name="tipologia"]:selected).val());
+	   var tipologia = $("input[name=tipologia]:selected").val());
 	   var dipartimento;
 	   if(tipologia == "Tutorato"){
 	      dipartimento = $(select[name="Dipartimento"]).val();
 	      } else {
 	        dipartimento = "Informatica";
 	      }
-	   var titolo = $(label[name="titolo"]).val();
+	   var titolo = $("label[name=titolo]").val();
 	   var descrizione = $(div[name="descrizione"]).val();
 	   
 	   var azione = "/BACHECAUNISA/gestioneannunci/AnnunciServlet?action=modificaAnnuncio&usernameUtente=" + session.getAttribute("username") 

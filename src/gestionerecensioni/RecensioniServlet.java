@@ -53,11 +53,11 @@ public class RecensioniServlet extends HttpServlet {
       if (azione == "rimuoviRecensione") {
         int id = Integer.parseInt(request.getParameter("id"));
         String username = request.getParameter("usernameUtente");
-        if (sessione.getRuolo().equals("Gestore")) {
+        if (sessione.getRuolo().equalsIgnoreCase("Gestore")) {
           rimuoviRecensione(id);
           response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore");
         } else {
-          if (usernameLog.equals(username)) {
+          if (usernameLog.equalsIgnoreCase(username)) {
             rimuoviRecensione(id);
             response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
           }
@@ -71,21 +71,24 @@ public class RecensioniServlet extends HttpServlet {
         int valutazione = Integer.parseInt(request.getParameter("valutazione"));
         String descrizione = request.getParameter("descrizione");
         String username = request.getParameter("usernameUtente");
-        if (usernameLog.equals(username)) {
+        if (usernameLog.equalsIgnoreCase(username)) {
           modificaRecensione(id, valutazione, descrizione);
           response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
         }
       }
       
 
-      if (azione == "creaRecensione") {
-        if (sessione.getRuolo().equals("Utente")) {
-          int valutazione = Integer.parseInt(request.getParameter("valutazione"));
+      if (azione.equalsIgnoreCase("creaRecensione")) {
+        if (sessione.getRuolo().equalsIgnoreCase("Utente")) {
+          int valutazione = Integer.parseInt(request.getParameter("rating"));
           String descrizione = request.getParameter("descrizione");
           String mittente = request.getParameter("mittente");
           String destinatario = request.getParameter("destinatario");
+          System.out.println("CREOLARECENSIONE");
+          System.out.println(valutazione + " " + descrizione + " " + mittente + " " + destinatario);
           creaRecensione(valutazione, descrizione, mittente, destinatario);
-          response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
+          System.out.println("\n RECENSIONE CREATA \n");
+          response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         }
       }
     }    catch (SQLException e) {

@@ -39,6 +39,9 @@
 <button type="submit" formaction="/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&id=<%=x.getId()%>">
 Apri
 </button>
+<button type="submit" formaction="/BACHECAUNISA/modificaAnnuncio.jsp?id=<%=x.getId()%>">
+Modifica
+</button>
 </form>
 </div>
 </div>

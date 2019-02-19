@@ -117,7 +117,7 @@ public class UtenteManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Utente temp = new Utente();
-    String sql = "SELECT * FROM " + TABLENAME + " WHERE Username=?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Username = ?  ";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();

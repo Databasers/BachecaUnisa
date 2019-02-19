@@ -44,20 +44,32 @@ public class UtenteServlet extends HttpServlet {
       }
 
       if (azione.equalsIgnoreCase("prelevaUtente")) {
+        System.out.println("In Preleva utente");
         SessioneUtente l = (SessioneUtente) request.getSession().getAttribute("Utente");
         Utente u = prelevautente(request.getParameter("username"));
+        System.out.println("Presi i due parametri");
         request.getSession().setAttribute("utenteTrovato", u);
+        l.getUsername();
+        u.getUsername();
         System.out.println(u.getUsername() + " == " + l.getUsername());
-        if (u.getUsername().equalsIgnoreCase(l.getUsername())) {
-          if (request.getParameter("luogo") != null) {
-            response.sendRedirect(request.getContextPath() + "/CreaNuovoAnnuncio.jsp");
-          } else {
-            response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
-          }
+        if (request.getParameter("luogo").equalsIgnoreCase("crea")) {
+          System.out.println("Luogo = crea");
+          response.sendRedirect(request.getContextPath() + "/CreaNuovoAnnuncio.jsp");
+        } else if (request.getParameter("luogo").equalsIgnoreCase("pro")) {
+          System.out.println("Luogo = profilo");
+          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+        } else if (request.getParameter("luogo").equalsIgnoreCase("feed")) { 
+          System.out.println("Luogo = feed");
+          System.out.println(request.getContextPath() + "/RilascioFeedback.jsp?username="
+              + u.getUsername());
+          response.sendRedirect(request.getContextPath() + "/RilascioFeedback.jsp?username="
+              + u.getUsername());
         } else {
-          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp");
+          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?username="
+              + u.getUsername());
         }
       }
+      
       if (azione.equalsIgnoreCase("rimuoviUtente")) {
         if (sessione.getRuolo().equals("Gestore")) {
           String username = request.getParameter("username");
@@ -130,7 +142,10 @@ public class UtenteServlet extends HttpServlet {
 
 
 
-
+  /**
+   * Questo metodo incrementa il contatore degli annunci di un utente.
+   * @param request
+   */
   private void aggiungiAnnuncio(HttpServletRequest request) throws SQLException {
     SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
     Utente u = prelevautente(su.getUsername());
@@ -139,8 +154,13 @@ public class UtenteServlet extends HttpServlet {
     
   }
 
-
+  /**
+   * Questo metodo preleva un singolo utente dal database.
+   * @param parameter l'username dell'utente
+   * @return L'utente selezionato
+   */
   private Utente prelevautente(String parameter) throws SQLException {
+    System.out.println("Metodo Preleva utente iniziato");
     return utenteManager.recuperaPerUsername(parameter);
   }
 
