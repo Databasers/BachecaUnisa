@@ -11,9 +11,10 @@
 </head>
 <body>
   <%@ include file="barraLEFTv2.jsp" %>
- <h1 class="tit">Valutazione:</h1> 
+ 
   
   	<div class="star-rating">
+            <h1 class="tit">Valutazione</h1> 
 			<input id="star-5" type="radio" name="rating" value="star-5">
 			<label for="star-5" title="5 stars">
 					<i class="active fa fa-star" aria-hidden="true"></i>
@@ -45,19 +46,14 @@
       request.getSession().removeAttribute("utenteTrovato");
   %>
 
-  <div class="utentetxt">
-    <img id="avatar" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
-    <h1 id="Utenteinfo"><%=u.getUsername()%></h1>
-    <h3><%=u.getNome() %> <%=u.getCognome() %></h3>
-  </div>
-   
-   <div style="text-align:right">
-   <button id="modPro" onclick="location.href = 'modificaProfilo.jsp'">Modifica Profilo</button> 
-   </div>
-<textarea id="textarea" disabled="disabled"><%=u.getDescrizione() %></textarea>
-    
- <button id="visFeed" onclick="location.href = 'VisualizzaFeedback.jsp'">Visualizza Feedback</button>
-  
+    <div class="utentetxt">
+        <img id="avatar" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
+        <h1 id="Utenteinfo"><%=u.getUsername()%></h1>
+        <h3><%=u.getNome() %> <%=u.getCognome() %></h3>
+        <button id="modPro" onclick="location.href = 'modificaProfilo.jsp'">Modifica Profilo</button> 
+        <textarea id="textarea" disabled="disabled"><%=u.getDescrizione() %></textarea>
+        <button id="visFeed" onclick="location.href = 'VisualizzaFeedback.jsp'">Visualizza Feedback</button>
+    </div>
   
   <%} %>
 </body>

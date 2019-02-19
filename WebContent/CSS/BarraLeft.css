@@ -1,40 +1,41 @@
-body, html {
-	height: 100%;
-	font-family: Arial, Helvetica, sans-serif;
+body, html 
+{
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-* {
-	box-sizing: border-box;
+* 
+{
+    box-sizing: border-box;
 }
 
-#side {
-	float: left;
-	padding: 2%;
+#side 
+{
+    float: left;
+    padding: 2%;
 }
 
-#avatar {
-	display: block;
-	border-radius: 50%;
-	width: 150px;
-	height: 150px;
-	margin: 2px auto 0;
+#avatar 
+{
+    display: block;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin: 2px auto 0;
 }
 
-.button {
-	background-color: #ddd;
-	border: none;
-	color: black;
-	padding: 15px 30px;
-	text-align: center;
-	text-decoration: none;
-	display: block;
-	margin: 0px auto 0;
-	cursor: pointer;
-	border-radius: 16px;
-	font-size: 14px;
-	width: 150px;
+.button 
+{
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+    padding:10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
-.button:hover {
-	background-color: #f1f1f1;
+.button:hover 
+{
+    background-color: #f1f1f1;
 }
