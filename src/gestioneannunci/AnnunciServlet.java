@@ -98,7 +98,7 @@ public class AnnunciServlet extends HttpServlet {
         }
       }
 
-      if (azione.equalsIgnoreCase("creaAnnuncio")) {
+      if (azione.equalsIgnoreCase("Crea annuncio")) {
         if (sessione.getRuolo().equals("Utente")) {
           String utente = request.getParameter("usernameUtente");
           String dipartimento = request.getParameter("dipartimento");

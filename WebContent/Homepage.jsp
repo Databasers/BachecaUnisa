@@ -41,7 +41,7 @@ if(lista2 == null) {
     <div class = "Titolo">
     <h2><%=x.getTitolo()%></h2>
     </div>
-    <div class = "preview"><%= x.getDescrizione() %></div>
+    <div class = "preview"><%=x.getDescrizione()%></div>
     <div class = "btn">
 <form method= "post">
          <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">
@@ -70,7 +70,7 @@ if(lista2 == null) {
     
     <div class = "btn">
     <form method= "post">
-      <button type="submit" formaction="/BACHECAUNUSA/ProfiloUtente.jsp?username=<%=x.getUsername()%>">
+      <button type="submit" formaction="/BACHECAUNISA/ProfiloUtente.jsp?username=<%=x.getUsername()%>">
        Apri
       </button>
 </form>

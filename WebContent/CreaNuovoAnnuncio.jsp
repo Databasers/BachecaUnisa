@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="gestioneutenti.Utente"%>
+<%@page import="gestioneutenti.SessioneUtente"%>
 <html>
 <head>
 <title>Nuovo Annuncio</title>
@@ -11,11 +13,22 @@
     <%String username = (String) request.getSession().getAttribute("Username");
       if(username == null){
                 System.out.println("Username non trovato");
-                username = "Default";
+                username = "Erlal";
       }
       System.out.println(username);
     %>
   <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
+    <%
+      Utente h = (Utente) request.getSession().getAttribute("utenteTrovato");
+      if (h == null) {
+        SessioneUtente u = (SessioneUtente) request.getSession().getAttribute("Utente");
+        response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&username=" + u.getUsername());
+      } else if (h.getNumAnnunci() > 4) {
+     %>
+    <script type="text/javascript">
+     $("input[name=azione]").prop("disabled", true);
+    </script>
+    <%} %>
     
     <h1 class="titlena">Crea Nuovo Annuncio</h1>
     <form class="form-inline" id="AnnuncioForm">
@@ -38,14 +51,15 @@
 
    <label for="titolo" class="titolo" >Titolo:</label> 
        <input type="text" name="titolo" placeholder="Titolo annuncio" required="required">
-</form>
-
+       
   
     <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
     
     <input type="hidden" name="usernameUtente" value="<%=username%>">
     
-    <input type="submit" name="azione" value="Crea Annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
-  </script>
+    <input type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
+</form>
+
+ 
   </div>
 </body>

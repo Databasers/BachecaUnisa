@@ -42,6 +42,15 @@ public class UtenteServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
       }
 
+      if (azione.equalsIgnoreCase("prelevaUtente")) {
+        SessioneUtente l = (SessioneUtente) request.getSession().getAttribute("Utente");
+        Utente u = prelevautente(request.getParameter("username"));
+        request.getSession().setAttribute("utenteTrovato", u);
+        if (u.getUsername().equalsIgnoreCase(l.getUsername())) {
+          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+        }
+        response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp");
+      }
       if (azione.equalsIgnoreCase("rimuoviUtente")) {
         if (sessione.getRuolo().equals("Gestore")) {
           String username = request.getParameter("username");
@@ -107,6 +116,11 @@ public class UtenteServlet extends HttpServlet {
   }
 
 
+
+
+  private Utente prelevautente(String parameter) throws SQLException {
+    return utenteManager.recuperaPerUsername(parameter);
+  }
 
 
   /**

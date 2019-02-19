@@ -1,3 +1,4 @@
+<%@page import="gestioneutenti.Utente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -11,6 +12,12 @@
 </head>
 <body>
   <%@ include file="barraLEFTv2.jsp" %>
+  
+  <%Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
+    if (u == null) {
+      response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&username=" + request.getParameter("username"));
+    } else {
+  %>
  <h1 class="tit">Valutazione:</h1> 
   
   	<div class="star-rating">
@@ -40,9 +47,8 @@
 
   <div class="utentetxt">
     <img id="avatar" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
-    <h1 id="Utenteinfo">Nome Utente<br>
-Indirizzo<br>
-Provincia</h1>
+    <h1 id="Utenteinfo"><%=u.getUsername()%></h1>
+    <h3><%=u.getNome() %> <%=u.getCognome() %></h3>
   </div>
   
 <textarea id="textarea" disabled="disabled">Qui andrà la descrizione dell'utente.</textarea>
@@ -53,5 +59,9 @@ Provincia</h1>
  <span style="width:50%; text-align: right">
  <button id="riFeed" onclick="location.href = 'RilasciaFeedback.jsp';">Rilascia Feedback</button>
 </span>
+<%} %>
+</body>
 
-<script>// Write JavaScript here </script></body>
+
+
+
