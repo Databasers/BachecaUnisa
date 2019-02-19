@@ -1,58 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Nuovo Annuncio</title>
-<style type="text/css">
-
-.contna{
- border-style: dashed;
-  height: 80%;
-  width: 100%;
-  
-}
-.sfdbna{
-  margin-left: auto;
- margin-right: auto;
-  display: block;
-  margin-bottom: 5%;
-}
-
-.titolo{
-  font-weight: 800;
-  font-size: larger;
-}
-
-.txtna{
-  margin: 2%;
-  border-style: solid;
-  width: 100%;
-  height: 50%;
-  min-height: 250px;
-  overflow-y: auto;
-}
-
-
-
-.titlena{
-  text-align: center;
-}
-
-.togna{
-  margin-left: 7%;
-}
-
-.selectna{
-  margin-left: 7%;
-  margin-top: 20px;
-}
-
-
-.txtna:focus {outline:0;}
-
-</style>
+<title>Nuovo Annuncio</title>
+<link rel="stylesheet" type="text/css" href="CSS/CreaNuovoAnnuncio.css">
 <meta charset="ISO-8859-1">
 <script type="text/javascript" src ="jquery.js"></script>
-<title>login</title>
 </head>
 <body>
 

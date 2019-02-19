@@ -6,39 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Homepage</title>
-<style>
-
-#listaAnnunci{
-
-margin-top: 20px;
-margin-left:20px;
-
-}
-
-
-#listaProfili{
-
-margin-top: 20px;
-margin-left:20px;
-display:none;
-
-}
-
-#tabAnnunci, #tabProfilo{
-	background-color: #ddd;
-	border: none;
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-	border-radius: 16px;
-	font-size: 14px;
-	width: 150px;
-	height: 35px;
-margin-top: 20px;
-margin-left:20px;
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="CSS/Homepage.css">
 </head>
 <body>
 <%
