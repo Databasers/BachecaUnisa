@@ -1,73 +1,102 @@
-body, html {
-	height: 100%;
-	font-family: Arial, Helvetica, sans-serif;
+body
+{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-image: url("IMAGES/bg-reg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-* {
-	box-sizing: border-box;
-}
-
-#container, #logo{
-margin-top: 30px;
-}
-#container{
-padding-top:12px;
-padding-left: 12px;
-display: block;
-  margin-left: auto;
-  margin-right: 56px;
-  float:right;
-  border-style: solid;
-  width: 30%; 
-  height: auto;
-  padding-bottom: 7%;
-}
-    
-.campo{
-  float: right;
-margin-right: 10%;
-width: 50%;
-}
-  
-#logo img{
-display: block;
-margin-left: auto;
-margin-right: auto;
-}
-  
 #logo{
-border-style:solid;
-  width: 50%;
-  height:auto;
-  float: left;
-  margin-left: 3%;
-}
-  
-#faq{
-
-}
-
-#sextext{
     float: left;
-}
-  
- 
-#sex{
-float: right;
-margin-right: 10%;
-width: 50%;
-  }
-  
-#field{
-margin-bottom: 5px;
+    width: 30%;
+    margin: 0 10%;
 }
 
-#sextext,#sex{
-position:relative;
-margin-top:-25px;
+#container
+{
+    float: left; 
+    margin: 5% 10%;
+    width: 30%;
+}
+
+.campo
+{
+    display: block;
+    width: 50%;
+    padding: 10px;
+    margin: 0 auto 20px;
+    border: none;
+    border-radius: 40px;
+    background-color: #f1f1f1;
+    text-align: center;
+    outline: none;
+}
+.campo:focus{
+    background-color: #ddd;
+}
+
+.faqbutton
+{
+    display: block;
+    width: 100px;
+    margin: 10px auto;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+.faqbutton:hover{
+    color: #fff;
+    font-weight: bold;
+}
+  
+.sex{
+    display: block;
+    width: 30%;
+    padding: 5px;
+    margin: 0 auto 20px;
+    border: none;
+    border-radius: 40px;
+    background-color: #f1f1f1;
+    text-align: center;
+    outline: none;
+}
+.regolamento{
+    text-align: center;
+    padding: 20px;
+}
+ .confermaReg 
+{
+    display: inline-block;
+    text-align: center;
+    margin: 0 auto;
+    width: 150px;
+}
+
+ .confermaReg:hover 
+{
+    color: #fff;
+    font-weight: bold;
+}
+
+.checkbox
+{
+    display: inline-block;
+    width: 10px;
 }
 
 #regbutton{
-    float:left;
-
+    display: block;
+    width: 75px;
+    margin: 0 auto;
+    padding:10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+}
+#regbutton:hover{
+    background-color: #DCDCDC;
 }
