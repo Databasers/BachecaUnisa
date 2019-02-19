@@ -13,11 +13,26 @@ body, html {
   width: 100%;
   
 }
-.sfdbna{
-  margin-left: auto;
- margin-right: auto;
-  display: block;
-  margin-bottom: 5%;
+
+
+
+.sfdbna {
+	background-color: #ddd;
+	border: none;
+	color: black;
+	padding: 15px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	margin: 0px auto 0;
+	cursor: pointer;
+	border-radius: 16px;
+	font-size: 14px;
+	width: 150px;
+}
+
+.sfdbna:hover {
+	background-color: #f1f1f1;
 }
 
 .titolo{
@@ -28,7 +43,7 @@ body, html {
 .txtna{
   margin: 2%;
   border-style: solid;
-  width: 100%;
+  width: 85%;
   height: 50%;
   min-height: 250px;
   overflow-y: auto;
@@ -51,3 +66,72 @@ body, html {
 
 
 .txtna:focus {outline:0;}
+
+.custom-select {
+	width: 200px;
+}
+
+
+
+.select-selected {
+	background-color: #ddd;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+	position: absolute;
+	content: "";
+	top: 14px;
+	right: 10px;
+	width: 0;
+	height: 0;
+	border: 6px solid transparent;
+	border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+	border-color: transparent transparent #fff transparent;
+	top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div, .select-selected {
+	color: black;
+	padding: 8px 16px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+	user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+	position: absolute;
+	background-color: #ddd;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+	display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.form-inline {  
+  margin-left: 2%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
