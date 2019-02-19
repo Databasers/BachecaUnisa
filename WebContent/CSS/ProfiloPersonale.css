@@ -30,6 +30,7 @@ h1
 
 #Utenteinfo
 {
+   margin: 2px;
    text-align: center; 
 }
 
@@ -45,7 +46,10 @@ h1
     outline:none;
     background-color: #fff;
 }
-     
+#nomecognome{
+    margin: 2px;
+    text-align: center;
+}    
  .utentetxt
 {   
     float: left;
