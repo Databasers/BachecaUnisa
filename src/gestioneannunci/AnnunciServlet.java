@@ -53,23 +53,30 @@ public class AnnunciServlet extends HttpServlet {
           }
           ArrayList<Annuncio> risultato = recuperaPerTipologia(check, numPagina);
           request.getSession().setAttribute("arisultato", risultato);
+          response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         } else if(filtro.equalsIgnoreCase("dipartimento")) {
           String dipartimento = request.getParameter("dipartimento");
           ArrayList<Annuncio> risultato = recuperaPerDipartimento(dipartimento, numPagina);
           request.getSession().setAttribute("arisultato", risultato);
+          response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         
         } else if(filtro.equalsIgnoreCase("utente")) {
           String utente = request.getParameter("usernameUtente");
           ArrayList<Annuncio> risultato = recuperaPerUtente(utente, numPagina);
           request.getSession().setAttribute("arisultato", risultato);
+          if (request.getParameter("luogo") != null) {
+            response.sendRedirect(request.getContextPath() + "/AnnunciPersonali.jsp");
+          } else {
+            response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
+          }
           
         } else {
           System.out.println("Nessun filtro");
           ArrayList<Annuncio> risultato = stampaAnnunci(numPagina);
           request.getSession().setAttribute("arisultato", risultato);
+          response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
           
         }
-        response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
       }
       if (azione.equalsIgnoreCase("rimuoviAnnuncio")) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -106,13 +113,12 @@ public class AnnunciServlet extends HttpServlet {
           String descrizione = request.getParameter("descrizione");
           boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
           creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
-          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");  //TODO
+          response.sendRedirect(request.getContextPath() 
+              + "/UtenteServlet?azione=aggiungiAnnuncio");  
         }
       }
 
-
-
-      if (azione.equalsIgnoreCase("visualizzaAnnuncio")) {
+      if (azione.equalsIgnoreCase("visualizzannuncio")) {
         System.out.println("Abbiamo aperto il metodo corretto");
         int id = Integer.parseInt(request.getParameter("id"));
         Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);

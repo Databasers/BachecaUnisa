@@ -49,7 +49,7 @@ public class UtenteServlet extends HttpServlet {
         request.getSession().setAttribute("utenteTrovato", u);
         System.out.println(u.getUsername() + " == " + l.getUsername());
         if (u.getUsername().equalsIgnoreCase(l.getUsername())) {
-          if (request.getParameter("luogo").equalsIgnoreCase("crea")) {
+          if (request.getParameter("luogo") != null) {
             response.sendRedirect(request.getContextPath() + "/CreaNuovoAnnuncio.jsp");
           } else {
             response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
@@ -116,6 +116,11 @@ public class UtenteServlet extends HttpServlet {
         doLogout(request, response);
       } 
       
+      if (azione.equalsIgnoreCase("AggiungiAnnuncio")) {
+        aggiungiAnnuncio(request);
+        response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+      }
+      
 
     } catch (Exception exc) {
       exc.printStackTrace();
@@ -124,6 +129,15 @@ public class UtenteServlet extends HttpServlet {
   }
 
 
+
+
+  private void aggiungiAnnuncio(HttpServletRequest request) throws SQLException {
+    SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+    Utente u = prelevautente(su.getUsername());
+    u.setNumAnnunci(u.getNumAnnunci() + 1);
+    utenteManager.modificaUtente(u);
+    
+  }
 
 
   private Utente prelevautente(String parameter) throws SQLException {
