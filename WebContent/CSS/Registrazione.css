@@ -1,0 +1,64 @@
+#container, #logo{
+margin-top: 30px;
+}
+#container{
+padding-top:12px;
+padding-left: 12px;
+display: block;
+  margin-left: auto;
+  margin-right: 56px;
+  float:right;
+  border-style: solid;
+  width: 30%; 
+  height: auto;
+  padding-bottom: 7%;
+}
+    
+.campo{
+  float: right;
+margin-right: 10%;
+width: 50%;
+}
+  
+#logo img{
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+  
+#logo{
+border-style:solid;
+  width: 50%;
+  height:auto;
+  float: left;
+  margin-left: 3%;
+}
+  
+#faq{
+
+}
+
+#sextext{
+    float: left;
+}
+  
+ 
+#sex{
+float: right;
+margin-right: 10%;
+width: 50%;
+  }
+  
+#field{
+margin-bottom: 5px;
+}
+
+#sextext,#sex{
+position:relative;
+margin-top:-25px;
+}
+
+#regbutton{
+    float:left;
+
+}

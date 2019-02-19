@@ -1,70 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>
-Modifica Annuncio
-</title>
-</head><style type="text/css">
-</style>
-
-
-<style>
-
-.contna{
- border-style: solid;
-  height: 80%;
-  width: 100%;
-  text-align:left;
-  
-}
-.sfdbna{
-  margin-left: auto;
- margin-right: auto;
-  display: block;
-  margin-bottom: 5%;
-}
-
-.titolo{
-  font-weight: 800;
-  font-size: larger;
-}
-
-.txtna{
-  border-style: solid;
-  height: 50%;
-  min-height: 250px;
-  overflow-y: auto;
-  width: 90%;
-  margin-right: 10%;
-}
-
-
-
-.titlena{
-  text-align: left;
-}
-
-.togna{
-  margin-left: 7%;
-}
-
-.selectna{
-  margin-left: 7%;
-  margin-top: 20px;
-}
-
-#oldAnnuncio{
-border-style:solid;
-min-height:100px;
-height: 30%;
-width: 100%;
-}
-
-.txtna:focus {outline:0;}
-
-</style>
+<title>Modifica Annuncio</title>
+<link rel="stylesheet" type="text/css" href="CSS/ModificaAnnuncio.css">
 <meta charset="ISO-8859-1">
-<title>login</title>
 </head>
 <body>
   <h3 class="titlena">Stai modificando l'annuncio:</h3>
