@@ -19,7 +19,7 @@
     if (registered != null && registered.equalsIgnoreCase("t")) {%>
             <h3><font color="red">Questo utente esiste già</font></h3>
                 <%}%>
-
+                <div><p id = "error">Roba </p></div>
             <div id="field">   
                 <form id="register" name = "register" class="register" method="Post">
                     <input type="text" placeholder="Nome" class="campo" name="Nome" id = "nome" required="required">
@@ -39,6 +39,17 @@
                             <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
                         </div>
                         <script>
+                        function validateString(stringa){
+                        	if (!(stringa.match(/[a-z0-9A-Z]/))) {
+                                return false;
+                            } else return true;
+                        }
+                        function validateReal(stringa){
+                        	if (!(stringa.match(/[a-zA-Z]/))) {
+                                return false;
+                            } else return true;
+                        }
+                        
                             function registra() {
                                 console.log("Entrati");
                                 var nom = $("input[name = Nome]").val();
@@ -49,8 +60,11 @@
                                 var cpass = $("input[name = confpassword]").val();
                                 var rego = $("input[name = ceckbox]").prop("checked");
 
-
-                                if (pas !== cpass || pas === "" || !rego || nom === "" || cog === "" || user === "" ) {
+                                const err = document.getElementById("error");
+                                if (validateReal(nom) || validateReal(cog) || validateString(user)){
+                                     err.innerHTML = "Non sono permessi caratteri speciali";
+                                     return false;
+                                }else if (pas !== cpass || pas === "" || !rego || nom === "" || cog === "" || user === "" ) {
                                     if (pas !== cpass || pas === "") {
                                         alert("Le password non combaciano");
                                     }
@@ -68,10 +82,11 @@
                                     console.log(elem.action + " è l'azione");
                                     elem.submit();
                                 }
+                                return false;
                             }
 
                         </script>
-                        <input type="submit" value="Registrati" id="regbutton" onclick="registra()"> 
+                        <input type="button" value="Registrati" id="regbutton" onclick="registra()"> 
 
                 </form>
             </div> 
