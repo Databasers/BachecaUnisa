@@ -12,19 +12,19 @@
   <h3>Stai segnalando l'annuncio:</h3>
  <div class="avatarcont"> <img id="avatarannuncio" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
   
-  <p id="textannunciosegn">Offro lezioni di tutorato per l'esame...disponibile giorni...contattare via e-mail</p>
+  <p id="textannunciosegn">Testo della recensione</p>
   
   </div>
   <form id="formSegnaRecensione" method="Post">
    <div class="checkboxes">
-<input type="checkbox" name="segnala1" value="Bike"> L'annuncio contiene un linguaggio volgare o inappropriato.<br>
-<input type="checkbox" name="segnala2" value="Car"> L'annuncio non e' pertinente alla tipologia.<br>
-<input type="checkbox" name="segnala3" value="Boat"> Non e' possibile contattare l'utente che ha fatto l'annuncio.<br>  
-     <input type="checkbox" name="segnala3" value="Boat"> Altro.<br> 
+<input type="checkbox" name="segnala1" value="Bike"> La recensione contiene un linguaggio volgare o inappropriato.<br>
+<input type="checkbox" name="segnala2" value="Car"> La recensione non è pertinente all'annuncio.<br>
+<input type="checkbox" name="segnala3" value="Boat">Non ho mai incontrato l'utente che ha pubblicato la recensione.<br>  
+     <input type="checkbox" name="segnala4" value="Plane"> Altro.<br> 
  </div>
   
  
-    <textarea id="textarea">Qui andra'� la descrizione della segnalazione.</textarea>
+    <textarea id="textarea">Qui andra'  la descrizione della segnalazione.</textarea>
   
   
 <div style="text-align:center">
