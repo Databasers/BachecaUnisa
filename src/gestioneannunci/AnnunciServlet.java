@@ -36,7 +36,7 @@ public class AnnunciServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) 
       throws IOException, ServletException {
 
-    SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("log");
+    SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("Utente");
     String usernameLog = sessione.getUsername();
 
     try {

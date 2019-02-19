@@ -156,8 +156,7 @@ margin-top:-25px;
 
                 </script>
          
-    <input type="submit" value="Registrati" id="regbutton" onsubmit="registra()">   
-	<button id="regbutton" onclick="registra()">Registrati</button>
+                <input type="submit" value="Registrati" id="regbutton" onclick="registra()"> 
 	
 	<br>
 	<br>
