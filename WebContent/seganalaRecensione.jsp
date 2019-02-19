@@ -68,8 +68,27 @@ margin-left: 12px;
     overflow: auto;
     height: 300px;
     
+    
+    
 }
-   
+    #segnala{
+     background-color: #ddd;
+	border: none;
+	color: black;
+	padding: 15px 30px;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	cursor: pointer;
+	border-radius: 16px;
+	font-size: 14px;
+     margin-right: auto;
+     margin-left: auto;
+     display: block;
+     margin-top: 2%;
+      height: 4%;
+      width: 15%;
+    }
   </style>
   
 </head>
@@ -83,6 +102,7 @@ margin-left: 12px;
   <p id="textannunciosegn">Offro lezioni di tutorato per l'esame...disponibile giorni...contattare via e-mail</p>
   
   </div>
+  <form id="formSegnaRecensione" method="Post">
    <div class="checkboxes">
 <input type="checkbox" name="segnala1" value="Bike"> L'annuncio contiene un linguaggio volgare o inappropriato.<br>
 <input type="checkbox" name="segnala2" value="Car"> L'annuncio non e' pertinente alla tipologia.<br>
@@ -94,9 +114,10 @@ margin-left: 12px;
     <textarea id="textarea">Qui andra'  la descrizione della segnalazione.</textarea>
   
   
-
-  <button id="segnala">Segnala</button>
- 
+<div style="text-align:center">
+<input type="submit" value="Segnala" id="segnala" onclick="registra()">
+</div>
+ </form>
   
   
 
