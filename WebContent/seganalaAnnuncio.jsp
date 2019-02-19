@@ -20,11 +20,11 @@
 <input type="checkbox" name="segnala1" value="Bike"> L'annuncio contiene un linguaggio volgare o inappropriato.<br>
 <input type="checkbox" name="segnala2" value="Car"> L'annuncio non e' pertinente alla tipologia.<br>
 <input type="checkbox" name="segnala3" value="Boat"> Non e' possibile contattare l'utente che ha fatto l'annuncio.<br>  
-     <input type="checkbox" name="segnala3" value="Boat"> Altro.<br> 
+     <input type="checkbox" name="segnala4" value="Plane"> Altro.<br> 
  </div>
   
  
-    <textarea id="textarea">Qui andra'  la descrizione della segnalazione.</textarea>
+    <textarea id="textarea">Qui andra'Â  la descrizione della segnalazione.</textarea>
   <div style="text-align:center">
  <input type="submit" value="Segnala" id="segnala" onclick="registra()">
  </div>
