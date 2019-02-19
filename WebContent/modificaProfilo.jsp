@@ -5,31 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Modifica profilo</title>
-<style type="text/css">
-
-{
-
-#descrizione{
-display: inline-block;
-text-align: right;
-
-}
-
-#textareaProfilo{
-
-min-width:400xp;
-min-height: 150px;
-overflow: hidden;
-
-
-}
-#modProfilo{
-float: left;
-width: 100%;
-}
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="CSS/ModificaProfilo.css">
 </head>
 <body>
 <div style="text-align:center">
