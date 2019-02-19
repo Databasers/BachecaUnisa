@@ -74,10 +74,10 @@
 
 
   <select name="Dipartimento">
-     <option>Dipartimento1</option>
-     <option>Dipartimento2</option>
-     <option>Dipartimento3</option>
-     <option>Dipartimento4</option>
+     <option>Informatica</option>
+     <option>Farmacia</option>
+     <option>Chimica</option>
+     <option>Matematica</option>
    </select>
       <br>
       <br>

@@ -1,65 +1,9 @@
 <!DOCTYPE html>
 <%@page import="gestioneannunci.Annuncio"%>
 <html>
-<head><style type="text/css">.lw { font-size: 60px; }</style>
-
-<style type="text/css">.lw { font-size: 60px; }</style>
-
-
-
+<head>
 <title>Visualizza Annuncio</title>
-
-  <style> 
-
-
-h1 { font-size: 1.5em; margin: 10px; }
-
-
-    
-    #avatarannuncio{
-border-radius: 50%;
-width: 150px;
-height:150px;
-margin-left: 12px;
-      margin-bottom: 10px;
-      
-}
-    
-    
- .titleannuncio{
-   border-style: solid;
-   text-align: left;
-      margin: 1%;
-    }
-    .txtannuncio{
-    margin: 1%;
-    border-style: solid;
-    height: 50%;
-    min-height: 250px;
-    overflow-y: auto;
-      font-size: 150%;
-}
-   
-     #segnalaannuncio{
-      text-align: right;
-      margin: 1%;
-    }
-       #modificannuncio{
-      float: right;
-      margin-top: 30px;
-  
-    }
-    
-    #nomeutente{
-      text-align: center;
-      position: absolute;
-      font-size: 150%;
-      font-weight: bolder;
-      margin-left: 50px;
-      margin-top: 30px;
-    }
-  </style>
-  
+<link rel="stylesheet" type="text/css" href="CSS/VisualizzaAnnuncio.css">
 </head>
 <body>
 
