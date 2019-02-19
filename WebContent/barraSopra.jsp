@@ -10,10 +10,11 @@
 
 	<form class="form-inline">
 		<input type="text" id="barraRicerca" name="cerca"
-			placeholder="Cerca annuncio"> <label class="container">Gruppo
-			di studio<input type="radio" checked="checked" name="radio">
-			<span class="checkmark"></span>
-		</label> <label class="container">Tutorato<input type="radio"
+			placeholder="Cerca annuncio"> 
+                <label class="container">Gruppo di studio<input type="radio" checked="checked" name="radio">
+		<span class="checkmark"></span>
+		</label>
+                <label class="container">Tutorato<input type="radio"
 			name="radio"> <span class="checkmark"></span>
 		</label>
 
