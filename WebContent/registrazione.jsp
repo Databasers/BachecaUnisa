@@ -41,13 +41,13 @@
                         <script>
                         function validateString(stringa){
                         	if ((stringa.match(/[^a-z0-9A-Z]/))) {
-                                return false;
-                            } else return true;
+                                return true;
+                            } else return false;
                         }
                         function validateReal(stringa){
                         	if ((stringa.match(/[^a-zA-Z]/))) {
-                                return false;
-                            } else return true;
+                                return true;
+                            } else return false;
                         }
                         
                             function registra() {
