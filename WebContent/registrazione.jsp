@@ -40,12 +40,12 @@
                         </div>
                         <script>
                         function validateString(stringa){
-                        	if (!(stringa.match(/[a-z0-9A-Z]/))) {
+                        	if ((stringa.match(/[^a-z0-9A-Z]/))) {
                                 return false;
                             } else return true;
                         }
                         function validateReal(stringa){
-                        	if (!(stringa.match(/[a-zA-Z]/))) {
+                        	if ((stringa.match(/[^a-zA-Z]/))) {
                                 return false;
                             } else return true;
                         }
@@ -61,7 +61,7 @@
                                 var rego = $("input[name = ceckbox]").prop("checked");
 
                                 const err = document.getElementById("error");
-                                if (validateReal(nom) || validateReal(cog) || validateString(user)){
+                                if (validateReal(nom) || validateReal(cog) || validateString(user)) {
                                      err.innerHTML = "Non sono permessi caratteri speciali";
                                      return false;
                                 }else if (pas !== cpass || pas === "" || !rego || nom === "" || cog === "" || user === "" ) {

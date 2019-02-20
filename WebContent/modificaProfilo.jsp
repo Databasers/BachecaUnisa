@@ -72,7 +72,7 @@
                     console.log(azione + "");
                     const elem = document.getElementById("modProfilo");
                     elem.action = azione;
-                    console.log(elem.action + " Ã¨ l'azione");
+                    console.log(elem.action + " è l'azione");
                     elem.submit();
                     }
                 }
