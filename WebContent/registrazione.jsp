@@ -19,10 +19,9 @@
     if (registered != null && registered.equalsIgnoreCase("t")) {%>
             <h3><font color="red">Questo utente esiste già</font></h3>
                 <%}%>
-                <div><p id = "error">Roba </p></div>
             <div id="field">   
                 <form id="register" name = "register" class="register" method="Post">
-                    <input type="text" placeholder="Nome" class="campo" name="Nome" id = "nome" required="required">
+                    <input type="text" placeholder="Nome" maxlength="20" class="campo" name="Nome" id = "nome" required="required">
                     <input type="text" placeholder="Cognome" class="campo" name="cognome" required="required">
                     <div id="sextext">
                         <select name="sesso" class="sex">
@@ -31,7 +30,7 @@
                             <option value="altro">Altro</option>
                         </select>
                     </div>
-                        <input id="nomefield" placeholder="Username" type="text" class="campo" name="username" required="required" >
+                        <input id="nomefield" placeholder="Username" type="text"  class="campo" name="username" required="required" >
                         <input type="password" placeholder="Password" class="campo" name="password" required="required">
                         <input type="password" placeholder="Conferma password" class="campo" name="confpassword" required="required">
                         <div class="regolamento">
@@ -62,7 +61,7 @@
 
                                 const err = document.getElementById("error");
                                 if (validateReal(nom) || validateReal(cog) || validateString(user)) {
-                                     err.innerHTML = "Non sono permessi caratteri speciali";
+                                    alert("Non sono permessi caratteri speciali");
                                      return false;
                                 }else if (pas !== cpass || pas === "" || !rego || nom === "" || cog === "" || user === "" ) {
                                     if (pas !== cpass || pas === "") {
@@ -86,7 +85,7 @@
                             }
 
                         </script>
-                        <input type="button" value="Registrati" id="regbutton" onclick="registra()"> 
+                        <input type="submit" value="Registrati" id="regbutton" onclick="registra()"> 
 
                 </form>
             </div> 
