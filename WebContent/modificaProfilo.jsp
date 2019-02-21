@@ -16,8 +16,8 @@
             <form id="modify" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=creaUtente">
                 <input type="text" placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" required="required" title="Solo lettere">
                 <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" required="required" title="Solo lettere">
-                <input id="nomefield" type="text" class="campo" name="username" required="required" >
-                <input id="nomefield" placeholder="Username" maxlength="20" type="text" pattern="[a-zA-Z0-9]{1,}" class="campo" name="username" required="required" title="Solo lettere e numeri">
+                <textarea rows="4" cols="50" placeholder="Descrizione" maxlength="2000">   
+                </textarea>
                 <input id="password" type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
                 <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri" oninput="check(this)">
                 <script>
