@@ -11,65 +11,29 @@
         <div class="avatar">
             <img alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png"> <br/>		
         </div>
-        
+
         <div id=modProfilo>
-            <form method="Post">
-                <input type="text" placeholder="Nome" class="campo" name="Nome" id = "nome" required="required">
-
-                <div>
-	<label for="username">Username:</label>
-	<input id="nomefield" type="text" class="campo" name="username" required="required" >
-	<br>
-	<br>
-	<label for="password">Password:</label>
-	<input type="password" class="campo" name="password" required="required">
-	<br>
-	<br>
-	<label for="confpassword">Conferma <br>Password:</label>
-	<input type="password" class="campo" name="confpassword" required="required">
-	<br>
-
-	<br><script>
-                function registra() {
-                    console.log("Entrati");
-                    var nom = $("input[name = Nome]").val();
-                    var cog = $("input[name = cognome]").val();
-                    var ss = $("select[name = sesso]").val();
-                    var user = $("input[name = username]").val();
-		    var descrizione= $("input[name = descrizioneText]").val();
-                    var pas = $("input[name = password]").val();
-                    var cpass = $("input[name = confpassword]").val();
-                    var rego = $("input[name = ceckbox]").prop("checked");
-                    
-                  
-                    if(pas != cpass || pas == "" || !rego) {
-                      if(pas != cpass || pas == "") {
-                        alert("Le password non combaciano");
-                      }
-                 
-                    } else {
-                    var azione = "/BACHECAUNISA/UtenteServlet?azione=creaUtente&username=" + user +
-                                                "&cognome=" + cog + "&sesso=" + ss + "&nome=" + nom + "&password=" + pas;  //aggiungi la descrizione qui da qualche parte
-
-                    console.log(azione + "");
-                    const elem = document.getElementById("modProfilo");
-                    elem.action = azione;
-                    console.log(elem.action + " è l'azione");
-                    elem.submit();
+            <form id="modify" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=creaUtente">
+                <input type="text" placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" required="required" title="Solo lettere">
+                <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" required="required" title="Solo lettere">
+                <textarea rows="4" cols="50" placeholder="Descrizione" maxlength="2000">   
+                </textarea>
+                <input id="password" type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
+                <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri" oninput="check(this)">
+                <script>
+                    function check(input){
+                        if(input.value !== $("#password").val()){
+                            input.setCustomValidity("Le password non coincidono");
+                        } else {
+                            input.setCustomValidity("");
+                        }
                     }
-                }
-
                 </script>
-                
-	
-    <input type="submit" value="Modifica Profilo" id="modProfilo" onclick="registra()">   
-	
-	<br>
-	<br>
-	
-	</div>
-	
-	</form>
-	
-</body>
+
+
+                <input type="submit" value="Modifica Profilo" id="modbutton">   
+
+            </form>
+        </div>
+    </body>
 </html>

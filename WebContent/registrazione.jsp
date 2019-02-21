@@ -15,8 +15,8 @@
         <div id="container">   
 
             <% String registered = (String) request.getParameter("ar");
-    System.out.println(registered);
-    if (registered != null && registered.equalsIgnoreCase("t")) {%>
+                System.out.println(registered);
+                if (registered != null && registered.equalsIgnoreCase("t")) {%>
             <h3><font color="red">Questo utente esiste già</font></h3>
                 <%}%>
             <div id="field">   
@@ -30,26 +30,29 @@
                             <option value="altro">Altro</option>
                         </select>
                     </div>
-                        <input id="nomefield" placeholder="Username" maxlength="20" type="text" pattern="[a-zA-Z0-9]{1,}" class="campo" name="username" required="required" title="Solo lettere e numeri">
-                        <input type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
-                        <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri">
-                        <div class="regolamento">
-                            <label for="checkbox" class="confermaReg">Conferma regolamento</label>
-                            <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
-                        </div>
-                      
-                        <input type="submit" value="Registrati" id="regbutton"> 
+                    <input id="nomefield" placeholder="Username" maxlength="20" type="text" pattern="[a-zA-Z0-9]{1,}" class="campo" name="username" required="required" title="Solo lettere e numeri">
+                    <input id="password" type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
+                    <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri" oninput="check(this)">
+                    <script>
+                        function check(input) {
+                            if (input.value !== $("#password").val()) {
+                                input.setCustomValidity("Le password non coincidono");
+                            } else {
+                                input.setCustomValidity("");
+                            }
+                        }
+                    </script>
+                    <div class="regolamento">
+                        <label for="checkbox" class="confermaReg">Conferma regolamento</label>
+                        <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
+                    </div>
+                    <input type="submit" value="Registrati" id="regbutton"> 
 
                 </form>
             </div> 
-
             <form action="FAQ.jsp" id="faq">
                 <input type="submit" value="Visualizza FAQ" class="faqbutton">
             </form>
 
         </div>
-
-
-
-
     </body>
