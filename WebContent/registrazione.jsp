@@ -35,10 +35,10 @@
                         <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri" oninput="check(this)">
                         <script>
                             function check(input){
-                                if(input.value !== document.getElementById('password').value){
-                                    input.setCustomValidity('Le password non coincidono');
+                                if(input.value !== $("#password").val()){
+                                    input.setCustomValidity("Le password non coincidono");
                                 } else {
-                                    input.setCustomValidity('');
+                                    input.setCustomValidity("");
                                 }
                             }
                         </script>
