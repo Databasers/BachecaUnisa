@@ -12,7 +12,7 @@ Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
 if (x == null){
 
   System.out.println("X non esiste");
-  response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=visualizzaAnnuncio&id=" + request.getParameter("id"));
+  response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&id=" + request.getParameter("id"));
 } else {
   request.getSession().removeAttribute("annuncioTrovato");
 %>
