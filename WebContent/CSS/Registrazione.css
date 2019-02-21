@@ -26,7 +26,7 @@ body
 .campo
 {
     display: block;
-    width: 50%;
+    width: 30%;
     padding: 10px;
     margin: 0 auto 20px;
     border: none;
@@ -34,8 +34,11 @@ body
     background-color: #f1f1f1;
     text-align: center;
     outline: none;
+    transition: width 0.4s ease-in-out;
 }
-.campo:focus{
+.campo:focus
+{
+    width: 50%;
     background-color: #ddd;
 }
 
@@ -55,7 +58,7 @@ body
   
 .sex{
     display: block;
-    width: 30%;
+    width: 20%;
     padding: 5px;
     margin: 0 auto 20px;
     border: none;
@@ -88,15 +91,17 @@ body
     width: 10px;
 }
 
-#regbutton{
+#regbutton
+{
     display: block;
-    width: 75px;
+    width: 100px;
     margin: 0 auto;
     padding:10px;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #fff;
 }
+
 #regbutton:hover{
     background-color: #DCDCDC;
 }

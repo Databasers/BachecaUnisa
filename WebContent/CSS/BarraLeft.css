@@ -1,6 +1,5 @@
 body, html 
 {
-    height: 100vh;
     margin: 0;
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -12,15 +11,13 @@ body, html
 
 #side
 {
-    width: 10vw;
-    height: 96vh;
-    padding: 2vh;
+    text-align: center;
+    height: 100vh;
     background-color: rgba(256,256,256,.2);
 }
 
 #avatar 
 {
-    display: block;
     border-radius: 50%;
     width: 80%;
     margin: 0 auto;
@@ -29,11 +26,11 @@ body, html
 .button 
 {
     display: block;
-    width: 80%;
-    margin: 20% auto;
-    padding:10px;
+    width: 70%;
+    height: 5%;
+    margin: 20px auto;
     border: none;
-    border-radius: 10px;
+    border-radius: 40px;
     background-color: #fff;
 }
 
