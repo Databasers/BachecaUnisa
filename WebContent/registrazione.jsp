@@ -38,8 +38,6 @@
                             <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
                         </div>
                       
-
-                        </script>
                         <input type="submit" value="Registrati" id="regbutton"> 
 
                 </form>

@@ -37,12 +37,18 @@ public class SegnalazioniServlet extends HttpServlet {
         //Non potendo assegnare null ad un intero scelgo di assegnare -1.
         //Il suo ID verrà comunque ignorato nel metodo crea segnalazione
         SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
-        Segnalazione segnalazione = new Segnalazione(-1,
-            request.getParameter("descrizione"), 
-            Integer.parseInt(request.getParameter("motivazione")),
-            Integer.parseInt(request.getParameter("recensione")),
-            Integer.parseInt(request.getParameter("annuncio")),
-            su.getNome());
+        Segnalazione segnalazione = new Segnalazione();
+        
+        segnalazione.setDescrizione(request.getParameter("descrizione")); 
+        segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
+        if (request.getParameter("recensione").length() > 0) {
+          segnalazione.setRecensione(Integer.parseInt(request.getParameter("recensione")));
+          segnalazione.setAnnuncio(null);
+        } else {
+          segnalazione.setAnnuncio(Integer.parseInt(request.getParameter("annuncio")));
+          segnalazione.setRecensione(null);
+        }
+        segnalazione.setUtente(su.getUsername());
         creaSegnalazione(segnalazione);
         if (segnalazione.isTipoSegnalazione()) {
           response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp");

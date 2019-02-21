@@ -28,7 +28,9 @@ if (x == null){
   
     
   
-  <div id="segnalaannuncio"><input class="valuebutton" type="submit" value="Segnala Annuncio" formaction="/segnalaAnnuncio.jsp?id=<%=x.getId()%>"></div>
+  <div id="segnalaannuncio"><form action="">
+  <input type="hidden" name = "id" value = "<%= x.getId()%>">
+  <input class="valuebutton" type="submit" value="Segnala Annuncio" formaction="/BACHECAUNISA/segnalaAnnuncio.jsp"></form></div>
   <%} %>
   </body>
   

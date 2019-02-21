@@ -232,6 +232,7 @@ public class AnnuncioManager {
       if (!rs.next()) {
         temp = null; 
       } else {
+        temp.setId(rs.getInt("ID"));
         temp.setTitolo(rs.getString("titolo"));
         temp.setDescrizione(rs.getString("descrizione"));
         temp.setDipartimento(rs.getString("dipartimento"));

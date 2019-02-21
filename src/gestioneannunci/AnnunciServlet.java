@@ -124,7 +124,14 @@ public class AnnunciServlet extends HttpServlet {
         Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);
         System.out.println(annuncioTrovato.getUsernameUtente());
         request.getSession().setAttribute("annuncioTrovato", annuncioTrovato);
-        response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp?id=" + id);
+        System.out.println("Titolo:" + annuncioTrovato.getTitolo());
+        System.out.println("\n ANNUNCIO TROVATO \n");
+        
+        if (request.getParameter("luogo") != null) {
+          response.sendRedirect(request.getContextPath() + "/segnalaAnnuncio.jsp?id=" + id);
+        } else {
+          response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp?id=" + id);
+        }
       }
 
     } catch (SQLException e) {
