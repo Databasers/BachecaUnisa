@@ -46,13 +46,9 @@
                         <label for="checkbox" class="confermaReg">Conferma regolamento</label>
                         <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
                     </div>
-
-
                     <input type="submit" value="Registrati" id="regbutton"> 
-
                 </form>
             </div> 
-
             <form action="FAQ.jsp" id="faq">
                 <input type="submit" value="Visualizza FAQ" class="faqbutton">
             </form>
