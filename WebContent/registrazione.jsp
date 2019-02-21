@@ -22,7 +22,7 @@
             <div id="field">   
                 <form id="register" name = "register" class="register" method="Post">
                     <input type="text" placeholder="Nome" maxlength="20" class="campo" name="Nome" id = "nome" required="required">
-                    <input type="text" placeholder="Cognome" class="campo" name="cognome" required="required">
+                    <input type="text" placeholder="Cognome" maxlength="20" class="campo" name="cognome" required="required">
                     <div id="sextext">
                         <select name="sesso" class="sex">
                             <option value="maschio">Maschio</option>
@@ -30,9 +30,9 @@
                             <option value="altro">Altro</option>
                         </select>
                     </div>
-                        <input id="nomefield" placeholder="Username" type="text"  class="campo" name="username" required="required" >
-                        <input type="password" placeholder="Password" class="campo" name="password" required="required">
-                        <input type="password" placeholder="Conferma password" class="campo" name="confpassword" required="required">
+                        <input id="nomefield" placeholder="Username" maxlength="20" type="text"  class="campo" name="username" required="required" >
+                        <input type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required">
+                        <input type="password" placeholder="Conferma password" maxlength="20" class="campo" name="confpassword" required="required">
                         <div class="regolamento">
                             <label for="checkbox" class="confermaReg">Conferma regolamento</label>
                             <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
