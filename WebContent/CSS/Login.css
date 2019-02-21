@@ -12,12 +12,13 @@ body
 
 #logo 
 {
+    width: 20%;
     margin: 0 auto;
-    height: 40vh;
-    width: 25%;
 }
 #logo img
 {
+    margin: 0;
+    padding: 0;
     max-height: 100%;
     max-width: 100%;
 }
@@ -25,13 +26,13 @@ body
 .container 
 {
     width: 40%;
-    margin: 0 auto;
+    margin: 20px auto;
 }
 
 input[type=text], input[type=password]
 {
     display: block;
-    width: 50%;
+    width: 30%;
     padding: 10px;
     margin: 0 auto 20px;
     border: none;
@@ -39,11 +40,13 @@ input[type=text], input[type=password]
     background: #fff;
     text-align: center;
     outline: none;
+    transition: width 0.4s ease-in-out;
 }
 
 input[type=text]:focus, input[type=password]:focus
 {
-	background-color: #ddd;
+    width: 50%;
+    background-color: #ddd;
 }
 
 /* Set a style for the submit button */
@@ -54,7 +57,7 @@ input[type=text]:focus, input[type=password]:focus
     margin: 0 auto;
     padding:10px;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: #fff;
 }
 

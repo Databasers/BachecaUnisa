@@ -5,6 +5,7 @@
 <html>
     <head>
         <meta charset="ISO-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" type="text/css" href="CSS/Homepage.css">
         <script type="text/javascript" src ="jquery.js"></script>
@@ -36,8 +37,11 @@
             request.getSession().removeAttribute("arisultato");
             request.getSession().removeAttribute("urisultato");
         %>
+        <div id="switchTab">
         <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>
         <button id="tabProfilo" onclick="switchProfilo()">Profilo</button>
+        </div>
+
 
         <div id="listaAnnunci" name="listaAnnunci">
             <%for (Annuncio x : lista) {%>
