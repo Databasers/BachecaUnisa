@@ -68,8 +68,6 @@
                                     console.log(elem.action + " è l'azione");
                                     elem.submit();
                                 }
-                                return false;
-                            }
 
                         </script>
                         <input type="submit" value="Registrati" id="regbutton" onclick="registra()"> 
