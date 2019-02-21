@@ -15,4 +15,5 @@
 <button class="button" onclick="location.href='UtenteServlet?action=logout'" type="button">Esci</button>
 <button class="button" id="faqside" onclick="location.href = 'FAQ.jsp';">Visualizza FAQ</button>
 </div>
-y>
+</body>
+</html>
