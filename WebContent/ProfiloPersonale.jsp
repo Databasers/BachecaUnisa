@@ -10,8 +10,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/ProfiloPersonale.css">
 </head>
 <body>
-        <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
-        <div id="barrasopra"><%@ include file="barraSopra.jsp" %></div>
+    <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
     
   <%
     Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
@@ -25,6 +24,7 @@
 
     <div class="utentetxt">
         <img id="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
+        <br>
         <h1 id="nomecognome"><%=u.getNome() %> <%=u.getCognome() %></h1>
         <h3 id="Utenteinfo"><%=u.getUsername()%></h3>
         <button id="modPro" onclick="location.href = 'modificaProfilo.jsp'">Modifica Profilo</button> 

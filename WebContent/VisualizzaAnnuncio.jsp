@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="CSS/VisualizzaAnnuncio.css">
 </head>
 <body>
-<%@ include file="barraLEFTv2.jsp" %>
+    <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
 <%
 Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
 if (x == null){
@@ -16,19 +16,18 @@ if (x == null){
 } else {
   request.getSession().removeAttribute("annuncioTrovato");
 %>
+<div class="annuncio">
   <img id="avatarannuncio" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
+  <br>
   <span id="nomeutente"><%=x.getUsernameUtente()%></span>   
-  
   <div class="titleannuncio">
     <h1 id="Utenteinfo">TITOLO:<%=x.getTitolo()%><br>
       DIPARTIMENTO:<%=x.getDipartimento() %></h1>
   </div>
-
   <p class="txtannuncio"><%=x.getDescrizione()%></p>
-  
-    
-  
+
   <div id="segnalaannuncio"><input class="valuebutton" type="submit" value="Segnala Annuncio" formaction="/segnalaAnnuncio.jsp?id=<%=x.getId()%>"></div>
+</div>
   <%} %>
   </body>
   
