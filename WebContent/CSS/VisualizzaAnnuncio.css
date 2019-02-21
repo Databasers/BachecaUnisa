@@ -49,10 +49,19 @@ body, html
     background-color: #fff;
 }
    
-#segnalaannuncio
+#segnalaannuncio .valuebutton
 {
-    text-align: right;
-    margin: 1%;
+    display: block;
+    width: 200px;
+    padding:10px;
+    border: none;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+}
+#segnalaannuncio .valuebutton:hover
+{
+    background-color: #DCDCDC;
 }
 #modificannuncio
 {
