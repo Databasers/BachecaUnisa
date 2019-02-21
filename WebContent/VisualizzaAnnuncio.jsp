@@ -4,6 +4,8 @@
 <head>
 <title>Visualizza Annuncio</title>
 <link rel="stylesheet" type="text/css" href="CSS/VisualizzaAnnuncio.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
 </head>
 <body>
     <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
@@ -20,9 +22,9 @@ if (x == null){
   <img id="avatarannuncio" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
   <br>
   <span id="nomeutente"><%=x.getUsernameUtente()%></span>   
-  <div class="titleannuncio">
-    <h1 id="Utenteinfo">TITOLO:<%=x.getTitolo()%><br>
-      DIPARTIMENTO:<%=x.getDipartimento() %></h1>
+  <div class="annuncioInfo">
+    <h2 id="annuncioTitle"><%=x.getTitolo()%><br></h2>
+    <span><%=x.getDipartimento()%></span>
   </div>
   <p class="txtannuncio"><%=x.getDescrizione()%></p>
 

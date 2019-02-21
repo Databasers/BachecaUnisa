@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Homepage</title>
         <link rel="stylesheet" type="text/css" href="CSS/Homepage.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
         <script type="text/javascript" src ="jquery.js"></script>
     </head>
     <body>
@@ -39,7 +41,7 @@
         %>
         <div id="switchTab">
         <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>
-        <button id="tabProfilo" onclick="switchProfilo()">Profilo</button>
+        <button id="tabProfilo" onclick="switchProfilo()">Utenti</button>
         </div>
 
 

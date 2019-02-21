@@ -4,8 +4,8 @@ body, html
     width: 100%;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
     background-image: url("IMAGES/bg-reg.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,20 +21,28 @@ body, html
 {
     width: 80%;
     margin: 20px auto;
-    padding: 5px;
+    padding: 20px;
     text-align: center;
     border-radius: 70px;
-    background-color:  rgba(256,256,256,.5);
+    background-color:  rgb(256,256,256);
+}
+
+.preview
+{
+    margin: 30px;
 }
 .preview h3
 {
-    margin: 0;
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .Titolo h2
 {
     margin: 0;
 }
+
 #listaProfili
 {
     width: 80%;
@@ -52,8 +60,9 @@ body, html
 #tabAnnunci, #tabProfilo
 {
     display: inline-block;
-    width: 75px;
+    width: 100px;
     padding:10px;
+    margin-top: 20px;
     border: none;
     border-radius: 10px;
     background-color: #fff;

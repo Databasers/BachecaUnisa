@@ -4,6 +4,8 @@
 
         <title>Registrazione</title>
         <link rel="stylesheet" type="text/css" href="CSS/Registrazione.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src ="jquery.js"></script>
