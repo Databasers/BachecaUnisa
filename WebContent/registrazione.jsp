@@ -20,8 +20,8 @@
             <h3><font color="red">Questo utente esiste già</font></h3>
                 <%}%>
             <div id="field">   
-                <form id="register" name = "register" class="register" method="Post">
-                    <input type="text" placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="Nome" id = "nome" required="required" title="Solo lettere">
+                <form id="register" name = "register" class="register" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=creaUtente">
+                    <input type="text" placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" required="required" title="Solo lettere">
                     <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" required="required" title="Solo lettere">
                     <div id="sextext">
                         <select name="sesso" class="sex">
@@ -37,40 +37,10 @@
                             <label for="checkbox" class="confermaReg">Conferma regolamento</label>
                             <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
                         </div>
-                        <script>
-                        function validateString(stringa){
-                        	if ((stringa.match(/[^a-z0-9A-Z]/))) {
-                                return true;
-                            } else return false;
-                        }
-                        function validateReal(stringa){
-                        	if ((stringa.match(/[^a-zA-Z]/))) {
-                                return true;
-                            } else return false;
-                        }
-                        
-                            function registra() {
-                                console.log("Entrati");
-                                var nom = $("input[name = Nome]").val();
-                                var cog = $("input[name = cognome]").val();
-                                var ss = $("select[name = sesso]").val();
-                                var user = $("input[name = username]").val();
-                                var pas = $("input[name = password]").val();
-                                var cpass = $("input[name = confpassword]").val();
-                                var rego = $("input[name = ceckbox]").prop("checked");
-
-                                var azione = "/BACHECAUNISA/UtenteServlet?azione=creaUtente&username=" + user +
-                                            "&cognome=" + cog + "&sesso=" + ss + "&nome=" + nom + "&password=" + pas;
-
-                                    console.log(azione + "");
-                                    const elem = document.getElementById("register");
-                                    elem.action = azione;
-                                    console.log(elem.action + " è l'azione");
-                                    elem.submit();
-                                }
+                      
 
                         </script>
-                        <input type="submit" value="Registrati" id="regbutton" onclick="registra()"> 
+                        <input type="submit" value="Registrati" id="regbutton"> 
 
                 </form>
             </div> 
