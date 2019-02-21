@@ -31,15 +31,23 @@
                         </select>
                     </div>
                         <input id="nomefield" placeholder="Username" maxlength="20" type="text" pattern="[a-zA-Z0-9]{1,}" class="campo" name="username" required="required" title="Solo lettere e numeri">
-                        <input type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
-                        <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri">
+                        <input id="password" type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
+                        <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri" oninput="check(this)">
+                        <script>
+                            function check(input){
+                                if(input.value !== $('password').value){
+                                    input.setCustomValidity('Le password non coincidono');
+                                } else {
+                                    input.setCustomValidity('');
+                                }
+                            }
+                        </script>
                         <div class="regolamento">
                             <label for="checkbox" class="confermaReg">Conferma regolamento</label>
                             <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
                         </div>
                       
 
-                        </script>
                         <input type="submit" value="Registrati" id="regbutton"> 
 
                 </form>
