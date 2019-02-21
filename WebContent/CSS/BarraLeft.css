@@ -39,3 +39,17 @@ body, html
 {
     background-color: #f1f1f1;
 }
+
+a.buttonLink 
+{
+    appearance: button;
+    display: block;
+    width: 70%;
+    height: 5%;
+    margin: 20px auto;
+    border: none;
+    border-radius: 40px;
+    background-color: #fff;
+    text-decoration: none;
+    color: initial;
+}
