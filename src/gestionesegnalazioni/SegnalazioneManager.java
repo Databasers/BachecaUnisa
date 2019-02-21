@@ -44,12 +44,13 @@ public class SegnalazioneManager {
     } else {
       sql = "INSERT INTO " + TABLENAME + " VALUES(null," + segnalazione.getDescrizione() 
           + "," + segnalazione.getUtente() + "," + segnalazione.getMotivazione()
-          + ",null," + segnalazione.getIdSegnalato() + ")";
+          + ",null ," + segnalazione.getIdSegnalato() + ")";
       test = "SELECT COUNT(ID) AS segnalazioni FROM " + TABLENAME
           + "WHERE Recensione.ID.Segnalato_R LIKE " + segnalazione.getIdSegnalato();
     }
     
     try {
+      System.out.println(sql);
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
       preparedStatement.executeUpdate();

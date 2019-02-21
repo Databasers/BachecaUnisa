@@ -49,6 +49,7 @@
                         <input type="checkbox" id= "checkbox" class="checkbox" name="ceckbox" required="required">    
                     </div>
                     <input type="submit" value="Registrati" id="regbutton"> 
+
                 </form>
             </div> 
             <form action="FAQ.jsp" id="faq">

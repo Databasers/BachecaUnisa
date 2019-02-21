@@ -20,7 +20,7 @@ public class Segnalazione {
    */
   
   public Segnalazione(int id, String descrizione, int motivazione,
-      int recensione, int annuncio, String utente) {
+      Integer recensione, Integer annuncio, String utente) {
     super();
     this.id = id;
     this.descrizione = descrizione;
@@ -32,6 +32,7 @@ public class Segnalazione {
 
   public Segnalazione() {
   }
+
 
   public String getDescrizione() {
     return descrizione;
@@ -50,7 +51,7 @@ public class Segnalazione {
    * Restituisce l'id dell'entita' segnalata.
    * @return id dell'annuncio o della recensione segnalata.
    */
-  public int getIdSegnalato() {
+  public Integer getIdSegnalato() {
     if (isTipoSegnalazione()) {
       return annuncio;
     } else {
@@ -90,12 +91,12 @@ public class Segnalazione {
     this.motivazione = motivazione;
   }
 
-  public void setAnnuncio(int annuncio) {
+  public void setAnnuncio(Integer annuncio) {
     this.annuncio = annuncio;
     recensione = -1;
   }
 
-  public void setRecensione(int recensione) {
+  public void setRecensione(Integer recensione) {
     this.recensione = recensione;
     annuncio = -1;
   }
@@ -127,8 +128,8 @@ public class Segnalazione {
    */
   public static final int MOTIVO3 = 3;
   private int motivazione;
-  private int annuncio;
-  private int recensione;
+  private Integer annuncio;
+  private Integer recensione;
   private String utente;
   
 }
