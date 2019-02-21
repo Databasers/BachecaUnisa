@@ -57,6 +57,7 @@ h1
 }    
  .utentetxt
 {   
+    float: right;
     display: inline-block;
     width: 60%;
     padding: 2% 10%;
@@ -65,6 +66,7 @@ h1
 }
 .txtpresent
 {
+    
     margin: 2%;
     border-style: solid;
     height: 50%;
@@ -139,6 +141,7 @@ h1
 
 #barraleft
 {
+    position: fixed;
     float: left;
     width: 20%;
     height: 100%;
