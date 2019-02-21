@@ -1,19 +1,19 @@
 
-#descrizione{
-display: inline-block;
-text-align: right;
-
+#descrizione
+{
+    display: inline-block;
+    text-align: right;
 }
 
-#textareaProfilo{
-
-min-width:400xp;
-min-height: 150px;
-overflow: hidden;
-
-
+#textareaProfilo
+{
+    min-width:400px;
+    min-height: 150px;
+    overflow: hidden;
 }
-#modProfilo{
+
+#modProfilo
+{
 float: left;
 width: 100%;
 }

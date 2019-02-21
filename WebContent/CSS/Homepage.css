@@ -1,38 +1,45 @@
-body, html {
-	height: 100%;
-	font-family: Arial, Helvetica, sans-serif;
+body, html 
+{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-image: url("IMAGES/bg-reg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-* {
-	box-sizing: border-box;
+#listaAnnunci
+{
+    width: 80%;
+    margin: 0 auto;
 }
 
-#listaAnnunci{
-
-margin-top: 20px;
-margin-left:20px;
-
+#listaProfili
+{
+    width: 80%;
+    margin: 0 auto;
+    display: none;
 }
 
-
-#listaProfili{
-
-margin-top: 20px;
-margin-left:20px;
-display:none;
-
+#tabAnnunci, #tabProfilo
+{
+    display: inline-block;
+    width: 75px;
+    padding:10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
-#tabAnnunci, #tabProfilo{
-	background-color: #ddd;
-	border: none;
-	color: black;
-	text-decoration: none;
-	cursor: pointer;
-	border-radius: 16px;
-	font-size: 14px;
-	width: 150px;
-	height: 35px;
-margin-top: 20px;
-margin-left:20px;
+#tabAnnunci:hover, #tabProfilo:hover
+{
+    background-color: #DCDCDC;
+}
+
+#barraleft{
+    height: 100vh;
+    margin: auto 0;
+    float: left;
 }

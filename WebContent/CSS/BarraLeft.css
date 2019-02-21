@@ -1,34 +1,36 @@
 body, html 
 {
     height: 100vh;
+    margin: 0;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-image: url("IMAGES/bg-reg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-* 
+#side
 {
-    box-sizing: border-box;
-}
-
-#side 
-{
-    float: left;
-    padding: 2%;
+    width: 10vw;
+    height: 96vh;
+    padding: 2vh;
+    background-color: rgba(256,256,256,.2);
 }
 
 #avatar 
 {
     display: block;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    margin: 2px auto 0;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .button 
 {
     display: block;
-    width: 150px;
-    margin: 0 auto;
+    width: 80%;
+    margin: 20% auto;
     padding:10px;
     border: none;
     border-radius: 10px;

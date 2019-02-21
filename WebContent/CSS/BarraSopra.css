@@ -1,185 +1,66 @@
-body, html {
-	height: 100%;
-	font-family: Arial, Helvetica, sans-serif;
+body, html 
+{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-image: url("IMAGES/bg-reg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-* {
-	box-sizing: border-box;
-}
-
-.form-inline {  
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-}
-
-.form-inline label {
-  margin: 5px 10px 5px 0;
+.form-inline
+{
+    height: auto;
+    background-color: rgba(256,256,256,.2);
+    overflow: auto;
 }
 
 
-/*DIPARTIMENTO*/
-/*the container must be positioned relative:*/
-.custom-select {
-	width: 200px;
-	position: relative;
+#barraRicerca
+{
+    border-radius: 14px;
+    width: 15%;
+    transition: width 0.4s ease-in-out;
+    margin: 10px 10px;
+    outline: none;
+}
+#barraRicerca:focus
+{
+    width: 25%;
+    background-color: #ddd;
 }
 
-.custom-select select {
-	display: none; /*hide original SELECT element:*/
+.radio
+{
+    display: inline-block;
 }
 
-.select-selected {
-	background-color: #ddd;
+.custom-select
+{
+    display: inline-block;
+    margin: 0 10px;
 }
 
-/*style the arrow inside the select element:*/
-.select-selected:after {
-	position: absolute;
-	content: "";
-	top: 14px;
-	right: 10px;
-	width: 0;
-	height: 0;
-	border: 6px solid transparent;
-	border-color: #fff transparent transparent transparent;
+#creaAnnuncio
+{
+    display: inline-block;
+    float: right;
+    width: 100px;
+    margin: 10px 10px;
+    padding:5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
 }
 
-/*point the arrow upwards when the select box is open (active):*/
-.select-selected.select-arrow-active:after {
-	border-color: transparent transparent #fff transparent;
-	top: 7px;
+#creaAnnuncio:hover 
+{
+    background-color: #DCDCDC;
 }
 
-/*style the items (options), including the selected item:*/
-.select-items div, .select-selected {
-	color: black;
-	padding: 8px 16px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-	cursor: pointer;
-	user-select: none;
-}
-
-/*style items (options):*/
-.select-items {
-	position: absolute;
-	background-color: #ddd;
-	top: 100%;
-	left: 0;
-	right: 0;
-	z-index: 99;
-}
-
-/*hide the items when the select box is closed:*/
-.select-hide {
-	display: none;
-}
-
-.select-items div:hover, .same-as-selected {
-	background-color: rgba(0, 0, 0, 0.1);
-}
-
-/*BARRA DI RICERCA*/
-#barraRicerca {
-	display: inline-block;
-	font-size: 12px;
-	width: 150px;
-	box-sizing: border-box;
-	border: 2px solid #ccc;
-	border-radius: 4px;
-	font-size: 16px;
-	background-color: white;
-	padding: 6px 10px;
-	-webkit-transition: width 0.4s ease-in-out;
-	transition: width 0.4s ease-in-out;
-}
-
-#barraRicerca:focus {
-	width: 20%;
-}
-
-/*PULSANTI RADIO*/
-/* The container */
-.container {
-	display: inline-block;
-	position: relative;
-	padding-left: 35px;
-	margin-bottom: 12px;
-	cursor: pointer;
-	font-size: 16px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-/* Hide the browser's default radio button */
-.container input {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-}
-
-/* Create a custom radio button */
-.checkmark {
-	position: absolute;
-	top: 0;
-	left: 8px;
-	height: 20px;
-	width: 20px;
-	background-color: #ddd;
-	border-radius: 50%;
-}
-
-/* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
-	background-color: #ccc;
-}
-
-/* When the radio button is checked, add a blue background */
-.container input:checked ~ .checkmark {
-	background-color: #2196F3;
-}
-
-/* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
-	content: "";
-	position: absolute;
-	display: none;
-}
-
-/* Show the indicator (dot/circle) when checked */
-.container input:checked ~ .checkmark:after {
-	display: inline-block;
-}
-
-/* Style the indicator (dot/circle) */
-.container .checkmark:after {
-	top: 5px;
-	left: 5px;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	background: white;
-}
-
-.button {
-	background-color: #ddd;
-	border: none;
-	color: black;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	margin: 15px;
-	cursor: pointer;
-	border-radius: 4px;
-	font-size: 16px;
-	width: 170px;
-}
-
-.button:hover {
-	background-color: #f1f1f1;
+#cerca
+{
+    display: inline-block;
 }
