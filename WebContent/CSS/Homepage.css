@@ -31,16 +31,17 @@ body, html
 {
     margin: 30px;
 }
-.preview h3
-{
-    margin: 0 0 10px;
-    font-size: 14px;
-    font-weight: 400;
-}
 
 .Titolo h2
 {
     margin: 0;
+}
+
+.Titolo h3 
+{
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 #listaProfili
@@ -53,6 +54,7 @@ body, html
 
 #switchTab
 {
+    float: right;
     display: inline-block;
     width: 80%;
     text-align: center;

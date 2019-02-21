@@ -46,10 +46,12 @@
 
 
         <div id="listaAnnunci" name="listaAnnunci">
+            
             <%for (Annuncio x : lista) {%>
             <div class = "annuncio">
                 <div class = "Titolo">
                     <h2><%=x.getTitolo()%></h2>
+                    <h3><%=x.getUsernameUtente()%></h3>
                 </div>
                 <div class = "preview"><%=x.getDescrizione()%></div>
                 <div class = "btn">
@@ -71,10 +73,10 @@
             <div class = "annuncio">
                 <div class = "Titolo">
                     <h2><%=x.getUsername()%></h2>
+                    <h3><%=x.getNome()%>  <%=x.getCognome()%></h3>
                 </div>
 
                 <div class = "preview">
-                    <h3><%=x.getNome()%>  <%=x.getCognome()%></h3>
                     <%= x.getDescrizione()%>
                 </div>
 
