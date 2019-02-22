@@ -8,6 +8,7 @@ body, html
     font-size: 18px;
     background-image: url("IMAGES/bg-reg.png");
     background-size: cover;
+    background-attachment: fixed;
 }
 
 #listaAnnunci

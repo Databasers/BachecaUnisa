@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
     </head>
     <body>
+        <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div class="avatar">
             <img alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png"> <br/>		
         </div>
@@ -34,8 +35,8 @@
 
 
                 <input type="submit" value="Modifica Profilo" id="modbutton">   
-
             </form>
         </div>
+        
     </body>
 </html>
