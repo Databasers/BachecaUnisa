@@ -10,6 +10,12 @@ body
     background-repeat: no-repeat;
 }
 
+button, input 
+{
+    outline: none;
+}
+
+
 #logo{
     float: left;
     width: 30%;

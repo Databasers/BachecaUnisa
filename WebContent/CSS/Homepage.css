@@ -8,7 +8,12 @@ body, html
     font-size: 18px;
     background-image: url("IMAGES/bg-reg.png");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+button, input 
+{
+    outline: none;
 }
 
 #listaAnnunci
