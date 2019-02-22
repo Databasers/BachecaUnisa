@@ -56,9 +56,7 @@
                 <div class = "preview"><%=x.getDescrizione()%></div>
                 <div class = "btn">
                     <form method= "post">
-                        <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">
-                            Apri
-                        </button>
+                        <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
                     </form>
                 </div>
             </div>
