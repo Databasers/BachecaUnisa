@@ -97,3 +97,23 @@ button, input
     text-align: center;
     font-size: 15px;
 }
+
+.etichettaTutorato , .etichettaGruppo
+{
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin: 0 auto;
+    width: 20%;
+}
+
+.etichettaTutorato
+{
+    background-color: orange;
+}
+
+.etichettaGruppo
+{
+    background-color: greenyellow;
+}

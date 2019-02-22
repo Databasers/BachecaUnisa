@@ -25,6 +25,8 @@
             <div class="annuncioInfo">
                 <h2 id="annuncioTitle"><%=x.getTitolo()%><br></h2>
                 <span><%=x.getDipartimento()%></span>
+                <%if (x.isTipologia()) {%> <p class="etichettaTutorato">Attività di tutorato</p> <%}%>
+                <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">Gruppo di studio</p> <%}%>
             </div>
             <p class="txtannuncio"><%=x.getDescrizione()%></p>
             <div id="segnalaannuncio"><form action="">
