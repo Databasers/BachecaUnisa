@@ -16,7 +16,7 @@
             <input type="text" id="barraRicerca" name="descrizione"
                    placeholder="Cerca annuncio o utente">
             <div class="radio">
-            <label>Gruppo di studio<input type="radio" checked="checked" name="filtro" value="gruppo"></label>
+            <label>Gruppo di studio<input type="radio" name="filtro" value="gruppo"></label>
             <label>Tutorato<input type="radio" name="filtro" value="tutorato"></label>
             </div>
             <div class="custom-select">
