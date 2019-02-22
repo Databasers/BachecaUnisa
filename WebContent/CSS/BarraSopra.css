@@ -14,7 +14,6 @@ button, input
 
 .form-inline
 {
-    overflow: auto;
     background-color:  rgba(256,256,256,.2);
 }
 
@@ -25,7 +24,7 @@ button, input
     width: 15%;
     transition: width 0.4s ease-in-out;
     margin: 10px 10px;
-    outline: none;
+    text-align: center;
 }
 #barraRicerca:focus
 {
@@ -35,13 +34,15 @@ button, input
 
 .radio
 {
+    text-align: center;
+    width: 225px;
     display: inline-block;
 }
 
 .custom-select
 {
+    text-align: center;
     display: inline-block;
-    margin: 0 10px;
 }
 
 #creaAnnuncio
@@ -63,5 +64,23 @@ button, input
 
 #cerca
 {
-    display: inline-block;
+    display: none;
+}
+
+.etichettaTutorato , .etichettaGruppo
+{
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.etichettaTutorato
+{
+    background-color: orange;
+}
+
+.etichettaGruppo
+{
+    background-color: greenyellow;
 }

@@ -14,20 +14,18 @@
             <input type="hidden" name="azione" value="stampaAnnunci">
             <input type="hidden" name="numPagina" value="0">
             <input type="text" id="barraRicerca" name="descrizione"
-                   placeholder="Cerca annuncio o utente">
+                   placeholder="Cerca">
             <div class="radio">
-            <label>Gruppo di studio<input type="radio" name="filtro" value="gruppo"></label>
-            <label>Tutorato<input type="radio" name="filtro" value="tutorato"></label>
+            <label class="etichettaGruppo">GRUPPO  <input type="radio" name="filtro" value="gruppo"></label>
+            <label class="etichettaTutorato">TUTORATO  <input type="radio" checked="checked" name="filtro" value="tutorato"></label>
             </div>
             <div class="custom-select">
-                <label>Dipartimento:
                 <select name="dipartimento">
                     <option value="Informatica">Informatica</option>
                     <option value="Ingegneria">Ingegneria</option>
                     <option value="Farmacia">Farmacia</option>
                     <option value="Lettere">Lettere</option>
                 </select>
-                </label>
                 <input type="submit" id ="cerca" value="Cerca">
             </div>
             <button class="button" id="creaAnnuncio" formaction="/BACHECAUNISA/CreaNuovoAnnuncio.jsp">Crea Annuncio</button>
