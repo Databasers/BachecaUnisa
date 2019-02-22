@@ -1,19 +1,93 @@
-
-#descrizione{
-display: inline-block;
-text-align: right;
-
+body
+{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    background-image: url("IMAGES/bg-reg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+button, input 
+{
+    outline: none;
+}
+#textareaProfilo
+{
+    margin: 10px auto;
+    padding: 10px;
+    width: 100%;
+    height: 200px;
+    border-radius: 20px;
+    border: none;
+    resize: none;
+    outline:none;
+    background-color: #fff;
 }
 
-#textareaProfilo{
-
-min-width:400xp;
-min-height: 150px;
-overflow: hidden;
-
-
+#textareaProfilo:focus, #textareaProfilo:hover
+{
+    background-color: #f1f1f1;
 }
-#modProfilo{
-float: left;
-width: 100%;
+
+#modProfilo
+{
+    float: right;
+    display: inline-block;
+    width: 60%;
+    padding: 2% 10%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#barraleft
+{
+    position: fixed;
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+
+.avatarProf
+{
+    border-radius: 50%;
+    height:20%;
+    width: 20%;
+    margin: 0 auto;
+}
+
+.campo
+{
+    display: block;
+    width: 30%;
+    padding: 10px;
+    margin: 10px auto;
+    border: none;
+    border-radius: 40px;
+    background-color: #f1f1f1;
+    text-align: center;
+    outline: none;
+    transition: width 0.4s ease-in-out;
+}
+.campo:focus
+{
+    width: 50%;
+    background-color: #ddd;
+}
+
+#modbutton
+{
+    width: 40%;
+    display: block;
+    margin: 0 auto;
+    padding:10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #fff;
+}
+
+#modbutton:hover{
+    background-color: #DCDCDC;
 }
