@@ -10,7 +10,12 @@ body
     background-size: cover;
     background-attachment: fixed;
 }
-    
+
+button, input 
+{
+    outline: none;
+}
+
 h1 
 {
     font-size: 15px;

@@ -10,7 +10,10 @@ body
     background-size: cover;
     background-repeat: no-repeat;
 }
-
+button, input 
+{
+    outline: none;
+}
 #textareaProfilo
 {
     margin: 10px auto;

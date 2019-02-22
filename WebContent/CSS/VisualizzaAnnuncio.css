@@ -11,6 +11,11 @@ body, html
     background-attachment: fixed;
 }
 
+button, input 
+{
+    outline: none;
+}
+
 .annuncio
 {
     display: inline-block;

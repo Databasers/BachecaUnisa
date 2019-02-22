@@ -8,6 +8,11 @@ body, html
     background-attachment: fixed;
 }
 
+button, input 
+{
+    outline: none;
+}
+
 #side
 {
     text-align: center;
