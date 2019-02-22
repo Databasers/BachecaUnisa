@@ -253,18 +253,26 @@ public class AnnuncioManager {
    *          basandosi sulla pagina visualizzata dall'utente.
    * @throws SQLException @throws SQLException in caso di errore di accesso al database.
    */
-  public ArrayList<Annuncio> recuperaPerTipologia(boolean tipo, int numPagina) throws SQLException {
+  public ArrayList<Annuncio> recuperaPerTipologia(String descrizione, boolean tipo, String dipartimento, int numPagina) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ArrayList<Annuncio> temp;
-    String str = String.valueOf(tipo);
+    int t;
+    if (tipo) {
+      t = 1;
+    } else {
+      t = 0;
+    }
 
-    String sql = "SELECT * FROM " + TABLENAME + " WHERE Tipologia = ?  ";
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE (Descrizione LIKE ? OR Titolo LIKE ?) AND Tipologia = ? AND Dipartimento = ? ";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(1, str);
+      preparedStatement.setString(1, "%" + descrizione + "%");
+      preparedStatement.setString(2, "%" + descrizione + "%");
+      preparedStatement.setString(3, Integer.toString(t));
+      preparedStatement.setString(4, dipartimento);
       System.out.println("Query: " + preparedStatement.toString());
 
       ResultSet rs = preparedStatement.executeQuery();

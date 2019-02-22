@@ -16,7 +16,7 @@ import jdbc.DriverManagerConnectionPool;
 
 public class SegnalazioneManager {
   
-  private static final String TABLENAME = "Annuncio";
+  private static final String TABLENAME = "Segnalazione";
   private static final int PAGINADIM = 10;
   private static final int MAX_SEGNALAZIONI = 50;
   
@@ -35,22 +35,23 @@ public class SegnalazioneManager {
     String sql;
     String test;
     if (segnalazione.isTipoSegnalazione()) {
-      sql = "INSERT INTO " + TABLENAME + " VALUES(null," + segnalazione.getDescrizione()
-          + "," + segnalazione.getUtente() + "," + segnalazione.getMotivazione() + ","
+      sql = "INSERT INTO " + TABLENAME + " VALUES(null, '" + segnalazione.getDescrizione()
+          + "', '" + segnalazione.getUtente() + "', " + segnalazione.getMotivazione() + ", "
           + segnalazione.getIdSegnalato() + ", null)";
       test = "SELECT COUNT(ID) AS segnalazioni FROM " + TABLENAME
-          + "WHERE Annuncio.Segnalato_A LIKE " + segnalazione.getIdSegnalato();
+          + " WHERE 'Annuncio.Segnalato_A' LIKE " + segnalazione.getIdSegnalato();
       
     } else {
-      sql = "INSERT INTO " + TABLENAME + " VALUES(null," + segnalazione.getDescrizione() 
-          + "," + segnalazione.getUtente() + "," + segnalazione.getMotivazione()
-          + ",null ," + segnalazione.getIdSegnalato() + ")";
+      sql = "INSERT INTO " + TABLENAME + " VALUES(null, '" + segnalazione.getDescrizione()
+          + "', '" + segnalazione.getUtente() + "', " + segnalazione.getMotivazione() + ", null"
+          + segnalazione.getIdSegnalato() + ")";
       test = "SELECT COUNT(ID) AS segnalazioni FROM " + TABLENAME
-          + "WHERE Recensione.ID.Segnalato_R LIKE " + segnalazione.getIdSegnalato();
+          + " WHERE 'Recensione.ID.Segnalato_R' LIKE " + segnalazione.getIdSegnalato();
     }
     
     try {
       System.out.println(sql);
+      System.out.println(test);
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
       preparedStatement.executeUpdate();
@@ -70,6 +71,7 @@ public class SegnalazioneManager {
     try {
       preparedStatement = connection.prepareStatement(test);
       ResultSet rs = preparedStatement.executeQuery();
+      rs.first();
       numero = rs.getInt("segnalazioni");
       
     } finally {

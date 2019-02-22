@@ -18,26 +18,29 @@
         
         <%
             ArrayList<Annuncio> lista = (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
-            if (lista == null) {
-                System.out.println("Lista A non trovata");
-                Integer numPagina = (Integer) request.getSession().getAttribute("numPagina");
-                if (numPagina == null) {
-                    System.out.println("Numero pagina non trovato");
-                    numPagina = 0;
-                }
-                response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=n&numPagina=" + numPagina.toString());
-                return;
-            }
             ArrayList<Utente> lista2 = (ArrayList<Utente>) request.getSession().getAttribute("urisultato");
-            if (lista2 == null) {
-                Integer numPagina = (Integer) request.getSession().getAttribute("numPagina");
-                if (numPagina == null) {
-                    numPagina = 0;
-                }
-                response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=stampaUtenti&numPagina=" + numPagina.toString());
+            if (lista == null || lista2 == null) {
+	            if (lista == null) {
+	                System.out.println("Lista A non trovata");
+	                Integer numPagina = (Integer) request.getSession().getAttribute("numPagina");
+	                if (numPagina == null) {
+	                    System.out.println("Numero pagina non trovato");
+	                    numPagina = 0;
+	                }
+	                response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=n&numPagina=" + numPagina.toString());
+	                return;
+	            }
+	            if (lista2 == null) {
+	                Integer numPagina = (Integer) request.getSession().getAttribute("numPagina");
+	                if (numPagina == null) {
+	                    numPagina = 0;
+	                }
+	                response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=stampaUtenti&numPagina=" + numPagina.toString());
+	            }
+            } else {
+              request.getSession().removeAttribute("arisultato");
+              request.getSession().removeAttribute("urisultato");
             }
-            request.getSession().removeAttribute("arisultato");
-            request.getSession().removeAttribute("urisultato");
         %>
         <div id="switchTab">
         <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>

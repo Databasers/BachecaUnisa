@@ -1,6 +1,8 @@
 package gestioneannunci;
 
 import gestioneutenti.SessioneUtente;
+import gestioneutenti.Utente;
+import gestioneutenti.UtenteManager;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -45,19 +47,22 @@ public class AnnunciServlet extends HttpServlet {
       if (azione.equalsIgnoreCase("stampaAnnunci")) {
         int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         String filtro = request.getParameter("filtro");
-        if(filtro.equalsIgnoreCase("tipologia")) {
-          String tipo = request.getParameter("tipologia");
-          boolean check = true;
-          if (tipo.equalsIgnoreCase("gruppo")) {
-            check = false;
-          }
-          ArrayList<Annuncio> risultato = recuperaPerTipologia(check, numPagina);
+        if (filtro.equalsIgnoreCase("gruppo")) {
+          ArrayList<Annuncio> risultato = recuperaPerTipologia(request.getParameter("descrizione"),
+                false, request.getParameter("dipartimento"),numPagina);
           request.getSession().setAttribute("arisultato", risultato);
+          UtenteManager um = new UtenteManager();
+          Utente urisul = um.recuperaPerUsername(request.getParameter("descrizione"));
+          request.getSession().setAttribute("urisultato", urisul);
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
-        } else if(filtro.equalsIgnoreCase("dipartimento")) {
-          String dipartimento = request.getParameter("dipartimento");
-          ArrayList<Annuncio> risultato = recuperaPerDipartimento(dipartimento, numPagina);
+          
+        } else if (filtro.equalsIgnoreCase("tutorato")) {
+          ArrayList<Annuncio> risultato = recuperaPerTipologia(request.getParameter("descrizione"),
+                true, request.getParameter("dipartimento"),numPagina);
           request.getSession().setAttribute("arisultato", risultato);
+          UtenteManager um = new UtenteManager();
+          Utente urisul = um.recuperaPerUsername(request.getParameter("descrizione"));
+          request.getSession().setAttribute("urisultato", urisul);
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         
         } else if(filtro.equalsIgnoreCase("utente")) {
@@ -162,25 +167,13 @@ public class AnnunciServlet extends HttpServlet {
    * @return la lista degli annunci della tipologia passata come parametro.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private ArrayList<Annuncio> recuperaPerTipologia(boolean tipo, int numPagina) 
+  private ArrayList<Annuncio> recuperaPerTipologia(String descrizione, boolean tipo,
+        String dipartimento, int numPagina) 
       throws SQLException {
-    return annuncioManager.recuperaPerTipologia(tipo, numPagina);
+    return annuncioManager.recuperaPerTipologia(descrizione, tipo, dipartimento, numPagina);
 
   }
-  
 
-  /**
-   * Questo metodo si occupa di restituire tutti gli annunci di un dato dipartimento.
-   * @param dipartimento filtro.
-   * @param numPagina il numero della pagina che l'utente visualizza.
-   * @return la lista degli annunci del dipartimento passato come parametro.
-   * @throws SQLException in caso di errore di accesso al database.
-   */
-  private ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento, int numPagina) 
-      throws SQLException {
-    return annuncioManager.recuperaPerDipartimento(dipartimento, numPagina);
-
-  }
 
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di un utente. 

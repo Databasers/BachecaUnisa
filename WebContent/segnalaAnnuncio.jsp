@@ -33,6 +33,7 @@ if (x == null){
  <input type="hidden" name="recensione" value= ""> 
  <input type="hidden" name="annuncio" value="<%=x.getId()%>">
   
+  <input type="hidden" name="luogo" value="no">
  
  <div class="checkboxes">
 <input type="radio" name="motivazione" value="0" checked="checked"> L'annuncio contiene un linguaggio volgare o inappropriato.<br>
@@ -41,7 +42,7 @@ if (x == null){
 <input type="radio" name="motivazione" value="3"> Altro.<br> 
  </div>
   
- <textarea id="textarea" name = "descrizione" value="Inserire la descrizione" placeholder="Inserire la descrizione"></textarea>
+ <input type="text" id="textarea" name = "descrizione" value="Inserire la descrizione" placeholder="Inserire la descrizione">
  
   <div style="text-align:center">
  <input type="submit" value="Segnala" id="segnala">

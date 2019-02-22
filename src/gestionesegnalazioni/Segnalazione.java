@@ -29,6 +29,11 @@ public class Segnalazione {
     this.recensione = recensione;
     this.utente = utente;
   }
+  
+  public Segnalazione(Integer recensione, Integer annuncio) {
+    this.recensione = recensione;
+    this.annuncio = annuncio;
+  }
 
   public Segnalazione() {
   }
@@ -53,8 +58,10 @@ public class Segnalazione {
    */
   public Integer getIdSegnalato() {
     if (isTipoSegnalazione()) {
+      System.out.println("Stiamo segnalando un annuncio");
       return annuncio;
     } else {
+      System.out.println("Stiamo segnalando una recensione");
       return recensione;
     }
   }
@@ -65,8 +72,7 @@ public class Segnalazione {
    *         <code>false</code> Recensione.
    */
   public boolean isTipoSegnalazione() {
-    return annuncio != -1;
-
+    return annuncio != null;
   }
 
  
@@ -93,12 +99,12 @@ public class Segnalazione {
 
   public void setAnnuncio(Integer annuncio) {
     this.annuncio = annuncio;
-    recensione = -1;
+    recensione = null;
   }
 
   public void setRecensione(Integer recensione) {
     this.recensione = recensione;
-    annuncio = -1;
+    annuncio = null;
   }
 
 

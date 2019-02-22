@@ -10,24 +10,27 @@
 
     <body>
 
-        <form class="form-inline">
-            <input type="text" id="barraRicerca" name="cerca"
+        <form class="form-inline" action="/BACHECAUNISA/AnnunciServlet">
+            <input type="hidden" name="azione" value="stampaAnnunci">
+            <input type="hidden" name="numPagina" value="0">
+            <input type="text" id="barraRicerca" name="descrizione"
                    placeholder="Cerca annuncio o utente">
             <div class="radio">
-            <label>Gruppo di studio<input type="radio" checked="checked" name="radio"></label>
-            <label>Tutorato<input type="radio" name="radio"></label>
+            <label>Gruppo di studio<input type="radio" checked="checked" name="filtro" value="gruppo"></label>
+            <label>Tutorato<input type="radio" name="filtro" value="tutorato"></label>
             </div>
             <div class="custom-select">
-                <select>
-                    <option value="0">Dipartimento:</option>
-                    <option value="1">Informatica</option>
-                    <option value="2">Ingegneria</option>
-                    <option value="3">Farmacia</option>
-                    <option value="4">Lettere</option>
+                <label>Dipartimento:
+                <select name="dipartimento">
+                    <option value="Informatica">Informatica</option>
+                    <option value="Ingegneria">Ingegneria</option>
+                    <option value="Farmacia">Farmacia</option>
+                    <option value="Lettere">Lettere</option>
                 </select>
+                </label>
                 <input type="submit" id ="cerca" value="Cerca">
             </div>
-            <button class="button" id="creaAnnuncio">Crea Annuncio</button>
+            <button class="button" id="creaAnnuncio" formaction="/BACHECAUNISA/CreaNuovoAnnuncio.jsp">Crea Annuncio</button>
         </form>
 
     </body>

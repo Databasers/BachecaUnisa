@@ -33,27 +33,28 @@ public class SegnalazioniServlet extends HttpServlet {
         ArrayList<Segnalazione> caso = stampaSegnalazioni(numPagina);
         request.getSession().setAttribute("Lista", caso);
         response.sendRedirect(request.getContextPath() + "/HTML/HomePageGestore");
-      } else if (azione.equalsIgnoreCase("creaSegnalazione")) {
-        //Non potendo assegnare null ad un intero scelgo di assegnare -1.
-        //Il suo ID verrà comunque ignorato nel metodo crea segnalazione
-        SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
-        Segnalazione segnalazione = new Segnalazione();
         
-        segnalazione.setDescrizione(request.getParameter("descrizione")); 
-        segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
+      } else if (azione.equalsIgnoreCase("creaSegnalazione")) {
+        SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+        Segnalazione segnalazione;
+        
         if (request.getParameter("recensione").length() > 0) {
-          segnalazione.setRecensione(Integer.parseInt(request.getParameter("recensione")));
-          segnalazione.setAnnuncio(null);
+          segnalazione = new Segnalazione(Integer.parseInt(request.getParameter("recensione")), null);
+          System.out.println("È una recensione");
+          segnalazione.setDescrizione(request.getParameter("descrizione")); 
+          segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
         } else {
-          segnalazione.setAnnuncio(Integer.parseInt(request.getParameter("annuncio")));
-          segnalazione.setRecensione(null);
+          segnalazione = new Segnalazione(null, Integer.parseInt(request.getParameter("annuncio")));
+          System.out.println("È un annuncio");
+          segnalazione.setDescrizione(request.getParameter("descrizione")); 
+          segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
         }
         segnalazione.setUtente(su.getUsername());
         creaSegnalazione(segnalazione);
         if (segnalazione.isTipoSegnalazione()) {
-          response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp");
-        }
-        if (request.getParameter("luogo").equalsIgnoreCase("profilo")) {
+          response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp?id="
+              + segnalazione.getIdSegnalato());
+        } else if (request.getParameter("luogo").equalsIgnoreCase("profilo")) {
           response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?&user="
               + request.getParameter("user"));
         } else {
@@ -93,6 +94,8 @@ public class SegnalazioniServlet extends HttpServlet {
    * @throws SQLException in caso di errore di accesso al database.
    */
   private void creaSegnalazione(Segnalazione segnalazione) throws SQLException {
+    System.out.println(segnalazione.toString());
+    System.out.println(segnalazione.getId() + " " + segnalazione.getUtente() + " " + segnalazione.getIdSegnalato());
     if (segnalazioneManager.creaSegnalazione(segnalazione)) {
       System.out.println("Ogetto segnalato ancora valido");
     }
