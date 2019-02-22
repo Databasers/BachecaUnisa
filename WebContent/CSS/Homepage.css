@@ -26,7 +26,7 @@ button, input
 {
     width: 80%;
     margin: 20px auto;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     border-radius: 70px;
     background-color:  rgb(256,256,256);
@@ -91,4 +91,24 @@ button, input
 {
     width: 80%;
     float: right;
+}
+
+.etichettaTutorato , .etichettaGruppo
+{
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    margin: 0 auto;
+    width: 10%;
+}
+
+.etichettaTutorato
+{
+    background-color: orange;
+}
+
+.etichettaGruppo
+{
+    background-color: greenyellow;
 }

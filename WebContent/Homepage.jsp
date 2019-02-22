@@ -52,6 +52,9 @@
             
             <%for (Annuncio x : lista) {%>
             <div class = "annuncio">
+                <p class="etichettaTipologia">
+                    <%if (x.isTipologia()) {%> <p class="etichettaTutorato">TUTORATO</p> <%}%>
+                    <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO</p> <%}%>
                 <div class = "Titolo">
                     <h2><%=x.getTitolo()%></h2>
                     <h3><%=x.getUsernameUtente()%></h3>
