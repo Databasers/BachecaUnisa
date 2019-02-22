@@ -266,10 +266,10 @@ public class UtenteServlet extends HttpServlet {
       System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
       response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
     } catch (Exception e) {
-      System.out.println("Utente non registrato. MESSAGE:" + e.getMessage());
+      System.out.println("Username o password non corretti. MESSAGE:" + e.getMessage());
       request.setAttribute("Done", "falso");
       System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
-      RequestDispatcher x = getServletContext().getRequestDispatcher("/Login.jsp");
+      RequestDispatcher x = getServletContext().getRequestDispatcher("/Login.jsp?error=true");
       //ritento il login
       x.forward(request, response);
     }
