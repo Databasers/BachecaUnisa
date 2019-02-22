@@ -16,7 +16,7 @@
             <% String registered = (String) request.getParameter("error");
                 System.out.println(registered);
                 if (registered != null && registered.equalsIgnoreCase("true")) {%>
-            <h3><font color="red">Username o password non corretti.</font></h3>
+            <h3 align="center"><font color="red">Username o password non corretti.</font></h3>
                 <%}%>
             <form name ="Login" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=Login">
                 <input type="text" placeholder="Username" name="username" maxlength="20" pattern="[a-zA-Z0-9]{1,}" required="required" title="Solo lettere e numeri">
