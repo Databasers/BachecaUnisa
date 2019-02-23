@@ -16,7 +16,7 @@
               	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
               	if (su == null) {
                 	response.sendRedirect(request.getContextPath() + "/Login.jsp");
-              	}
+              	} else {
                 Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
                 if (u == null) {
                   System.out.println(request.getContextPath() + "/UtenteServlet?azione=prelevaUtente&luogo=feed&username=" + request.getParameter("username"));
@@ -64,5 +64,5 @@
     <input type="hidden" name="azione" value="creaRecensione">
   <div id="visualizzafeed"><input type="submit" value="Rilascia Feedback" formaction="/BACHECAUNISA/RecensioniServlet"></div>
   </form>
-<%} %>
+<%}} %>
 </body>

@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 public class UtenteServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
-  private static final String DEFAULT_DESCRIPTION = "Questo utente non ha ancora scritto una descrizione :(";
+  private static final String DEFAULT_DESCRIPTION = "Questo utente non ha ancora"
+      + " scritto una descrizione :(";
   UtenteManager utenteManager = new UtenteManager();
 
 
@@ -144,7 +145,6 @@ public class UtenteServlet extends HttpServlet {
 
   /**
    * Questo metodo incrementa il contatore degli annunci di un utente.
-   * @param request
    */
   private void aggiungiAnnuncio(HttpServletRequest request) throws SQLException {
     SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");

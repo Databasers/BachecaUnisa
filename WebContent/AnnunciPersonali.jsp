@@ -19,7 +19,7 @@
   		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
   		if (su == null) {
      		 response.sendRedirect(request.getContextPath() + "/Login.jsp");
- 		   }
+ 		   } else {
     	
         ArrayList<Annuncio> elenco = (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
         if (elenco == null) {
@@ -51,6 +51,6 @@
             </div>
             <%}%>
         </div>
-        <%} %>
+        <%}} %>
     </body>
 </html>

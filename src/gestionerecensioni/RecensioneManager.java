@@ -130,7 +130,7 @@ public class RecensioneManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Recensione> temp = null;
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE r.Mittente LIKE " 
+    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE Mittente LIKE " 
         + utenteDestinatario;
     
     try {
@@ -160,7 +160,7 @@ public class RecensioneManager {
     PreparedStatement preparedStatement = null;
     Recensione temp = null;
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE r.ID LIKE " 
+    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE ID LIKE " 
         + id;
     
     try {
@@ -173,8 +173,8 @@ public class RecensioneManager {
         temp = null;
       } else {
         temp = new Recensione(rs.getInt("ID"), rs.getInt("Valutazione"), 
-               rs.getString("Descrizione"), rs.getString("Mittente"),
-               rs.getString("Destinatario"));
+               rs.getString("Descrizione"), rs.getString("Mittente.Username"),
+               rs.getString("Destinatario.Username"));
       }
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);

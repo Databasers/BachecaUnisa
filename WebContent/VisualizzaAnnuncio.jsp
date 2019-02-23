@@ -16,7 +16,7 @@
       		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
       		if (su == null) {
         		response.sendRedirect(request.getContextPath() + "/Login.jsp");
-    	  	}
+    	  	} else {
             Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
             System.out.println("Siamo in visualizza annuncio");
             if (x == null) {
@@ -47,6 +47,6 @@
 
 
 
-        <%}%>
+        <%}}%>
     </body>
 

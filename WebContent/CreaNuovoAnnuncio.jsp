@@ -17,7 +17,7 @@
            		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
           		if (su == null) {
               		response.sendRedirect(request.getContextPath() + "/Login.jsp");
-            	}
+            	} else {
                 Utente h = (Utente) request.getSession().getAttribute("utenteTrovato");
                 String username = null;
                 if (h == null) {
@@ -50,4 +50,5 @@
                 <input type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
             </form>
         </div>
+        <%} %>
     </body>

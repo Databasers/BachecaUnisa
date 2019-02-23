@@ -52,7 +52,11 @@ public class AnnunciServlet extends HttpServlet {
                 false, request.getParameter("dipartimento"),numPagina);
           request.getSession().setAttribute("arisultato", risultato);
           UtenteManager um = new UtenteManager();
-          Utente urisul = um.recuperaPerUsername(request.getParameter("descrizione"));
+          Utente u = um.recuperaPerUsername(request.getParameter("descrizione"));
+          ArrayList<Utente> urisul = new ArrayList<Utente>();
+          if (u != null) {
+            urisul.add(u);
+          }
           request.getSession().setAttribute("urisultato", urisul);
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
           
@@ -61,11 +65,15 @@ public class AnnunciServlet extends HttpServlet {
                 true, request.getParameter("dipartimento"),numPagina);
           request.getSession().setAttribute("arisultato", risultato);
           UtenteManager um = new UtenteManager();
-          Utente urisul = um.recuperaPerUsername(request.getParameter("descrizione"));
+          Utente u = um.recuperaPerUsername(request.getParameter("descrizione"));
+          ArrayList<Utente> urisul = new ArrayList<Utente>();
+          if (u != null) {
+            urisul.add(u);
+          }
           request.getSession().setAttribute("urisultato", urisul);
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         
-        } else if(filtro.equalsIgnoreCase("utente")) {
+        } else if (filtro.equalsIgnoreCase("utente")) {
           String utente = request.getParameter("usernameUtente");
           ArrayList<Annuncio> risultato = recuperaPerUtente(utente, numPagina);
           request.getSession().setAttribute("arisultato", risultato);

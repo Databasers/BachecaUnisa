@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="gestionerecensioni.Recensione"%>
 <%@page import="gestioneutenti.SessioneUtente"%>
 <html>
 <head>
@@ -11,37 +12,41 @@
 <body>
    
   <%
-	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
-	if (su == null) {
-  	response.sendRedirect(request.getContextPath() + "/Login.jsp");
-	}
+SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+Recensione x = (Recensione) request.getSession().getAttribute("recensione");
+if (su == null) {
+  response.sendRedirect(request.getContextPath() + "/Login.jsp");
+} else if (x == null){
+  System.out.println("X non esiste");
+  response.sendRedirect("/BACHECAUNISA/RecensioniServlet?azione=segnalaRecensione&luogo=se&id=" + request.getParameter("id"));
+} else {
+  request.getSession().removeAttribute("annuncioTrovato");
+
 	%>
   
   
   
-  <h3>Stai segnalando l'annuncio:</h3>
+  <h3>Stai segnalando la recensione:</h3>
  <div class="avatarcont"> <img id="avatarannuncio" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
   
-  <p id="textannunciosegn">Testo della recensione</p>
+  <p id="textannunciosegn"><%=x.getDescrizione()%></p>
   
   </div>
   <form id="formSegnaRecensione" method="Post">
    <div class="checkboxes">
-<input type="checkbox" name="segnala1" value="Bike"> La recensione contiene un linguaggio volgare o inappropriato.<br>
-<input type="checkbox" name="segnala2" value="Car"> La recensione non è pertinente all'annuncio.<br>
-<input type="checkbox" name="segnala3" value="Boat">Non ho mai incontrato l'utente che ha pubblicato la recensione.<br>  
-     <input type="checkbox" name="segnala4" value="Plane"> Altro.<br> 
+<input type="radio" name="motivazione" value="0" checked="checked"> La recensione contiene un linguaggio volgare o inappropriato.<br>
+<input type="radio" name="motivazione" value="1"> La recensione non � pertinente<br>
+<input type="radio" name="motivazione" value="2">Non ho mai incontrato l'utente che ha pubblicato la recensione.<br>  
+<input type="radio" name="motivazione" value="3"> Altro.<br> 
  </div>
   
- 
-    <textarea id="textarea">Qui andra'  la descrizione della segnalazione.</textarea>
+ <textarea id="textarea" placeholder="Descrizione"></textarea>
   
   
 <div style="text-align:center">
-<input type="submit" value="Segnala" id="segnala" onclick="registra()">
+<input type="submit" value="Segnala" id="segnala">
 </div>
  </form>
-  
-  
-
-<script>// Write JavaScript here </script></body>
+ <%} %>
+  </body>
+ </html>

@@ -41,40 +41,48 @@ public class RecensioniServlet extends HttpServlet {
     try {
       String azione = request.getParameter("azione");  
       
-      if (azione == "stampaRecensioni") {
+      if (azione.equalsIgnoreCase("stampaRecensioni")) {
         int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         String username = request.getParameter("username");
         ArrayList<Recensione> caso = stampaRecensioni(username, numPagina);
         request.getSession().setAttribute("Lista", caso);
         String luogo = request.getParameter("luogo");
-        response.sendRedirect(request.getContextPath() + "/HTML/" + luogo + ".jsp");
+        response.sendRedirect(request.getContextPath() + "/" + luogo + ".jsp");
       }
 
-      if (azione == "rimuoviRecensione") {
+      if (azione.equalsIgnoreCase("rimuoviRecensione")) {
         int id = Integer.parseInt(request.getParameter("id"));
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equalsIgnoreCase("Gestore")) {
           rimuoviRecensione(id);
-          response.sendRedirect(request.getContextPath() + "/HTML/HomepageGestore");
+          response.sendRedirect(request.getContextPath() + "/HomepageGestore.jsp");
         } else {
           if (usernameLog.equalsIgnoreCase(username)) {
             rimuoviRecensione(id);
-            response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
+            response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
           }
         }
       }
       
 
 
-      if (azione == "modificaRecensione") {
+      if (azione.equalsIgnoreCase("modificaRecensione")) {
         int id = Integer.parseInt(request.getParameter("id"));
         int valutazione = Integer.parseInt(request.getParameter("valutazione"));
         String descrizione = request.getParameter("descrizione");
         String username = request.getParameter("usernameUtente");
         if (usernameLog.equalsIgnoreCase(username)) {
           modificaRecensione(id, valutazione, descrizione);
-          response.sendRedirect(request.getContextPath() + "/HTML/profilo_personale");
+          response.sendRedirect(request.getContextPath() + "/profiloPersonale");
         }
+      }
+      
+      if (azione.equalsIgnoreCase("segnalaRecensione")) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Recensione rec = recensioneManager.recuperaPerId(id);
+        request.getSession().setAttribute("recensione", rec);
+        response.sendRedirect(request.getContextPath() + "/");
+        
       }
       
 

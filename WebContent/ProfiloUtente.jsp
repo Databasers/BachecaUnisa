@@ -20,7 +20,7 @@
   	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
   	if (su == null) {
     	response.sendRedirect(request.getContextPath() + "/Login.jsp");
-  	}
+  	} else {
   	Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
     if (u == null) {
       response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=ut&username=" + request.getParameter("username"));
@@ -41,7 +41,7 @@
  <button id="riFeed" type="submit" formaction="/BACHECAUNISA/RilascioFeedback.jsp">Rilascia Feedback</button>
 </span>
 </form>
-<%} %>
+<%}} %>
 </body>
 </html>
 

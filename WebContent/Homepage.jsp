@@ -21,7 +21,7 @@
         	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
         	if (su == null) {
           		response.sendRedirect(request.getContextPath() + "/Login.jsp");
-        	}
+        	} else {
             ArrayList<Annuncio> lista = (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
             ArrayList<Utente> lista2 = (ArrayList<Utente>) request.getSession().getAttribute("urisultato");
             if (lista == null || lista2 == null) {
@@ -29,13 +29,13 @@
 	                System.out.println("Lista A non trovata");
 	                Integer numPagina = (Integer) request.getSession().getAttribute("numPagina");
 	                if (numPagina == null) {
-	                    System.out.println("Numero pagina non trovato");
 	                    numPagina = 0;
 	                }
 	                response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=n&numPagina=" + numPagina.toString());
 	                return;
 	            }
 	            if (lista2 == null) {
+	                System.out.println("Lista U non trovata");
 	                Integer numPagina = (Integer) request.getSession().getAttribute("numPagina");
 	                if (numPagina == null) {
 	                    numPagina = 0;
@@ -45,7 +45,7 @@
             } else {
               request.getSession().removeAttribute("arisultato");
               request.getSession().removeAttribute("urisultato");
-            }
+            
         %>
         <div id="switchTab">
         <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>
@@ -53,9 +53,9 @@
         </div>
 
 
-        <div id="listaAnnunci">
+        <div id="listaAnnunci" name="listaAnnunci">
             
-            <%for (Annuncio x : lista) {%>
+            <%if (!lista.isEmpty()) { for (Annuncio x : lista) {%>
             <div class = "annuncio">
                     <%if (x.isTipologia()) {%> <p class="etichettaTutorato">TUTORATO</p> <%}%>
                     <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO</p> <%}%>
@@ -70,14 +70,17 @@
                     </form>
                 </div>
             </div>
-            <%}%>
-
+            <%}} else {%>
+                
+             Non ho trovato nulla
+             
+             <%} %>
         </div>
 
 
-        <div id="listaProfili">
-            <% if (lista2 != null) {
-        for (Utente x : lista2) {%>
+        <div id="listaProfili" name = "listaProfili">
+            <% if (!lista2.isEmpty()) {
+              for (Utente x : lista2) {  if (x.getUsername() != null) {%>
             <div class = "annuncio">
                 <div class = "Titolo">
                     <h2><%=x.getUsername()%></h2>
@@ -97,23 +100,24 @@
                     </form>
                 </div>
             </div>
-            <%}
-} else {%>
+            <%}}
+              } else {%>
             <div id="NothingFound">Non è stato trovato nessun utente con questo username :(</div>
-
-
-            <%}%>
+            <%}}}%>
+            
         </div>
 
         <script type="text/javascript">
             function switchAnnunci() {
-                $("div[name=listaProfili]").hide();
-                $("div[name=listaAnnunci]").fadeIn();
+            	console.log("SWIITCHI");
+                $("#listaProfili").hide();
+                $("#listaAnnunci").fadeIn();
             }
 
             function switchProfilo() {
-                $("div[name=listaAnnunci]").hide();
-                $("div[name=listaProfili]").fadeIn();
+            	console.log("SWIITCHI");
+                $("#listaAnnunci").hide();
+                $("#listaProfili").fadeIn();
             }
 
 

@@ -18,7 +18,7 @@
   	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
   	if (su == null) {
     	response.sendRedirect(request.getContextPath() + "/Login.jsp");
-  	}
+  	} else {
     Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
     if (u == null) {
       response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=pro&username=" + su.getUsername());
@@ -35,7 +35,7 @@
         <textarea id="textarea" disabled="disabled"><%=u.getDescrizione() %></textarea>
         <button id="visFeed" onclick="location.href = 'VisualizzaFeedback.jsp'">Visualizza Feedback</button>
     </div>
-  <%} %>
+  <%}} %>
 </body>
 </html>
 

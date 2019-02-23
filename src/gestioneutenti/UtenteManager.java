@@ -116,7 +116,7 @@ public class UtenteManager {
     System.out.println("Nel metodo");
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    Utente temp = new Utente();
+    Utente temp = null;
     String sql = "SELECT * FROM " + TABLENAME + " WHERE Username = ?  ";
     
     try {
@@ -130,8 +130,8 @@ public class UtenteManager {
       
       if (!rs.next()) {
         System.out.println("Non trovato");
-        temp = null;
       } else {
+        temp = new Utente();
         System.out.println("Trovato qualcosa");
         temp.setUsername(rs.getString("Username"));
         temp.setNome(rs.getString("Nome"));
