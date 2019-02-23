@@ -18,7 +18,7 @@
             if (su == null) {
               response.sendRedirect(request.getContextPath() + "/Login.jsp");
             }
-            if (x == null) {
+            else  if (x == null) {
               System.out.println("Annuncio non trovato");
               response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&luogo=mo&id=" + request.getParameter("id"));
             } else {
