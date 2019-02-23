@@ -56,7 +56,7 @@
         <div id="listaAnnunci">
             
             <%for (Annuncio x : lista) {%>
-            <div class = "annuncio">
+            <div class = "annuncio<%if (x.isTipologia()){%>Tutorato<%}%><%if (!x.isTipologia()){%>Gruppo<%}%>">
                     <%if (x.isTipologia()) {%> <p class="etichettaTutorato">TUTORATO</p> <%}%>
                     <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO</p> <%}%>
                 <div class = "Titolo">
