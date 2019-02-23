@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <%@page import="gestioneannunci.Annuncio"%>
+<%@page import="gestioneutenti.SessioneUtente"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -11,11 +12,14 @@
 <body>
   
   <%
-Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
-if (x == null){
-
-  System.out.println("X non esiste");
-  response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&luogo=se&id=" + request.getParameter("id"));
+	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+	if (su == null) {
+  	response.sendRedirect(request.getContextPath() + "/Login.jsp");
+	}
+	Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
+	if (x == null){
+  		System.out.println("X non esiste");
+  		response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&luogo=se&id=" + request.getParameter("id"));
 } else {
   request.getSession().removeAttribute("annuncioTrovato");
 %>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@page import="gestioneannunci.Annuncio"%>
+
+<%@page import="gestioneutenti.SessioneUtente"%>
 <html>
     <head>
         <title>Visualizza Annuncio</title>
@@ -10,6 +12,10 @@
     <body>
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <%
+      		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+      		if (su == null) {
+        		response.sendRedirect(request.getContextPath() + "/Login.jsp");
+    	  	}
             Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
             System.out.println("Siamo in visualizza annuncio");
             if (x == null) {

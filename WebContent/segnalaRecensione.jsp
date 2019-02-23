@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="gestioneutenti.SessioneUtente"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
@@ -8,6 +9,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
 </head>
 <body>
+   
+  <%
+	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+	if (su == null) {
+  	response.sendRedirect(request.getContextPath() + "/Login.jsp");
+	}
+	%>
   
   
   

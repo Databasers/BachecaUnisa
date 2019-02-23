@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
 </head>
 <body>
-<%
+<% 
   ArrayList<Annuncio> elenco =(ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
   if(elenco==null){
    response.sendRedirect("/BACHECAUNISA/SegnalazioniServlet?azione=stampaAnnuncis");
