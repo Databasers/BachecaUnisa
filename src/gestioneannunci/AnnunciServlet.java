@@ -132,10 +132,15 @@ public class AnnunciServlet extends HttpServlet {
         System.out.println("Titolo:" + annuncioTrovato.getTitolo());
         System.out.println("\n ANNUNCIO TROVATO \n");
         
-        if (request.getParameter("luogo") != null) {
+        if (request.getParameter("luogo").equalsIgnoreCase("se")) {
           response.sendRedirect(request.getContextPath() + "/segnalaAnnuncio.jsp?id=" + id);
+          
+        } else if (request.getParameter("luogo").equalsIgnoreCase("mo")) {
+          response.sendRedirect(request.getContextPath() + "/modificaAnnuncio.jsp?id=" + id);
+        
         } else {
           response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp?id=" + id);
+          
         }
       }
 

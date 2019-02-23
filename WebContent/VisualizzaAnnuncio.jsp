@@ -11,10 +11,13 @@
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <%
             Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
+            System.out.println("Siamo in visualizza annuncio");
             if (x == null) {
 
                 System.out.println("X non esiste");
-                response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&id=" + request.getParameter("id"));
+                String checazzo = "/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&luogo=vi&id=" + request.getParameter("id");
+                System.out.println(checazzo);
+                response.sendRedirect(checazzo);
             } else {
                 request.getSession().removeAttribute("annuncioTrovato");
         %>
@@ -25,8 +28,8 @@
             <div class="annuncioInfo">
                 <h2 id="annuncioTitle"><%=x.getTitolo()%><br></h2>
                 <span><%=x.getDipartimento()%></span>
-                <%if (x.isTipologia()) {%> <p class="etichettaTutorato">ATTIVITA' DI TUTORATO</p> <%}%>
-                <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO DI STUDIO</p> <%}%>
+                <%if (x.isTipologia()) {%> <p class="etichettaTutorato">ATTIVITA' DI TUTORATO</p>
+                <%} else {%> <p class="etichettaGruppo">GRUPPO DI STUDIO</p> <%}%>
             </div>
             <p class="txtannuncio"><%=x.getDescrizione()%></p>
             <div id="segnalaannuncio"><form action="">

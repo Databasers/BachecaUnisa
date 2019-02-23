@@ -35,15 +35,15 @@
             <p class="title">Annunci di <%=su.getUsername()%></p>
             <%for (Annuncio x : list) {%>
             <div class = "annuncio">
-                <%if (x.isTipologia()) {%> <p class="etichettaTutorato">TUTORATO</p> <%}%>
-                <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO</p> <%}%>
+                <%if (x.isTipologia()) {%> <p class="etichettaTutorato">TUTORATO</p>
+                <%} else {%> <p class="etichettaGruppo">GRUPPO</p> <%}%>
                 <div class = "Titolo">
                     <h2><%=x.getTitolo()%></h2>
                 </div>
                 <div class = "preview"><%= x.getDescrizione()%></div>
                 <div class = "btn">
                     <form method= "post">
-                        <button type="submit" formaction="/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&id=<%=x.getId()%>">Visualizza</button>
+                        <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
                         <button type="submit" formaction="/BACHECAUNISA/modificaAnnuncio.jsp?id=<%=x.getId()%>">Modifica</button>
                     </form>
                 </div>

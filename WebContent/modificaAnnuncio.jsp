@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="gestioneutenti.SessioneUtente"%>
 <%@page import="gestioneannunci.AnnuncioManager"%>
 <%@page import="gestioneannunci.Annuncio"%>
 <html>
@@ -11,19 +12,30 @@
     </head>
     <body>
         <%
-            AnnuncioManager manager = new AnnuncioManager();
-            int id = Integer.valueOf(request.getParameter("id"));
-            Annuncio x = (Annuncio) manager.recuperaPerId(id);
+            System.out.println("Entrati in modifica annuncio pagina");
+            Annuncio x = (Annuncio) request.getSession().getAttribute("annuncioTrovato");
+            SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+            if (su == null) {
+              response.sendRedirect(request.getContextPath() + "/Login.jsp");
+            }
+            if (x == null) {
+              System.out.println("Annuncio non trovato");
+              response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&luogo=mo&id=" + request.getParameter("id"));
+            } else {
+              request.getSession().removeAttribute("annuncioTrovato");
+              
         %>
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
             <p id="oldAnnuncio"> </p>
-            <form action="">
-                <div class="togna">
+            <form action="/BACHECAUNISA/AnnunciServlet">
+                <input type="hidden" name = "azione" value="modificaAnnuncio">
+                <input type="hidden" name="usernameUtente" value="<%=su.getUsername()%>">
+                <div class="togna" id = "mod">
                     <label class="etichettaGruppo">GRUPPO DI STUDIO   <input type="radio" name="filtro" value="gruppo"></label>
                     <label class="etichettaTutorato">ATTIVITA' DI TUTORATO   <input type="radio" checked="checked" name="filtro" value="tutorato"></label>
-                        <select name="Dipartimento">
-                            <option>Informatica</option>
+                        <select name="dipartimento">
+                            <option >Informatica</option>
                             <option>Ingegneria</option>
                             <option>Farmacia</option>
                             <option>Lettere</option>
@@ -38,22 +50,19 @@
 
         <script>
             function ceck() {
-                var tipologia = $("input[name=tipologia]:selected").val()
-                );
-                        var dipartimento;
-                if (tipologia == "Tutorato") {
-                    dipartimento = $(select[name = "Dipartimento"]).val();
-                } else {
-                    dipartimento = "Informatica";
-                }
+                var tipologia = $("input[name=tipologia]:selected").val());
+                var dipartimento = $("select[name = Dipartimento]").val();
                 var titolo = $("label[name=titolo]").val();
-                var descrizione = $(div[name = "descrizione"]).val();
+                var descrizione = $("div[name = descrizione]").val();
 
                 var azione = "/BACHECAUNISA/gestioneannunci/AnnunciServlet?action=modificaAnnuncio&usernameUtente=" + session.getAttribute("username")
                         + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
-                document.togna.action = azione;
-                document.togna.submit();
+                const elem = getElementById("mod");
+                elem.action = azione;
+                elem.submit();
 
             }
         </script>
+        <%} %>
     </body>
+    </html>
