@@ -1,65 +1,60 @@
 <!DOCTYPE html>
+<%@page import="gestioneannunci.AnnuncioManager"%>
+<%@page import="gestioneannunci.Annuncio"%>
 <html>
-<head>
-<title>Modifica Annuncio</title>
-<link rel="stylesheet" type="text/css" href="CSS/ModificaAnnuncio.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
-<meta charset="ISO-8859-1">
-</head>
-<body>
-  <h3 class="titlena">Stai modificando l'annuncio:</h3>
-     <p id="oldAnnuncio"> </p>
-  <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
-    
-  
- <form action="">
-    <div class="togna">
-  <input type="radio" name="tipologia" value="Gruppo"> Gruppo di studio
-      <br/>
-      <br/>
-  <input type="radio" name="tipologia" value="Tutorato"> Tutorato <!-- Da far diventare una form (propotipo) -->
-</div>
-    <div class="selectna">
-      <select name="Dipartimento">
-        <option>Dipartimento1</option>
-        <option>Dipartimento2</option>
-        <option>Dipartimento3</option>
-        <option>Dipartimento4</option>
-      </select>
-      <br>
-      <br>
-      <label for="titolo" class="titolo">Titolo:</label> 
-       <input type="text" name="titolo" placeholder="Titolo annuncio">
-       <br/>
-  <br/>
-    <textarea class="txtna"></textarea>
-  
-     <br/> <br/>
-    <input type="submit" value="Modifica annuncio" class="sfdbna" onclick="check()">
-    </div>
-    
-        </form>
-  </div>
+    <head>
+        <title>Modifica Annuncio</title>
+        <link rel="stylesheet" type="text/css" href="CSS/ModificaAnnuncio.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+        <meta charset="ISO-8859-1">
+    </head>
+    <body>
+        <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
+        <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
+        <%
+            AnnuncioManager manager = new AnnuncioManager();
+            int id = Integer.valueOf(request.getParameter("id"));
+            Annuncio x = (Annuncio) manager.recuperaPerId(id);
+        %>
+        
+            <p id="oldAnnuncio"> </p>
+            <form action="">
+                <div class="togna">
+                    <label class="etichettaGruppo">GRUPPO DI STUDIO   <input type="radio" name="filtro" value="gruppo"></label>
+                    <label class="etichettaTutorato">ATTIVITA' DI TUTORATO   <input type="radio" checked="checked" name="filtro" value="tutorato"></label>
+                        <select name="Dipartimento">
+                            <option>Informatica</option>
+                            <option>Ingegneria</option>
+                            <option>Farmacia</option>
+                            <option>Lettere</option>
+                        </select>
+                </div>             
+                    <input type="text" class="title" name="titolo" placeholder="Titolo" value="<%= x.getTitolo()%>">
+                    <textarea class="txtna"><%= x.getDescrizione()%></textarea>
+                    <input type="submit" value="Modifica annuncio" class="sfdbna" onclick="check()">
+            </form>
+        </div>
 
 
-<script>
-function ceck() {
-	   var tipologia = $("input[name=tipologia]:selected").val());
-	   var dipartimento;
-	   if(tipologia == "Tutorato"){
-	      dipartimento = $(select[name="Dipartimento"]).val();
-	      } else {
-	        dipartimento = "Informatica";
-	      }
-	   var titolo = $("label[name=titolo]").val();
-	   var descrizione = $(div[name="descrizione"]).val();
-	   
-	   var azione = "/BACHECAUNISA/gestioneannunci/AnnunciServlet?action=modificaAnnuncio&usernameUtente=" + session.getAttribute("username") 
-	       + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
-	   document.togna.action = azione;
-	   document.togna.submit();
-	   
-	  }
-</script>
-</body>
+        <script>
+            function ceck() {
+                var tipologia = $("input[name=tipologia]:selected").val()
+                );
+                        var dipartimento;
+                if (tipologia == "Tutorato") {
+                    dipartimento = $(select[name = "Dipartimento"]).val();
+                } else {
+                    dipartimento = "Informatica";
+                }
+                var titolo = $("label[name=titolo]").val();
+                var descrizione = $(div[name = "descrizione"]).val();
+
+                var azione = "/BACHECAUNISA/gestioneannunci/AnnunciServlet?action=modificaAnnuncio&usernameUtente=" + session.getAttribute("username")
+                        + "&dipartimento=" + dipartimento + "&titolo=" + titolo + "&descrizione=" + descrizione + "&tipologia=" + tipologia;
+                document.togna.action = azione;
+                document.togna.submit();
+
+            }
+        </script>
+    </body>
