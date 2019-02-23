@@ -126,11 +126,11 @@ public class SegnalazioneManager {
   
   /**
    * Recupera tutte le segnalazioni esistenti.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return la lista di tutte le segnalazion basandosi sulla pagina visualizzata dall'utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  public ArrayList<Segnalazione> recuperaSegnalazioni(int numPagina) throws SQLException {
+  public ArrayList<Segnalazione> recuperaSegnalazioni() throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     ArrayList<Segnalazione> temp = null;
@@ -144,7 +144,7 @@ public class SegnalazioneManager {
 
       ResultSet rs = preparedStatement.executeQuery();
       while (rs.next()) {
-        temp = listaSegnalazioni(rs, numPagina);
+        temp = listaSegnalazioni(rs);
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
@@ -156,23 +156,16 @@ public class SegnalazioneManager {
   /**
    * Il metodo crea un'ArrayList di segnalazioni da un result set.
    * @param rs result set da listare.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return una lista di 10 segnalazioni dal database basandosi dalla pagina specificata.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  public ArrayList<Segnalazione> listaSegnalazioni(ResultSet rs, int numPagina)
+  public ArrayList<Segnalazione> listaSegnalazioni(ResultSet rs)
       throws SQLException {
     rs.first();
     ArrayList<Segnalazione> lista = new ArrayList<Segnalazione>();
     Segnalazione temp;
-    //Sposta il cursore alla posizione corretta
-    //Qualcuno si faccia qualche simulazione per vedere se si muove nelle posizioni giuste
-    for (int i = 0; i < numPagina * PAGINADIM; i++) {
-      rs.next();
-    }
-    //Prende i prossimi 10 Annunci e li aggiunge alla lista
-    //Again, fare conti per vedere se va
-    for (int i = 0; i < 10; i++) {
+    while (!rs.isAfterLast()) {
      
       temp = new Segnalazione(rs.getInt("ID"), rs.getString("Descrizione"),
           rs.getInt("Motivazione"), rs.getInt("Annuncio.Segnalato_A"),

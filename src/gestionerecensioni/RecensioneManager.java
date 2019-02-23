@@ -88,21 +88,17 @@ public class RecensioneManager {
   /**
    * Il metodo crea un'ArrayList di recensioni da un result set.
    * @param rs result set da listare.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return una lista di 10 recensioni dal database basandosi dalla pagina specificata.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  public ArrayList<Recensione> listaRecensioni(ResultSet rs, int numPagina) 
+  public ArrayList<Recensione> listaRecensioni(ResultSet rs) 
       throws SQLException {
     rs.first();
     ArrayList<Recensione> lista = new ArrayList<Recensione>();
     Recensione temp;
-    //Sposta il cursore alla posizione corretta
-    for (int i = 0; i < numPagina * PAGINADIM; i++) {
-      rs.next();
-    }
 
-    for (int i = 0; i < 10; i++) {
+    while(!rs.isAfterLast()) {
      
       temp = new Recensione();
       temp.setDescrizione(rs.getString("Descrizione"));
@@ -119,12 +115,12 @@ public class RecensioneManager {
   
   /**
    * Recupera tuttle recensioni esistenti di un dato utente.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @param utenteDestinatario username di riferimento.
    * @return la lista di tutti gli annunci basandosi sulla pagina visualizzata dall'utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  public ArrayList<Recensione> recuperaRecensioni(String utenteDestinatario, int numPagina) 
+  public ArrayList<Recensione> recuperaRecensioni(String utenteDestinatario) 
       throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -140,7 +136,7 @@ public class RecensioneManager {
 
       ResultSet rs = preparedStatement.executeQuery();
       while (rs.next()) {
-        temp = listaRecensioni(rs, numPagina);
+        temp = listaRecensioni(rs);
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);

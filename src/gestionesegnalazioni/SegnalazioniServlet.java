@@ -29,8 +29,7 @@ public class SegnalazioniServlet extends HttpServlet {
       String azione = request.getParameter("azione");  
       
       if (azione.equalsIgnoreCase("stampaSegnalazioni")) {
-        int numPagina = Integer.parseInt(request.getParameter("numPagina"));
-        ArrayList<Segnalazione> caso = stampaSegnalazioni(numPagina);
+        ArrayList<Segnalazione> caso = stampaSegnalazioni();
         request.getSession().setAttribute("Lista", caso);
         response.sendRedirect(request.getContextPath() + "/HTML/HomePageGestore");
         
@@ -107,12 +106,12 @@ public class SegnalazioniServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di restituire tutte le segnalazioni presenti nel database
    * basandosi sul numero della pagina visualizzata.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return la lista di segnalazioni basandosi sul numero della pagina visualizzata.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private ArrayList<Segnalazione> stampaSegnalazioni(int numPagina) throws SQLException {
-    return segnalazioneManager.recuperaSegnalazioni(numPagina);
+  private ArrayList<Segnalazione> stampaSegnalazioni() throws SQLException {
+    return segnalazioneManager.recuperaSegnalazioni();
   }
 
 

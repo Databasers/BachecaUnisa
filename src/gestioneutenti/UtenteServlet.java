@@ -38,8 +38,7 @@ public class UtenteServlet extends HttpServlet {
       String azione = request.getParameter("azione");
       System.out.println(azione);
       if (azione.equalsIgnoreCase("stampaUtenti")) {
-        int numPagina = Integer.parseInt(request.getParameter("numPagina"));
-        ArrayList<Utente> risultato = stampaUtenti(numPagina);
+        ArrayList<Utente> risultato = stampaUtenti();
         request.getSession().setAttribute("urisultato", risultato);
         response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
       }
@@ -167,11 +166,11 @@ public class UtenteServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di restituire tutti gli utenti.
-   * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
+   * @param  il numero della pagina attualmente visualizzata dall'utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private ArrayList<Utente> stampaUtenti(int numPagina) throws SQLException {
-    return utenteManager.recuperaUtenti(numPagina);
+  private ArrayList<Utente> stampaUtenti() throws SQLException {
+    return utenteManager.recuperaUtenti();
   }
 
 

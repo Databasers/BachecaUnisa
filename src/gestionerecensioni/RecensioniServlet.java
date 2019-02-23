@@ -42,9 +42,8 @@ public class RecensioniServlet extends HttpServlet {
       String azione = request.getParameter("azione");  
       
       if (azione.equalsIgnoreCase("stampaRecensioni")) {
-        int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         String username = request.getParameter("username");
-        ArrayList<Recensione> caso = stampaRecensioni(username, numPagina);
+        ArrayList<Recensione> caso = stampaRecensioni(username);
         request.getSession().setAttribute("Lista", caso);
         String luogo = request.getParameter("luogo");
         response.sendRedirect(request.getContextPath() + "/" + luogo + ".jsp");
@@ -111,13 +110,13 @@ public class RecensioniServlet extends HttpServlet {
    * Questo metodo si occupa di restituire tutte le recensioni dell'utente 
    * passato come parametro basandosi sul numero della pagina visualizzata.
    * @param username identificativo dell'utente.
-   * @param numPagina il numero della pagina attualmente visualizzata dall'utente.
+   * @param  il numero della pagina attualmente visualizzata dall'utente.
    * @return la lista delle recensioni di un utente basandosi sul numero della pagina visualizzata
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private ArrayList<Recensione> stampaRecensioni(String username, int numPagina)
+  private ArrayList<Recensione> stampaRecensioni(String username)
       throws SQLException {
-    return recensioneManager.recuperaRecensioni(username, numPagina);
+    return recensioneManager.recuperaRecensioni(username);
   }
 
 

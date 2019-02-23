@@ -45,11 +45,10 @@ public class AnnunciServlet extends HttpServlet {
       String azione = request.getParameter("azione");  
       System.out.println(azione);
       if (azione.equalsIgnoreCase("stampaAnnunci")) {
-        int numPagina = Integer.parseInt(request.getParameter("numPagina"));
         String filtro = request.getParameter("filtro");
         if (filtro.equalsIgnoreCase("gruppo")) {
           ArrayList<Annuncio> risultato = recuperaPerTipologia(request.getParameter("descrizione"),
-                false, request.getParameter("dipartimento"),numPagina);
+                false, request.getParameter("dipartimento"));
           request.getSession().setAttribute("arisultato", risultato);
           UtenteManager um = new UtenteManager();
           Utente u = um.recuperaPerUsername(request.getParameter("descrizione"));
@@ -62,7 +61,7 @@ public class AnnunciServlet extends HttpServlet {
           
         } else if (filtro.equalsIgnoreCase("tutorato")) {
           ArrayList<Annuncio> risultato = recuperaPerTipologia(request.getParameter("descrizione"),
-                true, request.getParameter("dipartimento"),numPagina);
+                true, request.getParameter("dipartimento"));
           request.getSession().setAttribute("arisultato", risultato);
           UtenteManager um = new UtenteManager();
           Utente u = um.recuperaPerUsername(request.getParameter("descrizione"));
@@ -75,7 +74,7 @@ public class AnnunciServlet extends HttpServlet {
         
         } else if (filtro.equalsIgnoreCase("utente")) {
           String utente = request.getParameter("usernameUtente");
-          ArrayList<Annuncio> risultato = recuperaPerUtente(utente, numPagina);
+          ArrayList<Annuncio> risultato = recuperaPerUtente(utente);
           request.getSession().setAttribute("arisultato", risultato);
           if (request.getParameter("luogo") != null) {
             response.sendRedirect(request.getContextPath() + "/AnnunciPersonali.jsp");
@@ -85,7 +84,7 @@ public class AnnunciServlet extends HttpServlet {
           
         } else {
           System.out.println("Nessun filtro");
-          ArrayList<Annuncio> risultato = stampaAnnunci(numPagina);
+          ArrayList<Annuncio> risultato = stampaAnnunci();
           request.getSession().setAttribute("arisultato", risultato);
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
           
@@ -102,7 +101,7 @@ public class AnnunciServlet extends HttpServlet {
           if (usernameLog.equalsIgnoreCase(username)) {
             rimuoviAnnuncio(id);
             response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp?");
-            //TODO Ogni profilo utente deve avere l'id
+           
           }
         }
       }
@@ -114,7 +113,7 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (usernameLog.equals(username)) {
           modificaAnnuncio(id, titolo, descrizione);
-          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp"); //TODO
+          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
         }
       }
 
@@ -162,12 +161,12 @@ public class AnnunciServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di restituire tutti gli annunci presenti nel database 
    * basandosi sul numero della pagina visualizzata.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return la lista di annunci basandosi sul numero della pagina visualizzata.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private ArrayList<Annuncio> stampaAnnunci(int numPagina) throws SQLException {
-    return annuncioManager.recuperaAnnunci(numPagina);
+  private ArrayList<Annuncio> stampaAnnunci() throws SQLException {
+    return annuncioManager.recuperaAnnunci();
 
   }
 
@@ -175,14 +174,14 @@ public class AnnunciServlet extends HttpServlet {
    * Questo metodo si occupa di restituire tutti gli annunci di una data tipologia.
    * @param tipo dell'annuncio <code>true</code> se � un annuncio di tutorato.
    *          <code>false</code> se � un annuncio di gruppo di studio.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return la lista degli annunci della tipologia passata come parametro.
    * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Annuncio> recuperaPerTipologia(String descrizione, boolean tipo,
-        String dipartimento, int numPagina) 
+        String dipartimento) 
       throws SQLException {
-    return annuncioManager.recuperaPerTipologia(descrizione, tipo, dipartimento, numPagina);
+    return annuncioManager.recuperaPerTipologia(descrizione, tipo, dipartimento);
 
   }
 
@@ -190,13 +189,13 @@ public class AnnunciServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di un utente. 
    * @param username di riferimento all'utente.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return la lista degli annunci dell'utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private ArrayList<Annuncio> recuperaPerUtente(String username, int numPagina) 
+  private ArrayList<Annuncio> recuperaPerUtente(String username) 
       throws SQLException {
-    return annuncioManager.recuperaPerUtente(username, numPagina);
+    return annuncioManager.recuperaPerUtente(username);
 
   }
 

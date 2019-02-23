@@ -27,20 +27,12 @@
             if (lista == null || lista2 == null) {
 	            if (lista == null) {
 	                System.out.println("Lista A non trovata");
-	                Integer numPagina = (Integer) request.getSession().getAttribute("numPagina");
-	                if (numPagina == null) {
-	                    numPagina = 0;
-	                }
-	                response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=n&numPagina=" + numPagina.toString());
+	                response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=n");
 	                return;
 	            }
 	            if (lista2 == null) {
 	                System.out.println("Lista U non trovata");
-	                Integer numPagina = (Integer) request.getSession().getAttribute("numPagina");
-	                if (numPagina == null) {
-	                    numPagina = 0;
-	                }
-	                response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=stampaUtenti&numPagina=" + numPagina.toString());
+	                response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=stampaUtenti");
 	            }
             } else {
               request.getSession().removeAttribute("arisultato");

@@ -23,7 +23,7 @@
     	
         ArrayList<Annuncio> elenco = (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
         if (elenco == null) {
-            response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&luogo=per&filtro=utente&numPagina=0&usernameUtente=" + su.getUsername());
+            response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&luogo=per&filtro=utente&usernameUtente=" + su.getUsername());
             return;
         } else {
             request.getSession().removeAttribute("risultato");

@@ -21,25 +21,16 @@ public class UtenteManager {
   /**
    * Il metodo crea un'ArrayList di utenti da un result set.
    * @param rs result set da listare.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return una lista di 10 utenti dal database basandosi dalla pagina specificata.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  public ArrayList<Utente> listaUtenti(ResultSet rs, int numPagina) 
+  public ArrayList<Utente> listaUtenti(ResultSet rs) 
       throws SQLException {
     rs.first();
     ArrayList<Utente> lista = new ArrayList<Utente>();
     Utente temp;
-    //Sposta il cursore alla posizione corretta
-    for (int i = 0; i < numPagina * PAGINADIM; i++) {
-      rs.next();
-    }
-
-
-    for (int i = 0; i < 10; i++) {
-      if (rs.isAfterLast()) {
-        return lista;
-      }
+   while (rs.isAfterLast()) {
       temp = new Utente();
       temp.setUsername(rs.getString("Username"));
       temp.setNome(rs.getString("Nome"));
@@ -151,11 +142,11 @@ public class UtenteManager {
     
   /**
    * Recupera tutti gli utenti esistenti.
-   * @param numPagina il numero della pagina che l'utente visualizza.
+   * @param  il numero della pagina che l'utente visualizza.
    * @return la lista di tutti gli utenti basandosi sulla pagina visualizzata dall'utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  public ArrayList<Utente> recuperaUtenti(int numPagina) throws SQLException {
+  public ArrayList<Utente> recuperaUtenti() throws SQLException {
     
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -171,7 +162,7 @@ public class UtenteManager {
       
       ResultSet rs = preparedStatement.executeQuery();
       while (rs.next()) {
-        temp = listaUtenti(rs, numPagina);
+        temp = listaUtenti(rs);
       }
         
     } finally {
