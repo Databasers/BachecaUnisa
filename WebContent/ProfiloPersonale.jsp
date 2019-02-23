@@ -15,9 +15,12 @@
     <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
     
   <%
+  	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+  	if (su == null) {
+    	response.sendRedirect(request.getContextPath() + "/Login.jsp");
+  	}
     Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
     if (u == null) {
-      SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
       response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=pro&username=" + su.getUsername());
     } else {
       request.getSession().removeAttribute("utenteTrovato");

@@ -17,7 +17,7 @@
             SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
             if (su == null) {
               response.sendRedirect(request.getContextPath() + "/Login.jsp");
-            } else if (x == null) {
+            } else  if (x == null) {
               System.out.println("Annuncio non trovato");
               response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=visualizzannuncio&luogo=mo&id=" + request.getParameter("id"));
             } else {

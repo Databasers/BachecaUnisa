@@ -2,6 +2,7 @@
 <%@page import="gestioneutenti.Utente"%>
 <%@page import="gestioneannunci.Annuncio"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="gestioneutenti.SessioneUtente"%>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -17,6 +18,10 @@
         <div id="barrasopra"><%@ include file="barraSopra.jsp" %></div>
         
         <%
+        	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+        	if (su == null) {
+          		response.sendRedirect(request.getContextPath() + "/Login.jsp");
+        	}
             ArrayList<Annuncio> lista = (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
             ArrayList<Utente> lista2 = (ArrayList<Utente>) request.getSession().getAttribute("urisultato");
             if (lista == null || lista2 == null) {
@@ -48,7 +53,7 @@
         </div>
 
 
-        <div id="listaAnnunci" name="listaAnnunci">
+        <div id="listaAnnunci">
             
             <%for (Annuncio x : lista) {%>
             <div class = "annuncio">
@@ -70,7 +75,7 @@
         </div>
 
 
-        <div id="listaProfili" name="listaProfili">
+        <div id="listaProfili">
             <% if (lista2 != null) {
         for (Utente x : lista2) {%>
             <div class = "annuncio">

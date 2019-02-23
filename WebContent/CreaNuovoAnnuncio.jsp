@@ -14,11 +14,14 @@
 
         <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
             <%
+           		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+          		if (su == null) {
+              		response.sendRedirect(request.getContextPath() + "/Login.jsp");
+            	}
                 Utente h = (Utente) request.getSession().getAttribute("utenteTrovato");
                 String username = null;
                 if (h == null) {
-                    SessioneUtente u = (SessioneUtente) request.getSession().getAttribute("Utente");
-                    response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=crea&username=" + u.getUsername());
+                    response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=crea&username=" + su.getUsername());
                 } else if (h.getNumAnnunci() > 4) {
             %>
             <script type="text/javascript">

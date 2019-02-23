@@ -13,6 +13,10 @@
 <body>
 <script type="text/javascript">console.log("\t ENTRATI IN RILASCIO FEEDBACK");</script>
                 <%
+              	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+              	if (su == null) {
+                	response.sendRedirect(request.getContextPath() + "/Login.jsp");
+              	}
                 Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
                 if (u == null) {
                   System.out.println(request.getContextPath() + "/UtenteServlet?azione=prelevaUtente&luogo=feed&username=" + request.getParameter("username"));

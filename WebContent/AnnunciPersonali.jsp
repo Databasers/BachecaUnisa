@@ -16,15 +16,18 @@
     </head>
 
     <%
+  		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+  		if (su == null) {
+     		 response.sendRedirect(request.getContextPath() + "/Login.jsp");
+ 		   }
+    	
         ArrayList<Annuncio> elenco = (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
         if (elenco == null) {
-            SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
             response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&luogo=per&filtro=utente&numPagina=0&usernameUtente=" + su.getUsername());
             return;
         } else {
             request.getSession().removeAttribute("risultato");
         Annuncio[] list = elenco.toArray(new Annuncio[0]);
-        SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
     %>
 
     <body>
