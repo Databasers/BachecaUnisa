@@ -56,7 +56,7 @@
         <div id="listaAnnunci" name="listaAnnunci">
             
             <%if (!lista.isEmpty()) { for (Annuncio x : lista) {%>
-            <div class = "annuncio">
+            <div class = "annuncio<%if (x.isTipologia()) {%>Tutorato<%}%><%if (!x.isTipologia()) {%>Gruppo<%}%>">
                     <%if (x.isTipologia()) {%> <p class="etichettaTutorato">TUTORATO</p> <%}%>
                     <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO</p> <%}%>
                 <div class = "Titolo">
@@ -81,7 +81,7 @@
         <div id="listaProfili" name = "listaProfili">
             <% if (!lista2.isEmpty()) {
               for (Utente x : lista2) {  if (x.getUsername() != null) {%>
-            <div class = "annuncio">
+            <div class = "profilo">
                 <div class = "Titolo">
                     <h2><%=x.getUsername()%></h2>
                     <h3><%=x.getNome()%>  <%=x.getCognome()%></h3>

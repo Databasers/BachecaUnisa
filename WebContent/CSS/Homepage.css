@@ -22,7 +22,7 @@ button, input
     margin: 0 auto;
     float: right;
 }
-.annuncioTutorato, .annuncioGruppo
+.annuncioTutorato, .annuncioGruppo, .profilo
 {
     width: 80%;
     margin: 20px auto;
