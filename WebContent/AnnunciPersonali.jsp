@@ -22,9 +22,7 @@
             response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&luogo=per&filtro=utente&numPagina=0&usernameUtente=" + su.getUsername());
             return;
         } else {
-
             request.getSession().removeAttribute("risultato");
-        }
         Annuncio[] list = elenco.toArray(new Annuncio[0]);
         SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
     %>
@@ -50,5 +48,6 @@
             </div>
             <%}%>
         </div>
+        <%} %>
     </body>
 </html>

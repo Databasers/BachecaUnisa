@@ -124,7 +124,6 @@ public class AnnunciServlet extends HttpServlet {
       }
 
       if (azione.equalsIgnoreCase("visualizzannuncio")) {
-        System.out.println("Abbiamo aperto il metodo corretto");
         int id = Integer.parseInt(request.getParameter("id"));
         Annuncio annuncioTrovato = annuncioManager.recuperaPerId(id);
         System.out.println(annuncioTrovato.getUsernameUtente());
@@ -219,6 +218,7 @@ public class AnnunciServlet extends HttpServlet {
     Annuncio temp = annuncioManager.recuperaPerId(id);
     temp.setTitolo(titolo);
     temp.setDescrizione(descrizione);
+    System.out.println(temp.getDescrizione());
     annuncioManager.modificaAnnuncio(temp);
   }
 

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="ISO-8859-1">
+        <meta charset="UTF-8">
         <title>Modifica profilo</title>
         <link rel="stylesheet" type="text/css" href="CSS/ModificaProfilo.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">

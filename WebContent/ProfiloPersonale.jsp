@@ -1,10 +1,11 @@
 <%@page import="gestioneutenti.Utente"%>
 <%@page import="gestioneutenti.SessioneUtente"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
 <title>Profilo Personale</title>

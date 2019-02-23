@@ -2,6 +2,7 @@
 <%@page import="gestioneannunci.Annuncio"%>
 <html>
     <head>
+        <meta charset="UTF-8">
         <title>Visualizza Annuncio</title>
         <link rel="stylesheet" type="text/css" href="CSS/VisualizzaAnnuncio.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
@@ -24,7 +25,7 @@
         <div class="annuncio">
             <img id="avatarannuncio" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
             <br>
-            <span id="nomeutente"><%=x.getUsernameUtente()%></span>   
+            <span id="nomeutente"><%=x.getUsernameUtente()%></span>
             <div class="annuncioInfo">
                 <h2 id="annuncioTitle"><%=x.getTitolo()%><br></h2>
                 <span><%=x.getDipartimento()%></span>

@@ -146,27 +146,28 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     //Dipartimento, Titolo, Descrizione, Tipologia, NumeroSegnalazioni, ID, Utente_Username
     String sql = "UPDATE " + TABLENAME + " SET Dipartimento = ?, Titolo = ?, Descrizione = ?"
-        + ", Tipologia = ?, NumeroSegnalazioni = ?, ID = ?, Utente_Username = ?"
+        + ", Tipologia = ?, NumSegnalazioni = ?, ID = ?, Utente_Username = ?"
         + " WHERE ID = ?";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(0, annuncio.getDipartimento());
-      preparedStatement.setString(1, annuncio.getTitolo());
-      preparedStatement.setString(2, annuncio.getDescrizione());
+      preparedStatement.setString(1, annuncio.getDipartimento());
+      preparedStatement.setString(2, annuncio.getTitolo());
+      preparedStatement.setString(3, annuncio.getDescrizione());
       int a;
       if (annuncio.isTipologia()) {
         a = 1;
       } else {
         a = 0;
       }
-      preparedStatement.setInt(3, a);
-      preparedStatement.setInt(4, annuncio.getNumSegnalazioni());
-      preparedStatement.setInt(5, annuncio.getId());
-      preparedStatement.setString(6, annuncio.getUsernameUtente());
+      preparedStatement.setInt(4, a);
+      preparedStatement.setInt(5, annuncio.getNumSegnalazioni());
+      preparedStatement.setInt(6, annuncio.getId());
       preparedStatement.setString(7, annuncio.getUsernameUtente());
+      preparedStatement.setInt(8, annuncio.getId());
      
+      System.out.println("Modifica: " + preparedStatement.toString());
       preparedStatement.executeUpdate();
       connection.commit();
     } finally {
@@ -312,12 +313,8 @@ public class AnnuncioManager {
       System.out.println("Query: " + preparedStatement.toString());
 
       ResultSet rs = preparedStatement.executeQuery();
-
-      if (!rs.next()) {
-        temp = null;
-      } else {
-        temp = listaAnnunci(rs, numPagina);
-      } 
+      temp = listaAnnunci(rs, numPagina);
+      
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
     }

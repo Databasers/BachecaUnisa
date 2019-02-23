@@ -5,7 +5,7 @@
 <%@page import="java.util.ArrayList"%>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Visuale Gestore</title>
 <link rel="stylesheet" type="text/css" href="CSS/VisualeGestore.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
