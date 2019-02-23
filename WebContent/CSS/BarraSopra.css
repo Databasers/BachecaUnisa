@@ -80,7 +80,16 @@ button, input
     background-color: orange;
 }
 
+.etichettaTutoratoTOP:hover
+{
+    background-color: #da7d00;
+}
 .etichettaGruppoTOP
 {
     background-color: greenyellow;
+}
+
+.etichettaGruppoTOP:hover
+{
+    background-color: #57d900;
 }

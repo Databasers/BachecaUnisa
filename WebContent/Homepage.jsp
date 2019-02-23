@@ -49,8 +49,8 @@
             
             <%if (!lista.isEmpty()) { for (Annuncio x : lista) {%>
             <div class = "annuncio<%if (x.isTipologia()) {%>Tutorato<%}%><%if (!x.isTipologia()) {%>Gruppo<%}%>">
-                    <%if (x.isTipologia()) {%> <p class="etichettaTutorato">TUTORATO</p> <%}%>
-                    <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO</p> <%}%>
+                    <%if (x.isTipologia()) {%> <p class="etichettaTutorato">ATTIVITA' DI TUTORATO</p> <%}%>
+                    <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO DI STUDIO</p> <%}%>
                 <div class = "Titolo">
                     <h2><%=x.getTitolo()%></h2>
                     <h3><%=x.getUsernameUtente()%></h3>

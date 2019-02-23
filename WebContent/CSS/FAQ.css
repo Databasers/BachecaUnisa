@@ -5,23 +5,26 @@ body
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 18px;
+    font-size: 28px;
     background-image: url("IMAGES/bg-reg.png");
     background-size: cover;
     background-repeat: no-repeat;
     color: white;
+
 }
 
 .title
 {
     text-align: center;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 35px;
+    padding: 0px;
+    text-shadow: 2px 2px 4px black;
 }
 .faq
 {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 .question
@@ -37,6 +40,7 @@ body
     width: 70%;
     margin: 0 auto;
     font-weight: bold;
+    text-shadow: 2px 2px 4px black;
 }
 .container
 {
