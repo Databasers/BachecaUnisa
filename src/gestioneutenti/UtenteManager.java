@@ -16,12 +16,10 @@ import jdbc.DriverManagerConnectionPool;
 public class UtenteManager {
   
   private static final String TABLENAME = "Utente";
-  private static final int PAGINADIM = 10;
 
   /**
    * Il metodo crea un'ArrayList di utenti da un result set.
    * @param rs result set da listare.
-   * @param  il numero della pagina che l'utente visualizza.
    * @return una lista di 10 utenti dal database basandosi dalla pagina specificata.
    * @throws SQLException in caso di errore di accesso al database.
    */
@@ -30,7 +28,9 @@ public class UtenteManager {
     rs.first();
     ArrayList<Utente> lista = new ArrayList<Utente>();
     Utente temp;
-   while (rs.isAfterLast()) {
+    int i = 0;
+    while (!rs.isAfterLast()) {
+      System.out.println(i++);
       temp = new Utente();
       temp.setUsername(rs.getString("Username"));
       temp.setNome(rs.getString("Nome"));
@@ -150,7 +150,7 @@ public class UtenteManager {
     
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-    ArrayList<Utente> temp = null;
+    ArrayList<Utente> temp;
     
     String sql = "SELECT * FROM " + TABLENAME;
           
@@ -161,10 +161,10 @@ public class UtenteManager {
       System.out.println("recuperaTutti: " + preparedStatement.toString());
       
       ResultSet rs = preparedStatement.executeQuery();
-      while (rs.next()) {
-        temp = listaUtenti(rs);
+      temp = listaUtenti(rs);
+      if (temp == null) {
+        temp = new ArrayList<Utente>();
       }
-        
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
     }   

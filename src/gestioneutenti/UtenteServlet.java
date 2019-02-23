@@ -40,6 +40,7 @@ public class UtenteServlet extends HttpServlet {
       if (azione.equalsIgnoreCase("stampaUtenti")) {
         ArrayList<Utente> risultato = stampaUtenti();
         request.getSession().setAttribute("urisultato", risultato);
+        System.out.println("\n LISTA DEGLI UTENTI CONCLUSA \n");
         response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
       }
 

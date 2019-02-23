@@ -29,10 +29,10 @@
 	                System.out.println("Lista A non trovata");
 	                response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&filtro=n");
 	                return;
-	            }
-	            if (lista2 == null) {
+	            } else if (lista2 == null) {
 	                System.out.println("Lista U non trovata");
 	                response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=stampaUtenti");
+	            
 	            }
             } else {
               request.getSession().removeAttribute("arisultato");
