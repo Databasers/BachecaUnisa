@@ -16,8 +16,8 @@
             <input type="text" id="barraRicerca" name="descrizione"
                    placeholder="Cerca">
             <div class="radio">
-            <label class="etichettaGruppo">GRUPPO  <input type="radio" name="filtro" value="gruppo"></label>
-            <label class="etichettaTutorato">TUTORATO  <input type="radio" checked="checked" name="filtro" value="tutorato"></label>
+            <label class="etichettaGruppoTOP">GRUPPO  <input type="radio" name="filtro" value="gruppo"></label>
+            <label class="etichettaTutoratoTOP">TUTORATO  <input type="radio" checked="checked" name="filtro" value="tutorato"></label>
             </div>
             <div class="custom-select">
                 <select name="dipartimento">

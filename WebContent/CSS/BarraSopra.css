@@ -67,7 +67,7 @@ button, input
     display: none;
 }
 
-.etichettaTutorato , .etichettaGruppo
+.etichettaTutoratoTOP , .etichettaGruppoTOP
 {
     padding: 5px 10px;
     font-size: 15px;
@@ -75,12 +75,12 @@ button, input
     border-radius: 20px;
 }
 
-.etichettaTutorato
+.etichettaTutoratoTOP
 {
     background-color: orange;
 }
 
-.etichettaGruppo
+.etichettaGruppoTOP
 {
     background-color: greenyellow;
 }
