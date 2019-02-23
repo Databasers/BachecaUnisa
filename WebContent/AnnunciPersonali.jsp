@@ -36,8 +36,11 @@
             <p class="title">Annunci di <%=su.getUsername()%></p>
             <%for (Annuncio x : list) {%>
             <div class = "annuncio<%if (x.isTipologia()){%>Tutorato<%}%><%if (!x.isTipologia()){%>Gruppo<%}%>">
-                <%if (x.isTipologia()) {%> <p class="etichettaTutorato">ATTIVITA' DI TUTORATO</p>
-                <%} else {%> <p class="etichettaGruppo">GRUPPO DI STUDIO</p> <%}%>
+                <div class="tags">             
+                    <%if (x.isTipologia()) {%> <p class="etichettaTutorato">ATTIVITA' DI TUTORATO</p> <%}%>
+                    <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO DI STUDIO</p> <%}%>
+                    <p class="dipartimento"><%=x.getDipartimento()%></p>
+                </div>
                 <div class = "Titolo">
                     <h2><%=x.getTitolo()%></h2>
                 </div>

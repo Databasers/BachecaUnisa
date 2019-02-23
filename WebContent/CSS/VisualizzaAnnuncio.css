@@ -104,8 +104,9 @@ button, input
     font-size: 15px;
     font-weight: bold;
     border-radius: 20px;
-    margin: 0 auto;
     width: 20%;
+    display: block;
+    margin: 0 auto;
 }
 
 .etichettaTutorato
@@ -116,4 +117,9 @@ button, input
 .etichettaGruppo
 {
     background-color: greenyellow;
+}
+
+.dipartimento
+{
+    text-transform: uppercase;
 }
