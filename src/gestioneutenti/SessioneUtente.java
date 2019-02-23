@@ -19,6 +19,7 @@ public class SessioneUtente implements Serializable {
     username = u.getUsername();
     nome = u.getNome();
     cognome = u.getCognome();
+    descrizione= u.getDescrizione();
   }
   
   /**
@@ -30,6 +31,7 @@ public class SessioneUtente implements Serializable {
     username = u.getUsername();
     nome = u.getNome();
     cognome = u.getCognome();
+    descrizione = u.getDescrizione();
     this.ruolo = ruolo;
   }
   
@@ -67,10 +69,18 @@ public class SessioneUtente implements Serializable {
   public void setCognome(String cognome) {
     this.cognome = cognome;
   }
+  
+  public String getDescrizione() {
+    return descrizione;
+  }
 
+  public void setDescrizione(String descrizione) {
+    this.descrizione = descrizione;
+  }
+  
   private String username;
   private String nome;
   private String cognome;
   private String ruolo;
-
+  private String descrizione;
 }

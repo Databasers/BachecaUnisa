@@ -10,14 +10,13 @@
         <meta charset="ISO-8859-1">
     </head>
     <body>
-        <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
-        <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
         <%
             AnnuncioManager manager = new AnnuncioManager();
             int id = Integer.valueOf(request.getParameter("id"));
             Annuncio x = (Annuncio) manager.recuperaPerId(id);
         %>
-        
+        <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
+        <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
             <p id="oldAnnuncio"> </p>
             <form action="">
                 <div class="togna">
