@@ -21,12 +21,16 @@
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div id=modProfilo>
             <img class="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png"> <br/>		
-            <form id="modify" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaUtente">
-                <input type="text"  placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" required="required" title="Solo lettere" value="<%= sulo.getNome()%>">
-                <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" required="required" title="Solo lettere" value="<%= sulo.getCognome()%>">
+            <form id="modifyUser" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaUtente">
+                <input type="text"  placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" title="Solo lettere" value="<%= sulo.getNome()%>">
+                <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" title="Solo lettere" value="<%= sulo.getCognome()%>">
+                <textarea rows="4" cols="50" id="textareaProfilo" name="descrizione" placeholder="Descrizione" maxlength="2000"><%= sulo.getDescrizione() %></textarea>
+                <input type="submit" value="Modifica Dati" id="modbutton">   
+            </form>
+                <form id="modifyPassword" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaPassword">
                 <input id="password" type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
                 <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri" oninput="check(this)">
-                <textarea rows="4" cols="50" id="textareaProfilo" name="descrizione" placeholder="Descrizione" maxlength="2000"><%= sulo.getDescrizione() %></textarea>
+
                 <script>
                     function check(input){
                         if(input.value !== $("#password").val()){
@@ -36,8 +40,9 @@
                         }
                     }
                 </script>
-                <input type="submit" value="Modifica Profilo" id="modbutton">   
+                <input type="submit" value="Modifica Password" id="modbutton">   
             </form>
+                
         </div>
     </body>
 </html>
