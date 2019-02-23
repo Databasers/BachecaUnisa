@@ -72,3 +72,12 @@ body, html
 {
     background-color: greenyellow;
 }
+
+.title
+{
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}

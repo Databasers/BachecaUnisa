@@ -26,12 +26,13 @@
             request.getSession().removeAttribute("risultato");
         }
         Annuncio[] list = elenco.toArray(new Annuncio[0]);
+        SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
     %>
 
     <body>
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div id="AnnunciPersonali">
-
+            <p class="title">Annunci di <%=su.getUsername()%></p>
             <%for (Annuncio x : list) {%>
             <div class = "annuncio">
                 <%if (x.isTipologia()) {%> <p class="etichettaTutorato">TUTORATO</p> <%}%>
