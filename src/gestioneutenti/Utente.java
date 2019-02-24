@@ -133,6 +133,14 @@ public class Utente {
     this.numAnnunci = numAnnunci;
   }
 
+  public int getMedia() {
+        return media;
+  }
+
+  public void setMedia(int media) {
+        this.media = media;
+  }
+
  
 
   private String username;
@@ -142,6 +150,7 @@ public class Utente {
   private String password;
   private String descrizione;
   private int numAnnunci;
+  private int media;
   private boolean gestore; //true e' un gestore
 
 }

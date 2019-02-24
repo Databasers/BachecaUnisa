@@ -131,6 +131,7 @@ public class UtenteManager {
         temp.setPassword(rs.getString("Password"));
         temp.setDescrizione(rs.getString("Descrizione"));
         temp.setNumAnnunci(rs.getInt("NumAnnunci"));
+        temp.setMedia(rs.getInt("MediaRecensioni"));
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
