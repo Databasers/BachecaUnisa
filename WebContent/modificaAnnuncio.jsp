@@ -31,7 +31,7 @@
                 <input type="hidden" name = "azione" value="modificaAnnuncio">
                 <input type="hidden" name="usernameUtente" value="<%=su.getUsername()%>">
                 <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
-                    <input type="text" class="title" name="titolo" placeholder="Titolo" value="<%= x.getTitolo()%>">
+                    <input type="text" class="title" name="titolo" placeholder="Titolo" pattern="[a-zA-Z\s]{1,}" title="Solo lettere" value="<%= x.getTitolo()%>">
                     <textarea name="descrizione" form="form" class="txtna"><%= x.getDescrizione()%></textarea>
                     <input type="submit" value="Modifica annuncio" class="sfdbna">
             </form>
