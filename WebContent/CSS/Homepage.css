@@ -143,3 +143,12 @@ button, input
     display: inline-block;
     width: 100%;
 }
+
+.errorRicerca
+{
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    font-size: 25px;   
+}

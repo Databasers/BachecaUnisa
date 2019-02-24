@@ -67,7 +67,7 @@
             </div>
             <%}} else {%>
                 
-             Non ho trovato nulla
+            <p class="errorRicerca">La ricerca non ha prodotto nessun risultato tra gli annunci</p>
              
              <%} %>
         </div>
@@ -97,7 +97,7 @@
             </div>
             <%}}
               } else {%>
-            <div id="NothingFound">Non è stato trovato nessun utente con questo username :(</div>
+            <p class="errorRicerca">La ricerca non ha prodotto nessun risultato tra gli utenti</p>
             <%}}}%>
             
         </div>
