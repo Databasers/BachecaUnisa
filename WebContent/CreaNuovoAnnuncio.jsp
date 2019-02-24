@@ -11,7 +11,7 @@
         <script type="text/javascript" src ="jquery.js"></script>
     </head>
     <body>
-
+        <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
             <%
            		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
@@ -30,22 +30,18 @@
             <%} else {
             username = h.getUsername();
         }%>
-
             <h1 class="titlena">Crea Nuovo Annuncio</h1>
-
             <form id="AnnuncioForm">
-                
-                <label>Gruppo di studio<input type="radio" checked="checked" name="radio"></label>
-                <label>Tutorato<input type="radio"name="radio"></label>
+            <label class="etichettaGruppoTOP">GRUPPO  <input type="radio" name="filtro" value="gruppo"></label>
+            <label class="etichettaTutoratoTOP">TUTORATO  <input type="radio" checked="checked" name="filtro" value="tutorato"></label>
                 <select>
-                        <option value="0">Dipartimento:</option>
-                        <option value="1">Informatica</option>
-                        <option value="2">Ingegneria</option>
-                        <option value="3">Farmacia</option>
-                        <option value="4">Lettere</option>
+                        <option value="informatica">Informatica</option>
+                        <option value="ingegneria">Ingegneria</option>
+                        <option value="farmacia">Farmacia</option>
+                        <option value="lettere">Lettere</option>
                 </select>
-                <input type="text" class="inputtitle" name="titolo" placeholder="Titolo" pattern="[a-zA-Z\s]{1,}" required="required" title="Solo lettere">
-                <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
+                <input type="text" class="inputtitle" name="titolo" placeholder="Titolo" required="required">
+                <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required" placeholder="Descrizione..."></textarea>
                 <input type="hidden" name="usernameUtente" value="<%=username%>">
                 <input type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
             </form>
