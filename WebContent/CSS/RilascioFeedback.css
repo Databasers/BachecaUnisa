@@ -1,64 +1,64 @@
 .lw { font-size: 60px; }
 
 body, html {
-	height: 100%;
-	font-family: 'Roboto', sans-serif;
-        font-size: 15px;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
 }
 
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 fieldset, label { margin: 0; padding: 0; }
 body{ margin: 20px; }
 h1 { font-size: 1.5em; margin: 10px; }
 
-    .tit{
-      margin-top:23px ;
-      
-      width: 123px;
-      position: absolute;
-    }
-    
-    #avatar{
-  display: block;
-border-radius: 50%;
-width: 150px;
-height:150px;
-float: left;
-      margin-bottom: 100px;
+.tit{
+    margin-top:23px ;
+
+    width: 123px;
+    position: absolute;
 }
-    
-    #textarea{
+
+#avatar{
+    display: block;
+    border-radius: 50%;
+    width: 150px;
+    height:150px;
+    float: left;
+    margin-bottom: 100px;
+}
+
+#textarea{
     width: 100%;
-      min-height: 300px;
-      overflow: auto;
-      
-    }
-    
-    
- .utentetxt{
-   text-align: center;
-  
-    }
-    .txtpresent{
+    min-height: 300px;
+    overflow: auto;
+
+}
+
+
+.utentetxt{
+    text-align: center;
+
+}
+.txtpresent{
     margin: 2%;
     border-style: solid;
     height: 50%;
     min-height: 250px;
     overflow-y: auto;
 }
-    #visualizzafeed{
+#visualizzafeed{
     margin-top: 42px;
-      float: right;
-    }
-    
-    .star-rating {
+    float: right;
+}
+
+.star-rating {
     direction: rtl;
     display: inline-block;
     padding: 20px;
-        margin-top: 32px;
+    margin-top: 32px;
 }
 
 .star-rating input[type=radio] {
