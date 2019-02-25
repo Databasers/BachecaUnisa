@@ -50,6 +50,9 @@
                         <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
                         <button type="submit" formaction="/BACHECAUNISA/modificaAnnuncio.jsp?id=<%=x.getId()%>">Modifica</button>
                     </form>
+                    <form method="Post" action="/BACHECAUNISA/AnnunciServlet?azione=rimuoviAnnuncio&id=<%=x.getId()%>&usernameUtente=<%=su.getUsername()%>">
+                        <input type="submit" value="Elimina">
+                    </form>
                 </div>
             </div>
             <%}%>
