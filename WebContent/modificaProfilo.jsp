@@ -18,7 +18,6 @@
         response.sendRedirect(request.getContextPath() + "/Login.jsp");
        } else {
         SessioneUtente sulo = (SessioneUtente) request.getSession().getAttribute("log");   
-
         %>
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div id=modProfilo>
