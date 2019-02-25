@@ -212,6 +212,8 @@ public class RecensioneManager {
   
   /**
    * Questo metodo restituisce la media delle recensioni di un utente.
+   * Nel caso in cui l'utente non ha ricevuto recensioni il metodo 
+   * restituisce media pari a 0.
    * @param username dell'utente da prendere in considerazione
    * @return media recensioni
    */
@@ -242,7 +244,11 @@ public class RecensioneManager {
       a += x.getValutazione();
     }
     
-    return a / temp.size();
+    if (temp.size() != 0) {
+      return a / temp.size();
+    } else {
+      return 0;
+    }
   }
   
 }
