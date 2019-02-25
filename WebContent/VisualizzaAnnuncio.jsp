@@ -34,7 +34,7 @@
             <span id="nomeutente"><%=x.getUsernameUtente()%></span>
             <div class="annuncioInfo">
                 <h2 id="annuncioTitle"><%=x.getTitolo()%><br></h2>
-                <span><%=x.getDipartimento()%></span>
+                <span class="dipartimento"><%=x.getDipartimento()%></span>
                 <%if (x.isTipologia()) {%> <p class="etichettaTutorato">ATTIVITA' DI TUTORATO</p>
                 <%} else {%> <p class="etichettaGruppo">GRUPPO DI STUDIO</p> <%}%>
             </div>

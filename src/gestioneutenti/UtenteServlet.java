@@ -131,7 +131,7 @@ public class UtenteServlet extends HttpServlet {
       
       if (azione.equalsIgnoreCase("AggiungiAnnuncio")) {
         aggiungiAnnuncio(request);
-        response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+        response.sendRedirect(request.getContextPath() + "/AnnunciPersonali.jsp");
       }
       
 

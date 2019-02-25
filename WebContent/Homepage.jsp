@@ -49,8 +49,11 @@
             
             <%if (!lista.isEmpty()) { for (Annuncio x : lista) {%>
             <div class = "annuncio<%if (x.isTipologia()) {%>Tutorato<%}%><%if (!x.isTipologia()) {%>Gruppo<%}%>">
+                <div class="tags">             
                     <%if (x.isTipologia()) {%> <p class="etichettaTutorato">ATTIVITA' DI TUTORATO</p> <%}%>
                     <%if (!x.isTipologia()) {%> <p class="etichettaGruppo">GRUPPO DI STUDIO</p> <%}%>
+                    <p class="dipartimento"><%=x.getDipartimento()%></p>
+                </div>
                 <div class = "Titolo">
                     <h2><%=x.getTitolo()%></h2>
                     <h3><%=x.getUsernameUtente()%></h3>
@@ -64,7 +67,7 @@
             </div>
             <%}} else {%>
                 
-             Non ho trovato nulla
+            <p class="errorRicerca">La ricerca non ha prodotto nessun risultato tra gli annunci</p>
              
              <%} %>
         </div>
@@ -87,14 +90,14 @@
                     <form method= "post">
                         <input type="hidden" name="username" value="<%=x.getUsername()%>">
                         <button type="submit"  formaction="/BACHECAUNISA/ProfiloUtente.jsp">
-                            Apri
+                            Visualizza
                         </button>
                     </form>
                 </div>
             </div>
             <%}}
               } else {%>
-            <div id="NothingFound">Non è stato trovato nessun utente con questo username :(</div>
+            <p class="errorRicerca">La ricerca non ha prodotto nessun risultato tra gli utenti</p>
             <%}}}%>
             
         </div>

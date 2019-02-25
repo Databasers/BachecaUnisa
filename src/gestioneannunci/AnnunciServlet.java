@@ -114,7 +114,7 @@ public class AnnunciServlet extends HttpServlet {
         String username = request.getParameter("usernameUtente");
         if (usernameLog.equals(username)) {
           modificaAnnuncio(id, titolo, descrizione);
-          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+          response.sendRedirect(request.getContextPath() + "/AnnunciPersonali.jsp");
         }
       }
 

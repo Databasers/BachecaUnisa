@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import jdbc.DriverManagerConnectionPool;
 
 /**
@@ -14,8 +16,7 @@ import jdbc.DriverManagerConnectionPool;
  */
 public class RecensioneManager {
   
-  private static final String TABLENAME = "Recensione";  
-  private static final int PAGINADIM = 10;
+  private static final String TABLENAME = "Recensione";
 
   
 
@@ -88,7 +89,6 @@ public class RecensioneManager {
   /**
    * Il metodo crea un'ArrayList di recensioni da un result set.
    * @param rs result set da listare.
-   * @param  il numero della pagina che l'utente visualizza.
    * @return una lista di 10 recensioni dal database basandosi dalla pagina specificata.
    * @throws SQLException in caso di errore di accesso al database.
    */
@@ -98,7 +98,7 @@ public class RecensioneManager {
     ArrayList<Recensione> lista = new ArrayList<Recensione>();
     Recensione temp;
 
-    while(!rs.isAfterLast()) {
+    if (!rs.isAfterLast()) {
      
       temp = new Recensione();
       temp.setDescrizione(rs.getString("Descrizione"));
@@ -115,7 +115,6 @@ public class RecensioneManager {
   
   /**
    * Recupera tuttle recensioni esistenti di un dato utente.
-   * @param  il numero della pagina che l'utente visualizza.
    * @param utenteDestinatario username di riferimento.
    * @return la lista di tutti gli annunci basandosi sulla pagina visualizzata dall'utente.
    * @throws SQLException in caso di errore di accesso al database.
@@ -126,7 +125,7 @@ public class RecensioneManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Recensione> temp = null;
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE Mittente LIKE " 
+    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE 'Destinatario.Username' LIKE " 
         + utenteDestinatario;
     
     try {
@@ -135,7 +134,7 @@ public class RecensioneManager {
       System.out.println("Query: " + preparedStatement.toString());
 
       ResultSet rs = preparedStatement.executeQuery();
-      while (rs.next()) {
+      if (!rs.next()) {
         temp = listaRecensioni(rs);
       } 
     } finally {
@@ -209,6 +208,41 @@ public class RecensioneManager {
         DriverManagerConnectionPool.releaseConnection(connection);
       }
     }
+  }
+  
+  /**
+   * Questo metodo restituisce la media delle recensioni di un utente.
+   * @param username dell'utente da prendere in considerazione
+   * @return media recensioni
+   */
+  public int media(String username) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    ArrayList<Recensione> temp = null;
+    
+    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE 'Mittente.Username' LIKE " 
+        + username;
+    
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      System.out.println("Query: " + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+      if (!rs.isAfterLast()) {
+        temp = listaRecensioni(rs);
+      } 
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+    }
+    Iterator<Recensione> lista =  temp.iterator();
+    int a = 0;
+    while (lista.hasNext()) {
+      Recensione x = lista.next();
+      a += x.getValutazione();
+    }
+    
+    return a / temp.size();
   }
   
 }

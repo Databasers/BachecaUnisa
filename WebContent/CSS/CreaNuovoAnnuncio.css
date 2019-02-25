@@ -10,9 +10,16 @@ body
     background-repeat: no-repeat;
 }
 
-.contna{
+.contna
+{
+    display: inline-block;
+    float: right;
+    width: 70%;
+    padding: 2% 5%;
+    margin: 0 auto;
     text-align: center;
 }
+
 .sfdbna {
     display: block;
     width: 150px;
@@ -30,31 +37,79 @@ body
 .inputtitle
 {
     display: block;
-    width: 50%;
+    width: 40%;
     padding: 10px;
-    margin: 0 auto 20px;
+    margin: 20px auto;
     border: none;
     border-radius: 40px;
     background: #f1f1f1;
     text-align: center;
     outline: none;
+    transition: width 0.4s ease-in-out;
 }
-.txtna{
-  padding:10px;
-  margin: 2%;
-  border-style: solid;
-  width: 75%;
-  height: 40%;
-  min-height: 150px;
-  overflow-y: auto;
-  border-radius: 20px;
-  border: none;
-  resize: none;
-  outline:none;
+
+.inputtitle:focus
+{
+    width: 70%;
+    background-color: #e9e9e9;
+}
+
+.txtna
+{
+    padding: 20px;
+    width: 80%;
+    height: 200px;
+    border-radius: 20px;
+    border: none;
+    resize: none;
+    outline:none;
+    background-color: white;
+}
+
+.txtna:focus, .txtna:hover
+{
+    background-color: #e9e9e9;
 }
 
 .titlena{
   text-align: center;
   padding:20px;
   margin:0;
+  color: white;
+}
+
+#barraleft
+{
+    position: fixed;
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+
+
+.etichettaTutoratoTOP , .etichettaGruppoTOP
+{
+    padding: 5px 10px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.etichettaTutoratoTOP
+{
+    background-color: orange;
+}
+
+.etichettaTutoratoTOP:hover
+{
+    background-color: #da7d00;
+}
+.etichettaGruppoTOP
+{
+    background-color: greenyellow;
+}
+
+.etichettaGruppoTOP:hover
+{
+    background-color: #57d900;
 }

@@ -21,7 +21,7 @@ button, input
 #barraRicerca
 {
     border-radius: 14px;
-    width: 15%;
+    width: 10%;
     transition: width 0.4s ease-in-out;
     margin: 10px 10px;
     text-align: center;
@@ -92,4 +92,24 @@ button, input
 .etichettaGruppoTOP:hover
 {
     background-color: #57d900;
+}
+
+.ricerca
+{
+    display: inline;
+    width: 20%;
+    text-align: center;
+    margin: 0;
+}
+.iconRicerca
+{
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    display: inline-block;
+}
+
+.iconRicerca:hover
+{
+    color:white;
 }

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import gestionerecensioni.RecensioneManager;
 import jdbc.DriverManagerConnectionPool;
 
 /**
@@ -25,12 +26,11 @@ public class UtenteManager {
    */
   public ArrayList<Utente> listaUtenti(ResultSet rs) 
       throws SQLException {
+    RecensioneManager rm = new RecensioneManager();
     rs.first();
     ArrayList<Utente> lista = new ArrayList<Utente>();
     Utente temp;
-    int i = 0;
     while (!rs.isAfterLast()) {
-      System.out.println(i++);
       temp = new Utente();
       temp.setUsername(rs.getString("Username"));
       temp.setNome(rs.getString("Nome"));
@@ -40,6 +40,7 @@ public class UtenteManager {
       temp.setDescrizione(rs.getString("Descrizione"));
       temp.setNumAnnunci(rs.getInt("NumAnnunci"));
       temp.setGestore(rs.getBoolean("Gestore"));
+      temp.setMedia(rm.media(temp.getUsername()));
       lista.add(temp);
       rs.next();    
     }    
@@ -131,6 +132,7 @@ public class UtenteManager {
         temp.setPassword(rs.getString("Password"));
         temp.setDescrizione(rs.getString("Descrizione"));
         temp.setNumAnnunci(rs.getInt("NumAnnunci"));
+        temp.setMedia(rs.getInt("MediaRecensioni"));
       } 
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
@@ -142,7 +144,6 @@ public class UtenteManager {
     
   /**
    * Recupera tutti gli utenti esistenti.
-   * @param  il numero della pagina che l'utente visualizza.
    * @return la lista di tutti gli utenti basandosi sulla pagina visualizzata dall'utente.
    * @throws SQLException in caso di errore di accesso al database.
    */

@@ -17,13 +17,8 @@ public class Utente {
    * @param password dell'utente
    * @param descrizione  dell'utente
    * @param numAnnunci numero di annunci creati dall'utente.
-<<<<<<< HEAD
    * @param gestore <code>true</code> se � gestore.
    *                <code>false</code> se � utente.
-=======
-   * @param gestore <code>true</code> se e' gestore.
-   *                <code>false</code> se e' utente.
->>>>>>> e221752bd9a59fa986a010d85deea608966e833a
    */
   public Utente(String username, String nome, String cognome, String sesso, 
       String password, String descrizione, int numAnnunci, boolean gestore) {
@@ -133,6 +128,14 @@ public class Utente {
     this.numAnnunci = numAnnunci;
   }
 
+  public int getMedia() {
+    return media;
+  }
+
+  public void setMedia(int media) {
+    this.media = media;
+  }
+
  
 
   private String username;
@@ -142,6 +145,7 @@ public class Utente {
   private String password;
   private String descrizione;
   private int numAnnunci;
+  private int media;
   private boolean gestore; //true e' un gestore
 
 }

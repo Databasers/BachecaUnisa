@@ -11,7 +11,7 @@
         <script type="text/javascript" src ="jquery.js"></script>
     </head>
     <body>
-
+        <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
             <%
            		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
@@ -25,8 +25,8 @@
                 } else {
             username = h.getUsername();
         }%>
-
             <h1 class="titlena">Crea Nuovo Annuncio</h1>
+
 
             <form id="AnnuncioForm" class ="a">
                 
@@ -42,6 +42,7 @@
                 </label>
                 <input type="text" class="inputtitle" name="titolo" placeholder="Titolo" required="required">
                 <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
+
                 <input type="hidden" name="usernameUtente" value="<%=username%>">
                 <%if (h.getNumAnnunci() < 5)  {%>
                 <input id="Formbutton" type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">

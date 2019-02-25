@@ -23,9 +23,6 @@ public class DriverManagerConnectionPool {
   
   private static synchronized Connection createDbConnection() throws SQLException {
     Connection newConnection = null;
-    String ip = "localhost";
-    String port = "3306";
-    String db = "Bacheca";
     String username = "root";
     String password = "0000";
     
