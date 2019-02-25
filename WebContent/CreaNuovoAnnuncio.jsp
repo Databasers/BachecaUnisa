@@ -34,17 +34,14 @@
 
             <form id="AnnuncioForm" class ="a">
                 
-                <label>Gruppo di studio<input type="radio" checked="checked" name="radio"></label>
-                <label>Tutorato<input type="radio"name="radio"></label>
-                <label>Dipartimento:
+                <label class="etichettaGruppoTOP">GRUPPO DI STUDIO <input type="radio" checked="checked" name="radio"></label>
+                <label class="etichettaTutoratoTOP">ATTIVITA' DI TUTORATO <input type="radio"name="radio"></label>
                 <select>
                         <option value="0">Informatica</option>
                         <option value="1">Ingegneria</option>
                         <option value="2">Farmacia</option>
                         <option value="3">Lettere</option>
                 </select>
-                
-                </label>
                 <input type="text" class="inputtitle" maxlength="30" name="titolo" placeholder="Titolo" required="required">
                 <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
 
