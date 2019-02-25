@@ -112,3 +112,8 @@ body, html
     display: inline-block;
     width: 100%;
 }
+
+.btn form
+{
+    display: inline-block;
+}

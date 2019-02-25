@@ -47,8 +47,8 @@
                     <label for="star-4" title="4 stars">
                         <i class="active fa fa-star" aria-hidden="true"></i>
                     </label>
-                    <input id="star-3" type="radio" name="rating" value="3">
-                    <label for="star-3" title="3 stars" checked>
+                    <input id="star-3" type="radio" name="rating" value="3" checked="checked">
+                    <label for="star-3" title="3 stars">
                         <i class="active fa fa-star" aria-hidden="true"></i>
                     </label>
                     <input id="star-2" type="radio" name="rating" value="2">

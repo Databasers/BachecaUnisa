@@ -54,6 +54,7 @@
                     <input type="hidden" name = "azione" value="rimuoviAnnuncio">
                     <input type="hidden" name = "id" value="<%=x.getId()%>">
                     <button style="background: red" type="submit">Rimuovi</button>
+
                     </form>
                 </div>
             </div>

@@ -43,6 +43,7 @@
                         <option value="2">Farmacia</option>
                         <option value="3">Lettere</option>
                 </select>
+                
                 </label>
                 <input type="text" class="inputtitle" maxlength="30" name="titolo" placeholder="Titolo" required="required">
                 <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
@@ -53,6 +54,7 @@
                 <%} else {%>
                 <p style="color: red">Hai creato il numero massimo di annunci!</p>
                 <%} %>
+
             </form>
         </div>
         <%}} %>

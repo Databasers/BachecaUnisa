@@ -40,8 +40,8 @@
             </div>
             <p class="txtannuncio"><%=x.getDescrizione()%></p>
             <div id="segnalaannuncio"><form action="">
-                    <input type="hidden" name = "id" value = "<%= x.getId()%>">
-                    <input class="valuebutton" type="submit" value="Segnala Annuncio" formaction="/BACHECAUNISA/segnalaAnnuncio.jsp"></form>
+                    <input type="hidden" name = "id" value = "<%= x.getId()%>">                 
+                    <% if (!su.getUsername().equals(x.getUsernameUtente())) {%><input class="valuebutton" type="submit" value="Segnala Annuncio" formaction="/BACHECAUNISA/segnalaAnnuncio.jsp"></form><%}%>
             </div>
         </div>
 

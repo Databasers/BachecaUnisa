@@ -59,7 +59,7 @@
             <textarea id="textarea" disabled="disabled"><%=u.getDescrizione()%></textarea>
             <form action="">
             <input type="hidden" name="username" value="<%=request.getParameter("username")%>">
-            <button id="riFeed" type="submit" formaction="/BACHECAUNISA/RilascioFeedback.jsp">Rilascia Feedback</button>
+            <% if (!su.getUsername().equals(u.getUsername())) {%><button id="riFeed" type="submit" formaction="/BACHECAUNISA/RilascioFeedback.jsp">Rilascia Feedback</button><%}%>
         </form>
         </div>
         <%}

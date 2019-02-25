@@ -23,6 +23,7 @@ public class AnnunciServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
   AnnuncioManager annuncioManager = new AnnuncioManager();
+  UtenteManager utenteManager = new UtenteManager();
 
 
 
@@ -118,18 +119,24 @@ public class AnnunciServlet extends HttpServlet {
         }
       }
 
-      if (azione.equalsIgnoreCase("Crea annuncio")) {
-        if (sessione.getRuolo().equals("Utente")) {
-          String utente = request.getParameter("usernameUtente");
-          String dipartimento = request.getParameter("dipartimento");
-          String titolo = request.getParameter("titolo");
-          String descrizione = request.getParameter("descrizione");
-          boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
-          creaAnnuncio(dipartimento, titolo, descrizione, tipologia, utente);
-          response.sendRedirect(request.getContextPath() 
-              + "/UtenteServlet?azione=aggiungiAnnuncio");  
+        if (azione.equalsIgnoreCase("Crea annuncio")) {
+          if (sessione.getRuolo().equals("Utente")) {
+            String utente = request.getParameter("usernameUtente");
+            Utente u = utenteManager.recuperaPerUsername(utente);
+            if (u.getNumAnnunci() < 5) {
+             String dipartimento = request.getParameter("dipartimento");
+             String titolo = request.getParameter("titolo");
+             String descrizione = request.getParameter("descrizione");
+             boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
+             creaAnnuncio(dipartimento, titolo, descrizione, tipologia, u.getUsername());
+             response.sendRedirect(request.getContextPath()
+                            + "/UtenteServlet?azione=aggiungiAnnuncio");
+             } else {
+                response.sendRedirect(request.getContextPath()
+                           + "/Homepage.jsp?error=numAnnunci");
+                }
+            }
         }
-      }
 
       if (azione.equalsIgnoreCase("visualizzannuncio")) {
         int id = Integer.parseInt(request.getParameter("id"));
