@@ -28,6 +28,7 @@
                 } else {
                     request.getSession().removeAttribute("utenteTrovato");
                     int media = u.getMedia();
+                    System.out.println(media);
         %>
         <div class="utentetxt">
             <img id="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">

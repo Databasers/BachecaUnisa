@@ -14,17 +14,21 @@
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div class="contna"> <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
             <%
-           		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
-          		if (su == null) {
-              		response.sendRedirect(request.getContextPath() + "/Login.jsp");
+           	SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+          	if (su == null) {
+              	  response.sendRedirect(request.getContextPath() + "/Login.jsp");
             	} else {
                 Utente h = (Utente) request.getSession().getAttribute("utenteTrovato");
                 String username = null;
                 if (h == null) {
-                    response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=crea&username=" + su.getUsername());
+                   response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=crea&username=" + su.getUsername());
                 } else {
-            username = h.getUsername();
-        }%>
+                  request.getSession().removeAttribute("utenteTrovato");
+                  username = h.getUsername();
+                  int nannunci = h.getNumAnnunci();
+                  System.out.println(h.getUsername());
+                  System.out.println(h.getNumAnnunci() < 5);
+        %>
             <h1 class="titlena">Crea Nuovo Annuncio</h1>
 
 
@@ -40,16 +44,16 @@
                         <option value="3">Lettere</option>
                 </select>
                 </label>
-                <input type="text" class="inputtitle" name="titolo" placeholder="Titolo" required="required">
+                <input type="text" class="inputtitle" maxlength="30" name="titolo" placeholder="Titolo" required="required">
                 <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
 
                 <input type="hidden" name="usernameUtente" value="<%=username%>">
-                <%if (h.getNumAnnunci() < 5)  {%>
+                <%if (nannunci < 5)  {%>
                 <input id="Formbutton" type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
                 <%} else {%>
                 <p style="color: red">Hai creato il numero massimo di annunci!</p>
                 <%} %>
             </form>
         </div>
-        <%} %>
+        <%}} %>
     </body>

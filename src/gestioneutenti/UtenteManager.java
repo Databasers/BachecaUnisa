@@ -1,12 +1,13 @@
 package gestioneutenti;
 
+import gestionerecensioni.RecensioneManager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import gestionerecensioni.RecensioneManager;
 import jdbc.DriverManagerConnectionPool;
 
 /**
@@ -41,6 +42,7 @@ public class UtenteManager {
       temp.setNumAnnunci(rs.getInt("NumAnnunci"));
       temp.setGestore(rs.getBoolean("Gestore"));
       temp.setMedia(rm.media(temp.getUsername()));
+      System.out.println(temp.getMedia());
       lista.add(temp);
       rs.next();    
     }    
@@ -195,8 +197,8 @@ public class UtenteManager {
       preparedStatement.setString(5, u.getPassword());
       preparedStatement.setBoolean(6, u.isGestore());
       preparedStatement.setInt(7, 0);
-      preparedStatement.setString(8, u.getDescrizione());
-      preparedStatement.setInt(9, u.getNumAnnunci());
+      preparedStatement.setString(8, "Descrizione di default");
+      preparedStatement.setInt(9, 0);
       System.out.println("doSave: " + preparedStatement.toString());
       preparedStatement.executeUpdate();
 

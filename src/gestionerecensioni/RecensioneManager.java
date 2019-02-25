@@ -98,8 +98,8 @@ public class RecensioneManager {
     ArrayList<Recensione> lista = new ArrayList<Recensione>();
     Recensione temp;
 
-    if (!rs.isAfterLast()) {
-     
+    if (rs.next()) {
+      System.out.print("1");
       temp = new Recensione();
       temp.setDescrizione(rs.getString("Descrizione"));
       temp.setDestinatario(rs.getString("Destinatario_Utente"));
@@ -125,8 +125,8 @@ public class RecensioneManager {
     PreparedStatement preparedStatement = null;
     ArrayList<Recensione> temp = null;
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE 'Destinatario.Username' LIKE " 
-        + utenteDestinatario;
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Destinatario LIKE '" 
+        + utenteDestinatario + "'";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -134,9 +134,12 @@ public class RecensioneManager {
       System.out.println("Query: " + preparedStatement.toString());
 
       ResultSet rs = preparedStatement.executeQuery();
-      if (!rs.next()) {
+      if (rs.next()) {
         temp = listaRecensioni(rs);
-      } 
+      } else {
+        temp = new ArrayList<Recensione>();
+      }
+      
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
     }
@@ -155,8 +158,8 @@ public class RecensioneManager {
     PreparedStatement preparedStatement = null;
     Recensione temp = null;
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE ID LIKE " 
-        + id;
+    String sql = "SELECT * FROM " + TABLENAME + "  WHERE ID LIKE '" 
+        + id + "'";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -218,35 +221,21 @@ public class RecensioneManager {
    * @return media recensioni
    */
   public int media(String username) throws SQLException {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    ArrayList<Recensione> temp = null;
+    System.out.println("Entrati nella media, salve!");
+    ArrayList<Recensione> temp = recuperaRecensioni(username);
     
-    String sql = "SELECT * FROM " + TABLENAME + " AS a WHERE 'Mittente.Username' LIKE " 
-        + username;
     
-    try {
-      connection = DriverManagerConnectionPool.getConnection();
-      preparedStatement = connection.prepareStatement(sql);
-      System.out.println("Query: " + preparedStatement.toString());
-
-      ResultSet rs = preparedStatement.executeQuery();
-      if (!rs.isAfterLast()) {
-        temp = listaRecensioni(rs);
-      } 
-    } finally {
-      DriverManagerConnectionPool.releaseConnection(connection);
-    }
-    Iterator<Recensione> lista =  temp.iterator();
-    int a = 0;
-    while (lista.hasNext()) {
-      Recensione x = lista.next();
-      a += x.getValutazione();
-    }
-    
-    if (temp.size() != 0) {
+    if (temp != null && temp.size() != 0) {
+      System.out.println("OH, siamo entrati dentro la media per davvero!");
+      Iterator<Recensione> lista =  temp.iterator();
+      int a = 0;
+      while (lista.hasNext()) {
+        Recensione x = lista.next();
+        a += x.getValutazione();
+      }
       return a / temp.size();
     } else {
+      System.out.println("Non ci stavano le recensioni");
       return 0;
     }
   }

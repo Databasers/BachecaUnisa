@@ -17,7 +17,6 @@ import jdbc.DriverManagerConnectionPool;
 public class SegnalazioneManager {
   
   private static final String TABLENAME = "Segnalazione";
-  private static final int PAGINADIM = 10;
   private static final int MAX_SEGNALAZIONI = 50;
   
  
@@ -39,14 +38,14 @@ public class SegnalazioneManager {
           + "', '" + segnalazione.getUtente() + "', " + segnalazione.getMotivazione() + ", "
           + segnalazione.getIdSegnalato() + ", null)";
       test = "SELECT COUNT(ID) AS segnalazioni FROM " + TABLENAME
-          + " WHERE 'Annuncio.Segnalato_A' LIKE " + segnalazione.getIdSegnalato();
+          + " WHERE SegnalatoA LIKE " + segnalazione.getIdSegnalato();
       
     } else {
       sql = "INSERT INTO " + TABLENAME + " VALUES(null, '" + segnalazione.getDescrizione()
           + "', '" + segnalazione.getUtente() + "', " + segnalazione.getMotivazione() + ", null"
           + segnalazione.getIdSegnalato() + ")";
       test = "SELECT COUNT(ID) AS segnalazioni FROM " + TABLENAME
-          + " WHERE 'Recensione.ID.Segnalato_R' LIKE " + segnalazione.getIdSegnalato();
+          + " WHERE SegnalatoR LIKE " + segnalazione.getIdSegnalato();
     }
     
     try {
