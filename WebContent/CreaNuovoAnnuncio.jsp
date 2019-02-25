@@ -42,7 +42,7 @@
                 </select>
                 <input type="text" class="inputtitle" name="titolo" placeholder="Titolo" pattern="[a-zA-Z\s]{1,}" title="Solo lettere" required="required">
                 <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required" placeholder="Descrizione..."></textarea>
-                <input type="hidden" name="usernameUtente" value="<%=su.getUsername()%>">
+                <input type="hidden" name="usernameUtente" value="<%=username%>">
                 <input type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
             </form>
         </div>
