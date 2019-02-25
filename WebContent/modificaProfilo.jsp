@@ -9,6 +9,7 @@
         <link rel="stylesheet" type="text/css" href="CSS/ModificaProfilo.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+        <script type="text/javascript" src ="jquery.js"></script>
     </head>
     <body>
         <%
@@ -25,9 +26,9 @@
             <form id="modifyUser" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaUtente" onsubmit="return conferma()">
                 <fieldset class="fieldset">
                     <legend class="legend">MODIFICA PROFILO</legend>
-                    <input type="text"  placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" title="Solo lettere" value="<%= sulo.getNome()%>">
-                    <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" title="Solo lettere" value="<%= sulo.getCognome()%>">
-                    <textarea rows="4" cols="50" id="textareaProfilo" name="descrizione" placeholder="Descrizione" maxlength="2000"><%= sulo.getDescrizione()%></textarea>
+                    <input type="text"  placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" title="Solo lettere" value="<%= su.getNome()%>">
+                    <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" title="Solo lettere" value="<%= su.getCognome()%>">
+                    <textarea rows="4" cols="50" id="textareaProfilo" name="descrizione" placeholder="Descrizione" maxlength="2000"><%= su.getDescrizione()%></textarea>
                     <input type="submit" value="Modifica Dati" id="modbutton">   
                     <script>
                         function conferma() {
