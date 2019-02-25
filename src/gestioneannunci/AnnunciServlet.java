@@ -92,17 +92,18 @@ public class AnnunciServlet extends HttpServlet {
       }
       if (azione.equalsIgnoreCase("rimuoviAnnuncio")) {
         int id = Integer.parseInt(request.getParameter("id"));
-        String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equals("Gestore")) {
           rimuoviAnnuncio(id);
           response.sendRedirect(request.getContextPath() + "/VisualeGestore.jsp?");
 
         } else {
-          if (usernameLog.equalsIgnoreCase(username)) {
-            rimuoviAnnuncio(id);
-            response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp?");
+          UtenteManager um = new UtenteManager();
+          Utente u = um.recuperaPerUsername(sessione.getUsername());
+          u.setNumAnnunci(u.getNumAnnunci() - 1);
+          um.modificaUtente(u);
+          rimuoviAnnuncio(id);
+          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp?");
            
-          }
         }
       }
 

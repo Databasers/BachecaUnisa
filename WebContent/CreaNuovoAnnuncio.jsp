@@ -22,32 +22,32 @@
                 String username = null;
                 if (h == null) {
                     response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=crea&username=" + su.getUsername());
-                } else if (h.getNumAnnunci() > 4) {
-            %>
-            <script type="text/javascript">
-                $("input[name=azione]").prop("disabled", true);
-            </script>
-            <%} else {
+                } else {
             username = h.getUsername();
         }%>
 
             <h1 class="titlena">Crea Nuovo Annuncio</h1>
 
-            <form id="AnnuncioForm">
+            <form id="AnnuncioForm" class ="a">
                 
                 <label>Gruppo di studio<input type="radio" checked="checked" name="radio"></label>
                 <label>Tutorato<input type="radio"name="radio"></label>
+                <label>Dipartimento:
                 <select>
-                        <option value="0">Dipartimento:</option>
-                        <option value="1">Informatica</option>
-                        <option value="2">Ingegneria</option>
-                        <option value="3">Farmacia</option>
-                        <option value="4">Lettere</option>
+                        <option value="0">Informatica</option>
+                        <option value="1">Ingegneria</option>
+                        <option value="2">Farmacia</option>
+                        <option value="3">Lettere</option>
                 </select>
+                </label>
                 <input type="text" class="inputtitle" name="titolo" placeholder="Titolo" required="required">
                 <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>
                 <input type="hidden" name="usernameUtente" value="<%=username%>">
-                <input type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
+                <%if (h.getNumAnnunci() < 5)  {%>
+                <input id="Formbutton" type="submit" name="azione" value="Crea annuncio" class="sfdbna" formaction="/BACHECAUNISA/AnnunciServlet">
+                <%} else {%>
+                <p style="color: red">Hai creato il numero massimo di annunci!</p>
+                <%} %>
             </form>
         </div>
         <%} %>

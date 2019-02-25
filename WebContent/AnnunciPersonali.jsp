@@ -26,7 +26,7 @@
             response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&luogo=per&filtro=utente&usernameUtente=" + su.getUsername());
             return;
         } else {
-            request.getSession().removeAttribute("risultato");
+            request.getSession().removeAttribute("arisultato");
         Annuncio[] list = elenco.toArray(new Annuncio[0]);
     %>
 
@@ -46,6 +46,11 @@
                     <form method= "post">
                         <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
                         <button type="submit" formaction="/BACHECAUNISA/modificaAnnuncio.jsp?id=<%=x.getId()%>">Modifica</button>
+                    </form>
+                    <form action="/BACHECAUNISA/AnnunciServlet">
+                    <input type="hidden" name = "azione" value="rimuoviAnnuncio">
+                    <input type="hidden" name = "id" value="<%=x.getId()%>">
+                    <button style="background: red" type="submit">Rimuovi</button>
                     </form>
                 </div>
             </div>

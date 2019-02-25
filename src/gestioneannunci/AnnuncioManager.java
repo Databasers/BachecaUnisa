@@ -20,7 +20,6 @@ public class AnnuncioManager {
   /**
    * Il metodo crea un'ArrayList di annunci da un result set.
    * @param rs result set da listare.
-   * @param  il numero della pagina che l'utente visualizza.
    * @return una lista di 10 annunci dal database basandosi dalla pagina specificata.
    * @throws SQLException in caso di errore di accesso al database.
    */
@@ -29,7 +28,7 @@ public class AnnuncioManager {
     ArrayList<Annuncio> lista = new ArrayList<Annuncio>();
     Annuncio temp;
     
-    while(!rs.isAfterLast()) {
+    while (!rs.isAfterLast()) {
       temp = new Annuncio();
       temp.setDipartimento(rs.getString(1));
       temp.setTitolo(rs.getString(2));
