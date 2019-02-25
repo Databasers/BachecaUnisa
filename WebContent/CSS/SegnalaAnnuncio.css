@@ -36,7 +36,7 @@ button, input
 
 .fieldset
 {
-    padding: 0 20px;
+    padding: 50px;
     border-radius: 40px;
     color: white;
     border: solid rgba(256,256,256,.5);;
@@ -101,3 +101,42 @@ button, input
     background-color: greenyellow;
 }
 
+.checkboxes
+{
+    padding: 30px;
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.textarea
+{
+    padding: 20px;
+    width: 90%;
+    height: 200px;
+    border-radius: 20px;
+    border: none;
+    resize: none;
+    outline:none;
+    background-color: white;
+}
+
+.textarea:focus, .textarea:hover
+{
+    background-color: #e9e9e9;
+}
+
+.segButton {
+    display: block;
+    width: 150px;
+    margin: 20px auto;
+    padding:10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.segButton:hover {
+	background-color: #DCDCDC;
+}
