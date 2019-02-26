@@ -23,10 +23,12 @@
     	
         ArrayList<Annuncio> elenco = (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
         if (elenco == null) {
+            System.out.println("Elenco degli annunci personali non trovati");
             response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&luogo=per&filtro=utente&usernameUtente=" + su.getUsername());
             return;
         } else {
         request.getSession().removeAttribute("arisultato");
+        System.out.println("Lista trovata, lunghezza:" + elenco.size() + "\n\n");
         Annuncio[] list = elenco.toArray(new Annuncio[0]);
     %>
 

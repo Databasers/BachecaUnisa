@@ -24,11 +24,18 @@ public class AnnuncioManager {
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> listaAnnunci(ResultSet rs) throws SQLException {
-    rs.first();
+    rs.beforeFirst();
     ArrayList<Annuncio> lista = new ArrayList<Annuncio>();
     Annuncio temp;
-    
+    int a = 0;
+    int b = 0;
+    while (rs.next()) {
+      b++;
+    }
+    System.out.println("B = " + b);
+    rs.first();
     while (!rs.isAfterLast()) {
+      a++;
       temp = new Annuncio();
       temp.setDipartimento(rs.getString(1));
       temp.setTitolo(rs.getString(2));
@@ -37,9 +44,10 @@ public class AnnuncioManager {
       temp.setNumSegnalazioni(rs.getInt(5));
       temp.setId(rs.getInt(6));
       temp.setUsernameUtente(rs.getString(7));
+      System.out.print(temp.getTitolo() + ", A: " + a);
       lista.add(temp);
       rs.next();    
-    } 
+    }
     return lista;  
   }
   
