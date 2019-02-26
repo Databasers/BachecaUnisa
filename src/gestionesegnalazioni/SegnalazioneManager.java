@@ -170,8 +170,8 @@ public class SegnalazioneManager {
     while (!rs.isAfterLast()) {
      
       temp = new Segnalazione(rs.getInt("ID"), rs.getString("Descrizione"),
-          rs.getInt("Motivazione"), rs.getInt("Annuncio.Segnalato_A"),
-          rs.getInt("Recensione.ID.Segnalato_R"), rs.getString("Utente"));
+          rs.getInt("Motivazione"), rs.getInt("SegnalatoA"),
+          rs.getInt("SegnalatoR"), rs.getString("Utente"));
       lista.add(temp);
       rs.next();      
     } 

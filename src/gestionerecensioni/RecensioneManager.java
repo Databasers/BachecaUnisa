@@ -102,9 +102,9 @@ public class RecensioneManager {
       System.out.print("1");
       temp = new Recensione();
       temp.setDescrizione(rs.getString("Descrizione"));
-      temp.setDestinatario(rs.getString("Destinatario_Utente"));
+      temp.setDestinatario(rs.getString("Destinatario"));
       temp.setId(rs.getInt("ID"));
-      temp.setMittente(rs.getString("Mittente_Utente"));
+      temp.setMittente(rs.getString("Mittente"));
       temp.setValutazione(rs.getInt("Valutazione"));
       lista.add(temp);
       rs.next();
@@ -171,8 +171,8 @@ public class RecensioneManager {
         temp = null;
       } else {
         temp = new Recensione(rs.getInt("ID"), rs.getInt("Valutazione"), 
-               rs.getString("Descrizione"), rs.getString("Mittente.Username"),
-               rs.getString("Destinatario.Username"));
+               rs.getString("Descrizione"), rs.getString("Mittente"),
+               rs.getString("Destinatario"));
       }
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
