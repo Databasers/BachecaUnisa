@@ -37,7 +37,6 @@
             } else {
               request.getSession().removeAttribute("arisultato");
               request.getSession().removeAttribute("urisultato");
-            
         %>
         <div id="switchTab">
         <button id="tabAnnunci" onclick="switchAnnunci()">Annunci</button>
@@ -60,7 +59,7 @@
                 </div>
                 <div class = "preview"><%=x.getDescrizione()%></div>
                 <div class = "btn">
-                    <form method= "post">
+                    <form method= "post" accept-charset="utf-8">
                         <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
                     </form>
                 </div>
@@ -73,7 +72,7 @@
         </div>
 
 
-        <div id="listaProfili" name = "listaProfili">
+        <div id="listaProfili">
             <% if (!lista2.isEmpty()) {
               for (Utente x : lista2) {  if (x.getUsername() != null) {%>
             <div class = "profilo">
@@ -87,7 +86,7 @@
                 </div>
 
                 <div class = "btn">
-                    <form method= "post">
+                    <form method= "post" accept-charset="utf-8">
                         <input type="hidden" name="username" value="<%=x.getUsername()%>">
                         <button type="submit"  formaction="/BACHECAUNISA/ProfiloUtente.jsp">
                             Visualizza

@@ -36,7 +36,7 @@
                     </div>               
             </fieldset>    
 
-        <form id="formSegnalaannuncio" method="Post" action="/BACHECAUNISA/SegnalazioniServlet">
+        <form accept-charset="utf-8" id="formSegnalaannuncio" method="Post" action="/BACHECAUNISA/SegnalazioniServlet">
             <input type="hidden" name="azione" value="creaSegnalazione">
             <input type="hidden" name="recensione" value= ""> 
             <input type="hidden" name="annuncio" value="<%=x.getId()%>">
@@ -49,7 +49,7 @@
                 <input type="radio" name="motivazione" value="2"> Non e' possibile contattare l'utente che ha fatto l'annuncio.<br>  
                 <input type="radio" name="motivazione" value="3"> Altro.<br> 
             </div>
-            <textarea class="textarea" maxlength="2000" name="descrizione" required="required"></textarea>
+            <textarea  class="textarea" maxlength="2000" name="descrizione" required="required"></textarea>
             <div style="text-align:center">
                 <input id="segnala" type="submit" value="Segnala" class="segButton">
             </div>

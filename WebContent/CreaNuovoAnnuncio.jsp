@@ -32,7 +32,7 @@
             <h1 class="titlena">Crea Nuovo Annuncio</h1>
 
 
-            <form id="AnnuncioForm" class ="a">
+            <form id="AnnuncioForm" class ="a" accept-charset="utf-8">
                 
                 <label class="etichettaGruppoTOP">GRUPPO DI STUDIO <input type="radio" checked="checked" name="radio"></label>
                 <label class="etichettaTutoratoTOP">ATTIVITA' DI TUTORATO <input type="radio"name="radio"></label>

@@ -32,7 +32,7 @@ if (su == null) {
   <p id="textannunciosegn"><%=x.getDescrizione()%></p>
   
   </div>
-  <form id="formSegnaRecensione" method="Post">
+  <form accept-charset="utf-8" id="formSegnaRecensione" method="Post">
    <div class="checkboxes">
 <input type="radio" name="motivazione" value="0" checked="checked"> La recensione contiene un linguaggio volgare o inappropriato.<br>
 <input type="radio" name="motivazione" value="1"> La recensione non è pertinente<br>

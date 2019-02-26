@@ -22,7 +22,7 @@
             <h3><font color="red">Questo utente esiste già</font></h3>
                 <%}%>
             <div id="field">   
-                <form id="register" name = "register" class="register" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=creaUtente">
+                <form accept-charset="utf-8" id="register" name = "register" class="register" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=creaUtente">
                     <input type="text" placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" required="required" title="Solo lettere">
                     <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" required="required" title="Solo lettere">
                     <div id="sextext">
@@ -52,7 +52,7 @@
 
                 </form>
             </div> 
-            <form action="FAQ.jsp" id="faq">
+            <form accept-charset="utf-8" action="FAQ.jsp" id="faq">
                 <input type="submit" value="Visualizza FAQ" class="faqbutton">
             </form>
 

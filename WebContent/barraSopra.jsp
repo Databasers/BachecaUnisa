@@ -11,7 +11,7 @@
 
     <body>
 
-        <form class="form-inline" action="/BACHECAUNISA/AnnunciServlet">
+        <form accept-charset="utf-8" class="form-inline" action="/BACHECAUNISA/AnnunciServlet">
             <input type="hidden" name="azione" value="stampaAnnunci">
             <input type="hidden" name="numPagina" value="0">
             <div class="ricerca">

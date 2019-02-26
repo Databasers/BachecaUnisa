@@ -57,7 +57,7 @@
             <h1 id="nomecognome"><%=u.getNome()%> <%=u.getCognome()%></h1>
             <h3 id="Utenteinfo"><%=u.getUsername()%></h3>
             <textarea id="textarea" disabled="disabled"><%=u.getDescrizione()%></textarea>
-            <form action="">
+            <form accept-charset="utf-8" action="">
             <input type="hidden" name="username" value="<%=request.getParameter("username")%>">
             <% if (!su.getUsername().equals(u.getUsername())) {%><button id="riFeed" type="submit" formaction="/BACHECAUNISA/RilascioFeedback.jsp">Rilascia Feedback</button><%}%>
         </form>

@@ -16,17 +16,17 @@
     </head>
 
     <%
-  		SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
-  		if (su == null) {
-     		 response.sendRedirect(request.getContextPath() + "/Login.jsp");
- 		   } else {
+        SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+        if (su == null) {
+          response.sendRedirect(request.getContextPath() + "/Login.jsp");
+        } else {
     	
         ArrayList<Annuncio> elenco = (ArrayList<Annuncio>) request.getSession().getAttribute("arisultato");
         if (elenco == null) {
             response.sendRedirect("/BACHECAUNISA/AnnunciServlet?azione=stampaAnnunci&luogo=per&filtro=utente&usernameUtente=" + su.getUsername());
             return;
         } else {
-            request.getSession().removeAttribute("arisultato");
+        request.getSession().removeAttribute("arisultato");
         Annuncio[] list = elenco.toArray(new Annuncio[0]);
     %>
 
@@ -45,8 +45,8 @@
                     <h2><%=x.getTitolo()%></h2>
                 </div>
                 <div class = "preview"><%= x.getDescrizione()%></div>
-                <div class = "btn">
-                    <form method= "post">
+                <div class = "btn" accept-charset="utf-8">
+                    <form method= "post" accept-charset="utf-8">
                         <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
                         <button type="submit" formaction="/BACHECAUNISA/modificaAnnuncio.jsp?id=<%=x.getId()%>">Modifica</button>
                     </form>

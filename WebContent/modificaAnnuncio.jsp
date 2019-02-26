@@ -27,7 +27,7 @@
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div class="contna" > <!-- na vicino ai nomi delle classi sta per nuovo annuncio -->
             <p id="oldAnnuncio"> </p>
-            <form action="/BACHECAUNISA/AnnunciServlet" id = "form">
+            <form accept-charset="utf-8" action="/BACHECAUNISA/AnnunciServlet" id = "form">
                 <input type="hidden" name = "azione" value="modificaAnnuncio">
                 <input type="hidden" name="usernameUtente" value="<%=su.getUsername()%>">
                 <input type="hidden" name="id" value="<%=request.getParameter("id")%>">

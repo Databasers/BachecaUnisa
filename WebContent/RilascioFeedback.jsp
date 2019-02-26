@@ -35,7 +35,7 @@
                         <h3 id="Utenteinfo"><%=u.getUsername()%></h3>
                     </div>               
             </fieldset>    
-            <form class="togna" name = "FeedForm">
+            <form accept-charset="utf-8" class="togna" name = "FeedForm">
                 <textarea id="textarea" maxlength="2000" name="descrizione" placeholder="Inserisci qui la tua recensione..."></textarea>
                 <p class="tit">Valutazione</p>
                 <div class="star-rating">

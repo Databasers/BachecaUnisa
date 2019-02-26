@@ -18,13 +18,13 @@
                 if (registered != null && registered.equalsIgnoreCase("true")) {%>
             <h3 align="center"><font color="red">Username o password non corretti.</font></h3>
                 <%}%>
-            <form name ="Login" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=Login">
+            <form accept-charset="utf-8" name ="Login" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=Login">
                 <input type="text" placeholder="Username" name="username" maxlength="20" pattern="[a-zA-Z0-9]{1,}" required="required" title="Solo lettere e numeri">
                 <input type="password" placeholder="Password" name="password" maxlength="20" pattern=".{8,}" required="required" title="Almeno 8 caratteri">
                 <input type="submit" value="Login" id="logbutton" class="btn"> 
             </form>
 
-            <form action="registrazione.jsp" method="get" class="container">
+            <form accept-charset="utf-8" action="registrazione.jsp" method="get" class="container">
                 <input type="submit" class="btnReg" value ="Registrati"
                        name="Submit" />
             </form>

@@ -22,7 +22,7 @@
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div id=modProfilo>
             <img class="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png"> <br/>		
-            <form id="modifyUser" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaUtente" onsubmit="return conferma()">
+            <form accept-charset="utf-8" id="modifyUser" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaUtente" onsubmit="return conferma()">
                 <fieldset class="fieldset">
                     <legend class="legend">MODIFICA PROFILO</legend>
                     <input type="text"  placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" title="Solo lettere" value="<%= su.getNome()%>">
@@ -42,10 +42,10 @@
                 </fieldset>
             </form>
                     
-            <form id="modifyPassword" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaPassword">
+            <form accept-charset="utf-8" id="modifyPassword" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaPassword">
                 <fieldset class="fieldset">
                     <legend class="legend">MODIFICA PASSWORD</legend>
-                    <input id="password" type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
+                    <input id="password" name="newPassword" type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">
                     <input type="password" placeholder="Conferma password" maxlength="20" pattern=".{8,}" class="campo" name="confpassword" required="required" title="Almeno 8 caratteri" oninput="check(this)">
                     <script>
                         function check(input) {

@@ -39,7 +39,7 @@
                 <%} else {%> <p class="etichettaGruppo">GRUPPO DI STUDIO</p> <%}%>
             </div>
             <p class="txtannuncio"><%=x.getDescrizione()%></p>
-            <div id="segnalaannuncio"><form action="">
+            <div id="segnalaannuncio"><form accept-charset="utf-8" action="">
                     <input type="hidden" name = "id" value = "<%= x.getId()%>">                 
                     <% if (!su.getUsername().equals(x.getUsernameUtente())) {%><input class="valuebutton" type="submit" value="Segnala Annuncio" formaction="/BACHECAUNISA/segnalaAnnuncio.jsp"></form><%}%>
             </div>
