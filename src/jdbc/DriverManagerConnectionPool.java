@@ -24,7 +24,7 @@ public class DriverManagerConnectionPool {
   private static synchronized Connection createDbConnection() throws SQLException {
     Connection newConnection = null;
     String username = "root";
-    String password = "0000";
+    String password = "030198";
     
     newConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Bacheca"
         + "?zeroDateTimeBehavior=convertToNull&useSSL=false", username, password);
