@@ -38,7 +38,8 @@ public class SegnalazioniServlet extends HttpServlet {
         Segnalazione segnalazione;
         
         if (request.getParameter("recensione").length() > 0) {
-          segnalazione = new Segnalazione(Integer.parseInt(request.getParameter("recensione")), null);
+          segnalazione = new Segnalazione(Integer.parseInt(request.getParameter("recensione")),
+              null);
           System.out.println("È una recensione");
           segnalazione.setDescrizione(request.getParameter("descrizione")); 
           segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
@@ -94,7 +95,8 @@ public class SegnalazioniServlet extends HttpServlet {
    */
   private void creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     System.out.println(segnalazione.toString());
-    System.out.println(segnalazione.getId() + " " + segnalazione.getUtente() + " " + segnalazione.getIdSegnalato());
+    System.out.println(segnalazione.getId() + " " + segnalazione.getUtente() + " "
+      + segnalazione.getIdSegnalato());
     if (segnalazioneManager.creaSegnalazione(segnalazione)) {
       System.out.println("Ogetto segnalato ancora valido");
     }

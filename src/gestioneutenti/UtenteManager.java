@@ -122,7 +122,7 @@ public class UtenteManager {
       
       ResultSet rs = preparedStatement.executeQuery();
       
-      if (!rs.next()) {
+      if (!rs.first()) {
         System.out.println("Non trovato");
       } else {
         temp = new Utente();
