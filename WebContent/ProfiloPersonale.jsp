@@ -57,10 +57,10 @@
                     </label>
             </div>
             
-            <h1 id="nomecognome"><%=su.getNome()%> <%=su.getCognome()%></h1>
-            <h3 id="Utenteinfo"><%=su.getUsername()%></h3>
+            <h1 id="nomecognome"><%=u.getNome()%> <%=u.getCognome()%></h1>
+            <h3 id="Utenteinfo"><%=u.getUsername()%></h3>
             <button id="modPro" onclick="location.href = 'modificaProfilo.jsp'">Modifica Profilo</button> 
-            <textarea id="textarea" disabled="disabled"><%=su.getDescrizione()%></textarea>
+            <textarea id="textarea" disabled="disabled"><%=u.getDescrizione()%></textarea>
             <button id="visFeed" onclick="location.href = 'VisualizzaFeedback.jsp'">Visualizza Feedback</button>
         </div>
         <%}

@@ -65,15 +65,12 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     
     String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,?,?,0, null, ?)";
-    String lock = "LOCK TABLES " + TABLENAME + " write" ;
+    String lock = "LOCK TABLES " + TABLENAME + " read" ;
     String unlock = "UNLOCK TABLES";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
-      preparedStatement = connection.prepareStatement(lock);
-      preparedStatement.executeUpdate();
-      connection.commit();
-      System.out.println("qui");
+
       preparedStatement = connection.prepareStatement(sql);
       String dip = annuncio.getDipartimento();
       if (dip == null) {
@@ -93,9 +90,8 @@ public class AnnuncioManager {
       System.out.println(preparedStatement.toString());
       preparedStatement.executeUpdate();
       connection.commit();
-      preparedStatement = connection.prepareStatement(unlock);
-      preparedStatement.executeUpdate();
-      connection.commit();
+
+           
     } finally {
       try {
         if (preparedStatement != null) {
@@ -202,7 +198,6 @@ public class AnnuncioManager {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
       System.out.println("Query: " + preparedStatement.toString());
-
       ResultSet rs = preparedStatement.executeQuery();
       if (rs.first()) {
         temp = listaAnnunci(rs);
@@ -226,13 +221,15 @@ public class AnnuncioManager {
     String str = Integer.toString(id);
 
     String sql = "SELECT * FROM " + TABLENAME + " WHERE id = ?  ";
-
+    String flush = "FLUSH TABLES " + TABLENAME; 
     try {
       connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(flush);
+      preparedStatement.executeUpdate();
+      connection.commit();
       preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, str);
       System.out.println("Query: " + preparedStatement.toString());
-
       ResultSet rs = preparedStatement.executeQuery();
       if (!rs.next()) {
         temp = null; 
@@ -272,16 +269,18 @@ public class AnnuncioManager {
 
     String sql = "SELECT * FROM " + TABLENAME + " WHERE (Descrizione LIKE ? OR Titolo LIKE ?)"
         + " AND Tipologia = ? AND Dipartimento = ? ";
-
+    String flush = "FLUSH TABLES " + TABLENAME; 
     try {
       connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(flush);
+      preparedStatement.executeUpdate();
+      connection.commit();
       preparedStatement = connection.prepareStatement(sql);
       preparedStatement.setString(1, "%" + descrizione + "%");
       preparedStatement.setString(2, "%" + descrizione + "%");
       preparedStatement.setString(3, Integer.toString(t));
       preparedStatement.setString(4, dipartimento);
       System.out.println("Query: " + preparedStatement.toString());
-
       ResultSet rs = preparedStatement.executeQuery();
       if (!rs.next()) {
         temp = new ArrayList<Annuncio>(); 
@@ -310,17 +309,17 @@ public class AnnuncioManager {
     ArrayList<Annuncio> temp;
     
     String sql = "SELECT * FROM " + TABLENAME + " WHERE Dipartimento = ?  ";
-
+    String flush = "FLUSH TABLES " + TABLENAME; 
     try {
       connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(flush);
+      preparedStatement.executeUpdate();
+      connection.commit();
       preparedStatement = connection.prepareStatement(sql);
-
       preparedStatement.setString(1, dipartimento);
       System.out.println("Query: " + preparedStatement.toString());
-
       ResultSet rs = preparedStatement.executeQuery();
-      temp = listaAnnunci(rs);
-      
+      temp = listaAnnunci(rs);     
     } finally {
       DriverManagerConnectionPool.releaseConnection(connection);
     }
@@ -341,22 +340,23 @@ public class AnnuncioManager {
     ArrayList<Annuncio> temp;
     
     String sql = "SELECT * FROM " + TABLENAME + " WHERE Utente_Username = ?  ";
+    String flush = "FLUSH TABLES " + TABLENAME; 
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(flush);
+      preparedStatement.executeUpdate();
+      connection.commit();    
       preparedStatement = connection.prepareStatement(sql);
-
       preparedStatement.setString(1, username);
       System.out.println("Query: " + preparedStatement.toString());
-
-      ResultSet rs = preparedStatement.executeQuery();
-
+      ResultSet rs = preparedStatement.executeQuery();  
       if (!rs.next()) {
         temp = null;
       } else {
         temp = listaAnnunci(rs);
       } 
-    } finally {
+    } finally {      
       DriverManagerConnectionPool.releaseConnection(connection);
     }
     return temp;

@@ -113,9 +113,13 @@ public class UtenteManager {
     Utente temp = null;
     ResultSet rs = null;
     String sql = "SELECT * FROM " + TABLENAME + " WHERE Username = ?  ";
-    
+    String flush = "FLUSH TABLES " + TABLENAME; 
     try {
+      
       connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(flush);
+      preparedStatement.executeUpdate();
+      connection.commit();
       preparedStatement = connection.prepareStatement(sql);
       
       preparedStatement.setString(1, username);
@@ -158,13 +162,14 @@ public class UtenteManager {
     ArrayList<Utente> temp;
     
     String sql = "SELECT * FROM " + TABLENAME;
-          
+    String flush = "FLUSH TABLES " + TABLENAME; 
     try {
       connection = DriverManagerConnectionPool.getConnection();
-      preparedStatement = connection.prepareStatement(sql);
-      
-      System.out.println("recuperaTutti: " + preparedStatement.toString());
-      
+      preparedStatement = connection.prepareStatement(flush);
+      preparedStatement.executeUpdate();
+      connection.commit();
+      preparedStatement = connection.prepareStatement(sql);      
+      System.out.println("recuperaTutti: " + preparedStatement.toString());    
       ResultSet rs = preparedStatement.executeQuery();
       temp = listaUtenti(rs);
       if (temp == null) {

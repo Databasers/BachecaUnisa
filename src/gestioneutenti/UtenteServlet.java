@@ -100,27 +100,7 @@ public class UtenteServlet extends HttpServlet {
         temp.setCognome(cognome);
         temp.setDescrizione(descrizione);
         utenteManager.modificaUtente(temp);
-        /*
-        Utente u = utenteManager.recuperaSeRegistrato(username, password);
-
-      SessioneUtente su;
-      if (u.isGestore() == true) {
-        su = new SessioneUtente(u, "Gestore");
-      } else {
-        su = new SessioneUtente(u, "Utente");
-      }
-      request.getSession().setAttribute("log", su);
-
-      request.getSession().setAttribute("Utente", su)
-        
-        Utente temp = utenteManager.recuperaPerUsername(usernameLog);
-        sessione = new SessioneUtente(temp,sessione.getRuolo());
-        */
-        sessione.setNome(nome);
-        sessione.setCognome(cognome);
-        sessione.setDescrizione(descrizione);
         response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
-
       }
 
 

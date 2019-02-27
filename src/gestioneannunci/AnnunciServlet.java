@@ -103,7 +103,7 @@ public class AnnunciServlet extends HttpServlet {
           u.setNumAnnunci(u.getNumAnnunci() - 1);
           um.modificaUtente(u);
           rimuoviAnnuncio(id);
-          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp?");
+          response.sendRedirect(request.getContextPath() + "/AnnunciPersonali.jsp?");
            
         }
       }

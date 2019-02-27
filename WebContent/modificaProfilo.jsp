@@ -30,9 +30,9 @@
             <form accept-charset="utf-8" id="modifyUser" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaUtente" onsubmit="return conferma()">
                 <fieldset class="fieldset">
                     <legend class="legend">MODIFICA PROFILO</legend>
-                    <input type="text"  placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" title="Solo lettere" value="<%= su.getNome()%>">
-                    <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" title="Solo lettere" value="<%= su.getCognome()%>">
-                    <textarea rows="4" cols="50" id="textareaProfilo" name="descrizione" placeholder="Descrizione" maxlength="2000"><%= su.getDescrizione()%></textarea>
+                    <input type="text"  placeholder="Nome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="nome" id = "nome" title="Solo lettere" value="<%= u.getNome()%>">
+                    <input type="text" placeholder="Cognome" maxlength="20" pattern="[a-zA-Z\s]{1,}" class="campo" name="cognome" title="Solo lettere" value="<%= u.getCognome()%>">
+                    <textarea rows="4" cols="50" id="textareaProfilo" name="descrizione" placeholder="Descrizione" maxlength="2000"><%= u.getDescrizione()%></textarea>
                     <input type="submit" value="Modifica Dati" id="modbutton">   
                     <script>
                         function conferma() {
