@@ -17,14 +17,17 @@
 
         <%
             SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+            System.out.println(su.getDescrizione());
             if (su == null) {
                 response.sendRedirect(request.getContextPath() + "/Login.jsp");
             } else {
                 Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
+
                 if (u == null) {
                     response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=pro&username=" + su.getUsername());
                 } else {
                     request.getSession().removeAttribute("utenteTrovato");
+                                    System.out.println(u.getDescrizione());
                     int media= u.getMedia();
         %>
 
@@ -54,10 +57,10 @@
                     </label>
             </div>
             
-            <h1 id="nomecognome"><%=u.getNome()%> <%=u.getCognome()%></h1>
-            <h3 id="Utenteinfo"><%=u.getUsername()%></h3>
+            <h1 id="nomecognome"><%=su.getNome()%> <%=su.getCognome()%></h1>
+            <h3 id="Utenteinfo"><%=su.getUsername()%></h3>
             <button id="modPro" onclick="location.href = 'modificaProfilo.jsp'">Modifica Profilo</button> 
-            <textarea id="textarea" disabled="disabled"><%=u.getDescrizione()%></textarea>
+            <textarea id="textarea" disabled="disabled"><%=su.getDescrizione()%></textarea>
             <button id="visFeed" onclick="location.href = 'VisualizzaFeedback.jsp'">Visualizza Feedback</button>
         </div>
         <%}

@@ -1,3 +1,4 @@
+<%@page import="gestioneutenti.Utente"%>
 <%@page import="gestioneutenti.SessioneUtente"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
@@ -13,11 +14,15 @@
     </head>
     <body>
         <%
-       SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
-        if (su == null) {
-        response.sendRedirect(request.getContextPath() + "/Login.jsp");
-       } else {
-        SessioneUtente sulo = (SessioneUtente) request.getSession().getAttribute("log");   
+        SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+            if (su == null) {
+                response.sendRedirect(request.getContextPath() + "/Login.jsp");
+            } else {
+                Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
+                if (u == null) {
+                    response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=mod&username=" + su.getUsername());
+                } else {
+                    request.getSession().removeAttribute("utenteTrovato");  
         %>
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div id=modProfilo>
@@ -61,6 +66,7 @@
             </form>
 
         </div>
-        <%} %>
+                    <%}
+      }%>
     </body>
 </html>

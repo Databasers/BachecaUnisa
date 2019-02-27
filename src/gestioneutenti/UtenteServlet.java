@@ -32,7 +32,7 @@ public class UtenteServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) {
     
 
-    SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("log");
+    SessioneUtente sessione = (SessioneUtente) request.getSession().getAttribute("Utente");
 
     try {
       String azione = request.getParameter("azione");
@@ -59,6 +59,9 @@ public class UtenteServlet extends HttpServlet {
         } else if (request.getParameter("luogo").equalsIgnoreCase("pro")) {
           System.out.println("Luogo = profilo");
           response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+        } else if (request.getParameter("luogo").equalsIgnoreCase("mod")) {
+          System.out.println("Luogo = modProfilo");
+          response.sendRedirect(request.getContextPath() + "/modificaProfilo.jsp");
         } else if (request.getParameter("luogo").equalsIgnoreCase("feed")) { 
           System.out.println("Luogo = feed");
           System.out.println(request.getContextPath() + "/RilascioFeedback.jsp?username="
@@ -92,10 +95,12 @@ public class UtenteServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String descrizione = request.getParameter("descrizione");
-        modificaUtente(usernameLog, nome, cognome, descrizione);
-        /*sessione.setDescrizione(descrizione);
-        sessione.setCognome(cognome);
-        sessione.setNome(nome);
+        Utente temp = utenteManager.recuperaPerUsername(usernameLog);
+        temp.setNome(nome);
+        temp.setCognome(cognome);
+        temp.setDescrizione(descrizione);
+        utenteManager.modificaUtente(temp);
+        /*
         Utente u = utenteManager.recuperaSeRegistrato(username, password);
 
       SessioneUtente su;
@@ -111,8 +116,9 @@ public class UtenteServlet extends HttpServlet {
         Utente temp = utenteManager.recuperaPerUsername(usernameLog);
         sessione = new SessioneUtente(temp,sessione.getRuolo());
         */
-        
-     
+        sessione.setNome(nome);
+        sessione.setCognome(cognome);
+        sessione.setDescrizione(descrizione);
         response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
 
       }
@@ -215,14 +221,7 @@ public class UtenteServlet extends HttpServlet {
    * @param descrizione dell'utente modificata.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private void modificaUtente(String username, String nome, String cognome,
-      String descrizione) throws SQLException {
-    Utente temp = utenteManager.recuperaPerUsername(username);
-    temp.setNome(nome);
-    temp.setCognome(cognome);
-    temp.setDescrizione(descrizione);
-    utenteManager.modificaUtente(temp);
-  }
+
   
   /**
    * Questo metodo permette di modificare la password dell'utente.
@@ -279,8 +278,6 @@ public class UtenteServlet extends HttpServlet {
       } else {
         su = new SessioneUtente(u, "Utente");
       }
-      request.getSession().setAttribute("log", su);
-
       request.getSession().setAttribute("Utente", su);
       System.out.println("Login effettuato!");
       System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");

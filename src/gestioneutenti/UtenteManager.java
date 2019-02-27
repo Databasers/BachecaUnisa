@@ -111,6 +111,7 @@ public class UtenteManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Utente temp = null;
+    ResultSet rs = null;
     String sql = "SELECT * FROM " + TABLENAME + " WHERE Username = ?  ";
     
     try {
@@ -120,9 +121,8 @@ public class UtenteManager {
       preparedStatement.setString(1, username);
       System.out.println("Query: " + preparedStatement.toString());
       
-      ResultSet rs = preparedStatement.executeQuery();
-      
-      if (!rs.first()) {
+       rs = preparedStatement.executeQuery();
+      if (rs != null && !rs.first()) {
         System.out.println("Non trovato");
       } else {
         temp = new Utente();
@@ -137,6 +137,8 @@ public class UtenteManager {
         temp.setMedia(rs.getInt("MediaRecensioni"));
       } 
     } finally {
+      rs.close();
+      preparedStatement.close();
       DriverManagerConnectionPool.releaseConnection(connection);
     }
     return temp;

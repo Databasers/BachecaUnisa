@@ -57,11 +57,15 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     
     String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,?,?,0, null, ?)";
-    
-    
-    
+    String lock = "LOCK TABLES " + TABLENAME + " write" ;
+    String unlock = "UNLOCK TABLES";
+
     try {
       connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(lock);
+      preparedStatement.executeUpdate();
+      connection.commit();
+      System.out.println("qui");
       preparedStatement = connection.prepareStatement(sql);
       String dip = annuncio.getDipartimento();
       if (dip == null) {
@@ -80,7 +84,9 @@ public class AnnuncioManager {
       preparedStatement.setString(5, annuncio.getUsernameUtente());
       System.out.println(preparedStatement.toString());
       preparedStatement.executeUpdate();
-      
+      connection.commit();
+      preparedStatement = connection.prepareStatement(unlock);
+      preparedStatement.executeUpdate();
       connection.commit();
     } finally {
       try {
