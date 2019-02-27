@@ -94,12 +94,11 @@ public class RecensioneManager {
    */
   public ArrayList<Recensione> listaRecensioni(ResultSet rs) 
       throws SQLException {
-    rs.first();
+    rs.beforeFirst();
     ArrayList<Recensione> lista = new ArrayList<Recensione>();
     Recensione temp;
 
-    if (rs.next()) {
-      System.out.print("1");
+    while (rs.next()) {
       temp = new Recensione();
       temp.setDescrizione(rs.getString("Descrizione"));
       temp.setDestinatario(rs.getString("Destinatario"));
@@ -107,7 +106,6 @@ public class RecensioneManager {
       temp.setMittente(rs.getString("Mittente"));
       temp.setValutazione(rs.getInt("Valutazione"));
       lista.add(temp);
-      rs.next();
       
     }
     return lista; 
