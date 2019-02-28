@@ -127,7 +127,10 @@ public class AnnunciServlet extends HttpServlet {
             String dipartimento = request.getParameter("dipartimento");
             String titolo = request.getParameter("titolo");
             String descrizione = request.getParameter("descrizione");
-            boolean tipologia = Boolean.valueOf(request.getParameter("tipologia"));
+            String tipologiastr = request.getParameter("tipologia");
+            Boolean tipologia = false;
+            if (tipologiastr.equals("1"))
+                tipologia = true;
             creaAnnuncio(dipartimento, titolo, descrizione, tipologia, u.getUsername());
             response.sendRedirect(request.getContextPath()
                           + "/UtenteServlet?azione=aggiungiAnnuncio");
@@ -157,6 +160,13 @@ public class AnnunciServlet extends HttpServlet {
           
         }
       }
+      
+      if (azione.equalsIgnoreCase("AggiungiSegnalazione")) {
+        aggiungiSegnalazione(request);
+        response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
+      }
+      
+      
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -191,6 +201,18 @@ public class AnnunciServlet extends HttpServlet {
       throws SQLException {
     return annuncioManager.recuperaPerTipologia(descrizione, tipo, dipartimento);
 
+  }
+  
+  /**
+   * Questo metodo incrementa il contatore delle segnalazioni di un annuncio.
+   * @param request richista client.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  private void aggiungiSegnalazione(HttpServletRequest request) throws SQLException {
+    int id = Integer.parseInt(request.getParameter("id"));
+    Annuncio a = annuncioManager.recuperaPerId(id);
+    a.setNumSegnalazioni(a.getNumSegnalazioni()+1);
+    annuncioManager.modificaAnnuncio(a);
   }
 
 

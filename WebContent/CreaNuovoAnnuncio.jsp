@@ -34,13 +34,13 @@
 
             <form id="AnnuncioForm" class ="a" accept-charset="utf-8">
                 
-                <label class="etichettaGruppoTOP">GRUPPO DI STUDIO <input type="radio" checked="checked" name="radio"></label>
-                <label class="etichettaTutoratoTOP">ATTIVITA' DI TUTORATO <input type="radio"name="radio"></label>
-                <select>
-                        <option value="0">Informatica</option>
-                        <option value="1">Ingegneria</option>
-                        <option value="2">Farmacia</option>
-                        <option value="3">Lettere</option>
+                <label class="etichettaGruppoTOP">GRUPPO DI STUDIO <input type="radio" checked="checked" name="tipologia" value="0"></label>
+                <label class="etichettaTutoratoTOP">ATTIVITA' DI TUTORATO <input type="radio" name="tipologia" value="1"></label>
+                <select name="dipartimento">
+                    <option value="Informatica">Informatica</option>
+                    <option value="Ingegneria">Ingegneria</option>
+                    <option value="Farmacia">Farmacia</option>
+                    <option value="Lettere">Lettere</option>
                 </select>
                 <input type="text" class="inputtitle" maxlength="30" name="titolo" placeholder="Titolo" required="required">
                 <textarea class="txtna" maxlength="2000" name="descrizione" contenteditable="true" required="required"></textarea>

@@ -49,7 +49,7 @@
                 <input type="radio" name="motivazione" value="2"> Non e' possibile contattare l'utente che ha fatto l'annuncio.<br>  
                 <input type="radio" name="motivazione" value="3"> Altro.<br> 
             </div>
-            <textarea  class="textarea" maxlength="2000" name="descrizione" required="required"></textarea>
+            <textarea  class="textarea" maxlength="2000" name="descrizione"></textarea>
             <div style="text-align:center">
                 <input id="segnala" type="submit" value="Segnala" class="segButton">
             </div>

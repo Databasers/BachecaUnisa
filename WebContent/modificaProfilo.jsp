@@ -47,7 +47,7 @@
                 </fieldset>
             </form>
                     
-            <form accept-charset="utf-8" id="modifyPassword" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaPassword">
+            <form accept-charset="utf-8" id="modifyPassword" name = "modify" class="modify" method="Post" action="/BACHECAUNISA/UtenteServlet?azione=modificaPassword" onsubmit="return conferma()">
                 <fieldset class="fieldset">
                     <legend class="legend">MODIFICA PASSWORD</legend>
                     <input id="password" name="newPassword" type="password" placeholder="Password" maxlength="20" pattern=".{8,}" class="campo" name="password" required="required" title="Almeno 8 caratteri">

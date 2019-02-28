@@ -151,6 +151,8 @@ public class UtenteServlet extends HttpServlet {
 
   /**
    * Questo metodo incrementa il contatore degli annunci di un utente.
+   * @param request richista client.
+   * @throws SQLException in caso di errore di accesso al database.
    */
   private void aggiungiAnnuncio(HttpServletRequest request) throws SQLException {
     SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");

@@ -51,15 +51,7 @@ public class SegnalazioniServlet extends HttpServlet {
         }
         segnalazione.setUtente(su.getUsername());
         creaSegnalazione(segnalazione);
-        if (segnalazione.isTipoSegnalazione()) {
-          response.sendRedirect(request.getContextPath() + "/VisualizzaAnnuncio.jsp?id="
-              + segnalazione.getIdSegnalato());
-        } else if (request.getParameter("luogo").equalsIgnoreCase("profilo")) {
-          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?&user="
-              + request.getParameter("user"));
-        } else {
-          response.sendRedirect(request.getContextPath() + "ProfiloPersonale.jsp");
-        }
+        response.sendRedirect(request.getContextPath() + "/AnnunciServlet?azione=aggiungiSegnalazione&id=" + segnalazione.getIdSegnalato());
         
       } else if (azione.equalsIgnoreCase("rimuoviSegnalazione")) {
         int id = Integer.parseInt(request.getParameter("ID"));
