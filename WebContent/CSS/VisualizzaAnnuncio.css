@@ -35,11 +35,13 @@ button, input
     box-shadow: 5px 5px 5px black;
       
 }
-#nomeutente
+#nomeutente , #nomeutente a
 {
     margin: 2px;
     text-align: center;
     font-size: 15px;
+    text-decoration: none;
+    color: black;
 }    
     
 .txtannuncio

@@ -31,7 +31,7 @@
         <div class="annuncio">
             <img id="avatarannuncio" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
             <br>
-            <span id="nomeutente"><%=x.getUsernameUtente()%></span>
+           <span id="nomeutente"><a href="/BACHECAUNISA/ProfiloUtente.jsp?username=<%=x.getUsernameUtente()%>"><%=x.getUsernameUtente()%></a></span>
             <div class="annuncioInfo">
                 <h2 id="annuncioTitle"><%=x.getTitolo()%><br></h2>
                 <span class="dipartimento"><%=x.getDipartimento()%></span>

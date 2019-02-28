@@ -55,7 +55,7 @@
                 </div>
                 <div class = "Titolo">
                     <h2><%=x.getTitolo()%></h2>
-                    <h3><%=x.getUsernameUtente()%></h3>
+                    <a href="/BACHECAUNISA/ProfiloUtente.jsp?username=<%=x.getUsernameUtente()%>"<h3><%=x.getUsernameUtente()%></h3></a>
                 </div>
                 <div class = "preview"><%=x.getDescrizione()%></div>
                 <div class = "btn">

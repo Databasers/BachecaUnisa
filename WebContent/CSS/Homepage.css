@@ -54,11 +54,13 @@ button, input
     margin: 0;
 }
 
-.Titolo h3 
+.Titolo a, h3
 {
     margin: 0 0 10px;
     font-size: 14px;
     font-weight: 400;
+    text-decoration: none;
+    color: black;
 }
 
 #listaProfili
