@@ -43,15 +43,19 @@ public class SegnalazioniServlet extends HttpServlet {
           System.out.println("È una recensione");
           segnalazione.setDescrizione(request.getParameter("descrizione")); 
           segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
+          segnalazione.setUtente(su.getUsername());
+          creaSegnalazione(segnalazione);
+          response.sendRedirect(request.getContextPath() + "/RecensioniServlet?azione=aggiungiSegnalazione&id=" + segnalazione.getIdSegnalato());
         } else {
           segnalazione = new Segnalazione(null, Integer.parseInt(request.getParameter("annuncio")));
           System.out.println("È un annuncio");
           segnalazione.setDescrizione(request.getParameter("descrizione")); 
           segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
+          segnalazione.setUtente(su.getUsername());
+          creaSegnalazione(segnalazione);
+          response.sendRedirect(request.getContextPath() + "/AnnunciServlet?azione=aggiungiSegnalazione&id=" + segnalazione.getIdSegnalato());
         }
-        segnalazione.setUtente(su.getUsername());
-        creaSegnalazione(segnalazione);
-        response.sendRedirect(request.getContextPath() + "/AnnunciServlet?azione=aggiungiSegnalazione&id=" + segnalazione.getIdSegnalato());
+        
         
       } else if (azione.equalsIgnoreCase("rimuoviSegnalazione")) {
         int id = Integer.parseInt(request.getParameter("ID"));

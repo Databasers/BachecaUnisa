@@ -98,6 +98,12 @@ public class RecensioniServlet extends HttpServlet {
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         }
       }
+      
+      if (azione.equalsIgnoreCase("AggiungiSegnalazione")) {
+        aggiungiSegnalazione(request);
+        response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
+      }
+      
     }    catch (SQLException e) {
       e.printStackTrace();
     }
@@ -118,6 +124,20 @@ public class RecensioniServlet extends HttpServlet {
       throws SQLException {
     return recensioneManager.recuperaRecensioni(username);
   }
+  
+  /**
+   * Questo metodo incrementa il contatore delle segnalazioni di una recensione.
+   * @param request richista client.
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  private void aggiungiSegnalazione(HttpServletRequest request) throws SQLException {
+    int id = Integer.parseInt(request.getParameter("id"));
+    Recensione a = recensioneManager.recuperaPerId(id);
+    a.setNumSegnalazioni(a.getNumSegnalazioni()+1);
+    recensioneManager.modificaRecensione(a);
+  }
+  
+  
 
 
 

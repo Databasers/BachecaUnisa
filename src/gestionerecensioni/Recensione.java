@@ -72,6 +72,14 @@ public class Recensione implements Segnalabile {
   public String getDestinatario() {
     return destinatario;
   }
+  
+  public int getNumSegnalazioni() {
+    return numSegnalazioni;
+  }
+  
+  public void setNumSegnalazioni(int numSegnalazioni) {
+    this.numSegnalazioni = numSegnalazioni;
+  }
 
   public void setMittente(String mittente) {
     this.mittente = mittente;
@@ -133,4 +141,5 @@ public class Recensione implements Segnalabile {
   private String descrizione;
   private String mittente;
   private String destinatario;
+  private int numSegnalazioni = 0;
 }
