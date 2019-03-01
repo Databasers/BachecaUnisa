@@ -1,3 +1,6 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="gestionerecensioni.Recensione"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="gestioneutenti.SessioneUtente"%>
 <%@page import="gestioneutenti.Utente"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -23,12 +26,18 @@
                 response.sendRedirect(request.getContextPath() + "/Login.jsp");
             } else {
                 Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
+                ArrayList<Recensione> lista = (ArrayList<Recensione>) request.getSession().getAttribute("recensioni");
                 if (u == null) {
                     response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=ut&username=" + request.getParameter("username"));
+                } else if (lista == null){
+                  System.out.println("Lista non trovata");
+                  response.sendRedirect("/BACHECAUNISA/RecensioniServlet?azione=recensioniUtente&luogo=no&username=" + request.getParameter("username"));
                 } else {
                     request.getSession().removeAttribute("utenteTrovato");
+                    request.getSession().removeAttribute("recensioni");
                     int media = u.getMedia();
-                    System.out.println(media);
+                    System.out.println("Media: " + media);
+                    System.out.println("Dimensione lista " + lista.size()       );
         %>
         <div class="utentetxt">
             <img id="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
@@ -62,7 +71,19 @@
             <% if (!su.getUsername().equals(u.getUsername())) {%><button id="riFeed" type="submit" formaction="/BACHECAUNISA/RilascioFeedback.jsp">Rilascia Feedback</button><%}%>
         </form>
         </div>
-        <%}
+        
+        <%if (lista.isEmpty()) {%>
+        <div>Non ci sono ancora recensioni per questo utente</div>
+        <%} else { 
+         Recensione[] a = lista.toArray(new Recensione[0]);
+        for (Recensione x : a) {%>
+        <div id="Recensione">
+          <div id="Mittente"><%=x.getMittente()%></div>
+          <div id="Descrizione"><%=x.getDescrizione()%></div>
+          <div id="Valutazione"><%=x.getValutazione()%></div>
+        </div>
+        <%} %>
+        <%}}
         }%>
     </body>
 </html>

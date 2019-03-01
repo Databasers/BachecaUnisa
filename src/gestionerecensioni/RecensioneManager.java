@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import gestionesegnalazioni.Segnalazione;
 import jdbc.DriverManagerConnectionPool;
 
 /**
@@ -236,6 +237,38 @@ public class RecensioneManager {
       System.out.println("Non ci stavano le recensioni");
       return 0;
     }
+  }
+  
+  public ArrayList<Recensione> recuperaPerUtente(String username) throws SQLException {
+    ArrayList<Recensione> lista = new ArrayList<Recensione>();
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Destinatario LIKE ?";
+    
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setString(1, username);
+      System.out.println("Query: " + preparedStatement.toString());
+      ResultSet rs = preparedStatement.executeQuery();
+      if (rs.next()) {
+        lista = listaRecensioni(rs);
+      }
+      if (lista == null) {
+        System.out.println("C'è stato un errore nella lettura del database");
+      } else if (lista.isEmpty()) {
+        System.out.println("La lista è vuota");
+      }
+      
+        
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+      System.out.println("\n RECENSIONI DI " + username + " PRESE \n");
+    }
+    
+    
+    return lista;
+    
   }
   
 }

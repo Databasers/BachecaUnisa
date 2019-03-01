@@ -145,7 +145,7 @@ public class SegnalazioneManager {
       System.out.println("Query: " + preparedStatement.toString());
 
       ResultSet rs = preparedStatement.executeQuery();
-      while (rs.next()) {
+      if (rs.next()) {
         temp = listaSegnalazioni(rs);
       } 
     } finally {

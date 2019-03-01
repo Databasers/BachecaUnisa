@@ -47,9 +47,7 @@ public class RecensioniServlet extends HttpServlet {
         request.getSession().setAttribute("Lista", caso);
         String luogo = request.getParameter("luogo");
         response.sendRedirect(request.getContextPath() + "/" + luogo + ".jsp");
-      }
-
-      if (azione.equalsIgnoreCase("rimuoviRecensione")) {
+      } else if (azione.equalsIgnoreCase("rimuoviRecensione")) {
         int id = Integer.parseInt(request.getParameter("id"));
         String username = request.getParameter("usernameUtente");
         if (sessione.getRuolo().equalsIgnoreCase("Gestore")) {
@@ -61,11 +59,7 @@ public class RecensioniServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
           }
         }
-      }
-      
-
-
-      if (azione.equalsIgnoreCase("modificaRecensione")) {
+      } else if (azione.equalsIgnoreCase("modificaRecensione")) {
         int id = Integer.parseInt(request.getParameter("id"));
         int valutazione = Integer.parseInt(request.getParameter("valutazione"));
         String descrizione = request.getParameter("descrizione");
@@ -74,18 +68,13 @@ public class RecensioniServlet extends HttpServlet {
           modificaRecensione(id, valutazione, descrizione);
           response.sendRedirect(request.getContextPath() + "/profiloPersonale");
         }
-      }
-      
-      if (azione.equalsIgnoreCase("segnalaRecensione")) {
+      } else if (azione.equalsIgnoreCase("segnalaRecensione")) {
         int id = Integer.parseInt(request.getParameter("id"));
         Recensione rec = recensioneManager.recuperaPerId(id);
         request.getSession().setAttribute("recensione", rec);
         response.sendRedirect(request.getContextPath() + "/");
         
-      }
-      
-
-      if (azione.equalsIgnoreCase("creaRecensione")) {
+      } else if (azione.equalsIgnoreCase("creaRecensione")) {
         if (sessione.getRuolo().equalsIgnoreCase("Utente")) {
           int valutazione = Integer.parseInt(request.getParameter("rating"));
           String descrizione = request.getParameter("descrizione");
@@ -97,11 +86,20 @@ public class RecensioniServlet extends HttpServlet {
           System.out.println("\n RECENSIONE CREATA \n");
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         }
-      }
-      
-      if (azione.equalsIgnoreCase("AggiungiSegnalazione")) {
+      } else if (azione.equalsIgnoreCase("AggiungiSegnalazione")) {
         aggiungiSegnalazione(request);
         response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
+      } else if (azione.equalsIgnoreCase("recensioniUtente")) {
+        ArrayList<Recensione> lista = recensioneManager.recuperaPerUtente(
+            request.getParameter("username"));
+        request.getSession().setAttribute("recensioni", lista);
+        if (request.getParameter("luogo").equalsIgnoreCase("perso")) {
+          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+        } else {
+          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?username="
+               + request.getParameter("username"));
+        }
+        
       }
       
     }    catch (SQLException e) {
