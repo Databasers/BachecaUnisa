@@ -29,7 +29,7 @@
                     response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=pro&username=" + su.getUsername());
                 } else if (lista == null){
                   System.out.println("Lista non trovata");
-                  response.sendRedirect("/BACHECAUNISA/RecensioniServlet?azione=recensioniUtente&luogo=no&username=" + su.getUsername());
+                  response.sendRedirect("/BACHECAUNISA/RecensioniServlet?azione=recensioniUtente&luogo=pro&username=" + su.getUsername());
                  
                 } else {
                     request.getSession().removeAttribute("utenteTrovato");
@@ -68,20 +68,25 @@
             <h3 id="Utenteinfo"><%=u.getUsername()%></h3>
             <button id="modPro" onclick="location.href = 'modificaProfilo.jsp'">Modifica Profilo</button> 
             <textarea id="textarea" disabled="disabled"><%=u.getDescrizione()%></textarea>
-            
-        <%if (lista.isEmpty()) {%>
-        <div>Non ci sono ancora recensioni per questo utente</div>
-        <%} else { 
-         Recensione[] a = lista.toArray(new Recensione[0]);
-        for (Recensione x : a) {%>
-        <div id="Recensione">
-          <div id="Mittente"><%=x.getMittente()%></div>
-          <div id="Descrizione"><%=x.getDescrizione()%></div>
-          <div id="Valutazione"><%=x.getValutazione()%></div>
-        </div>
-        </div>
-        <%}}}
-      }%>
+         
+            <fieldset class="fieldset">
+                <legend class="legend">Feedback di <%=u.getUsername()%></legend>
+                <%if (lista.isEmpty()) {%>
+                <div>Non ci sono ancora recensioni per questo utente</div>
+                <%} else {
+            Recensione[] a = lista.toArray(new Recensione[0]);
+            for (Recensione x : a) {%>
+                <div id="Recensione">
+                    <div id="Mittente"><%=x.getMittente()%></div>
+                    <div id="Descrizione"><%=x.getDescrizione()%></div>
+                    <div id="Valutazione"><%=x.getValutazione()%></div>
+                </div>
+                <%}
+            } %>
+            </fieldset>
+
+        </div> 
+        <%}}%>
     </body>
 </html>
 

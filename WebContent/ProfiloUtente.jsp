@@ -70,21 +70,23 @@
             <input type="hidden" name="username" value="<%=request.getParameter("username")%>">
             <% if (!su.getUsername().equals(u.getUsername())) {%><button id="riFeed" type="submit" formaction="/BACHECAUNISA/RilascioFeedback.jsp">Rilascia Feedback</button><%}%>
         </form>
-        </div>
-        
-        <%if (lista.isEmpty()) {%>
-        <div>Non ci sono ancora recensioni per questo utente</div>
-        <%} else { 
-         Recensione[] a = lista.toArray(new Recensione[0]);
-        for (Recensione x : a) {%>
-        <div id="Recensione">
-          <div id="Mittente"><%=x.getMittente()%></div>
-          <div id="Descrizione"><%=x.getDescrizione()%></div>
-          <div id="Valutazione"><%=x.getValutazione()%></div>
-        </div>
-        <%} %>
-        <%}}
-        }%>
+            <fieldset class="fieldset">
+                <legend class="legend">Feedback di <%=u.getUsername()%></legend>
+                <%if (lista.isEmpty()) {%>
+                <div>Non ci sono ancora recensioni per questo utente</div>
+                <%} else {
+                    Recensione[] a = lista.toArray(new Recensione[0]);
+                    for (Recensione x : a) {%>
+                <div id="Recensione">
+                    <div id="Mittente"><%=x.getMittente()%></div>
+                    <div id="Descrizione"><%=x.getDescrizione()%></div>
+                    <div id="Valutazione"><%=x.getValutazione()%></div>
+                </div>
+                <%}
+                    } %>
+            </fieldset>
+        </div> 
+        <%}}%>
     </body>
 </html>
 

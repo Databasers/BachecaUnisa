@@ -93,7 +93,7 @@ public class RecensioniServlet extends HttpServlet {
         ArrayList<Recensione> lista = recensioneManager.recuperaPerUtente(
             request.getParameter("username"));
         request.getSession().setAttribute("recensioni", lista);
-        if (request.getParameter("luogo").equalsIgnoreCase("perso")) {
+        if (request.getParameter("luogo").equalsIgnoreCase("pro")) {
           response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
         } else {
           response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?username="
