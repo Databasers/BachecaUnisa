@@ -26,7 +26,7 @@
 
         <div class="container">
             <fieldset class="fieldset">
-                    <legend class="legend">Stai segnalando : </legend>
+                    <legend class="legend">   STAI SEGNALANDO: </legend>
                     <img id="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
                     <div class="annuncio">
                         <%if (x.isTipologia()) {%> <p class="etichettaTutorato">ATTIVITA' DI TUTORATO</p>

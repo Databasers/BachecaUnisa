@@ -155,7 +155,8 @@ h1
 
 .fieldset
 {
-    padding: 50px;
+    margin-top: 20px;
+    padding: 30px 50px;
     border-radius: 40px;
     color: white;
     border: solid rgba(256,256,256,.5);;
@@ -167,4 +168,30 @@ h1
     font-weight: bold;
     padding: 20px;
     text-shadow: 2px 2px 4px black;
+}
+
+#Recensione
+{
+    background-color: white;
+    border-radius: 40px;
+    margin-bottom: 20px;
+}
+
+#Mittenteinfo
+{
+   margin: 5px;
+   color: black;
+   font-size: 25px;
+   text-align: center;
+}
+
+#textareaDescrizione
+{
+    margin: 10px auto;
+    width: 90%;
+    height: 50px;
+    border: none;
+    resize: none;
+    outline:none;
+    background-color: transparent;
 }

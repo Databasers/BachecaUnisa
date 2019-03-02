@@ -70,19 +70,41 @@
             <textarea id="textarea" disabled="disabled"><%=u.getDescrizione()%></textarea>
          
             <fieldset class="fieldset">
-                <legend class="legend">Feedback di <%=u.getUsername()%></legend>
+                <legend class="legend">   I TUOI FEEDBACK   </legend>
                 <%if (lista.isEmpty()) {%>
-                <div>Non ci sono ancora recensioni per questo utente</div>
+                <div class="legend">Non hai ancora ricevuto recensioni</div>
                 <%} else {
-            Recensione[] a = lista.toArray(new Recensione[0]);
-            for (Recensione x : a) {%>
+                    Recensione[] a = lista.toArray(new Recensione[0]);
+                    for (Recensione x : a) {%>
                 <div id="Recensione">
-                    <div id="Mittente"><%=x.getMittente()%></div>
-                    <div id="Descrizione"><%=x.getDescrizione()%></div>
-                    <div id="Valutazione"><%=x.getValutazione()%></div>
+                    <div id="Mittenteinfo"><%=x.getMittente()%></div>
+                    <textarea id="textareaDescrizione" disabled="disabled"><%=x.getDescrizione()%></textarea>
+                    
+                    <div class="star-rating" >  
+                    <input id="star-5" type="radio" name="rating" value="5" disabled="disabled" <%if(x.getValutazione()==5){%> checked="checked" <%}%>>
+                    <label for="star-5" title="5 stars">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-4" type="radio" name="rating" value="4" disabled="disabled" <%if(x.getValutazione()==4){%> checked="checked" <%}%>>
+                    <label for="star-4" title="4 stars">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-3" type="radio" name="rating" value="3" disabled="disabled" <%if(x.getValutazione()==3){%> checked="checked" <%}%>>
+                    <label for="star-3" title="3 stars">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-2" type="radio" name="rating" value="2" disabled="disabled" <%if(x.getValutazione()==2){%> checked="checked" <%}%>>
+                    <label for="star-2" title="2 stars">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-1" type="radio" name="rating" value="1" disabled="disabled" <%if(x.getValutazione()==1){%> checked="checked" <%}%>>
+                    <label for="star-1" title="1 star">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    </div>             
                 </div>
                 <%}
-            } %>
+                    } %>
             </fieldset>
 
         </div> 
