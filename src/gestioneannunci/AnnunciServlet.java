@@ -189,8 +189,8 @@ public class AnnunciServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di una data tipologia.
-   * @param tipo dell'annuncio <code>true</code> se è un annuncio di tutorato.
-   *          <code>false</code> se è un annuncio di gruppo di studio.
+   * @param tipo dell'annuncio <code>true</code> se Ã¨ un annuncio di tutorato.
+   *          <code>false</code> se Ã¨ un annuncio di gruppo di studio.
    * @return la lista degli annunci della tipologia passata come parametro.
    * @throws SQLException in caso di errore di accesso al database.
    */

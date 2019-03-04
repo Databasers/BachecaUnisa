@@ -239,9 +239,9 @@ public class RecensioneManager {
   }
   
   /**
-   * Recupera tutte le recensioni ricevute dall'utente il cui username è passato come parametro.
+   * Recupera tutte le recensioni ricevute dall'utente il cui username Ã¨ passato come parametro.
    * @param username dell'utente
-   * @return lista delle recensioni ricevute dall'utente il cui username è passato come parametro
+   * @return lista delle recensioni ricevute dall'utente il cui username Ã¨ passato come parametro
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Recensione> recuperaPerUtente(String username) throws SQLException {
