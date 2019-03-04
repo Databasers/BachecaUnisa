@@ -46,8 +46,7 @@ public class SegnalazioniServlet extends HttpServlet {
           segnalazione.setUtente(su.getUsername());
           creaSegnalazione(segnalazione);
           response.sendRedirect(request.getContextPath() 
-              + "/RecensioniServlet?azione=aggiungiSegnalazione&id=" 
-              + segnalazione.getIdSegnalato());
+              + "/Homepage.jsp");
         } else {
           segnalazione = new Segnalazione(null, Integer.parseInt(request.getParameter("annuncio")));
           System.out.println("È un annuncio");
