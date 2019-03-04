@@ -92,15 +92,14 @@ public class UtenteServlet extends HttpServlet {
 
       if (azione.equalsIgnoreCase("modificaUtente")) {
         String usernameLog = sessione.getUsername();
+        String username = request.getParameter("username");
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String descrizione = request.getParameter("descrizione");
-        Utente temp = utenteManager.recuperaPerUsername(usernameLog);
-        temp.setNome(nome);
-        temp.setCognome(cognome);
-        temp.setDescrizione(descrizione);
-        utenteManager.modificaUtente(temp);
-        response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+        if (usernameLog.equals(username)) {
+          modificaUtente(username, nome, cognome, descrizione);
+          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+        }
       }
 
 
@@ -175,7 +174,6 @@ public class UtenteServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di restituire tutti gli utenti.
-   * @param  il numero della pagina attualmente visualizzata dall'utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Utente> stampaUtenti() throws SQLException {
@@ -203,6 +201,15 @@ public class UtenteServlet extends HttpServlet {
    * @param descrizione dell'utente modificata.
    * @throws SQLException in caso di errore di accesso al database.
    */
+  private void modificaUtente(String username, String nome, String cognome,
+      String descrizione) throws SQLException {
+    Utente temp = utenteManager.recuperaPerUsername(username);
+    temp.setNome(nome);
+    temp.setCognome(cognome);
+    temp.setDescrizione(descrizione);
+    utenteManager.modificaUtente(temp);
+  }
+
 
   
   /**

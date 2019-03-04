@@ -36,7 +36,17 @@ public class Utente {
   public Utente() {
   }
 
-
+  /**
+   * Inizializza un nuovo utente.
+   * @param username2 dell'utente
+   * @param nome2 dell'utente
+   * @param cognome2 dell'utente
+   * @param sesso2 dell'utente
+   * @param password2 dell'utente
+   * @param i numero di annunci creati dall'utente.
+   * @param gestore2 <code>true</code> se è gestore.
+   *                 <code>false</code> se è utente.
+   */
   public Utente(String username2, String nome2, String cognome2, String sesso2, String password2,
       int i, boolean gestore2) {
     this.username = username2;

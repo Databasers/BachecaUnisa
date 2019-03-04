@@ -20,7 +20,7 @@ public class AnnuncioManager {
   /**
    * Il metodo crea un'ArrayList di annunci da un result set.
    * @param rs result set da listare.
-   * @return una lista di 10 annunci dal database basandosi dalla pagina specificata.
+   * @return una lista di annunci dal database.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> listaAnnunci(ResultSet rs) throws SQLException {
@@ -65,8 +65,6 @@ public class AnnuncioManager {
     PreparedStatement preparedStatement = null;
     
     String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,?,?,0, null, ?)";
-    String lock = "LOCK TABLES " + TABLENAME + " read" ;
-    String unlock = "UNLOCK TABLES";
 
     try {
       connection = DriverManagerConnectionPool.getConnection();
@@ -183,8 +181,7 @@ public class AnnuncioManager {
   
   /**
    * Recupera tutti gli annunci esistenti.
-   * @param  il numero della pagina che l'utente visualizza.
-   * @return la lista di tutti gli annunci basandosi sulla pagina visualizzata dall'utente.
+   * @return la lista di tutti gli annunci.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> recuperaAnnunci() throws SQLException {
@@ -250,9 +247,7 @@ public class AnnuncioManager {
   /**
    * Recupera gli annunci della tipologia specificata.
    * @param tipo filtro.
-   * @param  il numero della pagina che l'utente visualizza.
-   * @return la lista di tutti gli annunci, filtrati per tipologia,
-   *          basandosi sulla pagina visualizzata dall'utente.
+   * @return la lista di tutti gli annunci, filtrati per tipologia.
    * @throws SQLException @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> recuperaPerTipologia(String descrizione, boolean tipo,
@@ -297,9 +292,7 @@ public class AnnuncioManager {
   /**
    * Recupera gli annunci del dipartimento specificato.
    * @param dipartimento filtro.
-   * @param  il numero della pagina che l'utente visualizza.
-   * @return la lista di tutti gli annunci, filtrati per dipartimento,
-   *         basandosi sulla pagina visualizzata dall'utente.
+   * @return la lista di tutti gli annunci, filtrati per dipartimento.
    * @throws SQLException @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> recuperaPerDipartimento(String dipartimento) 
@@ -329,9 +322,7 @@ public class AnnuncioManager {
   /**
    * Recupera tutti gli annunci di un singolo utente.
    * @param username dell'utente
-   * @param  il numero della pagina che l'utente visualizza.
-   * @return la lista di tutti gli annunci creati da un utente
-   *         basandosi sulla pagina visualizzata dall'utente stesso.
+   * @return la lista di tutti gli annunci creati da un utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Annuncio> recuperaPerUtente(String username) throws SQLException {

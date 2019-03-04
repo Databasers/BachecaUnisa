@@ -128,8 +128,7 @@ public class SegnalazioneManager {
   
   /**
    * Recupera tutte le segnalazioni esistenti.
-   * @param  il numero della pagina che l'utente visualizza.
-   * @return la lista di tutte le segnalazion basandosi sulla pagina visualizzata dall'utente.
+   * @return la lista di tutte le segnalazioni.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Segnalazione> recuperaSegnalazioni() throws SQLException {
@@ -158,7 +157,7 @@ public class SegnalazioneManager {
   /**
    * Il metodo crea un'ArrayList di segnalazioni da un result set.
    * @param rs result set da listare.
-   * @return una lista di 10 segnalazioni dal database basandosi dalla pagina specificata.
+   * @return una lista di segnalazioni dal database.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Segnalazione> listaSegnalazioni(ResultSet rs)

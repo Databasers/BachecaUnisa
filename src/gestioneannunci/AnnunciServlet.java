@@ -129,8 +129,9 @@ public class AnnunciServlet extends HttpServlet {
             String descrizione = request.getParameter("descrizione");
             String tipologiastr = request.getParameter("tipologia");
             Boolean tipologia = false;
-            if (tipologiastr.equals("1"))
-                tipologia = true;
+            if (tipologiastr.equals("1")) {
+              tipologia = true;
+            }
             creaAnnuncio(dipartimento, titolo, descrizione, tipologia, u.getUsername());
             response.sendRedirect(request.getContextPath()
                           + "/UtenteServlet?azione=aggiungiAnnuncio");
@@ -177,10 +178,8 @@ public class AnnunciServlet extends HttpServlet {
 
 
   /**
-   * Questo metodo si occupa di restituire tutti gli annunci presenti nel database 
-   * basandosi sul numero della pagina visualizzata.
-   * @param  il numero della pagina che l'utente visualizza.
-   * @return la lista di annunci basandosi sul numero della pagina visualizzata.
+   * Questo metodo si occupa di restituire tutti gli annunci presenti nel database.
+   * @return la lista di annunci.
    * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Annuncio> stampaAnnunci() throws SQLException {
@@ -190,9 +189,8 @@ public class AnnunciServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di una data tipologia.
-   * @param tipo dell'annuncio <code>true</code> se ï¿½ un annuncio di tutorato.
-   *          <code>false</code> se ï¿½ un annuncio di gruppo di studio.
-   * @param  il numero della pagina che l'utente visualizza.
+   * @param tipo dell'annuncio <code>true</code> se è un annuncio di tutorato.
+   *          <code>false</code> se è un annuncio di gruppo di studio.
    * @return la lista degli annunci della tipologia passata come parametro.
    * @throws SQLException in caso di errore di accesso al database.
    */
@@ -211,7 +209,7 @@ public class AnnunciServlet extends HttpServlet {
   private void aggiungiSegnalazione(HttpServletRequest request) throws SQLException {
     int id = Integer.parseInt(request.getParameter("id"));
     Annuncio a = annuncioManager.recuperaPerId(id);
-    a.setNumSegnalazioni(a.getNumSegnalazioni()+1);
+    a.setNumSegnalazioni(a.getNumSegnalazioni() + 1);
     annuncioManager.modificaAnnuncio(a);
   }
 
@@ -219,7 +217,6 @@ public class AnnunciServlet extends HttpServlet {
   /**
    * Questo metodo si occupa di restituire tutti gli annunci di un utente. 
    * @param username di riferimento all'utente.
-   * @param  il numero della pagina che l'utente visualizza.
    * @return la lista degli annunci dell'utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
@@ -238,7 +235,7 @@ public class AnnunciServlet extends HttpServlet {
    */
   private void rimuoviAnnuncio(int id) throws SQLException {
     Annuncio temp = annuncioManager.recuperaPerId(id);
-    if(temp == null) {
+    if (temp == null) {
       System.out.println("Annuncio non trovato");
     } else {
       annuncioManager.rimuoviAnnuncio(temp);
@@ -253,7 +250,6 @@ public class AnnunciServlet extends HttpServlet {
    * @param titolo nuovo titolo.
    * @throws SQLException in caso di errore di accesso al database.
    */
-
   private void modificaAnnuncio(int id, String titolo, String descrizione) throws SQLException {
     Annuncio temp = annuncioManager.recuperaPerId(id);
     temp.setTitolo(titolo);

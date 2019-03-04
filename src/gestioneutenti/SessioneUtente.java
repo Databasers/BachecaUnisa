@@ -19,7 +19,7 @@ public class SessioneUtente implements Serializable {
     username = u.getUsername();
     nome = u.getNome();
     cognome = u.getCognome();
-    descrizione= u.getDescrizione();
+    descrizione = u.getDescrizione();
   }
   
   /**

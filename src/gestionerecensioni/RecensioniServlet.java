@@ -126,11 +126,10 @@ public class RecensioniServlet extends HttpServlet {
 
 
   /**
-   * Questo metodo si occupa di restituire tutte le recensioni dell'utente 
-   * passato come parametro basandosi sul numero della pagina visualizzata.
+   * Questo metodo si occupa di restituire tutte le recensioni dell'utente.
    * @param username identificativo dell'utente.
    * @param  il numero della pagina attualmente visualizzata dall'utente.
-   * @return la lista delle recensioni di un utente basandosi sul numero della pagina visualizzata
+   * @return la lista delle recensioni di un utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Recensione> stampaRecensioni(String username)
@@ -146,7 +145,7 @@ public class RecensioniServlet extends HttpServlet {
   private void aggiungiSegnalazione(HttpServletRequest request) throws SQLException {
     int id = Integer.parseInt(request.getParameter("id"));
     Recensione a = recensioneManager.recuperaPerId(id);
-    a.setNumSegnalazioni(a.getNumSegnalazioni()+1);
+    a.setNumSegnalazioni(a.getNumSegnalazioni() + 1);
     recensioneManager.modificaRecensione(a);
   }
   
