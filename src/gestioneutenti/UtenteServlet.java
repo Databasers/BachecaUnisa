@@ -69,6 +69,7 @@ public class UtenteServlet extends HttpServlet {
           response.sendRedirect(request.getContextPath() + "/RilascioFeedback.jsp?username="
               + u.getUsername());
         } else {
+          System.out.println("Luogo = profilo utente");
           response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?username="
               + u.getUsername());
         }
