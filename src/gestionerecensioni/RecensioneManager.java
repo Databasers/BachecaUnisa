@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-
-import gestionesegnalazioni.Segnalazione;
 import jdbc.DriverManagerConnectionPool;
 
 /**
@@ -90,7 +88,7 @@ public class RecensioneManager {
   /**
    * Il metodo crea un'ArrayList di recensioni da un result set.
    * @param rs result set da listare.
-   * @return una lista di 10 recensioni dal database basandosi dalla pagina specificata.
+   * @return una lista di recensioni dal database.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Recensione> listaRecensioni(ResultSet rs) 
@@ -113,9 +111,9 @@ public class RecensioneManager {
   }
   
   /**
-   * Recupera tuttle recensioni esistenti di un dato utente.
+   * Recupera tutte le recensioni esistenti di un dato utente.
    * @param utenteDestinatario username di riferimento.
-   * @return la lista di tutti gli annunci basandosi sulla pagina visualizzata dall'utente.
+   * @return la lista di tutti gli annunci.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Recensione> recuperaRecensioni(String utenteDestinatario) 
@@ -218,6 +216,7 @@ public class RecensioneManager {
    * restituisce media pari a 0.
    * @param username dell'utente da prendere in considerazione
    * @return media recensioni
+   * @throws SQLException in caso di errore di accesso al database.
    */
   public int media(String username) throws SQLException {
     System.out.println("Entrati nella media, salve!");
@@ -239,6 +238,12 @@ public class RecensioneManager {
     }
   }
   
+  /**
+   * Recupera tutte le recensioni ricevute dall'utente il cui username è passato come parametro.
+   * @param username dell'utente
+   * @return lista delle recensioni ricevute dall'utente il cui username è passato come parametro
+   * @throws SQLException in caso di errore di accesso al database.
+   */
   public ArrayList<Recensione> recuperaPerUtente(String username) throws SQLException {
     ArrayList<Recensione> lista = new ArrayList<Recensione>();
     Connection connection = null;

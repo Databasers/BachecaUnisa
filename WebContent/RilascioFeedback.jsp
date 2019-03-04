@@ -28,7 +28,7 @@
         %>
         <div class="container">
             <fieldset class="fieldset">
-                    <legend class="legend">Stai rilasciando feedback a : </legend>
+                    <legend class="legend">   STAI RILASCIANDO FEEDBACK A : </legend>
                     <img class="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
                     <div class="utentetxt">
                         <h1 id="nomecognome"><%=u.getNome()%> <%=u.getCognome()%></h1>

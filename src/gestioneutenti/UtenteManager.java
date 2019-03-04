@@ -22,7 +22,7 @@ public class UtenteManager {
   /**
    * Il metodo crea un'ArrayList di utenti da un result set.
    * @param rs result set da listare.
-   * @return una lista di 10 utenti dal database basandosi dalla pagina specificata.
+   * @return una lista di utenti dal database.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Utente> listaUtenti(ResultSet rs) 
@@ -106,6 +106,7 @@ public class UtenteManager {
    * @return utente con l'username passato come parametro.
    * @throws SQLException in caso di errore di accesso al database.
    */
+  @SuppressWarnings("resource")
   public Utente recuperaPerUsername(String username) throws SQLException {
     System.out.println("Nel metodo");
     RecensioneManager rm = new RecensioneManager();
@@ -153,7 +154,7 @@ public class UtenteManager {
     
   /**
    * Recupera tutti gli utenti esistenti.
-   * @return la lista di tutti gli utenti basandosi sulla pagina visualizzata dall'utente.
+   * @return la lista di tutti gli utenti.
    * @throws SQLException in caso di errore di accesso al database.
    */
   public ArrayList<Utente> recuperaUtenti() throws SQLException {

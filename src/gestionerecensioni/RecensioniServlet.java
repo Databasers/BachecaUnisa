@@ -86,6 +86,21 @@ public class RecensioniServlet extends HttpServlet {
           System.out.println("\n RECENSIONE CREATA \n");
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         }
+      } else if (azione.equalsIgnoreCase("visualizzarecensione")) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Recensione recensioneTrovata = recensioneManager.recuperaPerId(id);
+        System.out.println(recensioneTrovata.getMittente());
+        request.getSession().setAttribute("recensioneTrovata", recensioneTrovata);
+        System.out.println("Titolo:" + recensioneTrovata.getDescrizione());
+        System.out.println("\n RECENSIONE TROVATA \n");
+        
+        if (request.getParameter("luogo").equalsIgnoreCase("se")) {
+          response.sendRedirect(request.getContextPath() + "/segnalaRecensione.jsp?id=" + id);
+          
+        } else if (request.getParameter("luogo").equalsIgnoreCase("mo")) {
+          response.sendRedirect(request.getContextPath() + "/modificaRecensione.jsp?id=" + id);
+        
+        }
       } else if (azione.equalsIgnoreCase("AggiungiSegnalazione")) {
         aggiungiSegnalazione(request);
         response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
@@ -115,11 +130,10 @@ public class RecensioniServlet extends HttpServlet {
 
 
   /**
-   * Questo metodo si occupa di restituire tutte le recensioni dell'utente 
-   * passato come parametro basandosi sul numero della pagina visualizzata.
+   * Questo metodo si occupa di restituire tutte le recensioni dell'utente.
    * @param username identificativo dell'utente.
    * @param  il numero della pagina attualmente visualizzata dall'utente.
-   * @return la lista delle recensioni di un utente basandosi sul numero della pagina visualizzata
+   * @return la lista delle recensioni di un utente.
    * @throws SQLException in caso di errore di accesso al database.
    */
   private ArrayList<Recensione> stampaRecensioni(String username)
@@ -135,7 +149,7 @@ public class RecensioniServlet extends HttpServlet {
   private void aggiungiSegnalazione(HttpServletRequest request) throws SQLException {
     int id = Integer.parseInt(request.getParameter("id"));
     Recensione a = recensioneManager.recuperaPerId(id);
-    a.setNumSegnalazioni(a.getNumSegnalazioni()+1);
+    a.setNumSegnalazioni(a.getNumSegnalazioni() + 1);
     recensioneManager.modificaRecensione(a);
   }
   

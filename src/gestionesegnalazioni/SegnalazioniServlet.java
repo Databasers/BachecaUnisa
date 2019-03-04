@@ -45,7 +45,8 @@ public class SegnalazioniServlet extends HttpServlet {
           segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
           segnalazione.setUtente(su.getUsername());
           creaSegnalazione(segnalazione);
-          response.sendRedirect(request.getContextPath() + "/RecensioniServlet?azione=aggiungiSegnalazione&id=" + segnalazione.getIdSegnalato());
+          response.sendRedirect(request.getContextPath() 
+              + "/Homepage.jsp");
         } else {
           segnalazione = new Segnalazione(null, Integer.parseInt(request.getParameter("annuncio")));
           System.out.println("È un annuncio");
@@ -53,7 +54,8 @@ public class SegnalazioniServlet extends HttpServlet {
           segnalazione.setMotivazione(Integer.parseInt(request.getParameter("motivazione")));
           segnalazione.setUtente(su.getUsername());
           creaSegnalazione(segnalazione);
-          response.sendRedirect(request.getContextPath() + "/AnnunciServlet?azione=aggiungiSegnalazione&id=" + segnalazione.getIdSegnalato());
+          response.sendRedirect(request.getContextPath() 
+              + "/AnnunciServlet?azione=aggiungiSegnalazione&id=" + segnalazione.getIdSegnalato());
         }
         
         
@@ -92,19 +94,17 @@ public class SegnalazioniServlet extends HttpServlet {
   private void creaSegnalazione(Segnalazione segnalazione) throws SQLException {
     System.out.println(segnalazione.toString());
     System.out.println(segnalazione.getId() + " " + segnalazione.getUtente() + " "
-      + segnalazione.getIdSegnalato());
+        + segnalazione.getIdSegnalato());
     if (segnalazioneManager.creaSegnalazione(segnalazione)) {
       System.out.println("Ogetto segnalato ancora valido");
     }
-    
+
     
   }
 
 
   /**
-   * Questo metodo si occupa di restituire tutte le segnalazioni presenti nel database
-   * basandosi sul numero della pagina visualizzata.
-   * @param  il numero della pagina che l'utente visualizza.
+   * Questo metodo si occupa di restituire tutte le segnalazioni presenti nel database.
    * @return la lista di segnalazioni basandosi sul numero della pagina visualizzata.
    * @throws SQLException in caso di errore di accesso al database.
    */

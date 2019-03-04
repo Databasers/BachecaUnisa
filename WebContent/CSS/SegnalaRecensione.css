@@ -1,89 +1,174 @@
-h1 { font-size: 1.5em; margin: 10px; }
-
-body, html {
-	height: 100%;
-	font-family: 'Roboto', sans-serif;
-        font-size: 15px;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-    
-    #avatarannuncio{
-border-radius: 50%;
-width: 150px;
-height:150px;
-margin-left: 12px;
-  
-}
-    
-    
- .titleannuncio{
-   border-style: solid;
-   text-align: left;
-      margin: 1%;
-    }
-    .txtannuncio{
-    margin: 1%;
-    border-style: solid;
-    height: 50%;
-    min-height: 250px;
-    overflow-y: auto;
-      font-size: 150%;
-}
-   
-     #segnala{
-     margin-right: auto;
-     margin-left: auto;
-     display: block;
-     margin-top: 2%;
-      height: 8%;
-      width: 25%;
-      min-height: 70px;
-    }
-    .avatarcont{
-      border-style: solid;
-      margin: 1%;
-      padding: 0.5%;
-      
-    }
-    
-    #textannunciosegn {
-     float: right;
-      border-style: solid;
-      margin-right: 1%;
-      height: 14%;
-      width: 78%;
-      min-height: 123px;
-    }
-    
-    
-    #textarea {
+body
+{
+    height: 100%;
     width: 100%;
-    height: 40%;
-    overflow: auto;
-    height: 300px;
-    
-    
-    
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    background-image: url("IMAGES/bg-reg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-    #segnala{
-     background-color: #ddd;
-	border: none;
-	color: black;
-	padding: 15px 30px;
-	text-align: center;
-	text-decoration: none;
-	display: block;
-	cursor: pointer;
-	border-radius: 16px;
-	font-size: 14px;
-     margin-right: auto;
-     margin-left: auto;
-     display: block;
-     margin-top: 2%;
-      height: 4%;
-      width: 15%;
-    }
+button, input 
+{
+    outline: none;
+}
+
+#barraleft
+{
+    position: fixed;
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+
+.container
+{
+    float: right;
+    display: inline-block;
+    width: 60%;
+    padding: 2% 10%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.fieldset
+{
+    padding: 50px;
+    border-radius: 40px;
+    color: white;
+    border: solid rgba(256,256,256,.5);;
+}
+
+.legend
+{
+    font-size: 25px;
+    font-weight: bold;
+    padding: 20px;
+    text-shadow: 2px 2px 4px black;
+}
+
+#textareaAnnuncio
+{
+    margin: 10px auto;
+    padding: 5px;
+    width: 70%;
+    height: 125px;
+    border-radius: 20px;
+    border: none;
+    resize: none;
+    outline:none;
+    background-color: #fff;
+}
+
+#avatarProf
+{
+    border-radius: 50%;
+    height:20%;
+    width: 20%;
+    margin: 0 auto;
+    box-shadow: 5px 5px 5px black;
+    float: left;
+}
+
+#titoloAnnuncio
+{
+    margin:0;
+    padding: 0;
+    font-size: 20px;
+    display: block;
+}
+.etichettaTutorato , .etichettaGruppo
+{
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 20px;
+    width: 30%;
+    display: inline-block;
+    margin: 0;
+}
+
+.etichettaTutorato
+{
+    background-color: orange;
+}
+
+.etichettaGruppo
+{
+    background-color: greenyellow;
+}
+
+.checkboxes
+{
+    padding: 30px;
+    color: white;
+    text-align: left;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.textarea
+{
+    padding: 20px;
+    width: 90%;
+    height: 200px;
+    border-radius: 20px;
+    border: none;
+    resize: none;
+    outline:none;
+    background-color: white;
+}
+
+.textarea:focus, .textarea:hover
+{
+    background-color: #e9e9e9;
+}
+
+.segButton {
+    display: block;
+    width: 150px;
+    margin: 20px auto;
+    padding:10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.segButton:hover {
+	background-color: #DCDCDC;
+}
+
+
+.star-rating
+{
+    direction: rtl;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    padding: 10px;
+    text-shadow: 2px 2px 4px black;
+}
+.star-rating input[type=radio] 
+{
+    display: none
+}
+
+.star-rating label 
+{
+    
+    color: #bbb;
+    font-size: 25px;
+    padding: 0;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.star-rating input[type=radio]:checked ~ label 
+{
+    color: #f2b600
+}
+
+.lw { font-size: 60px; }
