@@ -86,6 +86,21 @@ public class RecensioniServlet extends HttpServlet {
           System.out.println("\n RECENSIONE CREATA \n");
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
         }
+      } else if (azione.equalsIgnoreCase("visualizzarecensione")) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Recensione recensioneTrovata = recensioneManager.recuperaPerId(id);
+        System.out.println(recensioneTrovata.getMittente());
+        request.getSession().setAttribute("recensioneTrovata", recensioneTrovata);
+        System.out.println("Titolo:" + recensioneTrovata.getDescrizione());
+        System.out.println("\n RECENSIONE TROVATA \n");
+        
+        if (request.getParameter("luogo").equalsIgnoreCase("se")) {
+          response.sendRedirect(request.getContextPath() + "/segnalaRecensione.jsp?id=" + id);
+          
+        } else if (request.getParameter("luogo").equalsIgnoreCase("mo")) {
+          response.sendRedirect(request.getContextPath() + "/modificaRecensione.jsp?id=" + id);
+        
+        }
       } else if (azione.equalsIgnoreCase("AggiungiSegnalazione")) {
         aggiungiSegnalazione(request);
         response.sendRedirect(request.getContextPath() + "/Homepage.jsp");

@@ -78,7 +78,7 @@
                     Recensione[] a = lista.toArray(new Recensione[0]);
                     for (Recensione x : a) {%>
                 <div id="Recensione">
-                    <div id="Mittenteinfo"><%=x.getMittente()%></div>
+                    <div id="Mittenteinfo"><a href="/BACHECAUNISA/ProfiloUtente.jsp?username=<%=x.getMittente()%>"><%=x.getMittente()%></a></div>
                     <textarea id="textareaDescrizione" disabled="disabled"><%=x.getDescrizione()%></textarea>
                     
                     <div class="star-rating" >  

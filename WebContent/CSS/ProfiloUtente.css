@@ -154,12 +154,13 @@ h1
     margin-bottom: 20px;
 }
 
-#Mittenteinfo
+#Mittenteinfo a
 {
    margin: 5px;
    color: black;
-   font-size: 25px;
+   font-size: 20px;
    text-align: center;
+   text-decoration: none;
 }
 
 #textareaDescrizione
