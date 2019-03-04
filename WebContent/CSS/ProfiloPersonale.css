@@ -196,3 +196,8 @@ h1
     outline:none;
     background-color: transparent;
 }
+
+.segButton
+{
+    margin-bottom: 15px;
+}

@@ -102,7 +102,7 @@
                         <i class="active fa fa-star" aria-hidden="true"></i>
                     </label>
                     </div>
-                    <button onclick="location.href = 'segnalaRecensione.jsp?id=' + '<%=x.getId()%>'">Segnala</button> 
+                    <button class="segButton" onclick="location.href = 'segnalaRecensione.jsp?id=' + '<%=x.getId()%>'">Segnala</button> 
                 </div>
                 <%}
                     } %>
