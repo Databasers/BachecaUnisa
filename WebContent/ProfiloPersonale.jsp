@@ -43,6 +43,7 @@
         <div class="utentetxt">
             <img id="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
             <div class="star-rating" >
+                <span class="numRec">(<%=lista.size()%>)</span>
                     <input id="star-5" type="radio" name="valutazione" value="5" disabled="disabled" <%if(media==5){%> checked="checked" <%}%>>
                     <label for="star-5" title="5 stars">
                         <i class="active fa fa-star" aria-hidden="true"></i>
@@ -82,7 +83,7 @@
                     <div id="Mittenteinfo"><a href="/BACHECAUNISA/ProfiloUtente.jsp?username=<%=x.getMittente()%>"><%=x.getMittente()%></a></div>
                     <textarea id="textareaDescrizione" disabled="disabled"><%=x.getDescrizione()%></textarea>
                     
-                    <div class="star-rating" >  
+                    <div class="star-rating" >
                     <input id="star-5" type="radio" name="rating<%=index%>" value="5" disabled="disabled" <%if(x.getValutazione()==5){%> checked="checked" <%}%>>
                     <label for="star-5" title="5 stars">
                         <i class="active fa fa-star" aria-hidden="true"></i>

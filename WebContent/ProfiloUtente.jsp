@@ -43,6 +43,7 @@
         <div class="utentetxt">
             <img id="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
             <div class="star-rating" >
+                <span class="numRec">(<%=lista.size()%>)</span>
                     <input id="star-5" type="radio" name="valutazione" value="5" disabled="disabled" <%if(media==5){%> checked="checked" <%}%>>
                     <label for="star-5" title="5 stars">
                         <i class="active fa fa-star" aria-hidden="true"></i>
@@ -62,7 +63,7 @@
                     <input id="star-1" type="radio" name="valutazione" value="1" disabled="disabled" <%if(media==1){%> checked="checked" <%}%>>
                     <label for="star-1" title="1 star">
                         <i class="active fa fa-star" aria-hidden="true"></i>
-                    </label>
+                    </label>    
             </div>  
             <h1 id="nomecognome"><%=u.getNome()%> <%=u.getCognome()%></h1>
             <h3 id="Utenteinfo"><%=u.getUsername()%></h3>
