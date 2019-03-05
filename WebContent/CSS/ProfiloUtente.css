@@ -107,7 +107,7 @@ h1
 }
 
 .star-rating input[type=radio] {
-    display: none
+    display: none;
 }
 
 .star-rating label {
