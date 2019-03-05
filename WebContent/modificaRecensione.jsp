@@ -30,6 +30,7 @@
             <form accept-charset="utf-8" action="/BACHECAUNISA/RecensioniServlet" id = "form">
                 <input type="hidden" name = "azione" value="modificaRecensione">
                 <input type="hidden" name="mittente" value="<%=x.getMittente()%>">
+                <input type="hidden" name="id" value="<%=x.getId()%>">
                 <input type="hidden" name="destinatario" value="<%=x.getDestinatario()%>">
                 <textarea id="textarea" name="descrizione" form="form" class="txtna"><%= x.getDescrizione()%></textarea>
                 <div class="star-rating">
