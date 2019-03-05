@@ -75,7 +75,7 @@
             <fieldset class="fieldset">
                 <legend class="legend">   FEEDBACK DI <%=u.getUsername()%>   </legend>
                 <%if (lista.isEmpty()) {%>
-                <div clalss="legend">Non ci sono ancora recensioni per questo utente</div>
+                <div class="legend">Non ci sono ancora recensioni per questo utente</div>
                 <%} else {
                     Recensione[] a = lista.toArray(new Recensione[0]);
                     int index= 0;
