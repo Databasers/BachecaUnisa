@@ -63,7 +63,13 @@
                 <div class = "preview"><%=x.getDescrizione()%></div>
                 <div class = "btn">
                     <form method= "post" accept-charset="utf-8">
-                        <button class="<%if (x.isTipologia()){%>btnTut<%}else{%>btnGrup<%}%>" type="submit"  formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
+                        <button class="<%if (x.isTipologia()){%>btnTut<%}else{%>btnGrup<%}%>" type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
+                        <%if (x.getUsernameUtente().equals(su.getUsername())){%><button class="<%if (x.isTipologia()){%>btnTut<%}else{%>btnGrup<%}%>" type="submit" formaction="/BACHECAUNISA/modificaAnnuncio.jsp?id=<%=x.getId()%>">Modifica</button><%}%>
+                    </form>
+                    <form action="/BACHECAUNISA/AnnunciServlet">
+                    <input type="hidden" name = "azione" value="rimuoviAnnuncio">
+                    <input type="hidden" name = "id" value="<%=x.getId()%>">
+                    <%if (x.getUsernameUtente().equals(su.getUsername())){%><button class="<%if (x.isTipologia()){%>btnTut<%}else{%>btnGrup<%}%>" type="submit">Rimuovi</button><%}%>
                     </form>
                 </div>
             </div>
