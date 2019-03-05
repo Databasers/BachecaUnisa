@@ -66,7 +66,7 @@ public class RecensioniServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         if (usernameLog.equalsIgnoreCase(username)) {
           modificaRecensione(id, valutazione, descrizione);
-          response.sendRedirect(request.getContextPath() + "/profiloPersonale");
+          response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?username=" + request.getParameter("destinatario"));
         }
       } else if (azione.equalsIgnoreCase("segnalaRecensione")) {
         int id = Integer.parseInt(request.getParameter("id"));

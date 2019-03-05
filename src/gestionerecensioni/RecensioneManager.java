@@ -228,10 +228,10 @@ public class RecensioneManager {
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(0, recensione.getDescrizione());
-      preparedStatement.setInt(1, recensione.getValutazione());
-      preparedStatement.setString(2, recensione.getDestinatario());
-      preparedStatement.setString(3, recensione.getMittente());
+      preparedStatement.setString(1, recensione.getDescrizione());
+      preparedStatement.setInt(2, recensione.getValutazione());
+      preparedStatement.setString(3, recensione.getDestinatario());
+      preparedStatement.setString(4, recensione.getMittente());
      
       System.out.println("doUpdate: " + preparedStatement.toString());
       preparedStatement.executeUpdate();
