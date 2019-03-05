@@ -62,10 +62,10 @@ public class RecensioniServlet extends HttpServlet {
       } else if (azione.equalsIgnoreCase("modificaRecensione")) {
         int valutazione = Integer.parseInt(request.getParameter("rating"));
         String descrizione = request.getParameter("descrizione");
-        String mittente = request.getParameter("mittente");
-        String destinatario = request.getParameter("destinatario");
-        if (usernameLog.equalsIgnoreCase(mittente)) {
-          modificaRecensione(mittente, destinatario, valutazione, descrizione);
+        String username = request.getParameter("mittente");
+        int id = Integer.parseInt(request.getParameter("id"));
+        if (usernameLog.equalsIgnoreCase(username)) {
+          modificaRecensione(id, valutazione, descrizione);
           response.sendRedirect(request.getContextPath() + "/profiloPersonale");
         }
       } else if (azione.equalsIgnoreCase("segnalaRecensione")) {
@@ -176,9 +176,9 @@ public class RecensioniServlet extends HttpServlet {
    * @param valutazione nuovo valutazione
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private void modificaRecensione(String mittente, String destinatario, int valutazione, 
+  private void modificaRecensione(int id, int valutazione, 
       String descrizione) throws SQLException {
-    Recensione recensione = recensioneManager.recuperaPerUtenti(mittente, destinatario);
+    Recensione recensione = recensioneManager.recuperaPerId(id);
     recensione.setDescrizione(descrizione);
     recensione.setValutazione(valutazione);
     recensioneManager.modificaRecensione(recensione);
