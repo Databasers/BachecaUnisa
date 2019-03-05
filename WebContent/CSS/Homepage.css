@@ -155,7 +155,7 @@ button, input
     font-size: 25px;   
 }
 
-.btnGrup, .btnTut, .btn
+.btnGrup, .btnTut, .btnProf
 {
     width: 150px;
     padding:10px;
@@ -165,9 +165,19 @@ button, input
     text-align: center;
 }
 
-.btn button:hover
+.btnGrup:hover
 {
-    background-color: #DCDCDC;
+    background-color: #ccffaa;
+}
+
+.btnTut:hover
+{
+    background-color: #ffd0b4;
+}
+
+.btnProf:hover
+{
+    background-color:  #DCDCDC;
 }
 
 .btn .btnTut

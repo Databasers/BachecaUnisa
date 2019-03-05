@@ -91,7 +91,7 @@
                 <div class = "btn">
                     <form method= "post" accept-charset="utf-8">
                         <input type="hidden" name="username" value="<%=x.getUsername()%>">
-                        <button class="btn" type="submit"  formaction="/BACHECAUNISA/ProfiloUtente.jsp">
+                        <button class="btnProf" type="submit"  formaction="/BACHECAUNISA/ProfiloUtente.jsp">
                             Visualizza
                         </button>
                     </form>
