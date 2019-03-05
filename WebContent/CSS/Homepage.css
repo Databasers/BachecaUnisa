@@ -154,3 +154,28 @@ button, input
     padding: 20px;
     font-size: 25px;   
 }
+
+.btnGrup, .btnTut, .btn
+{
+    width: 150px;
+    padding:10px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.btn button:hover
+{
+    background-color: #DCDCDC;
+}
+
+.btn .btnTut
+{
+    border: solid orange;
+}
+
+.btn .btnGrup
+{
+    border: solid greenyellow;
+}

@@ -63,7 +63,7 @@
                 <div class = "preview"><%=x.getDescrizione()%></div>
                 <div class = "btn">
                     <form method= "post" accept-charset="utf-8">
-                        <button type="submit" formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
+                        <button class="<%if (x.isTipologia()){%>btnTut<%}else{%>btnGrup<%}%>" type="submit"  formaction="/BACHECAUNISA/VisualizzaAnnuncio.jsp?id=<%=x.getId()%>">Visualizza</button>
                     </form>
                 </div>
             </div>
@@ -91,7 +91,7 @@
                 <div class = "btn">
                     <form method= "post" accept-charset="utf-8">
                         <input type="hidden" name="username" value="<%=x.getUsername()%>">
-                        <button type="submit"  formaction="/BACHECAUNISA/ProfiloUtente.jsp">
+                        <button class="btn" type="submit"  formaction="/BACHECAUNISA/ProfiloUtente.jsp">
                             Visualizza
                         </button>
                     </form>

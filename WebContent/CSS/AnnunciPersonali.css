@@ -117,3 +117,27 @@ body, html
 {
     display: inline-block;
 }
+
+.btn button
+{
+    width: 120px;
+    padding:10px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.btn button:hover
+{
+    background-color: #DCDCDC;
+}
+
+.btn .btnTut
+{
+    border: solid orange;
+}
+
+.btn .btnGrup
+{
+    border: solid greenyellow;
+}
