@@ -33,6 +33,7 @@
                   System.out.println("Lista non trovata");
                   response.sendRedirect("/BACHECAUNISA/RecensioniServlet?azione=recensioniUtente&luogo=no&username=" + request.getParameter("username"));
                 } else {
+                    if (su.getUsername().equals(u.getUsername()))response.sendRedirect("ProfiloPersonale.jsp");
                     request.getSession().removeAttribute("utenteTrovato");
                     request.getSession().removeAttribute("recensioni");
                     int media = u.getMedia();
