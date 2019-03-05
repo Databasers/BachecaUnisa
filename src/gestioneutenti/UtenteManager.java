@@ -109,6 +109,7 @@ public class UtenteManager {
   @SuppressWarnings("resource")
   public Utente recuperaPerUsername(String username) throws SQLException {
     System.out.println("Nel metodo");
+    RecensioneManager rm = new RecensioneManager();
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Utente temp = null;
@@ -139,7 +140,7 @@ public class UtenteManager {
         temp.setPassword(rs.getString("Password"));
         temp.setDescrizione(rs.getString("Descrizione"));
         temp.setNumAnnunci(rs.getInt("NumAnnunci"));
-        temp.setMedia(rs.getInt("MediaRecensioni"));
+        temp.setMedia(rm.media(temp.getUsername()));
       } 
     } finally {
       rs.close();

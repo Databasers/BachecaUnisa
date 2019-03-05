@@ -69,6 +69,7 @@ public class UtenteServlet extends HttpServlet {
           response.sendRedirect(request.getContextPath() + "/RilascioFeedback.jsp?username="
               + u.getUsername());
         } else {
+          System.out.println("Luogo = profilo utente");
           response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?username="
               + u.getUsername());
         }
@@ -91,15 +92,12 @@ public class UtenteServlet extends HttpServlet {
       }
 
       if (azione.equalsIgnoreCase("modificaUtente")) {
-        String usernameLog = sessione.getUsername();
-        String username = request.getParameter("username");
+        String username = sessione.getUsername();
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String descrizione = request.getParameter("descrizione");
-        if (usernameLog.equals(username)) {
-          modificaUtente(username, nome, cognome, descrizione);
-          response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
-        }
+        modificaUtente(username, nome, cognome, descrizione);
+        response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
       }
 
 

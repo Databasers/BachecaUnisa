@@ -29,7 +29,8 @@
                     response.sendRedirect("/BACHECAUNISA/UtenteServlet?azione=prelevaUtente&luogo=pro&username=" + su.getUsername());
                 } else if (lista == null){
                   System.out.println("Lista non trovata");
-                  response.sendRedirect("/BACHECAUNISA/RecensioniServlet?azione=recensioniUtente&luogo=pro&username=" + su.getUsername());
+                  response.sendRedirect("/BACHECAUNISA/RecensioniServlet?azione=recensioniUtente&luogo=perso&username=" + su.getUsername());
+
                  
                 } else {
                     request.getSession().removeAttribute("utenteTrovato");

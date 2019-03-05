@@ -104,15 +104,19 @@ public class RecensioniServlet extends HttpServlet {
       } else if (azione.equalsIgnoreCase("AggiungiSegnalazione")) {
         aggiungiSegnalazione(request);
         response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
+        
       } else if (azione.equalsIgnoreCase("recensioniUtente")) {
         ArrayList<Recensione> lista = recensioneManager.recuperaPerUtente(
             request.getParameter("username"));
         request.getSession().setAttribute("recensioni", lista);
-        if (request.getParameter("luogo").equalsIgnoreCase("pro")) {
+        
+        if (request.getParameter("luogo").equalsIgnoreCase("perso")) {
           response.sendRedirect(request.getContextPath() + "/ProfiloPersonale.jsp");
+          
         } else {
           response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?username="
                + request.getParameter("username"));
+          
         }
         
       }
