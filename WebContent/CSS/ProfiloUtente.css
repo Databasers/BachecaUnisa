@@ -173,3 +173,8 @@ h1
     outline:none;
     background-color: transparent;
 }
+
+.modButton
+{
+    margin: 10px;
+}

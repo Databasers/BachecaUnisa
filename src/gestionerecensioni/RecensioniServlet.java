@@ -60,7 +60,7 @@ public class RecensioniServlet extends HttpServlet {
           }
         }
       } else if (azione.equalsIgnoreCase("modificaRecensione")) {
-        int valutazione = Integer.parseInt(request.getParameter("valutazione"));
+        int valutazione = Integer.parseInt(request.getParameter("rating"));
         String descrizione = request.getParameter("descrizione");
         String mittente = request.getParameter("mittente");
         String destinatario = request.getParameter("destinatario");

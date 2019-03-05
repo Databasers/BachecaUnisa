@@ -102,7 +102,12 @@
                     <label for="star-1" title="1 star">
                         <i class="active fa fa-star" aria-hidden="true"></i>
                     </label>
-                    </div>             
+                    </div>
+                    <% if (x.getMittente().equals(su.getUsername())) { %>
+                    <form action="modificaRecensione.jsp">
+                    <input type="hidden" name = "id" value="<%=x.getId()%>">
+                    <button class="modButton" type="submit">Modifica</button>
+                    </form><%}%> 
                 </div>
                 <%}
                     } %>
