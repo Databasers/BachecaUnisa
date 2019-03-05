@@ -60,12 +60,12 @@ public class RecensioniServlet extends HttpServlet {
           }
         }
       } else if (azione.equalsIgnoreCase("modificaRecensione")) {
-        int id = Integer.parseInt(request.getParameter("id"));
         int valutazione = Integer.parseInt(request.getParameter("valutazione"));
         String descrizione = request.getParameter("descrizione");
-        String username = request.getParameter("usernameUtente");
-        if (usernameLog.equalsIgnoreCase(username)) {
-          modificaRecensione(id, valutazione, descrizione);
+        String mittente = request.getParameter("mittente");
+        String destinatario = request.getParameter("destinatario");
+        if (usernameLog.equalsIgnoreCase(mittente)) {
+          modificaRecensione(mittente, destinatario, valutazione, descrizione);
           response.sendRedirect(request.getContextPath() + "/profiloPersonale");
         }
       } else if (azione.equalsIgnoreCase("segnalaRecensione")) {
@@ -166,13 +166,15 @@ public class RecensioniServlet extends HttpServlet {
 
   /**
    * Questo metodo si occupa di modificare la recensione scelta all'interno del database.
-   * @param id della recensione da modificare
+   * @param mittente della recensione da recuperare.
+   * @param destinatario della recensione da recuperare.
    * @param descrizione nuova descrizione
    * @param valutazione nuovo valutazione
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private void modificaRecensione(int id, int valutazione, String descrizione) throws SQLException {
-    Recensione recensione = recensioneManager.recuperaPerId(id);
+  private void modificaRecensione(String mittente, String destinatario, int valutazione, 
+      String descrizione) throws SQLException {
+    Recensione recensione = recensioneManager.recuperaPerUtenti(mittente, destinatario);
     recensione.setDescrizione(descrizione);
     recensione.setValutazione(valutazione);
     recensioneManager.modificaRecensione(recensione);
