@@ -154,3 +154,43 @@ button, input
     padding: 20px;
     font-size: 25px;   
 }
+
+.btnGrup, .btnTut, .btnProf
+{
+    width: 150px;
+    padding:10px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.btnGrup:hover
+{
+    background-color: #ccffaa;
+}
+
+.btnTut:hover
+{
+    background-color: #ffd0b4;
+}
+
+.btnProf:hover
+{
+    background-color:  #DCDCDC;
+}
+
+.btn .btnTut
+{
+    border: solid orange;
+}
+
+.btn .btnGrup
+{
+    border: solid greenyellow;
+}
+
+.btn form
+{
+    display: inline-block;
+}

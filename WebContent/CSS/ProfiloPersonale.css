@@ -199,5 +199,29 @@ h1
 
 .segButton
 {
-    margin-bottom: 15px;
+    width: 150px;
+    padding:5px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
 }
+
+.segButton:hover
+{
+    background-color: #DCDCDC;
+}
+
+
+.numRec
+{
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-shadow: none;
+    position: relative;
+    bottom: 3px;
+    right: -3px;
+}
+

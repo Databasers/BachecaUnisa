@@ -124,7 +124,7 @@ public class RecensioneManager {
     
     String sql = "SELECT * FROM " + TABLENAME + " WHERE Destinatario LIKE '" 
         + utenteDestinatario + "'";
-    
+        
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
@@ -179,6 +179,41 @@ public class RecensioneManager {
   }
   
   /**
+   * Recupera la recensione con il mittente ed il destinatario passati come paramentro.
+   * @param mittente della recensione
+   * @param destinatario della recensione
+   * @return recensione
+   * @throws SQLException in caso di errore di accesso al database.
+   */
+  public Recensione recuperaPerUtenti(String mittente, String destinatario) throws SQLException {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    Recensione temp = null;
+    
+    String sql = "SELECT * FROM " + TABLENAME + " WHERE Destinatario = '" + destinatario 
+            + "' AND Mittente = '" + mittente + "'";
+    
+    try {
+      connection = DriverManagerConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      System.out.println("Query: " + preparedStatement.toString());
+
+      ResultSet rs = preparedStatement.executeQuery();
+      if (!rs.next()) {
+        temp = null;
+      } else {
+        temp = new Recensione(rs.getInt("ID"), rs.getInt("Valutazione"), 
+               rs.getString("Descrizione"), rs.getString("Mittente"),
+               rs.getString("Destinatario"));
+      }
+    } finally {
+      DriverManagerConnectionPool.releaseConnection(connection);
+    }
+    
+    return temp;
+  }
+  
+  /**
    * Questo metodo modifica la recensione selezionata nel database.
    * 
    * @param recensione da modificare.
@@ -188,15 +223,17 @@ public class RecensioneManager {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     String sql = "UPDATE " + TABLENAME + " SET Descrizione = ?, Valutazione = ?"
-        + " WHERE ID = ?";
+        + " WHERE Destinatario = ? AND Mittente = ?";
     
     try {
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(0, recensione.getDescrizione());
-      preparedStatement.setInt(1, recensione.getValutazione());
-      preparedStatement.setInt(2, recensione.getId());
+      preparedStatement.setString(1, recensione.getDescrizione());
+      preparedStatement.setInt(2, recensione.getValutazione());
+      preparedStatement.setString(3, recensione.getDestinatario());
+      preparedStatement.setString(4, recensione.getMittente());
      
+      System.out.println("doUpdate: " + preparedStatement.toString());
       preparedStatement.executeUpdate();
       connection.commit();
     } finally {

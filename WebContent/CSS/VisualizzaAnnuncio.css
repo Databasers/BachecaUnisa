@@ -126,3 +126,22 @@ button, input
 {
     text-transform: uppercase;
 }
+#rimmodannuncio form
+{
+    display: inline-block;
+}
+
+#rimmodannuncio .valuebutton
+{
+    width: 200px;
+    padding:10px;
+    border: none;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+}
+#rimmodannuncio .valuebutton:hover
+{
+    background-color: #DCDCDC;
+}
+

@@ -43,10 +43,18 @@
                     <input type="hidden" name = "id" value = "<%= x.getId()%>">                 
                     <% if (!su.getUsername().equals(x.getUsernameUtente())) {%><input class="valuebutton" type="submit" value="Segnala Annuncio" formaction="/BACHECAUNISA/segnalaAnnuncio.jsp"></form><%}%>
             </div>
+            <div id="rimmodannuncio"> <%if (su.getUsername().equals(x.getUsernameUtente())) {%>
+                    <form method= "post" accept-charset="utf-8">
+                        <button class="valuebutton" type="submit" formaction="/BACHECAUNISA/modificaAnnuncio.jsp?id=<%=x.getId()%>">Modifica</button>
+                    </form>
+                    <form action="/BACHECAUNISA/AnnunciServlet">
+                        <input type="hidden" name = "azione" value="rimuoviAnnuncio">
+                        <input type="hidden" name = "id" value="<%=x.getId()%>">
+                        <button class="valuebutton" type="submit">Rimuovi</button>
+                    </form>
+            <%}%>
+            </div>
         </div>
-
-
-
         <%}}%>
     </body>
 

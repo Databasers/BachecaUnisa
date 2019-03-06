@@ -107,7 +107,7 @@ h1
 }
 
 .star-rating input[type=radio] {
-    display: none
+    display: none;
 }
 
 .star-rating label {
@@ -172,4 +172,31 @@ h1
     resize: none;
     outline:none;
     background-color: transparent;
+}
+
+.modButton
+{
+    width: 150px;
+    padding:10px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.modButton:hover
+{
+    background-color: #DCDCDC;
+}
+
+.numRec
+{
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-shadow: none;
+    position: relative;
+    bottom: 3px;
+    right: -3px;
 }

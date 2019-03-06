@@ -117,3 +117,38 @@ body, html
 {
     display: inline-block;
 }
+
+.btn button
+{
+    width: 120px;
+    padding:10px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+
+.btn .btnTut
+{
+    border: solid orange;
+}
+
+.btn .btnGrup
+{
+    border: solid greenyellow;
+}
+
+.btnGrup:hover
+{
+    background-color: #ccffaa;
+}
+
+.btnTut:hover
+{
+    background-color: #ffd0b4;
+}
+
+.btnProf:hover
+{
+    background-color:  #DCDCDC;
+}

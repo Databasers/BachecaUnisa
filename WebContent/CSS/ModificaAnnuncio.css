@@ -91,3 +91,19 @@ button, input
     outline:none;
     background-color: #fff;
 }
+
+.sfdbna
+{
+
+    width: 200px;
+    padding:10px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.sfdbna:hover
+{
+    background-color: #DCDCDC;
+}
