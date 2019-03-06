@@ -66,8 +66,13 @@ public class UtenteServlet extends HttpServlet {
           System.out.println("Luogo = feed");
           System.out.println(request.getContextPath() + "/RilascioFeedback.jsp?username="
               + u.getUsername());
-          response.sendRedirect(request.getContextPath() + "/RilascioFeedback.jsp?username="
+          if (request.getParameter("es").equals("true")) {
+          response.sendRedirect(request.getContextPath() + "/RilascioFeedback.jsp?es=true&username="
               + u.getUsername());
+          } else {
+          response.sendRedirect(request.getContextPath() + "/RilascioFeedback.jsp?es=false&username="
+              + u.getUsername());
+          }
         } else {
           System.out.println("Luogo = profilo utente");
           response.sendRedirect(request.getContextPath() + "/ProfiloUtente.jsp?username="
@@ -120,7 +125,7 @@ public class UtenteServlet extends HttpServlet {
           SessioneUtente su = new SessioneUtente(u);
           request.getSession().setAttribute("Utente",su);
           System.out.println("\n FINE GESTIONE LOGIN REGISTRAZIONE \n");
-          response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
+          response.sendRedirect(request.getContextPath() + "/Login.jsp");
         }
       }
 

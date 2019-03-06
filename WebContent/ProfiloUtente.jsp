@@ -70,7 +70,7 @@
             <textarea id="textarea" disabled="disabled"><%=u.getDescrizione()%></textarea>
             <form accept-charset="utf-8" action="">
             <input type="hidden" name="username" value="<%=request.getParameter("username")%>">
-            <% if (!su.getUsername().equals(u.getUsername())) {%><button id="riFeed" type="submit" formaction="/BACHECAUNISA/RilascioFeedback.jsp">Rilascia Feedback</button><%}%>
+            <% if (!su.getUsername().equals(u.getUsername())) {%><button id="riFeed" type="submit" formaction="/BACHECAUNISA/RilascioFeedback.jsp?es=false">Rilascia Feedback</button><%}%>
         </form>
             <fieldset class="fieldset">
                 <legend class="legend">   FEEDBACK DI <%=u.getUsername()%>   </legend>
