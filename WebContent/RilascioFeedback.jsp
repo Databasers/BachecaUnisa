@@ -23,9 +23,13 @@
                     System.out.println(request.getContextPath() + "/UtenteServlet?azione=prelevaUtente&luogo=feed&username=" + request.getParameter("username"));
                     response.sendRedirect(request.getContextPath() + "/UtenteServlet?azione=prelevaUtente&luogo=feed&username=" + request.getParameter("username"));
                 } else {
+                    Boolean es = Boolean.valueOf(request.getParameter("es"));
                     request.getSession().removeAttribute("utenteTrovato");
 
         %>
+        <%if (es) {%>
+        <div>Mammt</div>
+        <%} %>
         <div class="container">
             <fieldset class="fieldset">
                     <legend class="legend">   STAI RILASCIANDO FEEDBACK A : </legend>
