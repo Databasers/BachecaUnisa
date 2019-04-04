@@ -24,11 +24,15 @@ public class RecensioneManager {
    * @param recensione da inserire nel database.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  public void creaRecensione(Recensione recensione) throws SQLException {
+  public boolean creaRecensione(Recensione recensione) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-
+    boolean control = true;
     try {
+      if (recuperaPerUtenti(recensione.getMittente(), recensione.getDestinatario()) != null) {
+          System.out.println("--------false-------------");
+          control = false;
+      } else {
       String sql = "INSERT INTO " + TABLENAME + " VALUES(?,?,null,?,?)";
       connection = DriverManagerConnectionPool.getConnection();
       preparedStatement = connection.prepareStatement(sql);
@@ -39,6 +43,7 @@ public class RecensioneManager {
     
       preparedStatement.executeUpdate();
       connection.commit();
+      }
     } finally {
       try {
         if (preparedStatement != null) {
@@ -47,6 +52,7 @@ public class RecensioneManager {
         }
       } finally {
         DriverManagerConnectionPool.releaseConnection(connection);
+        return control;
       }
     }
     

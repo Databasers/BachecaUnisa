@@ -82,9 +82,14 @@ public class RecensioniServlet extends HttpServlet {
           String destinatario = request.getParameter("destinatario");
           System.out.println("CREOLARECENSIONE");
           System.out.println(valutazione + " " + descrizione + " " + mittente + " " + destinatario);
-          creaRecensione(valutazione, descrizione, mittente, destinatario);
+          boolean control = (creaRecensione(valutazione, descrizione, mittente, destinatario));
+          System.out.println(control);
+          if (control){
           System.out.println("\n RECENSIONE CREATA \n");
           response.sendRedirect(request.getContextPath() + "/Homepage.jsp");
+          } else {
+              response.sendRedirect(request.getContextPath() + "/RilascioFeedback.jsp?username="+destinatario+"&es=true");
+          }
         }
       } else if (azione.equalsIgnoreCase("visualizzarecensione")) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -193,10 +198,10 @@ public class RecensioniServlet extends HttpServlet {
    * @param destinatario della nuova recensione.
    * @throws SQLException in caso di errore di accesso al database.
    */
-  private void creaRecensione(int valutazione, String descrizione, 
+  private boolean creaRecensione(int valutazione, String descrizione, 
       String mittente, String destinatario) throws SQLException {
     Recensione temp = new Recensione(valutazione, descrizione, mittente, destinatario);
-    recensioneManager.creaRecensione(temp);
+    return recensioneManager.creaRecensione(temp);
   }
 
 

@@ -15,18 +15,22 @@
         <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <%
             SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+            Boolean es = Boolean.valueOf(request.getParameter("es"));
             if (su == null) {
                 response.sendRedirect(request.getContextPath() + "/Login.jsp");
             } else {
                 Utente u = (Utente) request.getSession().getAttribute("utenteTrovato");
                 if (u == null) {
                     System.out.println(request.getContextPath() + "/UtenteServlet?azione=prelevaUtente&luogo=feed&username=" + request.getParameter("username"));
-                    response.sendRedirect(request.getContextPath() + "/UtenteServlet?azione=prelevaUtente&luogo=feed&username=" + request.getParameter("username"));
+                    response.sendRedirect(request.getContextPath() + "/UtenteServlet?azione=prelevaUtente&es=" + es + "&luogo=feed&username=" + request.getParameter("username"));
                 } else {
                     request.getSession().removeAttribute("utenteTrovato");
 
         %>
         <div class="container">
+             <%if (es) {%>
+                    <div style="color:red;font-weight:bold">Hai gia lasciato una recensione per <%=u.getUsername()%></div>
+                    <%}%>
             <fieldset class="fieldset">
                     <legend class="legend">   STAI RILASCIANDO FEEDBACK A : </legend>
                     <img class="avatarProf" alt="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
