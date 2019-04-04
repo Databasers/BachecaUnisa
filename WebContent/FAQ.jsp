@@ -1,3 +1,4 @@
+<%@page import="gestioneutenti.SessioneUtente"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,13 +9,16 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
         <title>FAQ</title>
-        <style>
-            #FAQdiv{
-                margin: 200px;
-            }
-        </style>
+        <%
+        SessioneUtente su = (SessioneUtente) request.getSession().getAttribute("Utente");
+        if (su == null) {
+          response.sendRedirect(request.getContextPath() + "/Login.jsp");
+        }
+        else {
+        %>
     </head>
     <body>
+        <div id="barraleft"><%@ include file="barraLEFTv2.jsp" %></div>
         <div class="container">
             <p class="title">Frequently Asked Questions</p>
             <div class="faq">
@@ -39,5 +43,6 @@
                     violazioni del regolamento e del codice etico.</p>
             </div>
         </div>
+        <%}%>
     </body>
 </html>
