@@ -19,9 +19,13 @@ button, input
 #logo{
     float: left;
     width: 30%;
-    margin: 0 10%;
+    margin: 2% 10%;
 }
 
+#logo img 
+{
+    width: 100%;
+}
 #container
 {
     float: left; 

@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="logo">
-            <img alt="Logo" src="https://nextindustry.net/wp-content/uploads/2018/01/Logo_TV_2015.png">
+            <img alt="Logo" src="CSS/IMAGES/logo.png">
         </div>
         <div id="container">   
 
